@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Colors · Primary palette</title>
+<link rel="stylesheet" href="../colors_and_type.css">
+<style>
+  html,body { margin:0; height:100%; background: var(--branco-off); }
+  .grid {
+    height: 100vh; display:grid; grid-template-columns: repeat(4, 1fr);
+    padding: 16px; gap: 12px; box-sizing: border-box;
+  }
+  .sw { position:relative; border-radius: var(--radius); overflow:hidden; padding: 16px; display:flex; flex-direction:column; justify-content:flex-end; }
+  .sw .name { font-weight:700; font-size: 14px; letter-spacing:-0.01em; line-height:1.1; }
+  .sw .hex  { font-family: var(--font-mono); font-size: 12px; opacity: .8; margin-top: 4px; }
+  .sw .role { font-size: 11px; letter-spacing:.08em; text-transform:uppercase; opacity:.75; margin-bottom: 8px; font-weight: 500; }
+  .laranja { background: var(--laranja); color: #fff; }
+  .preto   { background: var(--preto);   color: #fff; }
+  .branco  { background: var(--branco-off); color: var(--preto); border: 1px solid var(--cinza-300); }
+  .cinza   { background: var(--cinza-claro); color: var(--preto); }
+</style>
+</head>
+<body>
+<div class="grid">
+  <div class="sw laranja"><div class="role">Accent</div><div class="name">Laranja</div><div class="hex">#FF3D00</div></div>
+  <div class="sw preto"><div class="role">Text · Invert</div><div class="name">Preto</div><div class="hex">#000000</div></div>
+  <div class="sw branco"><div class="role">Background</div><div class="name">Branco Off</div><div class="hex">#F5F5F5</div></div>
+  <div class="sw cinza"><div class="role">Border · Mute</div><div class="name">Cinza Claro</div><div class="hex">#D9D9D9</div></div>
+</div>
+</body>
+</html>

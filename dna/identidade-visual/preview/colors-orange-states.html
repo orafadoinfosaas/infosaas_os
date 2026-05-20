@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Colors · Orange states</title>
+<link rel="stylesheet" href="../colors_and_type.css">
+<style>
+  html,body { margin:0; height:100%; background: var(--branco-off); }
+  .grid {
+    height: 100vh; display:grid; grid-template-columns: repeat(4, 1fr);
+    padding: 16px; gap: 12px; box-sizing: border-box;
+  }
+  .sw { position:relative; border-radius: var(--radius); overflow:hidden; padding: 16px; display:flex; flex-direction:column; justify-content:flex-end; }
+  .sw .name { font-weight:700; font-size: 14px; line-height:1.1; }
+  .sw .hex  { font-family: var(--font-mono); font-size: 12px; opacity: .8; margin-top:4px; }
+  .sw .role { font-size: 10px; letter-spacing:.1em; text-transform:uppercase; opacity:.78; margin-bottom: 6px; font-weight: 500; }
+  .a { background: var(--laranja-soft); color: var(--laranja-press); border: 1px solid #ffd9c9; }
+  .b { background: var(--laranja); color:#fff; }
+  .c { background: var(--laranja-hover); color:#fff; }
+  .d { background: var(--laranja-press); color:#fff; }
+</style>
+</head>
+<body>
+<div class="grid">
+  <div class="sw a"><div class="role">Soft tint</div><div class="name">--laranja-soft</div><div class="hex">#FFEDE6</div></div>
+  <div class="sw b"><div class="role">Base · CTA</div><div class="name">--laranja</div><div class="hex">#FF3D00</div></div>
+  <div class="sw c"><div class="role">Hover</div><div class="name">--laranja-hover</div><div class="hex">#FF5520</div></div>
+  <div class="sw d"><div class="role">Press · Active</div><div class="name">--laranja-press</div><div class="hex">#E03600</div></div>
+</div>
+</body>
+</html>

@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Components · Cards</title>
+<link rel="stylesheet" href="../colors_and_type.css">
+<style>
+  html,body { margin:0; background: var(--branco-off); color: var(--preto); }
+  .wrap { padding: 18px 24px; display:grid; grid-template-columns: 1fr 1fr 1fr; gap: 16px; }
+  .card {
+    background: var(--branco); border: 1px solid var(--cinza-300); border-radius: var(--radius-lg);
+    padding: 22px; display:flex; flex-direction:column; gap: 14px; min-height: 200px;
+    box-shadow: var(--shadow-sm);
+  }
+  .card.dark { background: var(--preto); color: var(--branco-off); border-color: var(--preto); }
+  .card.accent { background: var(--laranja); color:#fff; border-color: var(--laranja); }
+  .eyebrow { font: 500 11px/1 var(--font-sans); letter-spacing:.12em; text-transform:uppercase; opacity:.7; }
+  .h { font: 700 22px/1.1 var(--font-sans); letter-spacing:-0.015em; }
+  .h.big { font-size: 30px; line-height: 1.0; font-weight: 900; }
+  .body { font: 400 14px/1.5 var(--font-sans); opacity: .85; }
+  .foot { display:flex; align-items:center; justify-content:space-between; margin-top:auto; }
+  .price { font: 700 18px/1 var(--font-mono); }
+  .arrow { width:36px; height:36px; border-radius: 999px; display:grid; place-items:center; background: var(--laranja); color:#fff; font: 700 16px/1 var(--font-sans);}
+  .accent .arrow { background:#fff; color: var(--laranja); }
+  .dark .arrow { background: var(--laranja); color:#fff; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="card">
+    <div class="eyebrow">Produto · 01</div>
+    <div class="h">Do Papel ao MVP, com construção ágil.</div>
+    <div class="body">Desenvolvimento acelerado de MVPs e automações com IA integrada.</div>
+    <div class="foot"><div class="price">R$ 15k / mês</div><div class="arrow">→</div></div>
+  </div>
+  <div class="card dark">
+    <div class="eyebrow">Produto · 02</div>
+    <div class="h big">Soluções Enterprise sob medida.</div>
+    <div class="body">Next.js, React Native, Node — performance, segurança, conformidade.</div>
+    <div class="foot"><div class="price">R$ 20k / mês</div><div class="arrow">→</div></div>
+  </div>
+  <div class="card accent">
+    <div class="eyebrow">Produto · 03</div>
+    <div class="h big">Consultoria 1×1 com CEO e CMO.</div>
+    <div class="body">Até 90 dias de mentoria executiva — validação, produto, design, MVP.</div>
+    <div class="foot"><div class="price">R$ 20k / mês</div><div class="arrow">→</div></div>
+  </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Brand · Símbolo</title>
+<link rel="stylesheet" href="../colors_and_type.css">
+<style>
+  html,body { margin:0; height:100%; }
+  .stage { height: 100vh; display:grid; grid-template-columns: 1fr 1fr 1fr; gap:1px; background:var(--cinza-300); }
+  .panel { position:relative; display:flex; align-items:center; justify-content:center; }
+  .light  { background: var(--branco); }
+  .orange { background: var(--laranja); }
+  .dark   { background: var(--preto); }
+  .panel img { width: 50%; max-width: 180px; display:block; }
+  .tag {
+    position:absolute; bottom:12px; left:14px;
+    font: 500 10px/1 var(--font-sans); letter-spacing: .12em; text-transform:uppercase;
+    color: var(--fg-muted);
+  }
+  .tag-light { color: rgba(255,255,255,.78); }
+</style>
+</head>
+<body>
+<div class="stage">
+  <div class="panel light">
+    <img src="../assets/logos/simbolo-laranja.svg" alt="símbolo, laranja">
+    <span class="tag">laranja</span>
+  </div>
+  <div class="panel orange">
+    <img src="../assets/logos/simbolo-branco.svg" alt="símbolo, branco">
+    <span class="tag tag-light">branco</span>
+  </div>
+  <div class="panel dark">
+    <img src="../assets/logos/simbolo-branco.svg" alt="símbolo, branco">
+    <span class="tag tag-light">branco / preto</span>
+  </div>
+</div>
+</body>
+</html>

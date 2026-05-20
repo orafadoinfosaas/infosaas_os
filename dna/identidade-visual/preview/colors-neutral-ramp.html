@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Colors · Neutral ramp</title>
+<link rel="stylesheet" href="../colors_and_type.css">
+<style>
+  html,body { margin:0; height:100%; background: var(--branco); }
+  .row { height: 100vh; display:grid; grid-template-columns: repeat(8, 1fr); }
+  .sw { display:flex; flex-direction:column; justify-content:flex-end; padding: 12px 10px; }
+  .sw .name { font-family: var(--font-mono); font-size: 11px; line-height:1.1; }
+  .sw .hex  { font-family: var(--font-mono); font-size: 10px; opacity:.75; margin-top: 4px; }
+  .c100 { background: #F5F5F5; color:#0A0A0A; }
+  .c200 { background: #ECECEC; color:#0A0A0A; }
+  .c300 { background: #D9D9D9; color:#0A0A0A; }
+  .c400 { background: #B5B5B5; color:#0A0A0A; }
+  .c500 { background: #8A8A8A; color:#fff; }
+  .c600 { background: #5C5C5C; color:#fff; }
+  .c700 { background: #2E2E2E; color:#fff; }
+  .c900 { background: #0A0A0A; color:#fff; }
+</style>
+</head>
+<body>
+<div class="row">
+  <div class="sw c100"><div class="name">100</div><div class="hex">#F5F5F5</div></div>
+  <div class="sw c200"><div class="name">200</div><div class="hex">#ECECEC</div></div>
+  <div class="sw c300"><div class="name">300</div><div class="hex">#D9D9D9</div></div>
+  <div class="sw c400"><div class="name">400</div><div class="hex">#B5B5B5</div></div>
+  <div class="sw c500"><div class="name">500</div><div class="hex">#8A8A8A</div></div>
+  <div class="sw c600"><div class="name">600</div><div class="hex">#5C5C5C</div></div>
+  <div class="sw c700"><div class="name">700</div><div class="hex">#2E2E2E</div></div>
+  <div class="sw c900"><div class="name">900</div><div class="hex">#0A0A0A</div></div>
+</div>
+</body>
+</html>

@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Components · Form inputs</title>
+<link rel="stylesheet" href="../colors_and_type.css">
+<style>
+  html,body { margin:0; background: var(--branco-off); color: var(--preto); }
+  .wrap { padding: 22px 28px; display:grid; grid-template-columns: 1fr 1fr; gap: 18px 28px; }
+  .field { display:flex; flex-direction:column; gap: 6px; }
+  .lbl { font: 500 12px/1 var(--font-sans); color: var(--preto); }
+  .hint { font: 500 11px/1.3 var(--font-sans); color: var(--fg-muted); }
+  .input {
+    font: 400 14px/1 var(--font-sans);
+    padding: 12px 14px; border-radius: var(--radius); background: var(--branco);
+    border: 1px solid var(--cinza-300); color: var(--preto);
+    transition: border-color var(--dur) var(--ease), box-shadow var(--dur) var(--ease);
+  }
+  .input::placeholder { color: var(--fg-subtle); font-weight: 400; }
+  .input:focus { outline:none; border-color: var(--laranja); box-shadow: 0 0 0 3px rgba(255,61,0,.25); }
+  .input.error { border-color: var(--laranja); background: var(--laranja-soft); }
+  .err { font: 500 11px/1 var(--font-sans); color: var(--laranja-press); }
+  .check { display:flex; align-items:center; gap: 10px; font: 500 14px/1.2 var(--font-sans); }
+  .check input { accent-color: var(--laranja); width:16px; height:16px; }
+  .toggle { width: 40px; height: 22px; background: var(--cinza-300); border-radius: 999px; position:relative; }
+  .toggle::after { content:""; position:absolute; top:2px; left:2px; width:18px; height:18px; background:#fff; border-radius:999px; transition: all var(--dur) var(--ease); box-shadow: var(--shadow-sm); }
+  .toggle.on { background: var(--laranja); }
+  .toggle.on::after { left: 20px; }
+  .tog-row { display:flex; align-items:center; gap:10px; font: 500 14px/1 var(--font-sans); }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="field">
+    <label class="lbl">Nome da empresa</label>
+    <input class="input" value="G4 Educação">
+  </div>
+  <div class="field">
+    <label class="lbl">E-mail corporativo</label>
+    <input class="input" type="email" placeholder="voce@empresa.com">
+  </div>
+  <div class="field">
+    <label class="lbl">Faturamento anual</label>
+    <input class="input error" value="R$ 800 mil">
+    <div class="err">Atendemos empresas a partir de R$ 3 milhões / ano.</div>
+  </div>
+  <div class="field">
+    <label class="lbl">Como podemos ajudar?</label>
+    <input class="input" placeholder="Conte rapidamente sobre o seu negócio">
+  </div>
+  <div class="field" style="gap:10px">
+    <label class="check"><input type="checkbox" checked> Quero receber a newsletter mensal</label>
+    <div class="tog-row"><div class="toggle on"></div> Aceito o tratamento dos dados (LGPD)</div>
+  </div>
+</div>
+</body>
+</html>

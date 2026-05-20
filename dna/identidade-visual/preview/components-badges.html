@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Components · Badges & tags</title>
+<link rel="stylesheet" href="../colors_and_type.css">
+<style>
+  html,body { margin:0; background: var(--branco-off); color: var(--preto); }
+  .wrap { padding: 22px 28px; display:flex; flex-direction:column; gap: 16px; }
+  .row { display:flex; gap: 8px; align-items:center; flex-wrap:wrap; }
+  .label { font: 500 10px/1 var(--font-sans); letter-spacing:.12em; text-transform:uppercase; color: var(--fg-muted); width: 110px;}
+  .row-wrap { display:flex; align-items:center; gap: 14px; }
+  .tag {
+    font: 500 12px/1 var(--font-sans);
+    padding: 6px 10px; border-radius: var(--radius-pill);
+    display:inline-flex; align-items:center; gap: 6px;
+  }
+  .tag.solid { background: var(--laranja); color:#fff; }
+  .tag.dark  { background: var(--preto); color:#fff; }
+  .tag.soft  { background: var(--laranja-soft); color: var(--laranja-press); }
+  .tag.muted { background: var(--cinza-200); color: var(--fg-muted); border: 1px solid var(--cinza-300); }
+  .tag.outline { background: transparent; color: var(--preto); border:1.5px solid var(--preto); }
+  .dot { width: 6px; height:6px; border-radius:999px; background: currentColor; }
+  .count { font-family: var(--font-mono); font-weight:500; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="row-wrap">
+    <div class="label">Status</div>
+    <div class="row">
+      <span class="tag solid"><span class="dot"></span> Ao vivo</span>
+      <span class="tag soft"><span class="dot"></span> Em descoberta</span>
+      <span class="tag muted"><span class="dot"></span> Pausado</span>
+      <span class="tag dark"><span class="dot"></span> Encerrado</span>
+    </div>
+  </div>
+  <div class="row-wrap">
+    <div class="label">Categorias</div>
+    <div class="row">
+      <span class="tag outline">Educação</span>
+      <span class="tag outline">Saúde</span>
+      <span class="tag outline">Enterprise</span>
+      <span class="tag solid">MVP ágil</span>
+    </div>
+  </div>
+  <div class="row-wrap">
+    <div class="label">Numéricos</div>
+    <div class="row">
+      <span class="tag dark"><span class="count">+10</span> anos</span>
+      <span class="tag soft"><span class="count">NPS 9.2</span></span>
+      <span class="tag solid"><span class="count">R$ 10M+</span> em projetos</span>
+    </div>
+  </div>
+</div>
+</body>
+</html>

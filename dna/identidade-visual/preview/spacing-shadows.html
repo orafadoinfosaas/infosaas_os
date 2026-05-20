@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Spacing · Shadow & elevation</title>
+<link rel="stylesheet" href="../colors_and_type.css">
+<style>
+  html,body { margin:0; background: var(--branco-off); color: var(--preto); }
+  .wrap { padding: 24px 28px; }
+  .row { display:grid; grid-template-columns: repeat(4, 1fr); gap: 24px; align-items:start; }
+  .item { display:flex; flex-direction:column; align-items:center; gap: 10px; }
+  .card { width: 100%; height: 80px; background: var(--branco); border-radius: var(--radius-lg); }
+  .name { font: 700 12px/1 var(--font-mono); }
+  .desc { font: 500 11px/1 var(--font-mono); color: var(--fg-muted); }
+  .s-sm { box-shadow: var(--shadow-sm); }
+  .s    { box-shadow: var(--shadow); }
+  .s-lg { box-shadow: var(--shadow-lg); }
+  .s-a  { box-shadow: var(--shadow-accent); background: var(--laranja); }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="row">
+    <div class="item"><div class="card s-sm"></div><div class="name">--shadow-sm</div><div class="desc">inputs · subtle</div></div>
+    <div class="item"><div class="card s"></div><div class="name">--shadow</div><div class="desc">cards · default</div></div>
+    <div class="item"><div class="card s-lg"></div><div class="name">--shadow-lg</div><div class="desc">menus · modals</div></div>
+    <div class="item"><div class="card s-a"></div><div class="name">--shadow-accent</div><div class="desc">CTA hover glow</div></div>
+  </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Colors · Pairings</title>
+<link rel="stylesheet" href="../colors_and_type.css">
+<style>
+  html,body { margin:0; height:100%; background: var(--branco-off); }
+  .grid { height: 100vh; display:grid; grid-template-columns: repeat(3, 1fr); gap: 12px; padding:16px; box-sizing:border-box; }
+  .card { border-radius: var(--radius-lg); padding: 22px; display:flex; flex-direction:column; justify-content:space-between; overflow:hidden; }
+  .a { background: var(--laranja); color: #fff; }
+  .b { background: var(--branco-off); color: var(--preto); border: 1px solid var(--cinza-300); }
+  .c { background: var(--preto); color: var(--branco-off); }
+  .head { font: 900 28px/0.95 var(--font-sans); letter-spacing:-0.02em; }
+  .meta { font: 500 11px/1 var(--font-sans); letter-spacing:.12em; text-transform:uppercase; opacity:.8; }
+  .a .accent, .c .accent { color: #fff; }
+  .b .accent { color: var(--laranja); }
+</style>
+</head>
+<body>
+<div class="grid">
+  <div class="card a">
+    <div class="meta">Brand · Hero</div>
+    <div class="head">Pensa<br>junto.</div>
+  </div>
+  <div class="card b">
+    <div class="meta">Document</div>
+    <div class="head">Clareza e <span class="accent">sensatez</span>.</div>
+  </div>
+  <div class="card c">
+    <div class="meta">Inverted · Footer</div>
+    <div class="head">Do início ao fim.</div>
+  </div>
+</div>
+</body>
+</html>

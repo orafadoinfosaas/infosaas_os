@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Components · Buttons</title>
+<link rel="stylesheet" href="../colors_and_type.css">
+<style>
+  html,body { margin:0; background: var(--branco-off); color: var(--preto); }
+  .wrap { padding: 22px 28px; display:flex; flex-direction:column; gap: 18px; }
+  .label { font: 500 10px/1 var(--font-sans); letter-spacing:.12em; text-transform:uppercase; color: var(--fg-muted); }
+  .row { display:flex; gap: 12px; align-items:center; flex-wrap:wrap; }
+  .btn {
+    font: 500 15px/1 var(--font-sans);
+    padding: 12px 22px; border-radius: var(--radius-md); border: 0;
+    cursor:pointer; transition: all var(--dur) var(--ease);
+    display:inline-flex; align-items:center; gap: 8px;
+  }
+  .btn.primary { background: var(--laranja); color:#fff; }
+  .btn.primary:hover { background: var(--laranja-hover); box-shadow: var(--shadow-accent); }
+  .btn.primary:active { background: var(--laranja-press); transform: scale(.985); }
+  .btn.secondary { background: var(--preto); color: var(--branco-off); }
+  .btn.secondary:hover { background: #1a1a1a; }
+  .btn.ghost { background: transparent; color: var(--preto); border: 1.5px solid var(--preto); }
+  .btn.ghost:hover { background: var(--preto); color: #fff; }
+  .btn.tertiary { background: transparent; color: var(--laranja); padding: 12px 4px; }
+  .btn.tertiary:hover { color: var(--laranja-press); }
+  .btn.sm { font-size: 13px; padding: 8px 14px; border-radius: 14px; }
+  .arrow { font: 700 16px/1 var(--font-sans); }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div>
+    <div class="label" style="margin-bottom:10px">Primary / Secondary / Ghost</div>
+    <div class="row">
+      <button class="btn primary">Fale com a gente <span class="arrow">→</span></button>
+      <button class="btn secondary">Ver produtos</button>
+      <button class="btn ghost">Saber mais</button>
+      <button class="btn tertiary">Continuar lendo <span class="arrow">→</span></button>
+    </div>
+  </div>
+  <div>
+    <div class="label" style="margin-bottom:10px">Small · table actions</div>
+    <div class="row">
+      <button class="btn primary sm">Agendar conversa</button>
+      <button class="btn ghost sm">Cancelar</button>
+    </div>
+  </div>
+</div>
+</body>
+</html>

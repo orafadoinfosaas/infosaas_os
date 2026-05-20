@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Type · Display scale</title>
+<link rel="stylesheet" href="../colors_and_type.css">
+<style>
+  html,body { margin:0; background: var(--branco-off); color: var(--preto); }
+  .wrap { padding: 24px 32px; display:flex; flex-direction:column; gap: 14px; }
+  .row { display:grid; grid-template-columns: 110px 1fr; gap: 24px; align-items:baseline; }
+  .meta { font: 500 11px/1 var(--font-mono); color: var(--fg-muted); padding-top: 8px; }
+  .d-xl { font: 900 88px/0.92 var(--font-sans); letter-spacing:-0.03em; }
+  .d    { font: 900 64px/0.95 var(--font-sans); letter-spacing:-0.02em; }
+  .h1   { font: 900 44px/1.0  var(--font-sans); letter-spacing:-0.02em; }
+  .h2   { font: 700 32px/1.1  var(--font-sans); letter-spacing:-0.015em; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="row"><div class="meta">Display XL · 800</div><div class="d-xl">Nova fase.</div></div>
+  <div class="row"><div class="meta">Display · 800</div><div class="d">Pensa junto.</div></div>
+  <div class="row"><div class="meta">H1 · 800</div><div class="h1">Do início ao fim, com a mesma equipe sênior.</div></div>
+  <div class="row"><div class="meta">H2 · 700</div><div class="h2">Clareza e sensatez, sem enrolação.</div></div>
+</div>
+</body>
+</html>

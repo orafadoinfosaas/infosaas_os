@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Spacing · Scale</title>
+<link rel="stylesheet" href="../colors_and_type.css">
+<style>
+  html,body { margin:0; background: var(--branco-off); color: var(--preto); }
+  .wrap { padding: 20px 28px; }
+  .scale { display:flex; flex-direction:column; gap: 8px; }
+  .row { display:grid; grid-template-columns: 64px 88px 1fr; align-items:center; gap: 12px; }
+  .name { font: 700 13px/1 var(--font-mono); }
+  .px   { font: 500 11px/1 var(--font-mono); color: var(--fg-muted); }
+  .bar  { height: 14px; background: var(--laranja); border-radius: 3px; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="scale">
+    <div class="row"><div class="name">--space-1</div><div class="px">4 px</div><div class="bar" style="width:4px"></div></div>
+    <div class="row"><div class="name">--space-2</div><div class="px">8 px</div><div class="bar" style="width:8px"></div></div>
+    <div class="row"><div class="name">--space-3</div><div class="px">12 px</div><div class="bar" style="width:12px"></div></div>
+    <div class="row"><div class="name">--space-4</div><div class="px">16 px</div><div class="bar" style="width:16px"></div></div>
+    <div class="row"><div class="name">--space-5</div><div class="px">24 px</div><div class="bar" style="width:24px"></div></div>
+    <div class="row"><div class="name">--space-6</div><div class="px">32 px</div><div class="bar" style="width:32px"></div></div>
+    <div class="row"><div class="name">--space-7</div><div class="px">48 px</div><div class="bar" style="width:48px"></div></div>
+    <div class="row"><div class="name">--space-8</div><div class="px">64 px</div><div class="bar" style="width:64px"></div></div>
+    <div class="row"><div class="name">--space-9</div><div class="px">96 px</div><div class="bar" style="width:96px"></div></div>
+    <div class="row"><div class="name">--space-10</div><div class="px">128 px</div><div class="bar" style="width:128px"></div></div>
+  </div>
+</div>
+</body>
+</html>

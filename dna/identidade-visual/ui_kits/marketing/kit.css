@@ -1,0 +1,52 @@
+/* UI Kit · Marketing — shared styles */
+
+.kit-page {
+  background: var(--branco-off);
+  color: var(--preto);
+  min-height: 100vh;
+}
+
+/* Buttons reused across the kit */
+.btn {
+  font: 500 15px/1 var(--font-sans);
+  padding: 14px 22px;
+  border-radius: var(--radius-md);
+  border: 0;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  transition: background var(--dur) var(--ease), box-shadow var(--dur) var(--ease), transform var(--dur) var(--ease), color var(--dur) var(--ease);
+  text-decoration: none;
+}
+.btn-arrow { font-weight: 700; transition: transform var(--dur) var(--ease); }
+.btn:hover .btn-arrow { transform: translateX(3px); }
+.btn-primary { background: var(--laranja); color: #fff; }
+.btn-primary:hover { background: var(--laranja-hover); box-shadow: var(--shadow-accent); }
+.btn-primary:active { background: var(--laranja-press); transform: scale(.985); }
+.btn-secondary { background: var(--preto); color: var(--branco-off); }
+.btn-secondary:hover { background: #1a1a1a; }
+.btn-ghost-light { background: transparent; color: #fff; border: 1.5px solid rgba(255,255,255,.5); }
+.btn-ghost-light:hover { background: #fff; color: var(--laranja); border-color: #fff; }
+.btn-ghost-dark { background: transparent; color: var(--preto); border: 1.5px solid var(--preto); }
+.btn-ghost-dark:hover { background: var(--preto); color: var(--branco-off); }
+
+/* Eyebrow utility */
+.eyebrow {
+  font: 500 12px/1 var(--font-sans);
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: var(--fg-muted);
+}
+.eyebrow-light { color: rgba(255,255,255,.7); }
+
+/* Section container */
+.section { padding: 96px 48px; }
+.container { max-width: 1240px; margin: 0 auto; }
+
+/* Display text */
+.display { font: 900 clamp(40px, 5vw, 72px)/0.95 var(--font-sans); letter-spacing: -0.025em; text-wrap: balance; }
+.display .accent { color: var(--laranja); }
+
+/* Cursor for clickable nav items in this prototype */
+.kit-page [role="link"], .kit-page button { cursor: pointer; }
