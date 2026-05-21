@@ -1,0 +1,234 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import CTASection from "../components/CTASection.astro";
+
+const valores = [
+  "Não negociamos com a mediocridade.",
+  "Liberdade com responsabilidade.",
+  "Dividir para multiplicar.",
+  "É melhor ter um cliente satisfeito do que vinte insatisfeitos.",
+];
+
+const kpis = [
+  { valor: "10 anos", label: "de mercado" },
+  { valor: "10", label: "profissionais sênior" },
+  { valor: "+R$ 10M", label: "faturados em tecnologia" },
+  { valor: "NPS 9.2", label: "" },
+];
+
+const clientes = [
+  "G4 Educação", "Comunidade Sem Codar", "Instituto Brasileiro de Educação em IA",
+  "Instituto Singular", "V4 Company", "Phlebo Academy", "Pandora Treinamentos",
+  "Esporte Educa", "Rufy", "AI Builders", "Fideliza PRO", "iDoméstica", "CPX", "Xô Rugas",
+];
+---
+
+<BaseLayout
+  title="O Studio — infosaas®"
+  description="Um studio construído por quem entende de negócio e de código. Conheça a Infosaas®, os fundadores e a forma como trabalhamos."
+>
+
+  <!-- HERO -->
+  <section class="hero-sobre section">
+    <div class="container">
+      <span class="eyebrow eyebrow--accent">O Studio</span>
+      <h1 class="hero-headline">
+        Um studio construído<br>por quem entende<br>de negócio e de código.
+      </h1>
+      <p class="hero-sub">
+        A Infosaas® nasceu da combinação de duas competências que raramente andam juntas: profundidade técnica e visão de negócio. Dez anos depois, essa combinação ainda define a forma como trabalhamos — e por que nossos clientes ficam.
+      </p>
+    </div>
+  </section>
+
+  <!-- MISSÃO -->
+  <section class="section section--dark">
+    <div class="container missao-inner">
+      <div class="missao-copy">
+        <h2 class="missao-headline">Clareza e sensatez.</h2>
+        <p>
+          Nossa missão é desenvolver e implementar soluções com clareza e sensatez para os negócios. Não é metáfora. É o antídoto para dois males que a gente vê todo dia no mercado de tecnologia: projetos que ninguém entende e decisões tomadas no hype.
+        </p>
+      </div>
+      <div class="missao-valores">
+        {valores.map(v => (
+          <p class="valor-item">{v}</p>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- TIME -->
+  <section class="section section--white">
+    <div class="container">
+      <span class="eyebrow">Quem está à frente</span>
+      <h2 class="section-headline">Dois fundadores.<br>Uma visão.</h2>
+      <div class="grid-2 time-grid">
+
+        <div class="fundador-card">
+          <div class="fundador-header">
+            <div>
+              <h3 class="fundador-nome">Adriana Cruza</h3>
+              <p class="fundador-cargo">CEO</p>
+            </div>
+          </div>
+          <p class="fundador-bio">
+            Mestre em Administração com carreira construída entre operações, auditoria e inovação — passando pela Vopak Brasil — e um período sólido como Desenvolvedora e Tech Lead na Magazine Luiza. Adriana une visão estratégica com capacidade técnica real: sabe o que o negócio precisa e sabe como construir.
+          </p>
+        </div>
+
+        <div class="fundador-card">
+          <div class="fundador-header">
+            <div>
+              <h3 class="fundador-nome">Rafael Almeida</h3>
+              <p class="fundador-cargo">CMO</p>
+            </div>
+          </div>
+          <p class="fundador-bio">
+            Foi sócio da Kafé Apps, uma das maiores software-houses ágeis do Brasil. É o criador do termo "infosaas", hoje adotado pelo mercado de infoprodutos. Rafael é o responsável por como a Infosaas® pensa produto, posicionamento e comunicação — com anos de imersão no ecossistema digital.
+          </p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- COMO TRABALHAMOS -->
+  <section class="section">
+    <div class="container">
+      <span class="eyebrow">Nossa forma de trabalhar</span>
+      <h2 class="section-headline">Do início ao fim.<br>Sem delegação para desconhecidos.</h2>
+      <p class="como-intro">
+        Cada projeto tem uma equipe fixa — definida antes do contrato assinado. Os mesmos profissionais que aparecem na proposta são os que entram em produção. Nenhum projeto passa de mão em mão enquanto o cliente não está olhando.
+      </p>
+      <div class="grid-3 como-grid">
+        {[
+          { titulo: "Estratégia primeiro", desc: "Todo projeto começa com uma conversa sobre o negócio — não sobre tecnologia. O que precisa ser construído, por quê, e o que pode ser cortado sem comprometer o resultado." },
+          { titulo: "Sprints transparentes", desc: "O cliente acompanha o progresso em ciclos curtos. Não há 'surpresa' na entrega final — porque não existe entrega final que chegue do nada." },
+          { titulo: "Senioridade sem exceção", desc: "Dez profissionais sênior. Nenhum freelancer escondido, nenhum júnior em função crítica. O time que você conhece é o time que trabalha." },
+        ].map(item => (
+          <div class="como-item">
+            <h3 class="como-titulo">{item.titulo}</h3>
+            <p class="como-desc">{item.desc}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- NÚMEROS -->
+  <section class="section section--white">
+    <div class="container">
+      <span class="eyebrow">Em números</span>
+      <div class="kpis-grid">
+        {kpis.map(k => (
+          <div class="kpi-item">
+            <span class="kpi-valor">{k.valor}</span>
+            {k.label && <span class="kpi-label">{k.label}</span>}
+          </div>
+        ))}
+      </div>
+      <div class="clientes-lista">
+        <p class="eyebrow" style="margin-top: var(--space-9);">Clientes atendidos</p>
+        <p class="clientes-nomes">{clientes.join(" · ")}</p>
+      </div>
+    </div>
+  </section>
+
+  <CTASection
+    headline={"Quer um parceiro\nque pensa junto?"}
+    ctaLabel="Fale com a gente"
+    ctaHref="/contato"
+    variant="accent"
+  />
+
+</BaseLayout>
+
+<style>
+  .hero-sobre { background: var(--branco-off); }
+  .hero-headline {
+    font-size: var(--fs-display);
+    font-weight: 900;
+    line-height: var(--lh-display);
+    letter-spacing: var(--tr-tight);
+    margin-block: var(--space-5);
+  }
+  .hero-sub {
+    font-size: var(--fs-body-lg);
+    color: var(--cinza-600);
+    line-height: 1.65;
+  }
+
+  .missao-inner {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-10);
+    align-items: start;
+  }
+  .missao-headline {
+    font-size: var(--fs-display);
+    font-weight: 900;
+    line-height: var(--lh-display);
+    letter-spacing: var(--tr-tight);
+    color: var(--branco);
+    margin-bottom: var(--space-6);
+  }
+  .missao-copy p { font-size: var(--fs-body-lg); color: var(--cinza-400); line-height: 1.65; }
+
+  .missao-valores { display: flex; flex-direction: column; gap: var(--space-4); padding-top: var(--space-3); }
+  .valor-item {
+    font-size: var(--fs-h4);
+    font-weight: 700;
+    color: var(--branco);
+    padding-bottom: var(--space-4);
+    border-bottom: 1px solid var(--cinza-700);
+  }
+  .valor-item:last-child { border-bottom: 0; }
+
+  .section-headline {
+    font-size: var(--fs-h2);
+    font-weight: 900;
+    line-height: var(--lh-heading);
+    letter-spacing: var(--tr-tight);
+    margin-bottom: var(--space-8);
+  }
+
+  .time-grid { margin-top: var(--space-7); }
+  .fundador-card {
+    background: var(--branco-off);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    padding: var(--space-7);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-5);
+  }
+  .fundador-header { display: flex; align-items: center; gap: var(--space-4); }
+  .fundador-nome { font-size: var(--fs-h3); font-weight: 700; }
+  .fundador-cargo { font-size: 13px; font-weight: 500; color: var(--laranja); text-transform: uppercase; letter-spacing: 0.08em; margin-top: 4px; }
+  .fundador-bio { font-size: 15px; color: var(--cinza-600); line-height: 1.65; }
+
+  .como-intro {
+    font-size: var(--fs-body-lg);
+    color: var(--cinza-600);
+    line-height: 1.65;
+    margin-bottom: var(--space-8);
+  }
+  .como-grid { margin-top: 0; }
+  .como-item { display: flex; flex-direction: column; gap: var(--space-3); }
+  .como-titulo { font-size: var(--fs-h4); font-weight: 700; }
+  .como-desc { font-size: 15px; color: var(--cinza-600); line-height: 1.6; }
+
+  .kpis-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: var(--space-6); margin-top: var(--space-7); }
+  .kpi-item { display: flex; flex-direction: column; gap: var(--space-2); }
+  .kpi-valor { font-size: clamp(32px, 4vw, 48px); font-weight: 900; color: var(--laranja); letter-spacing: var(--tr-tight); }
+  .kpi-label { font-size: 14px; color: var(--cinza-600); }
+
+  .clientes-lista { margin-top: var(--space-7); }
+  .clientes-nomes { font-size: 15px; color: var(--cinza-500); line-height: 2; margin-top: var(--space-3); }
+
+  @media (max-width: 900px) {
+    .missao-inner { grid-template-columns: 1fr; gap: var(--space-8); }
+    .kpis-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+</style>

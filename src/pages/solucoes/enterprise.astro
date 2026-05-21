@@ -1,0 +1,221 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import HeroAccent from "../../components/HeroAccent.astro";
+import CTASection from "../../components/CTASection.astro";
+
+const capacidades = [
+  { titulo: "Desenvolvimento full-custom high-code", desc: "Sem limitação de plataforma, sem gambiarras de low-code para esconder complexidade. Next.js, React Native e Node — feito do jeito certo." },
+  { titulo: "Integrações pesadas e arquitetura de dados", desc: "Conectamos sistemas legados, ERPs, CRMs e APIs externas de forma auditável. A operação para de depender de planilhas e WhatsApp para fazer as informações circularem." },
+  { titulo: "Segurança e conformidade desde o início", desc: "LGPD e GDPR não são checklist de final de projeto. Logs, controle de acesso, documentação de consentimento e fluxos auditáveis fazem parte da arquitetura desde o primeiro sprint." },
+  { titulo: "Automação com inteligência real", desc: "Fluxos críticos que dependem de pessoas específicas passam a funcionar de forma automática, escalável e independente de quem está de plantão." },
+  { titulo: "IA implementada com propósito", desc: "Quando o negócio justifica, embarcamos inteligência artificial diretamente na solução — para automação, análise ou experiência do usuário." },
+];
+
+const perfis = [
+  { titulo: "Infraestrutura no limite", desc: "O sistema atual trava, perde performance ou gera inconsistências com o volume que o negócio opera hoje. Não é questão de ajuste — é questão de arquitetura." },
+  { titulo: "Integrações fragmentadas", desc: "APIs pesadas, ERPs, CRMs e múltiplas fontes de dados que não se comunicam. Cada integração manual gera custo, erro e atraso." },
+  { titulo: "Conformidade com LGPD e GDPR", desc: "Dados sensíveis precisam de tratamento rigoroso. A exposição é conhecida, mas a estrutura técnica para resolver não existe internamente." },
+  { titulo: "Experiência digital aquém do porte", desc: "A plataforma ou o app atual não representa a empresa no mercado. Está defasado, cheio de gambiarras que o time de TI sustenta com esforço." },
+];
+
+const razoes = [
+  { titulo: "Senioridade técnica real", desc: "Dez profissionais sênior. Nenhuma delegação oculta para freelancers ou júniores no meio do projeto. O time que você conhece na proposta é o que entra em produção." },
+  { titulo: "Experiência nos setores que mais exigem", desc: "Educação desde 2017, saúde desde 2022, enterprise em diferentes nichos. Conhecemos as particularidades de conformidade, integração e escala de cada setor." },
+  { titulo: "Histórico auditável", desc: "Mais de R$ 10 milhões faturados em tecnologia. NPS 9.2. Referências disponíveis antes do contrato." },
+];
+---
+
+<BaseLayout
+  title="Soluções Enterprise — infosaas®"
+  description="Plataformas, aplicativos e automações full-custom para empresas com desafios complexos de integração, performance e conformidade."
+>
+
+  <HeroAccent
+    eyebrow="Soluções Enterprise"
+    headline={"O sistema que envergonha\nnão reflete\no porte do negócio."}
+    sub="Plataformas, aplicativos e automações feitas sob medida para empresas com desafios complexos — quando ferramentas de prateleira não chegam perto do que o negócio exige."
+    dark={true}
+  />
+
+  <div class="ticket-bar">
+    <div class="container ticket-inner">
+      <span class="ticket-label">Ticket</span>
+      <span class="ticket-valor">A partir de R$ 20.000/mês</span>
+    </div>
+  </div>
+
+  <!-- PARA QUEM -->
+  <section class="section">
+    <div class="container">
+      <span class="eyebrow">Para quem faz sentido</span>
+      <h2 class="section-headline">Quando a complexidade da operação<br>superou qualquer solução genérica.</h2>
+      <div class="grid-2">
+        {perfis.map(p => (
+          <div class="item-card">
+            <h3>{p.titulo}</h3>
+            <p>{p.desc}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- CAPACIDADES -->
+  <section class="section section--white">
+    <div class="container">
+      <span class="eyebrow">A solução</span>
+      <h2 class="section-headline">Full-custom, do início ao fim.<br>Com stack moderno e time sênior.</h2>
+      <p class="section-intro">
+        Desenvolvemos com Next.js, React Native e Node, além do forte uso de AI Assistants como Claude Code e Codex no processo de construção. Alta performance, integrações pesadas e conformidade com LGPD/GDPR desde a arquitetura — não como afterthought.
+      </p>
+      <div class="solucoes-lista">
+        {capacidades.map((s, i) => (
+          <div class="solucao-item">
+            <span class="solucao-num">{String(i + 1).padStart(2, "0")}</span>
+            <div>
+              <h3 class="solucao-titulo">{s.titulo}</h3>
+              <p class="solucao-desc">{s.desc}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- ANTES/DEPOIS -->
+  <section class="section section--dark">
+    <div class="container">
+      <span class="eyebrow eyebrow--light">O que muda</span>
+      <h2 class="section-headline section-headline--light">
+        De sistema frágil para infraestrutura<br>que você apresenta com orgulho.
+      </h2>
+      <div class="transformacoes-grid">
+        {[
+          ["Sistema que o próprio time não confia", "Infraestrutura estável que virou ativo do negócio"],
+          ["Processos críticos dependendo de pessoas específicas", "Operação automatizada, auditável e escalável"],
+          ["Ansiedade sobre conformidade com LGPD", "Documentação, logs e processos que provam conformidade"],
+          ["Sistemas que não conversam entre si", "Operação integrada com dados em tempo real"],
+          ["Fornecedor de código sem visão de negócio", "Parceiro estratégico que pensa junto"],
+        ].map(([antes, depois]) => (
+          <div class="transformacao-row">
+            <div class="transformacao-antes"><span>Antes</span><p>{antes}</p></div>
+            <div class="transformacao-seta">→</div>
+            <div class="transformacao-depois"><span>Depois</span><p>{depois}</p></div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- POR QUE INFOSAAS -->
+  <section class="section section--white">
+    <div class="container">
+      <span class="eyebrow">Por que a infosaas</span>
+      <h2 class="section-headline">Projetos desta magnitude<br>não comportam erro de escolha.</h2>
+      <div class="grid-3">
+        {razoes.map(r => (
+          <div class="razao-item">
+            <h3>{r.titulo}</h3>
+            <p>{r.desc}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <CTASection
+    headline={"Projetos complexos\ncomeçam com\numa conversa direta."}
+    sub="Sem proposta genérica. A primeira reunião é para entender o negócio e os desafios reais — não para apresentar template."
+    ctaLabel="Fale com a gente"
+    ctaHref="/contato"
+    variant="accent"
+  />
+
+  <section class="section section--white">
+    <div class="container">
+      <span class="eyebrow">Pode fazer sentido também</span>
+      <div class="outras-grid">
+        {[
+          { label: "MVP Ágil", href: "/solucoes/mvp" },
+          { label: "Consultoria Estratégica", href: "/solucoes/consultoria" },
+          { label: "Suporte Premium", href: "/solucoes/suporte" },
+        ].map(o => (
+          <a href={o.href} class="outra-card">{o.label} →</a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+</BaseLayout>
+
+<style>
+  .ticket-bar { background: var(--laranja-soft); padding-block: var(--space-4); }
+  .ticket-inner { display: flex; align-items: center; gap: var(--space-4); }
+  .ticket-label { font-size: 12px; font-weight: 500; text-transform: uppercase; letter-spacing: 0.1em; color: var(--cinza-600); }
+  .ticket-valor { font-size: 18px; font-weight: 700; color: var(--laranja); }
+
+  .section-headline {
+    font-size: var(--fs-h2); font-weight: 900; line-height: var(--lh-heading);
+    letter-spacing: var(--tr-tight); margin-bottom: var(--space-8);
+  }
+  .section-headline--light { color: var(--fg-on-dark); }
+
+  .section-intro {
+    font-size: var(--fs-body-lg); color: var(--cinza-600);
+    line-height: 1.65; margin-bottom: var(--space-8);
+  }
+
+  .item-card {
+    background: var(--bg-elev); border: 1px solid var(--border);
+    border-radius: var(--radius-lg); padding: var(--space-6);
+    display: flex; flex-direction: column; gap: var(--space-3);
+  }
+  .item-card h3 { font-size: var(--fs-h4); font-weight: 700; }
+  .item-card p { font-size: 15px; color: var(--cinza-600); line-height: 1.6; }
+
+  .solucoes-lista { display: flex; flex-direction: column; }
+  .solucao-item {
+    display: flex; gap: var(--space-6); align-items: flex-start;
+    padding-block: var(--space-6); border-bottom: 1px solid var(--border);
+  }
+  .solucao-item:last-child { border-bottom: 0; }
+  .solucao-num { font-size: 13px; font-weight: 700; color: var(--laranja); min-width: 32px; padding-top: 3px; }
+  .solucao-titulo { font-size: var(--fs-h4); font-weight: 700; margin-bottom: var(--space-2); }
+  .solucao-desc { font-size: 15px; color: var(--cinza-600); line-height: 1.6; }
+
+  .transformacoes-grid { display: flex; flex-direction: column; gap: var(--space-3); margin-top: var(--space-7); }
+  .transformacao-row {
+    display: grid; grid-template-columns: 1fr 40px 1fr; gap: var(--space-4);
+    align-items: center; background: rgba(255,255,255,0.04);
+    border: 1px solid var(--cinza-700); border-radius: var(--radius-lg); padding: var(--space-5);
+  }
+  .transformacao-antes span, .transformacao-depois span {
+    font-size: 11px; font-weight: 500; text-transform: uppercase;
+    letter-spacing: 0.1em; display: block; margin-bottom: 4px;
+  }
+  .transformacao-antes span { color: var(--cinza-500); }
+  .transformacao-depois span { color: var(--laranja); }
+  .transformacao-antes p, .transformacao-depois p { font-size: 14px; color: var(--cinza-300); line-height: 1.5; }
+  .transformacao-seta { font-size: 20px; color: var(--laranja); text-align: center; }
+
+  .razao-item {
+    display: flex; flex-direction: column; gap: var(--space-3);
+    border-left: 2px solid var(--laranja); padding-left: var(--space-5);
+  }
+  .razao-item h3 { font-size: var(--fs-h4); font-weight: 700; }
+  .razao-item p { font-size: 15px; color: var(--cinza-600); line-height: 1.6; }
+
+  .outras-grid { display: flex; gap: var(--space-4); flex-wrap: wrap; margin-top: var(--space-5); }
+  .outra-card {
+    background: var(--branco-off); border: 1px solid var(--border);
+    border-radius: var(--radius-md); padding: 12px 20px;
+    font-size: 14px; font-weight: 600; color: var(--preto);
+    transition: background var(--dur) var(--ease);
+  }
+  .outra-card:hover { background: var(--cinza-200); }
+
+  @media (max-width: 640px) {
+    .transformacao-row { grid-template-columns: 1fr; }
+    .transformacao-seta { display: none; }
+  }
+</style>
