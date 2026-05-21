@@ -1,0 +1,213 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import HeroAccent from "../../components/HeroAccent.astro";
+import CTASection from "../../components/CTASection.astro";
+
+const solucoes = [
+  { titulo: "Definição cirúrgica do escopo", desc: "Antes de escrever uma linha de código, ajudamos a identificar o núcleo do produto: o que precisa existir para validar a hipótese de negócio. Cortamos o supérfluo sem piedade." },
+  { titulo: "Desenvolvimento acelerado com AI Assistants", desc: "Usamos Claude Code, Codex e ferramentas de desenvolvimento com IA como parte real do processo. Isso reduz o tempo de desenvolvimento sem comprometer arquitetura ou qualidade." },
+  { titulo: "Sprints curtos com entregas funcionais", desc: "Cada sprint entrega algo testável. Você acompanha progresso real desde as primeiras semanas — não espera meses por uma entrega única." },
+  { titulo: "Automações inteligentes embarcadas", desc: "O produto já nasce com automações: onboarding, notificações, integrações externas, relatórios. Eficiência operacional desde o lançamento." },
+  { titulo: "IA funcional quando faz sentido", desc: "Inteligência artificial embarcada diretamente na solução — não como feature de marketing, mas como diferencial funcional quando o negócio justifica." },
+];
+
+const perfis = [
+  { titulo: "Produto novo para validar", desc: "Você tem uma hipótese forte e precisa chegar ao mercado antes que a janela feche. Construir o produto completo antes de validar é o caminho mais caro — e mais arriscado." },
+  { titulo: "Time interno sem espaço para inovar", desc: "O time de tecnologia está focado em manter o que existe. Não há capacidade disponível para construir algo novo do zero com a agilidade que o momento exige." },
+  { titulo: "Processo manual travando a escala", desc: "A operação cresce, mas o custo cresce junto — porque tudo depende de pessoas. Automações inteligentes mudam esse equilíbrio." },
+];
+
+const beneficios = [
+  { titulo: "Velocidade sem sacrificar qualidade", desc: "Produto funcional e bem construído em fração do tempo de um desenvolvimento tradicional. Não é um protótipo descartável — é uma base sólida para evoluir." },
+  { titulo: "Validação real antes de investir pesado", desc: "Teste a hipótese com usuários reais antes de comprometer um orçamento maior. Dados reais substituem achismos." },
+  { titulo: "Menor risco financeiro", desc: "Ticket menor, prazo menor, resultado mais rápido. O investimento é proporcional ao momento do negócio." },
+  { titulo: "Time sênior do início ao fim", desc: "Nenhum júnior no projeto. A mesma equipe sênior que concebe é a que executa e entrega." },
+];
+
+const outras = [
+  { label: "Soluções Enterprise", href: "/solucoes/enterprise" },
+  { label: "Consultoria Estratégica", href: "/solucoes/consultoria" },
+  { label: "Suporte Premium", href: "/solucoes/suporte" },
+];
+---
+
+<BaseLayout
+  title="MVP Ágil — infosaas®"
+  description="Desenvolvimento acelerado de MVPs e automações com IA integrada. Do rascunho ao produto com usuários reais em semanas."
+>
+
+  <HeroAccent
+    eyebrow="MVP Ágil"
+    headline={"Não foi a ideia que falhou.\nFoi o software que\nnão aguentou."}
+    sub="Desenvolvimento acelerado de MVPs e automações com IA integrada — para quem precisa tirar uma ideia do papel com velocidade, sem abrir mão de uma base que vai sustentar o crescimento."
+  />
+
+  <!-- TICKET -->
+  <div class="ticket-bar">
+    <div class="container ticket-inner">
+      <span class="ticket-label">Ticket</span>
+      <span class="ticket-valor">A partir de R$ 15.000/mês</span>
+    </div>
+  </div>
+
+  <!-- PARA QUEM -->
+  <section class="section section--white">
+    <div class="container">
+      <span class="eyebrow">Para quem faz sentido</span>
+      <h2 class="section-headline">Quando o mercado não<br>pode esperar seis meses.</h2>
+      <div class="grid-3">
+        {perfis.map(p => (
+          <div class="item-card">
+            <h3>{p.titulo}</h3>
+            <p>{p.desc}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- SOLUÇÃO -->
+  <section class="section">
+    <div class="container">
+      <span class="eyebrow">A solução</span>
+      <h2 class="section-headline">Do rascunho ao produto<br>com usuários reais. Em semanas.</h2>
+      <div class="solucoes-lista">
+        {solucoes.map((s, i) => (
+          <div class="solucao-item">
+            <span class="solucao-num">{String(i + 1).padStart(2, "0")}</span>
+            <div>
+              <h3 class="solucao-titulo">{s.titulo}</h3>
+              <p class="solucao-desc">{s.desc}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- ANTES/DEPOIS -->
+  <section class="section section--dark">
+    <div class="container">
+      <span class="eyebrow eyebrow--light">O que muda</span>
+      <h2 class="section-headline section-headline--light">Do achismo para dados.<br>Da ideia para tração.</h2>
+      <div class="transformacoes-grid">
+        {[
+          ["Ideia no papel sem saber por onde começar", "Produto funcional nas mãos de usuários reais"],
+          ["6 a 12 meses de desenvolvimento tradicional", "Semanas até a primeira versão testável"],
+          ["Custo imprevisível, escopo crescendo sem controle", "Investimento definido, entregas por sprint"],
+          ["Apostando na ideia sem evidências", "Decisões baseadas em dados reais do mercado"],
+          ["MVP sem base sólida", "Arquitetura que sustenta o crescimento"],
+        ].map(([antes, depois]) => (
+          <div class="transformacao-row">
+            <div class="transformacao-antes"><span>Antes</span><p>{antes}</p></div>
+            <div class="transformacao-seta">→</div>
+            <div class="transformacao-depois"><span>Depois</span><p>{depois}</p></div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- BENEFÍCIOS -->
+  <section class="section section--white">
+    <div class="container">
+      <span class="eyebrow">O que você ganha</span>
+      <div class="grid-2">
+        {beneficios.map(b => (
+          <div class="beneficio-item">
+            <h3>{b.titulo}</h3>
+            <p>{b.desc}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <CTASection
+    headline={"Uma ideia boa não pode\nesperar por um processo lento."}
+    sub="O MVP Ágil começa com uma conversa sobre o negócio — não sobre tecnologia. Se a janela está aberta, a conversa pode ser esta semana."
+    ctaLabel="Fale com a gente"
+    ctaHref="/contato"
+    variant="dark"
+  />
+
+  <!-- OUTRAS SOLUÇÕES -->
+  <section class="section section--white">
+    <div class="container">
+      <span class="eyebrow">Pode fazer sentido também</span>
+      <div class="outras-grid">
+        {outras.map(o => (
+          <a href={o.href} class="outra-card">{o.label} →</a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+</BaseLayout>
+
+<style>
+  .ticket-bar { background: var(--laranja-soft); padding-block: var(--space-4); }
+  .ticket-inner { display: flex; align-items: center; gap: var(--space-4); }
+  .ticket-label { font-size: 12px; font-weight: 500; text-transform: uppercase; letter-spacing: 0.1em; color: var(--cinza-600); }
+  .ticket-valor { font-size: 18px; font-weight: 700; color: var(--laranja); }
+
+  .section-headline {
+    font-size: var(--fs-h2); font-weight: 900; line-height: var(--lh-heading);
+    letter-spacing: var(--tr-tight); margin-bottom: var(--space-8);
+  }
+  .section-headline--light { color: var(--fg-on-dark); }
+
+  .item-card {
+    background: var(--branco-off); border: 1px solid var(--border);
+    border-radius: var(--radius-lg); padding: var(--space-6);
+    display: flex; flex-direction: column; gap: var(--space-3);
+  }
+  .item-card h3 { font-size: var(--fs-h4); font-weight: 700; }
+  .item-card p { font-size: 15px; color: var(--cinza-600); line-height: 1.6; }
+
+  .solucoes-lista { display: flex; flex-direction: column; gap: 0; }
+  .solucao-item {
+    display: flex; gap: var(--space-6); align-items: flex-start;
+    padding-block: var(--space-6); border-bottom: 1px solid var(--border);
+  }
+  .solucao-item:last-child { border-bottom: 0; }
+  .solucao-num { font-size: 13px; font-weight: 700; color: var(--laranja); min-width: 32px; padding-top: 3px; }
+  .solucao-titulo { font-size: var(--fs-h4); font-weight: 700; margin-bottom: var(--space-2); }
+  .solucao-desc { font-size: 15px; color: var(--cinza-600); line-height: 1.6; }
+
+  .transformacoes-grid { display: flex; flex-direction: column; gap: var(--space-3); margin-top: var(--space-7); }
+  .transformacao-row {
+    display: grid; grid-template-columns: 1fr 40px 1fr; gap: var(--space-4);
+    align-items: center; background: rgba(255,255,255,0.04);
+    border: 1px solid var(--cinza-700); border-radius: var(--radius-lg); padding: var(--space-5);
+  }
+  .transformacao-antes span, .transformacao-depois span {
+    font-size: 11px; font-weight: 500; text-transform: uppercase;
+    letter-spacing: 0.1em; display: block; margin-bottom: 4px;
+  }
+  .transformacao-antes span { color: var(--cinza-500); }
+  .transformacao-depois span { color: var(--laranja); }
+  .transformacao-antes p, .transformacao-depois p { font-size: 14px; color: var(--cinza-300); line-height: 1.5; }
+  .transformacao-seta { font-size: 20px; color: var(--laranja); text-align: center; }
+
+  .beneficio-item {
+    display: flex; flex-direction: column; gap: var(--space-3);
+    border-left: 2px solid var(--laranja); padding-left: var(--space-5);
+  }
+  .beneficio-item h3 { font-size: var(--fs-h4); font-weight: 700; }
+  .beneficio-item p { font-size: 15px; color: var(--cinza-600); line-height: 1.6; }
+
+  .outras-grid { display: flex; gap: var(--space-4); flex-wrap: wrap; margin-top: var(--space-5); }
+  .outra-card {
+    background: var(--branco-off); border: 1px solid var(--border);
+    border-radius: var(--radius-md); padding: 12px 20px;
+    font-size: 14px; font-weight: 600; color: var(--preto);
+    transition: background var(--dur) var(--ease);
+  }
+  .outra-card:hover { background: var(--cinza-200); }
+
+  @media (max-width: 640px) {
+    .transformacao-row { grid-template-columns: 1fr; }
+    .transformacao-seta { display: none; }
+  }
+</style>

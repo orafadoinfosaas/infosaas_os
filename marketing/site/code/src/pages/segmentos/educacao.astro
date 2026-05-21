@@ -1,0 +1,171 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import HeroAccent from "../../components/HeroAccent.astro";
+import CTASection from "../../components/CTASection.astro";
+
+const caracteristicas = [
+  { titulo: "Picos de acesso imprevisíveis", desc: "Lançamentos, lives e datas de matrícula concentram o acesso em janelas curtas. O sistema precisa aguentar — sem degradação e sem surpresa." },
+  { titulo: "Experiência do aluno como diferencial", desc: "Em mercados com múltiplas opções, a qualidade da plataforma influencia diretamente a decisão de renovação. Interface lenta e bugs recorrentes são razões de churn." },
+  { titulo: "Integrações com LMS, CRM e gateways", desc: "A operação educacional usa múltiplas ferramentas. Sistemas desconectados geram operação manual e perda de dados." },
+];
+
+const dores = [
+  "Sistema legado construído no início do negócio, nunca feito para escalar",
+  "Plataforma que cai ou degrada em períodos de pico",
+  "Equipe técnica sobrecarregada que apaga incêndio em vez de evoluir o produto",
+  "Integrações manuais entre LMS, CRM e financeiro",
+  "Experiência digital que não reflete a qualidade do conteúdo ou da marca",
+  "Dados de alunos espalhados em ferramentas que não conversam",
+];
+
+const clientes = ["G4 Educação", "Comunidade Sem Codar", "Instituto Brasileiro de Educação em IA", "Pandora Treinamentos", "Esporte Educa", "Rufy", "AI Builders"];
+
+const solucoes = [
+  { nome: "MVP Ágil", desc: "Para lançar uma nova plataforma, curso ou produto digital com agilidade.", href: "/solucoes/mvp" },
+  { nome: "Soluções Enterprise", desc: "Para plataformas que precisam de performance, integrações pesadas e arquitetura que sustente o crescimento.", href: "/solucoes/enterprise" },
+  { nome: "Suporte Premium", desc: "Para manter a plataforma evoluindo após o lançamento — com o mesmo time, sem perder contexto.", href: "/solucoes/suporte" },
+];
+---
+
+<BaseLayout
+  title="Soluções para Educação — infosaas®"
+  description="Especialistas no setor educacional desde 2017. Infoprodutores, faculdades e plataformas educacionais."
+>
+
+  <HeroAccent
+    eyebrow="Segmento: Educação"
+    headline={"A plataforma que funcionava\nantes de você crescer\nnão vai funcionar depois."}
+    sub="Especialistas no setor educacional desde 2017 — de infoprodutores a corporações educacionais. Entendemos o que travar numa demonstração para um cliente enterprise custa."
+  />
+
+  <!-- CONTEXTO -->
+  <section class="section section--white">
+    <div class="container">
+      <span class="eyebrow">Por que o setor educacional é diferente</span>
+      <h2 class="section-headline">Escala, experiência de aluno<br>e uptime não são negociáveis.</h2>
+      <p class="section-intro">
+        Plataformas educacionais vivem com pressão dupla: a base de usuários cresce em picos e a experiência do aluno precisa ser impecável o tempo todo. Uma falha durante um evento ao vivo ou uma lentidão no portal tem impacto direto em retenção, NPS e renovação de contrato.
+      </p>
+      <div class="grid-3">
+        {caracteristicas.map(c => (
+          <div class="item-card">
+            <h3>{c.titulo}</h3>
+            <p>{c.desc}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- DORES -->
+  <section class="section">
+    <div class="container dores-inner">
+      <div>
+        <span class="eyebrow">O que vemos com frequência</span>
+        <h2 class="section-headline">Se qualquer um desses soa familiar,<br>a conversa vale.</h2>
+      </div>
+      <ul class="dores-lista">
+        {dores.map(d => (
+          <li class="dor-item">
+            <span class="dor-icon">—</span>
+            <p>{d}</p>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </section>
+
+  <!-- ATUAÇÃO -->
+  <section class="section section--dark">
+    <div class="container">
+      <span class="eyebrow eyebrow--light">Nossa atuação em educação</span>
+      <h2 class="section-headline section-headline--light">Desde 2017.<br>Mais de 10 clientes educacionais.</h2>
+      <p class="atuacao-desc">
+        Atendemos desde criadores de cursos online até corporações educacionais com dezenas de milhares de alunos. Esse histórico nos deu fluência nas particularidades do setor — que economiza tempo de alinhamento e evita decisões que já se provaram erradas.
+      </p>
+      <p class="clientes-nomes">{clientes.join(" · ")}</p>
+    </div>
+  </section>
+
+  <!-- SOLUÇÕES RELEVANTES -->
+  <section class="section section--white">
+    <div class="container">
+      <span class="eyebrow">Soluções que fazem sentido aqui</span>
+      <div class="solucoes-cards">
+        {solucoes.map(s => (
+          <a href={s.href} class="solucao-card">
+            <h3>{s.nome}</h3>
+            <p>{s.desc}</p>
+            <span class="solucao-link">Ver {s.nome} →</span>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <CTASection
+    headline={"Você merecia uma plataforma\nà altura do negócio\nque você construiu."}
+    ctaLabel="Fale com a gente"
+    ctaHref="/contato"
+    variant="dark"
+  />
+
+</BaseLayout>
+
+<style>
+  .section-headline {
+    font-size: var(--fs-h2); font-weight: 900; line-height: var(--lh-heading);
+    letter-spacing: var(--tr-tight); margin-bottom: var(--space-8);
+  }
+  .section-headline--light { color: var(--fg-on-dark); }
+
+  .section-intro {
+    font-size: var(--fs-body-lg); color: var(--cinza-600);
+    line-height: 1.65; margin-bottom: var(--space-8);
+  }
+
+  .item-card {
+    background: var(--bg-elev); border: 1px solid var(--border);
+    border-radius: var(--radius-lg); padding: var(--space-6);
+    display: flex; flex-direction: column; gap: var(--space-3);
+  }
+  .item-card h3 { font-size: var(--fs-h4); font-weight: 700; }
+  .item-card p { font-size: 15px; color: var(--cinza-600); line-height: 1.6; }
+
+  .dores-inner {
+    display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-10); align-items: start;
+  }
+  .dores-lista { list-style: none; display: flex; flex-direction: column; gap: 0; }
+  .dor-item {
+    display: flex; gap: var(--space-4); align-items: baseline;
+    padding-block: var(--space-4); border-bottom: 1px solid var(--border);
+  }
+  .dor-item:last-child { border-bottom: 0; }
+  .dor-icon { color: var(--laranja); font-weight: 700; flex-shrink: 0; }
+  .dor-item p { font-size: 15px; color: var(--cinza-600); line-height: 1.5; }
+
+  .atuacao-desc {
+    font-size: var(--fs-body-lg); color: var(--cinza-400);
+    line-height: 1.65; max-width: 640px; margin-bottom: var(--space-6);
+  }
+  .clientes-nomes {
+    font-size: 15px; color: var(--cinza-500); line-height: 2;
+  }
+
+  .solucoes-cards { display: flex; flex-direction: column; gap: var(--space-4); margin-top: var(--space-6); }
+  .solucao-card {
+    display: flex; align-items: center; gap: var(--space-6);
+    background: var(--branco-off); border: 1px solid var(--border);
+    border-radius: var(--radius-lg); padding: var(--space-6);
+    transition: box-shadow var(--dur) var(--ease), transform var(--dur) var(--ease);
+  }
+  .solucao-card:hover { box-shadow: var(--shadow); transform: translateY(-1px); }
+  .solucao-card h3 { font-size: var(--fs-h4); font-weight: 700; min-width: 200px; }
+  .solucao-card p { font-size: 15px; color: var(--cinza-600); line-height: 1.5; flex: 1; }
+  .solucao-link { font-size: 14px; font-weight: 600; color: var(--laranja); white-space: nowrap; }
+
+  @media (max-width: 900px) {
+    .dores-inner { grid-template-columns: 1fr; gap: var(--space-7); }
+    .solucao-card { flex-direction: column; align-items: flex-start; }
+  }
+</style>

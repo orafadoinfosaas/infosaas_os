@@ -1,0 +1,251 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+---
+
+<BaseLayout
+  title="Fale com a gente — infosaas®"
+  description="A primeira conversa é sobre o negócio. Entre em contato com a Infosaas® — respondemos em até 1 dia útil."
+>
+
+  <section class="section contato-section">
+    <div class="container contato-grid">
+
+      <!-- Copy -->
+      <div class="contato-copy">
+        <span class="eyebrow eyebrow--accent">Contato</span>
+        <h1 class="contato-headline">
+          A primeira conversa<br>é sobre o negócio.
+        </h1>
+        <p class="contato-sub">
+          Sem formulário de dez campos, sem proposta automática. Quando você entrar em contato, alguém da Infosaas® vai ler e responder — não um bot.
+        </p>
+
+        <div class="como-funciona">
+          <p class="como-titulo">Como funciona</p>
+          <div class="passos">
+            {[
+              { num: "01", titulo: "Você envia o contato", desc: "Preencha o formulário com o contexto do negócio. Quanto mais específico, melhor — isso acelera a conversa." },
+              { num: "02", titulo: "A gente responde", desc: "Em até 1 dia útil, um dos fundadores ou um profissional sênior entra em contato para marcar uma conversa inicial." },
+              { num: "03", titulo: "Conversa sem compromisso", desc: "A primeira reunião é para entender o negócio e os desafios. Se fizer sentido para os dois lados, a gente avança." },
+            ].map(p => (
+              <div class="passo">
+                <span class="passo-num">{p.num}</span>
+                <div>
+                  <p class="passo-titulo">{p.titulo}</p>
+                  <p class="passo-desc">{p.desc}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        <div class="contato-direto">
+          <a href="mailto:sistemas@infosaas.ai" class="contato-email">sistemas@infosaas.ai</a>
+        </div>
+
+        <div class="qualificacao">
+          <p class="qualificacao-label">Trabalhamos com</p>
+          <p class="qualificacao-texto">Empresas do setor educacional, saúde e enterprise com faturamento a partir de R$ 3 milhões por ano. Ticket mínimo: R$ 8.000/mês.</p>
+        </div>
+      </div>
+
+      <!-- Formulário -->
+      <div class="contato-form-wrapper">
+        <form class="contato-form" name="contato" method="POST" data-netlify="true" novalidate>
+          <input type="hidden" name="form-name" value="contato" />
+
+          <div class="form-group">
+            <label for="nome">Nome</label>
+            <input type="text" id="nome" name="nome" placeholder="Seu nome" required />
+          </div>
+
+          <div class="form-group">
+            <label for="email">E-mail</label>
+            <input type="email" id="email" name="email" placeholder="Seu melhor e-mail" required />
+          </div>
+
+          <div class="form-group">
+            <label for="empresa">Empresa</label>
+            <input type="text" id="empresa" name="empresa" placeholder="Nome da empresa" required />
+          </div>
+
+          <div class="form-group">
+            <label for="faturamento">Faturamento aproximado</label>
+            <select id="faturamento" name="faturamento" required>
+              <option value="" disabled selected>Selecione a faixa</option>
+              <option value="ate-1m">Até R$ 1M/ano</option>
+              <option value="1m-3m">R$ 1M a R$ 3M/ano</option>
+              <option value="3m-10m">R$ 3M a R$ 10M/ano</option>
+              <option value="acima-10m">Acima de R$ 10M/ano</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="segmento">Segmento</label>
+            <select id="segmento" name="segmento" required>
+              <option value="" disabled selected>Selecione</option>
+              <option value="educacao">Educação</option>
+              <option value="saude">Saúde</option>
+              <option value="enterprise">Enterprise</option>
+              <option value="outro">Outro</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="contexto">O que está buscando</label>
+            <textarea
+              id="contexto"
+              name="contexto"
+              placeholder="Descreva em poucas linhas o que está acontecendo no negócio"
+              rows="5"
+              required
+            ></textarea>
+          </div>
+
+          <button type="submit" class="btn btn--primary btn--arrow form-submit">Enviar</button>
+
+          <p class="form-nota">Respondemos em até 1 dia útil. Sem spam, sem repasse para terceiros.</p>
+        </form>
+      </div>
+
+    </div>
+  </section>
+
+</BaseLayout>
+
+<style>
+  .contato-section { background: var(--branco-off); }
+
+  .contato-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-10);
+    align-items: start;
+  }
+
+  .contato-copy {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-7);
+    position: sticky;
+    top: 96px;
+  }
+
+  .contato-headline {
+    font-size: var(--fs-display);
+    font-weight: 900;
+    line-height: var(--lh-display);
+    letter-spacing: var(--tr-tight);
+  }
+
+  .contato-sub {
+    font-size: var(--fs-body-lg);
+    color: var(--cinza-600);
+    line-height: 1.65;
+  }
+
+  .como-funciona { display: flex; flex-direction: column; gap: var(--space-4); }
+  .como-titulo { font-size: 12px; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; color: var(--fg-muted); }
+  .passos { display: flex; flex-direction: column; gap: 0; }
+  .passo {
+    display: flex; gap: var(--space-4);
+    padding-block: var(--space-4); border-bottom: 1px solid var(--border);
+  }
+  .passo:last-child { border-bottom: 0; }
+  .passo-num { font-size: 13px; font-weight: 700; color: var(--laranja); min-width: 28px; padding-top: 2px; }
+  .passo-titulo { font-size: 15px; font-weight: 700; margin-bottom: 4px; }
+  .passo-desc { font-size: 14px; color: var(--cinza-600); line-height: 1.5; }
+
+  .contato-direto { display: flex; flex-direction: column; gap: var(--space-2); }
+  .contato-email {
+    font-size: 16px; font-weight: 500; color: var(--preto);
+    text-decoration: underline; text-underline-offset: 3px;
+    transition: color var(--dur) var(--ease);
+  }
+  .contato-email:hover { color: var(--laranja); }
+
+  .qualificacao {
+    background: var(--cinza-100); border: 1px solid var(--border);
+    border-radius: var(--radius-lg); padding: var(--space-5);
+  }
+  .qualificacao-label { font-size: 12px; font-weight: 500; text-transform: uppercase; letter-spacing: 0.1em; color: var(--fg-muted); margin-bottom: var(--space-2); }
+  .qualificacao-texto { font-size: 14px; color: var(--cinza-600); line-height: 1.6; }
+
+  /* Form */
+  .contato-form-wrapper {
+    background: var(--branco);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-xl);
+    padding: var(--space-8);
+    box-shadow: var(--shadow);
+  }
+
+  .contato-form {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-5);
+  }
+
+  .form-group {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+  }
+
+  .form-group label {
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--fg);
+  }
+
+  .form-group input,
+  .form-group select,
+  .form-group textarea {
+    font-family: var(--font-sans);
+    font-size: 15px;
+    color: var(--fg);
+    background: var(--branco-off);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 12px 16px;
+    width: 100%;
+    transition: border-color var(--dur) var(--ease), box-shadow var(--dur) var(--ease);
+    outline: none;
+    appearance: none;
+  }
+
+  .form-group input::placeholder,
+  .form-group textarea::placeholder {
+    color: var(--cinza-400);
+  }
+
+  .form-group input:focus,
+  .form-group select:focus,
+  .form-group textarea:focus {
+    border-color: var(--laranja);
+    box-shadow: 0 0 0 3px rgba(255,61,0,0.12);
+  }
+
+  .form-group select {
+    background-image: url("data:image/svg+xml,%3Csvg width='12' height='8' viewBox='0 0 12 8' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1 1L6 7L11 1' stroke='%235C5C5C' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 16px center;
+    padding-right: 40px;
+    cursor: pointer;
+  }
+
+  .form-group textarea { resize: vertical; min-height: 120px; }
+
+  .form-submit { width: 100%; justify-content: center; }
+
+  .form-nota {
+    font-size: 13px;
+    color: var(--cinza-500);
+    text-align: center;
+  }
+
+  @media (max-width: 900px) {
+    .contato-grid { grid-template-columns: 1fr; }
+    .contato-copy { position: static; }
+  }
+</style>

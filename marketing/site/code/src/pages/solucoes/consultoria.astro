@@ -1,0 +1,236 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import CTASection from "../../components/CTASection.astro";
+
+const fases = [
+  { num: "01", titulo: "Validação do modelo de negócio", desc: "Antes de qualquer produto, validamos a hipótese: se existe demanda real, se o modelo faz sentido e quem é o ICP com clareza suficiente para construir para ele." },
+  { num: "02", titulo: "Estruturação da esteira de produtos", desc: "Como o produto vai ser entregue, precificado e evoluído. Qual o produto de entrada, qual o produto de recorrência, quais as alavancas de crescimento." },
+  { num: "03", titulo: "Concepção visual e identidade", desc: "Design e identidade visual alinhados à estratégia — não ao gosto pessoal. O produto precisa comunicar o posicionamento antes de dizer uma palavra." },
+  { num: "04", titulo: "Construção do MVP", desc: "Com a estratégia validada e o design definido, entramos no desenvolvimento ágil do MVP — conectando direto com o produto Do Papel ao MVP." },
+];
+
+const perfis = [
+  { titulo: "Empreendedor tomando decisão sozinho", desc: "Você sabe o que quer construir. Mas as decisões mais críticas — modelo de negócio, escopo do MVP, posicionamento — estão sendo tomadas sem ninguém estratégico para pensar junto." },
+  { titulo: "Prestes a investir sem validar", desc: "Está próximo de contratar um time para construir algo que ainda não foi testado com o mercado. A consultoria acontece antes desse investimento." },
+  { titulo: "Primeiro produto digital", desc: "Você domina o negócio central, mas nunca passou pelo ciclo completo de construção de um produto digital. Esse gap gera erros caros que a consultoria previne." },
+  { titulo: "Design sem direção estratégica", desc: "O visual do produto e da marca não foram pensados com a estratégia em mente. Uma identidade que não comunica o posicionamento não conecta com o ICP." },
+];
+---
+
+<BaseLayout
+  title="Consultoria Estratégica — infosaas®"
+  description="Mentoria executiva de até 90 dias com CEO e CMO da Infosaas® — da validação do modelo de negócio ao MVP, passando por design e estratégia."
+>
+
+  <!-- HERO -->
+  <section class="hero-consultoria section">
+    <div class="container">
+      <span class="eyebrow eyebrow--accent">Consultoria Estratégica</span>
+      <h1 class="hero-headline">
+        Construir o produto errado<br>para o mercado errado<br>é o erro mais caro.
+      </h1>
+      <p class="hero-sub">
+        Mentoria executiva de até 90 dias com o CEO e o CMO da Infosaas® — da validação do modelo de negócio ao MVP, passando por design e estratégia de produto.
+      </p>
+      <a href="/contato" class="btn btn--primary btn--arrow">Fale com a gente</a>
+    </div>
+  </section>
+
+  <div class="ticket-bar">
+    <div class="container ticket-inner">
+      <span class="ticket-label">Ticket</span>
+      <span class="ticket-valor">A partir de R$ 20.000/mês · Até 90 dias</span>
+    </div>
+  </div>
+
+  <!-- PARA QUEM -->
+  <section class="section section--white">
+    <div class="container">
+      <span class="eyebrow">Para quem faz sentido</span>
+      <h2 class="section-headline">Para quem tem a visão<br>mas precisa do caminho.</h2>
+      <div class="grid-2">
+        {perfis.map(p => (
+          <div class="item-card">
+            <h3>{p.titulo}</h3>
+            <p>{p.desc}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- PROCESSO -->
+  <section class="section">
+    <div class="container">
+      <span class="eyebrow">O processo</span>
+      <h2 class="section-headline">90 dias.<br>CEO + CMO.<br>Do modelo ao MVP.</h2>
+      <p class="section-intro">
+        Não é uma consultoria genérica de business. É uma imersão estratégica conduzida pelos fundadores da Infosaas® — que já passaram pelo ciclo completo de construção, lançamento e escala de produtos digitais.
+      </p>
+      <div class="fases-grid">
+        {fases.map(f => (
+          <div class="fase-item">
+            <span class="fase-num">{f.num}</span>
+            <div>
+              <h3 class="fase-titulo">{f.titulo}</h3>
+              <p class="fase-desc">{f.desc}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- ANTES/DEPOIS -->
+  <section class="section section--dark">
+    <div class="container">
+      <span class="eyebrow eyebrow--light">O que muda</span>
+      <h2 class="section-headline section-headline--light">De incerteza estratégica<br>para clareza de execução.</h2>
+      <div class="transformacoes-grid">
+        {[
+          ["Decisões críticas sendo tomadas no escuro", "Clareza sobre o que construir, para quem e por quê"],
+          ["Investimento em desenvolvimento sem validação", "Hipótese testada antes de contratar um time"],
+          ["Identidade visual sem vínculo com a estratégia", "Design que comunica o posicionamento"],
+          ["Ciclo completo de produto nunca vivenciado", "Estrutura para construir, lançar e escalar"],
+          ["Ninguém estratégico para pensar junto", "CEO + CMO como parceiros durante o processo"],
+        ].map(([antes, depois]) => (
+          <div class="transformacao-row">
+            <div class="transformacao-antes"><span>Antes</span><p>{antes}</p></div>
+            <div class="transformacao-seta">→</div>
+            <div class="transformacao-depois"><span>Depois</span><p>{depois}</p></div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- QUEM CONDUZ -->
+  <section class="section section--white">
+    <div class="container">
+      <span class="eyebrow">Quem está à frente</span>
+      <h2 class="section-headline">Não é consultoria de papel.<br>São fundadores que já fizeram isso.</h2>
+      <div class="grid-2 time-grid">
+        {[
+          { nome: "Adriana Cruza", cargo: "CEO", bio: "Mestre em Administração, ex-Tech Lead na Magazine Luiza. Conduz a parte estratégica de negócio, validação de modelo e estruturação de produto com visão de quem já operou dentro de grandes organizações." },
+          { nome: "Rafael Almeida", cargo: "CMO", bio: 'Criador do termo "infosaas", ex-sócio da Kafé Apps, uma das maiores software-houses ágeis do Brasil. Conduz posicionamento, design e comunicação de produto — conectando estratégia com o que o mercado consegue absorver.' },
+        ].map(f => (
+          <div class="fundador-card">
+            <h3 class="fundador-nome">{f.nome}</h3>
+            <p class="fundador-cargo">{f.cargo}</p>
+            <p class="fundador-bio">{f.bio}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <CTASection
+    headline={"90 dias que mudam\na trajetória de\num produto."}
+    sub="As vagas para consultoria são limitadas — cada imersão exige atenção real dos fundadores. A conversa inicial define se faz sentido para os dois lados."
+    ctaLabel="Fale com a gente"
+    ctaHref="/contato"
+    variant="accent"
+  />
+
+  <section class="section section--white">
+    <div class="container">
+      <span class="eyebrow">Pode fazer sentido também</span>
+      <div class="outras-grid">
+        {[
+          { label: "MVP Ágil", href: "/solucoes/mvp" },
+          { label: "Soluções Enterprise", href: "/solucoes/enterprise" },
+          { label: "Suporte Premium", href: "/solucoes/suporte" },
+        ].map(o => (
+          <a href={o.href} class="outra-card">{o.label} →</a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+</BaseLayout>
+
+<style>
+  .hero-consultoria { background: var(--branco-off); }
+  .hero-headline {
+    font-size: var(--fs-display); font-weight: 900;
+    line-height: var(--lh-display); letter-spacing: var(--tr-tight);
+    margin-block: var(--space-5);
+  }
+  .hero-sub {
+    font-size: var(--fs-body-lg); color: var(--cinza-600);
+    line-height: 1.65; margin-bottom: var(--space-6);
+  }
+
+  .ticket-bar { background: var(--laranja-soft); padding-block: var(--space-4); }
+  .ticket-inner { display: flex; align-items: center; gap: var(--space-4); }
+  .ticket-label { font-size: 12px; font-weight: 500; text-transform: uppercase; letter-spacing: 0.1em; color: var(--cinza-600); }
+  .ticket-valor { font-size: 18px; font-weight: 700; color: var(--laranja); }
+
+  .section-headline {
+    font-size: var(--fs-h2); font-weight: 900; line-height: var(--lh-heading);
+    letter-spacing: var(--tr-tight); margin-bottom: var(--space-8);
+  }
+  .section-headline--light { color: var(--fg-on-dark); }
+
+  .section-intro {
+    font-size: var(--fs-body-lg); color: var(--cinza-600);
+    line-height: 1.65; margin-bottom: var(--space-8);
+  }
+
+  .item-card {
+    background: var(--bg-elev); border: 1px solid var(--border);
+    border-radius: var(--radius-lg); padding: var(--space-6);
+    display: flex; flex-direction: column; gap: var(--space-3);
+  }
+  .item-card h3 { font-size: var(--fs-h4); font-weight: 700; }
+  .item-card p { font-size: 15px; color: var(--cinza-600); line-height: 1.6; }
+
+  .fases-grid { display: flex; flex-direction: column; }
+  .fase-item {
+    display: flex; gap: var(--space-6); align-items: flex-start;
+    padding-block: var(--space-6); border-bottom: 1px solid var(--border);
+  }
+  .fase-item:last-child { border-bottom: 0; }
+  .fase-num { font-size: 13px; font-weight: 700; color: var(--laranja); min-width: 32px; padding-top: 3px; }
+  .fase-titulo { font-size: var(--fs-h4); font-weight: 700; margin-bottom: var(--space-2); }
+  .fase-desc { font-size: 15px; color: var(--cinza-600); line-height: 1.6; }
+
+  .transformacoes-grid { display: flex; flex-direction: column; gap: var(--space-3); margin-top: var(--space-7); }
+  .transformacao-row {
+    display: grid; grid-template-columns: 1fr 40px 1fr; gap: var(--space-4);
+    align-items: center; background: rgba(255,255,255,0.04);
+    border: 1px solid var(--cinza-700); border-radius: var(--radius-lg); padding: var(--space-5);
+  }
+  .transformacao-antes span, .transformacao-depois span {
+    font-size: 11px; font-weight: 500; text-transform: uppercase;
+    letter-spacing: 0.1em; display: block; margin-bottom: 4px;
+  }
+  .transformacao-antes span { color: var(--cinza-500); }
+  .transformacao-depois span { color: var(--laranja); }
+  .transformacao-antes p, .transformacao-depois p { font-size: 14px; color: var(--cinza-300); line-height: 1.5; }
+  .transformacao-seta { font-size: 20px; color: var(--laranja); text-align: center; }
+
+  .time-grid { margin-top: var(--space-7); }
+  .fundador-card {
+    background: var(--branco-off); border: 1px solid var(--border);
+    border-radius: var(--radius-lg); padding: var(--space-7);
+    display: flex; flex-direction: column; gap: var(--space-3);
+  }
+  .fundador-nome { font-size: var(--fs-h3); font-weight: 700; }
+  .fundador-cargo { font-size: 13px; font-weight: 500; color: var(--laranja); text-transform: uppercase; letter-spacing: 0.08em; }
+  .fundador-bio { font-size: 15px; color: var(--cinza-600); line-height: 1.65; }
+
+  .outras-grid { display: flex; gap: var(--space-4); flex-wrap: wrap; margin-top: var(--space-5); }
+  .outra-card {
+    background: var(--branco-off); border: 1px solid var(--border);
+    border-radius: var(--radius-md); padding: 12px 20px;
+    font-size: 14px; font-weight: 600; color: var(--preto);
+    transition: background var(--dur) var(--ease);
+  }
+  .outra-card:hover { background: var(--cinza-200); }
+
+  @media (max-width: 640px) {
+    .transformacao-row { grid-template-columns: 1fr; }
+    .transformacao-seta { display: none; }
+  }
+</style>

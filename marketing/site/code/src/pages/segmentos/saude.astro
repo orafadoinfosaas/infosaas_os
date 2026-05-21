@@ -1,0 +1,171 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import HeroAccent from "../../components/HeroAccent.astro";
+import CTASection from "../../components/CTASection.astro";
+
+const caracteristicas = [
+  { titulo: "LGPD com dados sensíveis", desc: "Dados de pacientes são sensíveis por definição legal. O tratamento inadequado expõe a empresa a multas, processos e perda de confiança — um risco que muitos gestores conhecem mas não sabem como resolver tecnicamente." },
+  { titulo: "Múltiplas unidades, sistemas fragmentados", desc: "Redes de clínicas e hospitais frequentemente crescem de forma orgânica — cada unidade com seu sistema, sem integração. O resultado é operação manual e decisão no escuro." },
+  { titulo: "Criticidade operacional", desc: "O sistema de agendamento, prontuário ou faturamento não pode simplesmente sair do ar. A tolerância a falhas é zero — e o plano de contingência precisa estar na arquitetura." },
+];
+
+const dores = [
+  "Sistemas de diferentes unidades que não compartilham dados em tempo real",
+  "Processos de faturamento e agendamento dependentes de planilhas e WhatsApp",
+  "Conformidade com LGPD incerta — dados de pacientes sem controle de acesso ou logs",
+  "Relatórios gerenciais feitos à mão, com dias de defasagem",
+  "Experiência digital que não reflete a qualidade do atendimento presencial",
+  "TI interno sobrecarregado ou inexistente para projetos de evolução",
+];
+
+const clientes = ["Instituto Singular", "Phlebo Academy", "Xô Rugas"];
+
+const solucoes = [
+  { nome: "Soluções Enterprise", desc: "Para integrar sistemas de múltiplas unidades, centralizar dados de pacientes com segurança e conformidade.", href: "/solucoes/enterprise" },
+  { nome: "MVP Ágil", desc: "Para lançar uma nova healthtech ou produto digital com agilidade e validação real.", href: "/solucoes/mvp" },
+  { nome: "Suporte Premium", desc: "Para manter a operação digital evoluindo com estabilidade — sem depender de uma pessoa-chave que pode sair.", href: "/solucoes/suporte" },
+];
+---
+
+<BaseLayout
+  title="Soluções para Saúde — infosaas®"
+  description="Clínicas, healthtechs e empresas de gestão hospitalar. Especialistas em segurança, conformidade LGPD e integração de sistemas de saúde."
+>
+
+  <HeroAccent
+    eyebrow="Segmento: Saúde"
+    headline={"Dados de paciente espalhados\nem três sistemas que\nnão se falam."}
+    sub="Presença no setor de saúde desde 2022 — com clínicas, healthtechs e empresas de gestão hospitalar. Conhecemos a conformidade, a criticidade e a pressão de quem não pode permitir falhas."
+    dark={true}
+  />
+
+  <!-- CONTEXTO -->
+  <section class="section section--white">
+    <div class="container">
+      <span class="eyebrow">Por que o setor de saúde é diferente</span>
+      <h2 class="section-headline">Aqui, um erro de sistema<br>tem consequência real.</h2>
+      <p class="section-intro">
+        Na saúde, o sistema de tecnologia não é só operação — é parte do cuidado. Quando o prontuário não carrega, quando a integração entre unidades falha, quando dados de pacientes ficam expostos, o impacto vai além do financeiro.
+      </p>
+      <div class="grid-3">
+        {caracteristicas.map(c => (
+          <div class="item-card">
+            <h3>{c.titulo}</h3>
+            <p>{c.desc}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- DORES -->
+  <section class="section">
+    <div class="container dores-inner">
+      <div>
+        <span class="eyebrow">O que vemos com frequência</span>
+        <h2 class="section-headline">Se qualquer um desses soa familiar,<br>a conversa vale.</h2>
+      </div>
+      <ul class="dores-lista">
+        {dores.map(d => (
+          <li class="dor-item">
+            <span class="dor-icon">—</span>
+            <p>{d}</p>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </section>
+
+  <!-- ATUAÇÃO -->
+  <section class="section section--accent">
+    <div class="container">
+      <span class="eyebrow eyebrow--light">Nossa atuação em saúde</span>
+      <h2 class="section-headline section-headline--light">Desde 2022.<br>Clínicas, healthtechs<br>e gestão hospitalar.</h2>
+      <p class="atuacao-desc">
+        A carteira construída no setor de saúde nos deu fluência em dois mundos que raramente se encontram: a linguagem técnica de desenvolvimento e a linguagem clínica e administrativa de quem opera uma unidade de saúde. Isso reduz o tempo de alinhamento e evita os mal-entendidos que custam caro em projetos sensíveis.
+      </p>
+      <p class="clientes-nomes">{clientes.join(" · ")}</p>
+    </div>
+  </section>
+
+  <!-- SOLUÇÕES -->
+  <section class="section section--white">
+    <div class="container">
+      <span class="eyebrow">Soluções que fazem sentido aqui</span>
+      <div class="solucoes-cards">
+        {solucoes.map(s => (
+          <a href={s.href} class="solucao-card">
+            <h3>{s.nome}</h3>
+            <p>{s.desc}</p>
+            <span class="solucao-link">Ver {s.nome} →</span>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <CTASection
+    headline={"Segurança, conformidade\ne operação centralizada —\nsem comprometer o atendimento."}
+    ctaLabel="Fale com a gente"
+    ctaHref="/contato"
+    variant="accent"
+  />
+
+</BaseLayout>
+
+<style>
+  .section-headline {
+    font-size: var(--fs-h2); font-weight: 900; line-height: var(--lh-heading);
+    letter-spacing: var(--tr-tight); margin-bottom: var(--space-8);
+  }
+  .section-headline--light { color: var(--fg-on-accent); }
+
+  .section-intro {
+    font-size: var(--fs-body-lg); color: var(--cinza-600);
+    line-height: 1.65; margin-bottom: var(--space-8);
+  }
+
+  .item-card {
+    background: var(--bg-elev); border: 1px solid var(--border);
+    border-radius: var(--radius-lg); padding: var(--space-6);
+    display: flex; flex-direction: column; gap: var(--space-3);
+  }
+  .item-card h3 { font-size: var(--fs-h4); font-weight: 700; }
+  .item-card p { font-size: 15px; color: var(--cinza-600); line-height: 1.6; }
+
+  .dores-inner {
+    display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-10); align-items: start;
+  }
+  .dores-lista { list-style: none; display: flex; flex-direction: column; }
+  .dor-item {
+    display: flex; gap: var(--space-4); align-items: baseline;
+    padding-block: var(--space-4); border-bottom: 1px solid var(--border);
+  }
+  .dor-item:last-child { border-bottom: 0; }
+  .dor-icon { color: var(--laranja); font-weight: 700; flex-shrink: 0; }
+  .dor-item p { font-size: 15px; color: var(--cinza-600); line-height: 1.5; }
+
+  .section--accent .eyebrow--light { color: rgba(255,255,255,0.65); }
+  .atuacao-desc {
+    font-size: var(--fs-body-lg); color: rgba(255,255,255,0.85);
+    line-height: 1.65; max-width: 640px; margin-bottom: var(--space-6);
+  }
+  .clientes-nomes { font-size: 15px; color: rgba(255,255,255,0.65); line-height: 2; }
+
+  .solucoes-cards { display: flex; flex-direction: column; gap: var(--space-4); margin-top: var(--space-6); }
+  .solucao-card {
+    display: flex; align-items: center; gap: var(--space-6);
+    background: var(--branco-off); border: 1px solid var(--border);
+    border-radius: var(--radius-lg); padding: var(--space-6);
+    transition: box-shadow var(--dur) var(--ease), transform var(--dur) var(--ease);
+  }
+  .solucao-card:hover { box-shadow: var(--shadow); transform: translateY(-1px); }
+  .solucao-card h3 { font-size: var(--fs-h4); font-weight: 700; min-width: 200px; }
+  .solucao-card p { font-size: 15px; color: var(--cinza-600); line-height: 1.5; flex: 1; }
+  .solucao-link { font-size: 14px; font-weight: 600; color: var(--laranja); white-space: nowrap; }
+
+  @media (max-width: 900px) {
+    .dores-inner { grid-template-columns: 1fr; gap: var(--space-7); }
+    .solucao-card { flex-direction: column; align-items: flex-start; }
+  }
+</style>
