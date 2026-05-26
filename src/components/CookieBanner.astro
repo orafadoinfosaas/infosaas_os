@@ -1,0 +1,155 @@
+---
+---
+
+<div id="cookie-banner" class="cookie-banner" role="region" aria-label="Aviso de cookies" aria-live="polite">
+  <div class="container cookie-inner">
+    <p class="cookie-text">
+      Usamos cookies de analytics para entender como você navega no site e melhorar sua experiência.
+      Nenhum dado é coletado sem o seu consentimento explícito.
+      Leia nossa <a href="/privacidade" class="cookie-link">Política de Privacidade</a>.
+    </p>
+    <div class="cookie-actions">
+      <button id="cookie-reject" class="btn-cookie-reject">Recusar</button>
+      <button id="cookie-accept" class="btn-cookie-accept">Aceitar cookies</button>
+    </div>
+  </div>
+</div>
+
+<style>
+  .cookie-banner {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 9999;
+    background: var(--cinza-900);
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+    padding: var(--space-5) 0;
+    display: none;
+    animation: slide-up 240ms var(--ease-out) both;
+  }
+
+  .cookie-banner.is-visible {
+    display: block;
+  }
+
+  @keyframes slide-up {
+    from { transform: translateY(100%); opacity: 0; }
+    to   { transform: translateY(0);    opacity: 1; }
+  }
+
+  .cookie-inner {
+    display: flex;
+    align-items: center;
+    gap: var(--space-7);
+  }
+
+  .cookie-text {
+    flex: 1;
+    font-size: var(--fs-body-sm);
+    color: rgba(255, 255, 255, 0.65);
+    line-height: var(--lh-body);
+  }
+
+  .cookie-link {
+    color: var(--laranja);
+    text-decoration: underline;
+    text-underline-offset: 2px;
+    transition: color var(--dur) var(--ease);
+  }
+  .cookie-link:hover { color: var(--laranja-hover); }
+
+  .cookie-actions {
+    display: flex;
+    gap: var(--space-3);
+    flex-shrink: 0;
+  }
+
+  .btn-cookie-reject {
+    padding: 10px 22px;
+    background: transparent;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: var(--radius-pill);
+    color: rgba(255, 255, 255, 0.6);
+    font-size: var(--fs-body-sm);
+    font-weight: 500;
+    font-family: inherit;
+    cursor: pointer;
+    transition: border-color var(--dur) var(--ease), color var(--dur) var(--ease);
+    white-space: nowrap;
+  }
+  .btn-cookie-reject:hover {
+    border-color: rgba(255, 255, 255, 0.45);
+    color: rgba(255, 255, 255, 0.9);
+  }
+
+  .btn-cookie-accept {
+    padding: 10px 22px;
+    background: var(--laranja);
+    border: none;
+    border-radius: var(--radius-pill);
+    color: #fff;
+    font-size: var(--fs-body-sm);
+    font-weight: 600;
+    font-family: inherit;
+    cursor: pointer;
+    transition: background var(--dur) var(--ease), box-shadow var(--dur) var(--ease);
+    white-space: nowrap;
+  }
+  .btn-cookie-accept:hover {
+    background: var(--laranja-hover);
+    box-shadow: var(--shadow-accent);
+  }
+
+  @media (max-width: 768px) {
+    .cookie-banner { padding: var(--space-5) 0 calc(var(--space-5) + env(safe-area-inset-bottom, 0px)); }
+    .cookie-inner  { flex-direction: column; align-items: flex-start; gap: var(--space-4); }
+    .cookie-actions { width: 100%; }
+    .btn-cookie-reject,
+    .btn-cookie-accept { flex: 1; text-align: center; }
+  }
+</style>
+
+<script>
+  const CONSENT_KEY = 'infosaas_consent';
+  const GTM_ID      = 'GTM-K9TXL8MT';
+
+  const banner    = document.getElementById('cookie-banner');
+  const btnAccept = document.getElementById('cookie-accept');
+  const btnReject = document.getElementById('cookie-reject');
+
+  function loadGTM() {
+    (function (w: any, d: Document, s: string, l: string, i: string) {
+      w[l] = w[l] || [];
+      w[l].push({ 'gtm.start': new Date().getTime(), event: 'gtm.js' });
+      const f = d.getElementsByTagName(s)[0] as Element;
+      const j = d.createElement(s) as HTMLScriptElement;
+      const dl = l !== 'dataLayer' ? '&l=' + l : '';
+      j.async = true;
+      j.src = 'https://www.googletagmanager.com/gtm.js?id=' + i + dl;
+      f.parentNode!.insertBefore(j, f);
+    })(window, document, 'script', 'dataLayer', GTM_ID);
+  }
+
+  function hideBanner() {
+    if (banner) {
+      banner.style.animation = 'none';
+      banner.remove();
+    }
+  }
+
+  if (!localStorage.getItem(CONSENT_KEY)) {
+    banner?.classList.add('is-visible');
+  }
+
+  btnAccept?.addEventListener('click', () => {
+    localStorage.setItem(CONSENT_KEY, 'accepted');
+    loadGTM();
+    hideBanner();
+  });
+
+  btnReject?.addEventListener('click', () => {
+    localStorage.setItem(CONSENT_KEY, 'rejected');
+    hideBanner();
+  });
+</script>
