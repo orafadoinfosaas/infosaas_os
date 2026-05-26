@@ -1727,6 +1727,304 @@
     .spec-block td:last-child {
       color: var(--c600);
     }
+
+    /* ── 12 Seções do Site ── */
+
+    /* About Section */
+    .sec12-about-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      border: 1.5px solid var(--laranja-deep);
+      border-radius: var(--r-lg);
+      overflow: hidden
+    }
+
+    .sec12-about-cell {
+      padding: var(--sp5) var(--sp4);
+      display: flex;
+      flex-direction: column;
+      gap: var(--sp3)
+    }
+
+    .sec12-about-cell:not(:last-child) {
+      border-right: 1.5px solid var(--laranja-deep)
+    }
+
+    .sec12-about-cell h4 {
+      font-size: 14px;
+      font-weight: 700;
+      color: #0A0A0A
+    }
+
+    .sec12-about-cell p {
+      font-size: 12px;
+      color: var(--c600);
+      line-height: 1.6
+    }
+
+    /* Soluções Section */
+    .sec12-sol-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: var(--sp4)
+    }
+
+    .sec12-sol-card {
+      background: var(--bg-card-dark);
+      border: 1.5px solid #BF4D0C;
+      border-radius: var(--r-lg);
+      padding: var(--sp6) var(--sp5);
+      display: flex;
+      flex-direction: column;
+      gap: var(--sp3)
+    }
+
+    .sec12-sol-card .sol-prc {
+      font-size: 11px;
+      color: rgba(255, 255, 255, .45)
+    }
+
+    .sec12-sol-card h4 {
+      font-size: 15px;
+      font-weight: 700;
+      color: #F5F5F5
+    }
+
+    .sec12-sol-card p {
+      font-size: 12px;
+      color: rgba(245, 245, 245, .55);
+      line-height: 1.55;
+      flex: 1
+    }
+
+    .sec12-sol-card a {
+      font-size: 12px;
+      font-weight: 500;
+      color: #BF4D0C;
+      text-decoration: none
+    }
+
+    /* Social Numbers Section */
+    .sec12-sn-bg {
+      background-color: #141414;
+      background-image: url('../../ativos/Rectangle-22.jpg');
+      background-size: cover;
+      background-position: center;
+      border-radius: var(--r-xl);
+      padding: var(--sp7)
+    }
+
+    .sec12-sn-inner {
+      display: flex;
+      gap: 16px;
+      align-items: flex-start
+    }
+
+    .sec12-sn-vbar {
+      width: 8px;
+      border-radius: 4px;
+      background: rgba(255, 255, 255, .25);
+      flex-shrink: 0;
+      align-self: stretch;
+      min-height: 40px
+    }
+
+    .sec12-sn-diff {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      border: 1.5px solid rgba(255, 255, 255, .35);
+      border-radius: var(--r-lg);
+      overflow: hidden;
+      margin: var(--sp5) 0
+    }
+
+    .sec12-sn-diff-cell {
+      padding: var(--sp4);
+      display: flex;
+      flex-direction: column;
+      gap: var(--sp2)
+    }
+
+    .sec12-sn-diff-cell:not(:last-child) {
+      border-right: 1.5px solid rgba(255, 255, 255, .35)
+    }
+
+    .sec12-sn-diff-cell h4 {
+      font-size: 13px;
+      font-weight: 700;
+      color: #fff
+    }
+
+    .sec12-sn-diff-cell p {
+      font-size: 11px;
+      color: rgba(255, 255, 255, .65);
+      line-height: 1.5
+    }
+
+    .sec12-sn-metrics {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: var(--sp4);
+      border-top: 1px solid rgba(255, 255, 255, .15);
+      padding-top: var(--sp5)
+    }
+
+    .sec12-sn-n {
+      font-size: 28px;
+      font-weight: 900;
+      color: #fff;
+      line-height: 1;
+      letter-spacing: -.02em
+    }
+
+    .sec12-sn-l {
+      font-size: 12px;
+      color: rgba(255, 255, 255, .6);
+      margin-top: 4px
+    }
+
+    /* Customers / Segmentos Section */
+    .sec12-cust-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: var(--sp4)
+    }
+
+    .sec12-cust-card {
+      background: var(--bg-elev);
+      border: 1.5px solid var(--laranja-deep);
+      border-radius: var(--r-lg);
+      padding: var(--sp6) var(--sp5);
+      display: flex;
+      flex-direction: column;
+      gap: var(--sp3)
+    }
+
+    .sec12-cust-card h4 {
+      font-size: 15px;
+      font-weight: 700
+    }
+
+    .sec12-cust-card p {
+      font-size: 12px;
+      color: var(--c600);
+      line-height: 1.6;
+      flex: 1
+    }
+
+    .sec12-cust-card a {
+      font-size: 12px;
+      font-weight: 500;
+      color: var(--laranja-deep);
+      text-decoration: none
+    }
+
+    /* How It Works Section */
+    .sec12-hiw-grid {
+      display: grid;
+      grid-template-columns: 1fr 2fr;
+      gap: var(--sp7);
+      align-items: start
+    }
+
+    .sec12-hiw-left {
+      display: flex;
+      flex-direction: column;
+      gap: var(--sp5)
+    }
+
+    .sec12-hiw-hl {
+      font-size: clamp(18px, 2.5vw, 28px);
+      font-weight: 900;
+      line-height: 1.05;
+      letter-spacing: -.02em;
+      color: #0A0A0A
+    }
+
+    .sec12-step-card {
+      background: var(--bg-elev);
+      border: 1px solid rgba(0, 0, 0, .08);
+      border-radius: 16px;
+      padding: var(--sp5);
+      box-shadow: 0 4px 24px rgba(0, 0, 0, .06);
+      margin-bottom: var(--sp3)
+    }
+
+    .sec12-step-card:last-child {
+      margin-bottom: 0
+    }
+
+    .sec12-step-hd {
+      display: flex;
+      align-items: center;
+      gap: var(--sp4);
+      margin-bottom: var(--sp3)
+    }
+
+    .sec12-step-num {
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--laranja-deep)
+    }
+
+    .sec12-step-title {
+      font-size: 15px;
+      font-weight: 700;
+      color: #0A0A0A
+    }
+
+    .sec12-step-body {
+      font-size: 12px;
+      color: var(--c600);
+      line-height: 1.65;
+      padding-left: calc(13px + var(--sp4))
+    }
+
+    /* Footer preview */
+    .sec12-footer {
+      background: var(--bg-footer);
+      border-radius: var(--r-xl);
+      padding: var(--sp7)
+    }
+
+    .sec12-footer-grid {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr 1fr;
+      gap: var(--sp5);
+      margin-bottom: var(--sp5)
+    }
+
+    .sec12-footer-tagline {
+      font-size: 12px;
+      color: rgba(255, 255, 255, .55);
+      line-height: 1.6;
+      max-width: 180px;
+      margin-top: var(--sp3)
+    }
+
+    .sec12-footer-col-title {
+      font-size: 9px;
+      font-weight: 700;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      color: rgba(255, 255, 255, .35);
+      margin-bottom: var(--sp3)
+    }
+
+    .sec12-footer-link {
+      display: block;
+      font-size: 13px;
+      color: rgba(255, 255, 255, .65);
+      margin-bottom: 8px;
+      text-decoration: none
+    }
+
+    .sec12-footer-bottom {
+      border-top: 1px solid rgba(255, 255, 255, .1);
+      padding-top: var(--sp4);
+      font-size: 11px;
+      color: rgba(255, 255, 255, .3)
+    }
   </style>
 </head>
 
@@ -1750,6 +2048,7 @@
       <a href="#s09" class="nav-item"><span class="nav-num">09</span>Componentes</a>
       <a href="#s10" class="nav-item"><span class="nav-num">10</span>Exemplos de Aplicação</a>
       <a href="#s11" class="nav-item"><span class="nav-num">11</span>Logos de Clientes</a>
+      <a href="#s12" class="nav-item"><span class="nav-num">12</span>Seções do Site</a>
     </div>
     <div class="sb-foot">infosaas® · 2026</div>
   </nav>
@@ -3264,6 +3563,382 @@
           <li>Nunca salvar com nomes como <code>Frame.png</code>, <code>Group.png</code>, <code>image 1.png</code></li>
         </ul>
       </div>
+    </section>
+
+    <!-- ── 12 SEÇÕES DO SITE ── -->
+    <section class="section" id="s12">
+      <div class="sec-header">
+        <span class="sec-num">12</span>
+        <div>
+          <h2 class="sec-title">Seções do Site</h2>
+          <p class="sec-desc">Layouts das seções que compõem as páginas — padrões visuais de cada bloco com especificações exatas de background, tipografia, grid e bordas.</p>
+        </div>
+      </div>
+
+      <!-- Barras Decorativas -->
+      <div class="subsec">
+        <p class="eyebrow">Barras Decorativas — Assets de Marca</p>
+        <div class="preview" style="gap:var(--sp7);align-items:flex-start">
+          <div style="display:flex;flex-direction:column;align-items:flex-start;gap:var(--sp3)">
+            <p style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--c500)">Barra Superior</p>
+            <div class="sp-pill"></div>
+            <p style="font-size:11px;color:var(--c500);font-family:var(--mono)">barra-superior.svg · 157px</p>
+          </div>
+          <div style="display:flex;flex-direction:column;align-items:flex-start;gap:var(--sp3)">
+            <p style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--c500)">Barra Lateral Colorida</p>
+            <div style="width:13px;height:80px;border-radius:6px;background:linear-gradient(180deg,var(--laranja-deep),var(--laranja))"></div>
+            <p style="font-size:11px;color:var(--c500);font-family:var(--mono)">barra-lateral-vertical.svg · 13px</p>
+          </div>
+          <div style="display:flex;flex-direction:column;align-items:flex-start;gap:var(--sp3)">
+            <p style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--c500)">Barra Lateral Mono</p>
+            <div style="width:10px;height:80px;border-radius:5px;background:rgba(255,255,255,.25);border:1px solid rgba(0,0,0,.1)"></div>
+            <p style="font-size:11px;color:var(--c500);font-family:var(--mono)">barra-lateral-vertical-mono.svg · 10px</p>
+          </div>
+        </div>
+        <div class="spec-block" style="margin-top:var(--sp4)">
+          <table>
+            <thead><tr><th>Asset</th><th>Arquivo</th><th>Dimensão</th><th>Onde usar</th></tr></thead>
+            <tbody>
+              <tr><td>Barra Superior</td><td><code>barra-superior.svg</code></td><td>157px × auto</td><td>Seções Soluções, Customers, CTA, "Como Funciona" — antes do eyebrow/headline · margin-bottom --space-5</td></tr>
+              <tr><td>Barra Lateral Colorida</td><td><code>barra-lateral-vertical.svg</code></td><td>13px × auto</td><td>Seção About — gradiente --laranja-deep → --laranja · flex-shrink: 0</td></tr>
+              <tr><td>Barra Lateral Mono</td><td><code>barra-lateral-vertical-mono.svg</code></td><td>10px × auto</td><td>Seção Social Numbers — transparent/branco · hidden em mobile</td></tr>
+              <tr><td>Aspas</td><td><code>aspas.svg</code></td><td>60px × auto</td><td>Seção Social Numbers — antes da headline de quote · margin-bottom --space-5</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- About Section -->
+      <div class="subsec">
+        <p class="eyebrow">Seção About — Fundo Branco</p>
+        <div class="sp-white" style="padding:var(--sp6)">
+          <div style="display:flex;align-items:flex-start;gap:20px;margin-bottom:var(--sp6);max-width:820px">
+            <div style="width:13px;min-height:88px;border-radius:6px;background:linear-gradient(180deg,var(--laranja-deep),var(--laranja));flex-shrink:0"></div>
+            <div style="flex:1">
+              <p style="font-size:clamp(26px,4vw,44px);font-weight:900;line-height:.95;letter-spacing:-.02em;color:#0A0A0A">Não somos mais uma<br>software-house</p>
+              <p style="font-size:16px;color:var(--c600);line-height:1.6;margin-top:var(--sp4);max-width:560px">Somos um studio especializado em desenvolver e implementar soluções que fazem o negócio escalar com sustentabilidade.</p>
+            </div>
+          </div>
+          <div class="sec12-about-grid">
+            <div class="sec12-about-cell">
+              <h4>Estratégia antes do código</h4>
+              <p>Antes de qualquer linha de código, entendemos o negócio. O que precisa ser construído e qual o menor caminho para gerar resultado real.</p>
+            </div>
+            <div class="sec12-about-cell">
+              <h4>Negócios que escalam</h4>
+              <p>Foco em projetar soluções sustentáveis no longo prazo, gerando equity crescente para o negócio.</p>
+            </div>
+            <div class="sec12-about-cell">
+              <h4>Tecnologia com propósito</h4>
+              <p>Soluções que agregam valor real. Longe dos hypes e do barulho do mercado digital.</p>
+            </div>
+          </div>
+        </div>
+        <p class="spec-note">Background: <code>#ffffff</code> · Padding: <code>--space-9</code> vertical · Barra lateral: <code>barra-lateral-vertical.svg</code> 13px · Headline: Sora 900 / <code>--fs-display</code> / line-height 0.95 / letter-spacing -0.02em / #0A0A0A · Body intro: <code>--fs-body-lg</code> / <code>--cinza-600</code> / margin-top --space-5</p>
+        <div class="spec-block">
+          <table>
+            <thead><tr><th>Elemento</th><th>Valor</th><th>Notas</th></tr></thead>
+            <tbody>
+              <tr><td>Background</td><td>#ffffff</td><td>Branco puro — não usar --branco-off</td></tr>
+              <tr><td>Padding vertical</td><td>--space-9 (96px)</td><td>—</td></tr>
+              <tr><td>Barra lateral</td><td>barra-lateral-vertical.svg · 13px · height auto</td><td>Flex-shrink: 0 · gradiente --laranja-deep → --laranja</td></tr>
+              <tr><td>Intro layout</td><td>flex · align-start · gap 20px</td><td>max-width 1000px · margin-bottom --space-8</td></tr>
+              <tr><td>Headline</td><td>Sora 900 · --fs-display · lh 0.95 · -0.02em · #0A0A0A</td><td>text-wrap: unset</td></tr>
+              <tr><td>Body intro</td><td>--fs-body-lg (18px) · --cinza-600 · lh 1.6</td><td>margin-top --space-5 · max-width 560px</td></tr>
+              <tr><td>Cards grid</td><td>3 colunas · border 1.5px --laranja-deep · radius --radius-lg · overflow hidden</td><td>—</td></tr>
+              <tr><td>Divisor entre cards</td><td>border-right 1.5px --laranja-deep</td><td>Último card sem border-right</td></tr>
+              <tr><td>Card padding</td><td>--space-6 · gap --space-4</td><td>—</td></tr>
+              <tr><td>Card h3</td><td>Sora 700 · 18px · #0A0A0A · lh-tight</td><td>—</td></tr>
+              <tr><td>Card p</td><td>14px · --cinza-600 · lh 1.65</td><td>—</td></tr>
+              <tr><td>Responsive 900px</td><td>grid: 1fr · border-right none → border-bottom</td><td>—</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- Soluções Section -->
+      <div class="subsec">
+        <p class="eyebrow">Seção Soluções — Fundo Escuro</p>
+        <div class="sp-dark" style="padding:var(--sp6)">
+          <div class="sp-pill" style="margin-bottom:var(--sp4)"></div>
+          <p style="font-size:clamp(24px,3.5vw,40px);font-weight:900;line-height:1.05;letter-spacing:-.02em;color:#fff;margin-bottom:var(--sp5)">Soluções dedicadas para<br>quem busca qualidade</p>
+          <div class="sec12-sol-grid">
+            <div class="sec12-sol-card">
+              <span class="sol-prc">A partir de R$ 7.500/mês</span>
+              <h4>Consultoria e Implementação</h4>
+              <p>Consultoria executiva com implementação e treinamento de automações e IA para aumentar a produtividade.</p>
+              <a href="#">Saber mais →</a>
+            </div>
+            <div class="sec12-sol-card">
+              <span class="sol-prc">A partir de R$ 15.000/mês</span>
+              <h4>Criação de MVPs</h4>
+              <p>Para validar uma ideia ou tirar um projeto do papel com velocidade, sem abrir mão de uma base sólida.</p>
+              <a href="#">Saber mais →</a>
+            </div>
+            <div class="sec12-sol-card">
+              <span class="sol-prc">A partir de R$ 25.000/mês</span>
+              <h4>Soluções para Enterprises</h4>
+              <p>Plataformas e automações feitas sob medida para desafios complexos de integração e performance.</p>
+              <a href="#">Saber mais →</a>
+            </div>
+          </div>
+        </div>
+        <p class="spec-note">Background: <code>--dark-surface</code> #141414 · Accent bar: <code>barra-superior.svg</code> 157px (representado aqui pelo pill gradiente) · Headline: Sora 900 / <code>--fs-h1</code> / #fff / margin-bottom --space-8 · Cards: <code>--bg-card-dark</code> #1E1E1E / border 1.5px #BF4D0C / gap --space-5</p>
+        <div class="spec-block">
+          <table>
+            <thead><tr><th>Elemento</th><th>Valor</th><th>Notas</th></tr></thead>
+            <tbody>
+              <tr><td>Background</td><td>--dark-surface · #141414</td><td>—</td></tr>
+              <tr><td>Accent bar</td><td>barra-superior.svg · 157px · margin-bottom --space-5</td><td>—</td></tr>
+              <tr><td>Headline</td><td>Sora 900 · --fs-h1 · #fff · margin-bottom --space-8</td><td>lh-display · letter-spacing tr-tight</td></tr>
+              <tr><td>Grid</td><td>3 colunas · gap --space-5</td><td>—</td></tr>
+              <tr><td>Card background</td><td>--bg-card-dark · #1E1E1E</td><td>—</td></tr>
+              <tr><td>Card border</td><td>1.5px solid #BF4D0C</td><td>Laranja escuro — uniforme nos 4 lados · não usar --laranja</td></tr>
+              <tr><td>Card radius</td><td>--radius-lg (20px)</td><td>—</td></tr>
+              <tr><td>Card padding</td><td>--space-7 --space-6 · gap --space-5</td><td>—</td></tr>
+              <tr><td>Preço</td><td>--fs-caption (12px) · rgba(255,255,255,.45) · weight 400</td><td>—</td></tr>
+              <tr><td>Card h3</td><td>--fs-h4 (18px) · 700 · #F5F5F5 · lh-tight</td><td>—</td></tr>
+              <tr><td>Card p</td><td>--fs-body-sm (14px) · rgba(245,245,245,.55) · flex: 1</td><td>Empurra link ao rodapé do card</td></tr>
+              <tr><td>Link "Saber mais →"</td><td>--fs-body-sm · weight 500 · color #BF4D0C</td><td>hover: --laranja · transition 200ms --ease</td></tr>
+              <tr><td>Responsive 900px</td><td>grid: 1fr</td><td>—</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- Social Numbers Section -->
+      <div class="subsec">
+        <p class="eyebrow">Seção Social Numbers — Fundo com Imagem</p>
+        <div class="sec12-sn-bg">
+          <div class="sec12-sn-inner">
+            <div class="sec12-sn-vbar"></div>
+            <div style="flex:1">
+              <div style="margin-bottom:var(--sp5)">
+                <p style="font-size:44px;font-weight:900;color:var(--laranja);line-height:.7;margin-bottom:var(--sp4)">"</p>
+                <p style="font-size:clamp(22px,3vw,38px);font-weight:900;color:#fff;line-height:1.05;letter-spacing:-.02em;margin-bottom:var(--sp4)">Funcionamos em uma rotação diferente do mercado.</p>
+                <p style="font-size:15px;color:rgba(255,255,255,.75);line-height:1.6;max-width:600px">A maioria dos nossos clientes chegaram com uma cicatriz: <strong style="color:#fff;font-weight:600">um projeto entregue com atraso, fora do escopo, ou uma empresa que sumiu após o pagamento.</strong></p>
+              </div>
+              <div class="sec12-sn-diff">
+                <div class="sec12-sn-diff-cell">
+                  <h4>Equipe Fixa</h4>
+                  <p>O mesmo time do início ao fim — você sabe exatamente com quem fala.</p>
+                </div>
+                <div class="sec12-sn-diff-cell">
+                  <h4>Senioridade Evidente</h4>
+                  <p>Profissionais sêniors. Nenhum freelancer aparece no meio do projeto.</p>
+                </div>
+                <div class="sec12-sn-diff-cell">
+                  <h4>NPS Acima de 9.0</h4>
+                  <p>Não é número do marketing. É o que os clientes respondem quando perguntados.</p>
+                </div>
+              </div>
+              <div class="sec12-sn-metrics">
+                <div><p class="sec12-sn-n">10 anos</p><p class="sec12-sn-l">de experiência de mercado</p></div>
+                <div><p class="sec12-sn-n">10</p><p class="sec12-sn-l">profissionais sêniors</p></div>
+                <div><p class="sec12-sn-n">R$ 60M+</p><p class="sec12-sn-l">receita gerada para clientes</p></div>
+                <div><p class="sec12-sn-n">9.2</p><p class="sec12-sn-l">NPS dos clientes</p></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <p class="spec-note">Background: <code>Rectangle-22.jpg</code> cover center (sem overlay) · Barra lateral: <code>barra-lateral-vertical-mono.svg</code> 10px · Aspas: <code>aspas.svg</code> 60px (representada aqui como " tipográfica laranja) · Diferenciais: mesma estrutura do About mas com border rgba(255,255,255,.35)</p>
+        <div class="spec-block">
+          <table>
+            <thead><tr><th>Elemento</th><th>Valor</th><th>Notas</th></tr></thead>
+            <tbody>
+              <tr><td>Background</td><td>Rectangle-22.jpg · cover · center</td><td>Sem overlay — a imagem já tem escurecimento embutido</td></tr>
+              <tr><td>Barra lateral</td><td>barra-lateral-vertical-mono.svg · 10px · height auto</td><td>Hidden em mobile (max-width 900px)</td></tr>
+              <tr><td>Aspas</td><td>aspas.svg · width 60px · margin-bottom --space-5</td><td>—</td></tr>
+              <tr><td>Headline</td><td>Sora 900 · clamp(36px,4vw,56px) · #fff · lh 1.05</td><td>letter-spacing -0.02em · margin-bottom --space-5</td></tr>
+              <tr><td>Body</td><td>--fs-body · rgba(255,255,255,.75) · lh 1.6</td><td>strong: #fff weight 600 · max-width 700px</td></tr>
+              <tr><td>Diferenciais grid</td><td>3 colunas · border 1.5px rgba(255,255,255,.35) · radius --radius-lg</td><td>margin-bottom --space-8 · mesma anatomia do About</td></tr>
+              <tr><td>Dif h4</td><td>--fs-h4 · 700 · #fff · lh-tight</td><td>—</td></tr>
+              <tr><td>Dif p</td><td>--fs-body-sm · rgba(255,255,255,.65) · lh 1.6</td><td>—</td></tr>
+              <tr><td>Metrics grid</td><td>4 colunas · gap --space-5</td><td>border-top rgba(255,255,255,.15) · padding-top --space-6</td></tr>
+              <tr><td>Metric número</td><td>Sora 900 · clamp(26px,3vw,54px) · #fff · lh 1</td><td>letter-spacing -0.02em</td></tr>
+              <tr><td>Metric label</td><td>--fs-body · rgba(255,255,255,.6) · lh 1.4</td><td>—</td></tr>
+              <tr><td>Responsive 900px</td><td>barra: none · diff grid: 1fr · metrics: 2 cols</td><td>—</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- Customers / Segmentos Section -->
+      <div class="subsec">
+        <p class="eyebrow">Seção Segmentos (Customers) — Fundo Cinza</p>
+        <div style="background:var(--c100);border-radius:var(--r-xl);padding:var(--sp6)">
+          <div class="sp-pill" style="margin-bottom:var(--sp4)"></div>
+          <p style="font-size:clamp(24px,3.5vw,40px);font-weight:900;line-height:1.05;letter-spacing:-.02em;margin-bottom:var(--sp5)">Trabalhamos para quem<br>precisa mais do que código</p>
+          <div class="sec12-cust-grid">
+            <div class="sec12-cust-card">
+              <h4>Educação</h4>
+              <p>Especialistas no setor educacional desde 2017. Infoprodutores, faculdades e corporações educacionais de grande porte.</p>
+              <a href="#">Soluções para Educação →</a>
+            </div>
+            <div class="sec12-cust-card">
+              <h4>Saúde</h4>
+              <p>Presença no setor desde 2022. Clínicas, healthtechs, operadoras e empresas de gestão hospitalar.</p>
+              <a href="#">Soluções para Saúde →</a>
+            </div>
+            <div class="sec12-cust-card">
+              <h4>Enterprise</h4>
+              <p>Empresas com maturidade e complexidade operacional para uma parceria estratégica de alto impacto.</p>
+              <a href="#">Soluções para Enterprises →</a>
+            </div>
+          </div>
+        </div>
+        <p class="spec-note">Background: <code>--cinza-100</code> #F5F5F5 · Accent bar: <code>barra-superior.svg</code> 157px · Cards: bg branco / border 1.5px <code>--laranja-deep</code> #B82C00 / padding --space-7 --space-6 · Link: <code>--laranja-deep</code> → hover <code>--laranja</code> · Gap entre cards: --space-5</p>
+        <div class="spec-block">
+          <table>
+            <thead><tr><th>Elemento</th><th>Valor</th><th>Notas</th></tr></thead>
+            <tbody>
+              <tr><td>Background</td><td>--cinza-100 · #F5F5F5</td><td>Off-white neutro</td></tr>
+              <tr><td>Accent bar</td><td>barra-superior.svg · 157px · margin-bottom --space-5</td><td>—</td></tr>
+              <tr><td>Headline</td><td>Sora 900 · --fs-h1 · --preto · margin-bottom --space-8</td><td>lh-display · letter-spacing tr-tight</td></tr>
+              <tr><td>Grid</td><td>3 colunas · gap --space-5</td><td>—</td></tr>
+              <tr><td>Card background</td><td>#fff (--branco)</td><td>—</td></tr>
+              <tr><td>Card border</td><td>1.5px solid --laranja-deep (#B82C00)</td><td>Diferente de Soluções que usa #BF4D0C</td></tr>
+              <tr><td>Card radius</td><td>--radius-lg (20px)</td><td>—</td></tr>
+              <tr><td>Card padding</td><td>--space-7 vertical · --space-6 horizontal · gap --space-5</td><td>—</td></tr>
+              <tr><td>Card h3</td><td>--fs-h4 · 700 · --preto · lh-tight</td><td>—</td></tr>
+              <tr><td>Card p</td><td>--fs-body-sm · --cinza-600 · flex: 1</td><td>Empurra link ao rodapé</td></tr>
+              <tr><td>Link</td><td>--fs-body-sm · weight 500 · --laranja-deep</td><td>hover: --laranja · 200ms --ease</td></tr>
+              <tr><td>Responsive 900px</td><td>grid: 1fr</td><td>—</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- CTA Section -->
+      <div class="subsec">
+        <p class="eyebrow">Seção CTA Final — Fundo Branco, Centrado</p>
+        <div class="sp-white" style="padding:var(--sp9) var(--sp7)">
+          <div style="display:flex;flex-direction:column;align-items:center;text-align:center">
+            <div class="sp-pill" style="margin:0 auto var(--sp5)"></div>
+            <p style="font-size:clamp(26px,4vw,48px);font-weight:900;line-height:.95;letter-spacing:-.02em;color:var(--fg)">O próximo passo começa<br>com uma conversa.</p>
+            <p style="font-size:16px;color:var(--c600);margin-top:var(--sp5);line-height:1.6">Sem proposta genérica. A primeira conversa é entender seu negócio.</p>
+            <button class="btn btn-p" style="padding:15px 32px;border-radius:var(--r-pill);margin-top:var(--sp7)">Falar com a gente →</button>
+          </div>
+        </div>
+        <p class="spec-note">Background: <code>#FFFFFF</code> · Padding: <code>--space-10</code> (128px) vertical — o mais espaçoso das seções · Layout: flex column / align-center / text-center · Único caso de alinhamento centralizado no sistema · CTA: <code>--laranja</code> / pill / 15px 32px / Sora 600 / hover: <code>--laranja-press</code> + <code>--sh-acc</code></p>
+        <div class="spec-block">
+          <table>
+            <thead><tr><th>Elemento</th><th>Valor</th><th>Notas</th></tr></thead>
+            <tbody>
+              <tr><td>Background</td><td>#ffffff</td><td>Branco puro — não usar --branco-off</td></tr>
+              <tr><td>Padding vertical</td><td>--space-10 (128px)</td><td>O maior padding vertical do sistema</td></tr>
+              <tr><td>Layout</td><td>flex column · align-center · text-center</td><td>Único uso de text-align: center no site</td></tr>
+              <tr><td>Accent bar</td><td>barra-superior.svg · 157px · margin: 0 auto --space-5</td><td>Centrada horizontalmente</td></tr>
+              <tr><td>Headline</td><td>Sora 900 · --fs-display · lh-display · --preto</td><td>letter-spacing tr-tight · text-wrap: unset</td></tr>
+              <tr><td>Body</td><td>--fs-body · --cinza-600 · lh 1.6</td><td>margin-top --space-5</td></tr>
+              <tr><td>CTA btn bg</td><td>--laranja (#FF3D00)</td><td>—</td></tr>
+              <tr><td>CTA btn padding</td><td>15px 32px</td><td>border-radius --radius-pill · Sora 600 · --fs-body · color #fff</td></tr>
+              <tr><td>CTA btn margin</td><td>margin-top --space-7 (48px)</td><td>—</td></tr>
+              <tr><td>CTA hover</td><td>--laranja-press + --sh-acc</td><td>transition 200ms --ease</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- How It Works Section -->
+      <div class="subsec">
+        <p class="eyebrow">Seção "Como Funciona" — Layout 2 Colunas com Sticky</p>
+        <div style="background:#EBEBEB;border-radius:var(--r-xl);padding:var(--sp6)">
+          <div class="sec12-hiw-grid">
+            <div class="sec12-hiw-left">
+              <div class="sp-pill"></div>
+              <p class="sec12-hiw-hl">Do rascunho ao produto<br>no mercado em semanas</p>
+              <button class="btn btn-d" style="border-radius:var(--r-pill);padding:12px 24px;font-size:14px;align-self:flex-start">Falar com a gente →</button>
+            </div>
+            <div>
+              <div class="sec12-step-card">
+                <div class="sec12-step-hd"><span class="sec12-step-num">01</span><p class="sec12-step-title">Definição cirúrgica do escopo</p></div>
+                <p class="sec12-step-body">Identificamos o núcleo do produto: o que precisa existir para validar a hipótese de negócio. Cortamos o supérfluo sem piedade.</p>
+              </div>
+              <div class="sec12-step-card">
+                <div class="sec12-step-hd"><span class="sec12-step-num">02</span><p class="sec12-step-title">Desenvolvimento acelerado</p></div>
+                <p class="sec12-step-body">Time de sêniors com ferramentas de IA como parte real do processo — reduz tempo sem comprometer arquitetura ou qualidade.</p>
+              </div>
+              <div class="sec12-step-card">
+                <div class="sec12-step-hd"><span class="sec12-step-num">03</span><p class="sec12-step-title">Sprints curtos com entregas funcionais</p></div>
+                <p class="sec12-step-body">Cada sprint entrega algo testável. Você acompanha progresso real desde as primeiras semanas.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <p class="spec-note">Background: <code>#EBEBEB</code> (cinza mais escuro que --cinza-100 — exclusivo desta seção) · Grid: <code>1fr 2fr</code> gap clamp(48px,6vw,96px) · Coluna esquerda: <code>position: sticky; top: 80px</code> · Step cards: <code>position: sticky</code> empilhados com z-index crescente (1→5) para efeito de sobreposição durante scroll</p>
+        <div class="spec-block">
+          <table>
+            <thead><tr><th>Elemento</th><th>Valor</th><th>Notas</th></tr></thead>
+            <tbody>
+              <tr><td>Background</td><td>#EBEBEB</td><td>Mais escuro que --cinza-100 — não substituir por #F5F5F5</td></tr>
+              <tr><td>Grid</td><td>1fr 2fr · gap clamp(48px,6vw,96px)</td><td>align-items: start</td></tr>
+              <tr><td>Col esquerda</td><td>position: sticky · top: 80px</td><td>Ancora enquanto os cards scrollam</td></tr>
+              <tr><td>Accent bar</td><td>barra-superior.svg · 157px</td><td>—</td></tr>
+              <tr><td>Headline left</td><td>Sora 900 · clamp(32px,3.5vw,48px) · #0A0A0A</td><td>lh 1.0 · letter-spacing -0.02em · margin-bottom --space-6</td></tr>
+              <tr><td>Btn left</td><td>bg #0A0A0A · pill · 12/24px · Sora 600 · 14px · #fff</td><td>hover: #212121 · transition dur-fast</td></tr>
+              <tr><td>Step card bg</td><td>#fff</td><td>—</td></tr>
+              <tr><td>Step card border</td><td>1px solid rgba(0,0,0,.08)</td><td>border-radius 16px · margin-bottom 24px</td></tr>
+              <tr><td>Step card shadow</td><td>0 4px 24px rgba(0,0,0,.06)</td><td>—</td></tr>
+              <tr><td>Step card sticky</td><td>position: sticky · top: 80px</td><td>z-index 1 a 5 — empilha visualmente durante scroll</td></tr>
+              <tr><td>Step número</td><td>14px · 700 · --laranja-deep · tabular-nums</td><td>—</td></tr>
+              <tr><td>Step título</td><td>18px · 700 · #0A0A0A · lh-tight</td><td>—</td></tr>
+              <tr><td>Step corpo</td><td>14px · --cinza-600 · lh 1.7</td><td>padding-left: calc(14px + --space-4)</td></tr>
+              <tr><td>Responsive 900px</td><td>grid: 1fr · col esq: static · steps: static + z-index auto</td><td>—</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- Footer Section -->
+      <div class="subsec">
+        <p class="eyebrow">Rodapé — Footer Global</p>
+        <div class="sec12-footer">
+          <div class="sec12-footer-grid">
+            <div>
+              <img src="assets/logos/logo-branco.svg" alt="infosaas" style="height:26px">
+              <p class="sec12-footer-tagline">Um studio que pensa e cresce junto com o seu negócio.</p>
+            </div>
+            <div>
+              <p class="sec12-footer-col-title">Soluções</p>
+              <a href="#" class="sec12-footer-link">MVP Ágil</a>
+              <a href="#" class="sec12-footer-link">Consultoria Estratégica</a>
+              <a href="#" class="sec12-footer-link">Soluções Enterprise</a>
+            </div>
+            <div>
+              <p class="sec12-footer-col-title">Segmentos</p>
+              <a href="#" class="sec12-footer-link">Educação</a>
+              <a href="#" class="sec12-footer-link">Saúde</a>
+              <a href="#" class="sec12-footer-link">Enterprise</a>
+            </div>
+            <div>
+              <p class="sec12-footer-col-title">infosaas®</p>
+              <a href="#" class="sec12-footer-link">O Studio</a>
+              <a href="#" class="sec12-footer-link">Fale com a gente</a>
+            </div>
+          </div>
+          <div class="sec12-footer-bottom">© 2026 infosaas®. Todos os direitos reservados.</div>
+        </div>
+        <p class="spec-note">Background: <code>--footer-bg</code> #0A0A0A · Grid: <code>2fr 1fr 1fr 1fr</code> gap --space-6 · Logo: logo-branco.svg / height 28px · Links: 14px / rgba(fff,.65) → hover #fff / transition 200ms --ease · Bottom bar: border-top rgba(fff,.1) / 12px / rgba(fff,.3)</p>
+        <div class="spec-block">
+          <table>
+            <thead><tr><th>Elemento</th><th>Valor</th><th>Notas</th></tr></thead>
+            <tbody>
+              <tr><td>Background</td><td>--footer-bg · #0A0A0A</td><td>—</td></tr>
+              <tr><td>Grid</td><td>2fr 1fr 1fr 1fr · gap --space-6</td><td>padding-top/bottom --space-9 (96px)</td></tr>
+              <tr><td>Logo</td><td>logo-branco.svg · height 28px · width auto</td><td>Coluna brand (2fr)</td></tr>
+              <tr><td>Tagline</td><td>14px · rgba(255,255,255,.55) · lh 1.6</td><td>margin-top --space-4 · max-width 200px</td></tr>
+              <tr><td>Col título</td><td>10px · 700 · uppercase · tracking 0.1em · rgba(fff,.35)</td><td>margin-bottom --space-4</td></tr>
+              <tr><td>Links</td><td>14px · rgba(255,255,255,.65) · display block</td><td>gap --space-3 (via flex column) · hover: #fff</td></tr>
+              <tr><td>Link hover</td><td>color: #fff</td><td>transition 200ms --ease · nunca underline</td></tr>
+              <tr><td>Bottom bar</td><td>border-top 1px rgba(fff,.1) · pt/pb --space-5</td><td>12px · rgba(255,255,255,.3)</td></tr>
+              <tr><td>Responsive 960px</td><td>grid: 1fr 1fr · brand: grid-column 1/-1</td><td>—</td></tr>
+              <tr><td>Responsive 560px</td><td>grid: 1fr</td><td>—</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
     </section>
 
   </main>
