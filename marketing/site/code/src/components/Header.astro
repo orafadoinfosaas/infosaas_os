@@ -1,113 +1,53 @@
 ---
-const navLinks = [
-  { label: "O studio", href: "/sobre" },
-];
-
-const solucoes = [
-  { label: "MVP Ágil", desc: "Do papel ao produto em semanas", href: "/solucoes/mvp" },
-  { label: "Soluções Enterprise", desc: "Plataformas sob medida para negócios complexos", href: "/solucoes/enterprise" },
-  { label: "Consultoria Estratégica", desc: "Mentoria executiva com CEO + CMO", href: "/solucoes/consultoria" },
-  { label: "Suporte Premium", desc: "Evolução contínua após o lançamento", href: "/solucoes/suporte" },
-];
-
-const segmentos = [
-  { label: "Educação", desc: "Infoprodutores, faculdades e plataformas educacionais", href: "/segmentos/educacao" },
-  { label: "Saúde", desc: "Clínicas, healthtechs e gestão hospitalar", href: "/segmentos/saude" },
-  { label: "Enterprise", desc: "Holdings, corporações e operações complexas", href: "/segmentos/enterprise" },
-];
-
 const { pathname } = Astro.url;
 ---
 
 <header class="site-header">
   <div class="container header-inner">
-    <a href="/" class="logo" aria-label="infosaas® — página inicial">
-      <img src="/logos/logo-black.svg" alt="infosaas®" width="120" height="32" />
+    <a href="/" class="header-logo" aria-label="Infosaas — página inicial">
+      <img src="/logos/logo-branco.svg" alt="infosaas" width="120" height="26" />
     </a>
 
-    <nav class="nav" aria-label="Navegação principal">
-      <ul class="nav-list">
-        <!-- Soluções dropdown -->
-        <li class="nav-item nav-item--dropdown">
-          <button class="nav-trigger" aria-expanded="false" aria-haspopup="true">
-            Soluções
-            <svg class="nav-chevron" width="12" height="12" viewBox="0 0 12 12" fill="none">
-              <path d="M2 4L6 8L10 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-            </svg>
-          </button>
-          <div class="dropdown">
-            {solucoes.map(item => (
-              <a href={item.href} class="dropdown-item">
-                <span class="dropdown-label">{item.label}</span>
-                <span class="dropdown-desc">{item.desc}</span>
-              </a>
-            ))}
-          </div>
-        </li>
-
-        <!-- Segmentos dropdown -->
-        <li class="nav-item nav-item--dropdown">
-          <button class="nav-trigger" aria-expanded="false" aria-haspopup="true">
-            Segmentos
-            <svg class="nav-chevron" width="12" height="12" viewBox="0 0 12 12" fill="none">
-              <path d="M2 4L6 8L10 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-            </svg>
-          </button>
-          <div class="dropdown">
-            {segmentos.map(item => (
-              <a href={item.href} class="dropdown-item">
-                <span class="dropdown-label">{item.label}</span>
-                <span class="dropdown-desc">{item.desc}</span>
-              </a>
-            ))}
-          </div>
-        </li>
-
-        {navLinks.map(link => (
-          <li class="nav-item">
-            <a href={link.href} class={`nav-link ${pathname === link.href ? "nav-link--active" : ""}`}>
-              {link.label}
-            </a>
-          </li>
-        ))}
-
-        <li class="nav-item">
-          <a href="/cases" class="nav-link">Cases</a>
-        </li>
-      </ul>
+    <nav class="header-nav" aria-label="Navegação principal">
+      <div class="nav-item">
+        <button type="button" class="nav-link nav-trigger">
+          Soluções
+          <svg class="chevron" width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
+            <path d="M3 5L7 9L11 5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </button>
+        <div class="nav-dropdown">
+          <a href="/solucoes/consultoria" class="dropdown-link">Consultoria e Implementação</a>
+          <a href="/solucoes/mvp" class="dropdown-link">Criação de MVPs</a>
+          <a href="/solucoes/enterprise" class="dropdown-link">Enterprise</a>
+        </div>
+      </div>
+      <div class="nav-item">
+        <button type="button" class="nav-link nav-trigger">
+          Segmentos
+          <svg class="chevron" width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
+            <path d="M3 5L7 9L11 5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </button>
+        <div class="nav-dropdown">
+          <a href="/segmentos/educacao" class="dropdown-link">Educação</a>
+          <a href="/segmentos/saude" class="dropdown-link">Saúde</a>
+          <a href="/segmentos/enterprise" class="dropdown-link">Enterprise</a>
+        </div>
+      </div>
+      <a href="/studio" class={`nav-link${pathname === '/studio' ? ' nav-link--active' : ''}`}>O Studio</a>
     </nav>
 
-    <div class="header-actions">
-      <a href="/contato" class="btn btn--primary btn--arrow">Fale com a gente</a>
-    </div>
+    <a href="/contato" class="btn-header">Falar com a gente →</a>
 
-    <!-- Mobile toggle -->
-    <button class="mobile-toggle" aria-label="Abrir menu" aria-expanded="false">
-      <span></span><span></span><span></span>
+    <button class="hamburger" aria-label="Abrir menu" aria-expanded="false">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.75"
+        stroke-linecap="round" aria-hidden="true">
+        <line x1="3" y1="6" x2="21" y2="6"/>
+        <line x1="3" y1="12" x2="21" y2="12"/>
+        <line x1="3" y1="18" x2="21" y2="18"/>
+      </svg>
     </button>
-  </div>
-
-  <!-- Mobile menu -->
-  <div class="mobile-menu" hidden>
-    <div class="container">
-      <div class="mobile-section">
-        <p class="mobile-heading">Soluções</p>
-        {solucoes.map(item => (
-          <a href={item.href} class="mobile-link">{item.label}</a>
-        ))}
-      </div>
-      <div class="mobile-section">
-        <p class="mobile-heading">Segmentos</p>
-        {segmentos.map(item => (
-          <a href={item.href} class="mobile-link">{item.label}</a>
-        ))}
-      </div>
-      <div class="mobile-section">
-        <a href="/sobre" class="mobile-link">O studio</a>
-        <a href="/cases" class="mobile-link">Cases</a>
-      </div>
-      <a href="/contato" class="btn btn--primary btn--arrow mobile-cta">Fale com a gente</a>
-    </div>
   </div>
 </header>
 
@@ -116,204 +56,158 @@ const { pathname } = Astro.url;
     position: sticky;
     top: 0;
     z-index: 100;
-    background: var(--branco-off);
-    border-bottom: 1px solid var(--border);
+    background: var(--bg-hero);
   }
 
   .header-inner {
     display: flex;
     align-items: center;
+    justify-content: space-between;
+    height: 72px;
     gap: var(--space-6);
-    height: 68px;
   }
 
-  .logo img { display: block; }
+  .header-logo img {
+    display: block;
+    height: 26px;
+    width: auto;
+  }
 
-  /* Nav */
-  .nav { flex: 1; }
-  .nav-list {
-    list-style: none;
+  .header-nav {
     display: flex;
     align-items: center;
-    gap: var(--space-2);
+    gap: 36px;
+    margin-left: auto;
   }
 
   .nav-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
     font-size: 15px;
     font-weight: 500;
-    color: var(--cinza-700);
-    padding: 8px 12px;
-    border-radius: var(--radius);
-    transition: color var(--dur) var(--ease), background var(--dur) var(--ease);
+    color: #fff;
+    transition: opacity var(--dur) var(--ease);
+    border-bottom: none;
   }
-  .nav-link:hover, .nav-link--active {
-    color: var(--preto);
-    background: var(--cinza-200);
+  .nav-link:hover { opacity: 0.75; color: #fff; }
+
+  .nav-link--active {
+    opacity: 1;
+    position: relative;
+  }
+  .nav-link--active::after {
+    content: '';
+    position: absolute;
+    bottom: -4px;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: var(--laranja);
+    border-radius: var(--radius-pill);
   }
 
   .nav-trigger {
-    font-family: var(--font-sans);
-    font-size: 15px;
-    font-weight: 500;
-    color: var(--cinza-700);
-    padding: 8px 12px;
-    border-radius: var(--radius);
-    border: 0;
-    background: transparent;
+    background: none;
+    border: none;
+    padding: 0;
     cursor: pointer;
-    display: flex;
-    align-items: center;
-    gap: 6px;
-    transition: color var(--dur) var(--ease), background var(--dur) var(--ease);
+    font-family: inherit;
   }
-  .nav-trigger:hover { color: var(--preto); background: var(--cinza-200); }
 
-  .nav-chevron {
-    transition: transform var(--dur) var(--ease);
-  }
-  .nav-item--dropdown:hover .nav-chevron,
-  .nav-item--dropdown.open .nav-chevron {
-    transform: rotate(180deg);
-  }
+  .chevron { flex-shrink: 0; color: rgba(255,255,255,0.8); }
 
   /* Dropdown */
-  .nav-item--dropdown { position: relative; }
+  .nav-item {
+    position: relative;
+    display: flex;
+    align-items: center;
+  }
 
-  .dropdown {
+  .nav-dropdown {
     position: absolute;
-    top: calc(100% + 8px);
+    top: calc(100% + 12px);
+    left: 50%;
+    transform: translateX(-50%);
+    background: #1A0300;
+    border: 1px solid rgba(191, 77, 12, 0.3);
+    border-radius: 12px;
+    padding: 6px;
+    min-width: 200px;
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transition: opacity var(--dur) var(--ease), visibility var(--dur) var(--ease), transform var(--dur) var(--ease);
+    transform: translateX(-50%) translateY(-4px);
+  }
+
+  .nav-item:hover .nav-dropdown {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+    transform: translateX(-50%) translateY(0);
+  }
+
+  /* Bridge so mouse can travel from nav-link to dropdown */
+  .nav-item::after {
+    content: '';
+    position: absolute;
+    top: 100%;
     left: 0;
-    background: var(--branco);
-    border: 1px solid var(--border);
-    border-radius: var(--radius-lg);
-    box-shadow: var(--shadow-lg);
-    padding: var(--space-3);
-    min-width: 280px;
-    display: none;
-    flex-direction: column;
-    gap: 2px;
-    animation: dropIn 150ms var(--ease-out) both;
+    right: 0;
+    height: 16px;
   }
 
-  .nav-item--dropdown:hover .dropdown,
-  .nav-item--dropdown.open .dropdown {
-    display: flex;
-  }
-
-  @keyframes dropIn {
-    from { opacity: 0; transform: translateY(-6px); }
-    to   { opacity: 1; transform: translateY(0); }
-  }
-
-  .dropdown-item {
-    display: flex;
-    flex-direction: column;
-    gap: 2px;
+  .dropdown-link {
+    display: block;
     padding: 10px 14px;
-    border-radius: var(--radius);
-    transition: background var(--dur) var(--ease);
+    font-size: 14px;
+    font-weight: 500;
+    color: rgba(255, 255, 255, 0.85);
+    border-radius: 8px;
+    border-bottom: none;
+    transition: background var(--dur-fast) var(--ease), color var(--dur-fast) var(--ease);
   }
-  .dropdown-item:hover { background: var(--cinza-100); }
+  .dropdown-link:hover {
+    background: rgba(255, 255, 255, 0.08);
+    color: #fff;
+  }
 
-  .dropdown-label {
+  .btn-header {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 10px 22px;
+    background: #fff;
+    color: #0A0A0A;
+    border-radius: var(--radius-pill);
     font-size: 14px;
     font-weight: 600;
-    color: var(--preto);
+    white-space: nowrap;
+    flex-shrink: 0;
+    transition: background var(--dur-fast) var(--ease);
+    border-bottom: none;
   }
-  .dropdown-desc {
-    font-size: 12px;
-    color: var(--fg-muted);
-    line-height: 1.4;
+  .btn-header:hover {
+    background: #E0E0E0;
+    color: #0A0A0A;
   }
 
-  .header-actions { margin-left: auto; }
-
-  /* Mobile */
-  .mobile-toggle {
+  .hamburger {
     display: none;
-    flex-direction: column;
-    gap: 5px;
-    background: transparent;
-    border: 0;
-    cursor: pointer;
-    padding: 8px;
-    margin-left: auto;
-  }
-  .mobile-toggle span {
-    display: block;
-    width: 22px;
-    height: 2px;
-    background: var(--preto);
-    border-radius: 2px;
-    transition: transform var(--dur) var(--ease), opacity var(--dur) var(--ease);
-  }
-
-  .mobile-menu {
-    border-top: 1px solid var(--border);
-    padding-block: var(--space-5);
-  }
-  .mobile-menu[hidden] { display: none; }
-  .mobile-section { margin-bottom: var(--space-5); }
-  .mobile-heading {
-    font-size: 11px;
-    font-weight: 500;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    color: var(--fg-muted);
-    margin-bottom: var(--space-3);
-  }
-  .mobile-link {
-    display: block;
-    font-size: 16px;
-    font-weight: 500;
-    color: var(--preto);
-    padding: 10px 0;
-    border-bottom: 1px solid var(--border);
-  }
-  .mobile-cta {
-    width: 100%;
+    align-items: center;
     justify-content: center;
+    width: 36px;
+    height: 36px;
+    padding: 0;
+    background: transparent;
+    border: none;
+    cursor: pointer;
   }
 
-  @media (max-width: 860px) {
-    .nav, .header-actions { display: none; }
-    .mobile-toggle { display: flex; }
-    .header-inner { justify-content: space-between; }
+  @media (max-width: 768px) {
+    .header-nav { display: none; }
+    .btn-header  { display: none; }
+    .hamburger   { display: flex; }
   }
 </style>
-
-<script>
-  // Dropdown hover with keyboard support
-  document.querySelectorAll('.nav-item--dropdown').forEach(item => {
-    const trigger = item.querySelector('.nav-trigger');
-    trigger?.addEventListener('click', () => {
-      const isOpen = item.classList.contains('open');
-      document.querySelectorAll('.nav-item--dropdown').forEach(i => i.classList.remove('open'));
-      if (!isOpen) item.classList.add('open');
-      trigger.setAttribute('aria-expanded', String(!isOpen));
-    });
-  });
-
-  document.addEventListener('click', e => {
-    if (!(e.target as Element).closest('.nav-item--dropdown')) {
-      document.querySelectorAll('.nav-item--dropdown').forEach(i => {
-        i.classList.remove('open');
-        i.querySelector('.nav-trigger')?.setAttribute('aria-expanded', 'false');
-      });
-    }
-  });
-
-  // Mobile toggle
-  const toggle = document.querySelector('.mobile-toggle');
-  const mobileMenu = document.querySelector('.mobile-menu');
-  toggle?.addEventListener('click', () => {
-    const isOpen = mobileMenu?.hasAttribute('hidden') === false;
-    if (isOpen) {
-      mobileMenu?.setAttribute('hidden', '');
-      toggle.setAttribute('aria-expanded', 'false');
-    } else {
-      mobileMenu?.removeAttribute('hidden');
-      toggle.setAttribute('aria-expanded', 'true');
-    }
-  });
-</script>

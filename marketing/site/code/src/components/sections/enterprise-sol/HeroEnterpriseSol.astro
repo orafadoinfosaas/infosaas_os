@@ -1,0 +1,140 @@
+---
+---
+
+<section class="hero-ent">
+  <div class="container hero-ent-inner">
+    <div class="hero-ent-content">
+      <span class="hero-eyebrow">Enterprises</span>
+
+      <h1 class="hero-ent-headline">
+        Desafios complexos exigem<br />soluções sob medidas
+      </h1>
+
+      <p class="hero-ent-sub">
+        Quando ferramentas de prateleira não se adaptam ao seu negócio, você<br />
+        precisa de um time sênior de profissionais para criar soluções.
+      </p>
+
+      <div class="hero-ent-ctas">
+        <a href="/contato" class="btn-hero-primary">Falar com a gente →</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="hero-ent-ticket">
+    <div class="container">
+      <span class="ticket-label">
+        <img src="/dot.svg" alt="" aria-hidden="true" width="8" height="8" />
+        A partir de R$ 20.000/mês
+      </span>
+    </div>
+  </div>
+</section>
+
+<style>
+  .hero-ent {
+    background-color: var(--bg-hero);
+    background-image: url('/BG-SITE.png');
+    background-size: cover;
+    background-position: center;
+    min-height: 710px;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .hero-ent-inner {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    width: 100%;
+    padding-top: var(--space-9);
+    padding-bottom: var(--space-7);
+  }
+
+  .hero-ent-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+  }
+
+  .hero-eyebrow {
+    display: block;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.5);
+    margin-bottom: var(--space-5);
+  }
+
+  .hero-ent-headline {
+    font-size: clamp(40px, 6vw, 80px);
+    font-weight: 900;
+    line-height: 0.97;
+    letter-spacing: -0.03em;
+    color: #fff;
+    text-wrap: unset;
+  }
+
+  .hero-ent-sub {
+    font-size: 17px;
+    font-weight: 400;
+    color: rgba(255, 255, 255, 0.65);
+    margin-top: var(--space-5);
+    line-height: 1.65;
+    max-width: 700px;
+  }
+
+  .hero-ent-ctas {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: var(--space-5);
+  }
+
+  .btn-hero-primary {
+    display: inline-flex;
+    align-items: center;
+    padding: 13px 28px;
+    border-radius: var(--radius-pill);
+    font-size: 15px;
+    font-weight: 600;
+    white-space: nowrap;
+    background: #0A0A0A;
+    color: #fff;
+    border: none;
+    border-bottom: none;
+    transition: background var(--dur-fast) var(--ease);
+  }
+  .btn-hero-primary:hover {
+    background: #212121;
+    color: #fff;
+  }
+
+  .hero-ent-ticket {
+    background: #3d090063;
+    padding: 18px 0;
+  }
+
+  .ticket-label {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 14px;
+    font-weight: 400;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.80);
+    font-family: inherit;
+  }
+
+  @media (max-width: 768px) {
+    .hero-ent-inner {
+      padding-top: var(--space-8);
+    }
+  }
+</style>

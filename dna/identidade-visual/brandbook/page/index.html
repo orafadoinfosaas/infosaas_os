@@ -1,1168 +1,3292 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Brandbook — infosaas®</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-<script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
-<style>
-:root {
-  --laranja:#FF3D00; --laranja-hover:#FF5520; --laranja-press:#E03600;
-  --laranja-soft:rgba(255,61,0,0.08); --laranja-deep:#B82C00;
-  --preto:#0A0A0A; --branco-off:#F5F5F5;
-  --c100:#F5F5F5; --c200:#E0E0E0; --c300:#BDBDBD; --c400:#9E9E9E;
-  --c500:#757575; --c600:#616161; --c700:#424242; --c800:#212121;
-  --bg:#F0F0F0; --bg-elev:#FFFFFF; --fg:#0A0A0A; --border:#E0E0E0;
-  --sp1:4px; --sp2:8px; --sp3:12px; --sp4:16px; --sp5:24px;
-  --sp6:32px; --sp7:48px; --sp8:64px; --sp9:96px;
-  --r-sm:6px; --r:12px; --r-md:18px; --r-lg:24px; --r-xl:32px; --r-pill:999px;
-  --sh-sm:0 1px 2px rgba(0,0,0,.06); --sh:0 4px 14px rgba(0,0,0,.08);
-  --sh-lg:0 18px 40px -10px rgba(0,0,0,.18);
-  --sh-acc:0 12px 30px -8px rgba(255,61,0,.45);
-  --ease:cubic-bezier(.2,.7,.2,1); --ease-out:cubic-bezier(.16,1,.3,1);
-  --font:'Sora',sans-serif; --mono:'JetBrains Mono',monospace;
-}
-*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-html{scroll-behavior:smooth}
-body{font-family:var(--font);background:var(--bg);color:var(--fg);display:flex;min-height:100vh;line-height:1.5}
-[id]{scroll-margin-top:32px}
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Brandbook — infosaas®</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500&display=swap"
+    rel="stylesheet">
+  <style>
+    @font-face {
+      font-family: 'Gotham';
+      src: url('../../fonts/Gotham-Bold.otf') format('opentype');
+      font-weight: 700;
+      font-style: normal;
+      font-display: swap;
+    }
 
-/* ── Sidebar ── */
-.sidebar{width:252px;min-width:252px;position:fixed;top:0;left:0;height:100vh;overflow-y:auto;background:var(--bg-elev);border-right:1px solid var(--border);display:flex;flex-direction:column;z-index:100}
-.sb-header{padding:24px 20px 18px;border-bottom:1px solid var(--border)}
-.sb-header img{height:22px}
-.sb-header p{font-size:10px;color:var(--c500);margin-top:5px;letter-spacing:.1em;text-transform:uppercase;font-weight:600}
-.sb-nav{padding:12px 10px;flex:1}
-.nav-item{display:flex;align-items:center;gap:9px;padding:7px 10px;border-radius:var(--r);text-decoration:none;color:var(--c600);font-size:12.5px;font-weight:500;transition:all 120ms var(--ease);line-height:1.3}
-.nav-item:hover,.nav-item.active{background:var(--laranja-soft);color:var(--laranja)}
-.nav-num{font-size:10px;font-weight:700;color:var(--c400);min-width:18px;font-family:var(--mono)}
-.nav-item:hover .nav-num,.nav-item.active .nav-num{color:var(--laranja)}
-.sb-foot{padding:14px 20px;border-top:1px solid var(--border);font-size:10px;color:var(--c400)}
+    @font-face {
+      font-family: 'Gotham';
+      src: url('../../fonts/Gotham-Black.otf') format('opentype');
+      font-weight: 900;
+      font-style: normal;
+      font-display: swap;
+    }
+  </style>
+  <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
+  <style>
+    :root {
+      --laranja: #FF3D00;
+      --laranja-hover: #FF5520;
+      --laranja-press: #E03600;
+      --laranja-soft: rgba(255, 61, 0, 0.08);
+      --laranja-deep: #B82C00;
+      --preto: #0A0A0A;
+      --branco-off: #F5F5F5;
+      --c100: #F5F5F5;
+      --c200: #E0E0E0;
+      --c300: #BDBDBD;
+      --c400: #9E9E9E;
+      --c500: #757575;
+      --c600: #616161;
+      --c700: #424242;
+      --c800: #212121;
+      --bg: #F0F0F0;
+      --bg-elev: #FFFFFF;
+      --fg: #0A0A0A;
+      --border: #E0E0E0;
+      --sp1: 4px;
+      --sp2: 8px;
+      --sp3: 12px;
+      --sp4: 16px;
+      --sp5: 24px;
+      --sp6: 32px;
+      --sp7: 48px;
+      --sp8: 64px;
+      --sp9: 96px;
+      --r-sm: 6px;
+      --r: 12px;
+      --r-md: 18px;
+      --r-lg: 24px;
+      --r-xl: 32px;
+      --r-pill: 999px;
+      --sh-sm: 0 1px 2px rgba(0, 0, 0, .06);
+      --sh: 0 4px 14px rgba(0, 0, 0, .08);
+      --sh-lg: 0 18px 40px -10px rgba(0, 0, 0, .18);
+      --sh-acc: 0 12px 30px -8px rgba(255, 61, 0, .45);
+      --ease: cubic-bezier(.2, .7, .2, 1);
+      --ease-out: cubic-bezier(.16, 1, .3, 1);
+      --font: 'Sora', sans-serif;
+      --mono: 'JetBrains Mono', monospace;
+      --bg-hero: #3D0900;
+      --bg-hero-dark: #3D0900;
+      --bg-section-dark: #141414;
+      --bg-card-dark: #1E1E1E;
+      --bg-footer: #0A0A0A;
+    }
 
-/* ── Main ── */
-.main{margin-left:252px;flex:1;padding:var(--sp8) var(--sp8);max-width:940px}
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0
+    }
 
-/* ── Section ── */
-.section{margin-bottom:100px}
-.sec-header{display:flex;align-items:baseline;gap:14px;margin-bottom:var(--sp7);padding-bottom:var(--sp5);border-bottom:2px solid var(--border)}
-.sec-num{font-size:11px;font-weight:700;color:var(--laranja);letter-spacing:.1em;text-transform:uppercase;font-family:var(--mono);min-width:28px}
-.sec-title{font-size:30px;font-weight:800;letter-spacing:-.02em}
-.sec-desc{font-size:14px;color:var(--c500);margin-top:var(--sp3);line-height:1.65;max-width:560px}
-.sub-title{font-size:16px;font-weight:700;margin-bottom:var(--sp4);letter-spacing:-.01em}
-.subsec{margin-bottom:var(--sp7)}
+    html {
+      scroll-behavior: smooth
+    }
 
-/* ── Utilities ── */
-.eyebrow{font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--laranja);margin-bottom:var(--sp3)}
-.grid-2{display:grid;grid-template-columns:1fr 1fr;gap:var(--sp5)}
-.grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:var(--sp5)}
-.grid-4{display:grid;grid-template-columns:repeat(4,1fr);gap:var(--sp5)}
-.card{background:var(--bg-elev);border:1px solid var(--border);border-radius:var(--r-lg);padding:var(--sp6)}
-.mono{font-family:var(--mono);font-size:12px;color:var(--laranja);background:var(--laranja-soft);padding:2px 7px;border-radius:4px}
+    body {
+      font-family: var(--font);
+      background: var(--bg);
+      color: var(--fg);
+      display: flex;
+      min-height: 100vh;
+      line-height: 1.5
+    }
 
-/* Tables */
-.table-wrap{overflow-x:auto;border-radius:var(--r-lg);border:1px solid var(--border)}
-table{width:100%;border-collapse:collapse;font-size:13px;background:var(--bg-elev)}
-thead th{padding:10px 14px;text-align:left;font-size:10px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--c500);background:var(--c100);border-bottom:1px solid var(--border)}
-tbody td{padding:11px 14px;border-bottom:1px solid var(--border);color:var(--c700);vertical-align:middle}
-tbody tr:last-child td{border-bottom:none}
-td code{font-family:var(--mono);font-size:11px;background:var(--laranja-soft);padding:2px 6px;border-radius:4px;color:var(--laranja)}
+    [id] {
+      scroll-margin-top: 32px
+    }
 
-/* Rule lists */
-.rules{list-style:none;display:flex;flex-direction:column;gap:10px}
-.rules li{display:flex;gap:10px;font-size:13px;color:var(--c700);line-height:1.55}
-.rules li::before{content:'—';color:var(--laranja);font-weight:700;flex-shrink:0}
-.rules.no li::before{content:'✕';font-size:11px;color:var(--c400)}
+    /* ── Sidebar ── */
+    .sidebar {
+      width: 252px;
+      min-width: 252px;
+      position: fixed;
+      top: 0;
+      left: 0;
+      height: 100vh;
+      overflow-y: auto;
+      background: var(--bg-elev);
+      border-right: 1px solid var(--border);
+      display: flex;
+      flex-direction: column;
+      z-index: 100
+    }
 
-/* ── 01 Introdução ── */
-.manifesto{background:var(--preto);border-radius:var(--r-xl);padding:var(--sp8) var(--sp7);margin-bottom:var(--sp7)}
-.manifesto-hl{font-size:24px;font-weight:800;color:var(--laranja);letter-spacing:-.02em;margin-bottom:var(--sp5)}
-.manifesto p{font-size:15px;font-weight:400;color:rgba(245,245,245,.72);line-height:1.75;max-width:540px}
-.manifesto strong{color:#F5F5F5;font-weight:600}
-.value-card{background:var(--bg-elev);border:1px solid var(--border);border-radius:var(--r-lg);padding:var(--sp6)}
-.value-n{font-size:10px;font-weight:700;color:var(--laranja);letter-spacing:.1em;margin-bottom:var(--sp3)}
-.value-t{font-size:14px;font-weight:700;margin-bottom:6px;line-height:1.3}
-.value-d{font-size:13px;color:var(--c600);line-height:1.6}
-.stat-chip{display:inline-flex;flex-direction:column;background:var(--laranja-soft);border:1px solid rgba(255,61,0,.2);border-radius:var(--r-lg);padding:var(--sp4) var(--sp5)}
-.stat-chip .n{font-size:36px;font-weight:900;color:var(--laranja);line-height:1}
-.stat-chip .l{font-size:12px;color:var(--c600);margin-top:3px}
+    .sb-header {
+      padding: 24px 20px 18px;
+      border-bottom: 1px solid var(--border)
+    }
 
-/* ── 02 Logo ── */
-.logo-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:var(--sp5)}
-.logo-cell{border-radius:var(--r-lg);padding:var(--sp6);display:flex;flex-direction:column;align-items:flex-start;gap:var(--sp3)}
-.logo-cell img{height:28px;max-width:100%;object-fit:contain}
-.logo-cell .lbl{font-size:11px;font-weight:600;opacity:.55}
-.on-white{background:#fff;border:1px solid var(--border)} .on-white .lbl{color:var(--c500)}
-.on-dark{background:var(--preto)} .on-dark .lbl{color:rgba(255,255,255,.5)}
-.on-orange{background:var(--laranja)} .on-orange .lbl{color:rgba(255,255,255,.6)}
-.sym-cell img{height:40px}
+    .sb-header img {
+      height: 22px
+    }
 
-/* ── 03 Cores ── */
-.swatch-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(130px,1fr));gap:var(--sp4)}
-.swatch{border-radius:var(--r);overflow:hidden;box-shadow:var(--sh-sm)}
-.swatch-color{height:60px}
-.swatch-info{background:var(--bg-elev);padding:9px 11px;border-top:1px solid var(--border)}
-.swatch-name{font-size:12px;font-weight:600}
-.swatch-hex{font-size:11px;color:var(--c500);font-family:var(--mono)}
-.swatch-token{font-size:10px;color:var(--laranja);font-family:var(--mono);margin-top:2px}
-.neutral-ramp{display:flex;border-radius:var(--r);overflow:hidden;height:44px}
-.neutral-ramp div{flex:1;display:flex;align-items:flex-end;padding:4px}
-.neutral-ramp span{font-size:10px;font-weight:700}
-.surface-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:var(--sp5)}
-.surf{border-radius:var(--r-xl);padding:var(--sp7);min-height:160px;display:flex;flex-direction:column;justify-content:flex-end}
-.surf.s-ora{background:var(--laranja)}
-.surf.s-off{background:var(--branco-off);border:1px solid var(--border)}
-.surf.s-dk{background:var(--preto)}
-.surf .ey{font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;margin-bottom:6px}
-.surf .hl{font-size:18px;font-weight:800;line-height:1.2;letter-spacing:-.02em}
-.surf.s-ora .ey{color:rgba(255,255,255,.7)} .surf.s-ora .hl{color:#fff}
-.surf.s-off .ey{color:var(--laranja)} .surf.s-off .hl{color:var(--fg)}
-.surf.s-dk .ey{color:rgba(255,255,255,.5)} .surf.s-dk .hl{color:#F5F5F5}
+    .sb-header p {
+      font-size: 10px;
+      color: var(--c500);
+      margin-top: 5px;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      font-weight: 600
+    }
 
-/* ── 04 Tipografia ── */
-.type-row{display:flex;align-items:baseline;gap:var(--sp5);padding:var(--sp4) 0;border-bottom:1px solid var(--border)}
-.type-meta{min-width:180px;flex-shrink:0}
-.type-meta .tk{font-family:var(--mono);font-size:11px;color:var(--laranja)}
-.type-meta .sp{font-size:11px;color:var(--c500);margin-top:2px}
-.type-sample{font-family:var(--font);letter-spacing:-.01em;color:var(--fg);overflow:hidden;white-space:nowrap;text-overflow:ellipsis}
+    .sb-nav {
+      padding: 12px 10px;
+      flex: 1
+    }
 
-/* ── 08 Tokens ── */
-.sp-row{display:flex;align-items:center;gap:var(--sp5);padding:7px 0;border-bottom:1px solid var(--border)}
-.sp-bar{background:var(--laranja-soft);border:1px solid rgba(255,61,0,.2);border-radius:4px;height:18px;flex-shrink:0}
-.sp-meta{font-family:var(--mono);font-size:11px;color:var(--c500);min-width:90px}
-.sp-val{font-size:12px;font-weight:700;color:var(--fg);min-width:36px}
-.radius-demo{display:flex;gap:var(--sp5);flex-wrap:wrap;align-items:flex-end}
-.r-item{text-align:center}
-.r-box{width:72px;height:72px;background:var(--laranja-soft);border:2px solid rgba(255,61,0,.3);margin-bottom:7px}
-.r-lbl{font-family:var(--mono);font-size:10px;color:var(--laranja)}
-.r-val{font-size:11px;color:var(--c500)}
-.shadow-demo{display:flex;gap:var(--sp6);flex-wrap:wrap}
-.sh-item{text-align:center}
-.sh-box{width:88px;height:56px;background:var(--bg-elev);border-radius:var(--r);margin-bottom:9px}
-.sh-lbl{font-family:var(--mono);font-size:10px;color:var(--laranja)}
+    .nav-item {
+      display: flex;
+      align-items: center;
+      gap: 9px;
+      padding: 7px 10px;
+      border-radius: var(--r);
+      text-decoration: none;
+      color: var(--c600);
+      font-size: 12.5px;
+      font-weight: 500;
+      transition: all 120ms var(--ease);
+      line-height: 1.3
+    }
 
-/* ── 09 Componentes ── */
-.preview{background:var(--bg-elev);border:1px solid var(--border);border-radius:var(--r-lg);padding:var(--sp7);display:flex;flex-wrap:wrap;gap:var(--sp4);align-items:center;margin-bottom:var(--sp5)}
-.preview.dk{background:var(--preto)}
-.preview.ora{background:var(--laranja)}
-.btn{display:inline-flex;align-items:center;gap:7px;padding:12px 22px;border-radius:var(--r-md);font-family:var(--font);font-size:14px;font-weight:600;cursor:pointer;border:none;transition:all 120ms var(--ease);text-decoration:none;letter-spacing:-.01em}
-.btn-p{background:var(--laranja);color:#fff} .btn-p:hover{background:var(--laranja-hover);box-shadow:var(--sh-acc)}
-.btn-d{background:var(--preto);color:#fff} .btn-d:hover{background:var(--c800)}
-.btn-w{background:#fff;color:var(--preto)} .btn-w:hover{background:var(--c100)}
-.btn-gl{background:transparent;color:#fff;border:1.5px solid rgba(255,255,255,.4)} .btn-gl:hover{background:rgba(255,255,255,.1);border-color:rgba(255,255,255,.7)}
-.bdg{display:inline-flex;align-items:center;padding:4px 10px;border-radius:var(--r-sm);font-size:11px;font-weight:500}
-.bdg-pill{border-radius:var(--r-pill)}
-.bdg-a{background:var(--laranja);color:#fff}
-.bdg-s{background:var(--laranja-soft);color:var(--laranja);border:1px solid rgba(255,61,0,.2)}
-.bdg-n{background:var(--c200);color:var(--c700)}
-.bdg-dk{background:var(--preto);color:#fff}
-.ic{display:flex;flex-direction:column;align-items:center;gap:6px;font-size:10px;color:var(--c500);font-family:var(--mono)}
-.item-card{background:var(--bg-elev);border:1px solid var(--border);border-radius:var(--r-lg);padding:var(--sp6);display:flex;flex-direction:column;gap:var(--sp3);transition:transform 200ms var(--ease),box-shadow 200ms var(--ease)}
-.item-card:hover{transform:translateY(-2px);box-shadow:var(--sh)}
-.item-card h3{font-size:16px;font-weight:700}
-.item-card p{font-size:13px;color:var(--c600);line-height:1.6}
-.testi{background:var(--bg-elev);border:1px solid var(--border);border-radius:var(--r-lg);padding:var(--sp6)}
-.testi-q{font-size:40px;font-weight:900;color:var(--laranja);line-height:.7;margin-bottom:10px}
-.testi-t{font-size:14px;color:var(--c700);line-height:1.65;margin-bottom:14px}
-.testi-a{font-size:12px;font-weight:600}
-.testi-co{font-size:11px;color:var(--c500)}
-.inp-demo{display:flex;flex-direction:column;gap:5px;flex:1;min-width:200px}
-.inp-demo label{font-size:13px;font-weight:500;color:var(--c700)}
-.inp-demo input{height:46px;padding:11px 14px;border:1px solid var(--border);border-radius:var(--r);font-family:var(--font);font-size:14px;color:var(--fg);background:var(--bg-elev);outline:none;transition:border-color 120ms,box-shadow 120ms}
-.inp-demo input:focus{border-color:var(--laranja);box-shadow:0 0 0 3px rgba(255,61,0,.15)}
-.inp-demo input::placeholder{color:var(--c400)}
-.pricing-card{background:var(--bg-elev);border:1px solid var(--border);border-radius:var(--r-lg);padding:var(--sp7);max-width:280px}
-.pricing-card.feat{border:2px solid var(--laranja)}
-.pc-plan{font-size:11px;font-weight:600;color:var(--c500);text-transform:uppercase;letter-spacing:.08em;margin-bottom:var(--sp2)}
-.pc-price{font-size:42px;font-weight:900;letter-spacing:-.03em;line-height:1;margin-bottom:var(--sp2)}
-.pc-price span{font-size:16px;font-weight:400;color:var(--c500)}
-.pc-div{height:1px;background:var(--border);margin:var(--sp5) 0}
-.pc-feat{display:flex;gap:9px;align-items:flex-start;font-size:13px;color:var(--c600);margin-bottom:9px}
-.pc-feat svg{color:var(--laranja);flex-shrink:0;margin-top:1px}
-.stats-bar{display:grid;grid-template-columns:repeat(4,1fr);gap:var(--sp4)}
-.stat-it{padding:var(--sp5);border-radius:var(--r-lg);background:var(--bg-elev);border:1px solid var(--border)}
-.stat-n{font-size:32px;font-weight:900;letter-spacing:-.03em;line-height:1}
-.stat-n.ora{color:var(--laranja)}
-.stat-l{font-size:12px;color:var(--c500);margin-top:4px}
-.trust{background:var(--laranja-soft);border:1px solid rgba(255,61,0,.2);border-radius:var(--r-lg);padding:var(--sp5);display:flex;align-items:center;gap:var(--sp4)}
-.trust-n{font-size:32px;font-weight:900;color:var(--laranja);line-height:1}
-.trust-l{font-size:12px;color:var(--c600)}
-.chat-demo{display:flex;flex-direction:column;gap:var(--sp3);max-width:360px}
-.bbl{padding:11px 15px;border-radius:var(--r);font-size:13px;line-height:1.5;max-width:85%}
-.bbl-l{background:var(--c200);color:var(--fg);border-bottom-left-radius:4px;align-self:flex-start}
-.bbl-r{background:var(--laranja);color:#fff;border-bottom-right-radius:4px;align-self:flex-end}
-.founder-card{background:var(--bg-elev);border:1px solid var(--border);border-radius:var(--r-lg);padding:var(--sp6)}
-.founder-name{font-size:18px;font-weight:700;margin-bottom:4px}
-.founder-role{font-size:11px;font-weight:600;color:var(--laranja);text-transform:uppercase;letter-spacing:.08em;margin-bottom:var(--sp3)}
-.founder-bio{font-size:13px;color:var(--c600);line-height:1.65}
-.cta-closer{background:var(--preto);border-radius:var(--r-xl);padding:var(--sp8) var(--sp7)}
-.cta-closer .hl{font-size:28px;font-weight:900;color:#fff;letter-spacing:-.02em;line-height:1.15;margin-bottom:var(--sp4)}
-.cta-closer .hl span{color:var(--laranja)}
-.cta-closer .sub{font-size:15px;color:rgba(245,245,245,.65);margin-bottom:var(--sp6);max-width:400px}
+    .nav-item:hover,
+    .nav-item.active {
+      background: var(--laranja-soft);
+      color: var(--laranja)
+    }
 
-/* ── 07 Voz ── */
-.voice-ex{background:var(--bg-elev);border-left:3px solid var(--laranja);padding:14px 18px;border-radius:0 var(--r) var(--r) 0;margin-bottom:var(--sp4)}
-.voice-ex.bad{border-left-color:var(--c300)}
-.voice-ex .lbl{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--laranja);margin-bottom:5px}
-.voice-ex.bad .lbl{color:var(--c400)}
-.voice-ex p{font-size:15px;font-weight:500;line-height:1.5}
-.voice-ex.bad p{color:var(--c500);text-decoration:line-through}
+    .nav-num {
+      font-size: 10px;
+      font-weight: 700;
+      color: var(--c400);
+      min-width: 18px;
+      font-family: var(--mono)
+    }
 
-/* ── 11 Logos clientes ── */
-.cl-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:var(--sp4)}
-.cl-cell{background:var(--bg-elev);border:1px solid var(--border);border-radius:var(--r);padding:var(--sp4);display:flex;align-items:center;justify-content:center;min-height:72px;flex-direction:column;gap:6px}
-.cl-cell img{max-height:28px;max-width:120px;object-fit:contain;filter:grayscale(1) brightness(.55);opacity:.7;transition:all 200ms var(--ease)}
-.cl-cell:hover img{filter:none;opacity:1}
-.cl-cell span{font-size:10px;color:var(--c400);font-weight:500}
+    .nav-item:hover .nav-num,
+    .nav-item.active .nav-num {
+      color: var(--laranja)
+    }
 
-/* ── FAQ preview ── */
-.faq-item{border-bottom:1px solid var(--border);padding:var(--sp4) 0;cursor:pointer}
-.faq-q{font-size:14px;font-weight:700;display:flex;justify-content:space-between;align-items:center;gap:12px}
-.faq-a{font-size:13px;color:var(--c600);line-height:1.65;margin-top:9px;display:none}
-.faq-item.open .faq-a{display:block}
+    .sb-foot {
+      padding: 14px 20px;
+      border-top: 1px solid var(--border);
+      font-size: 10px;
+      color: var(--c400)
+    }
 
-:focus-visible{outline:none;box-shadow:0 0 0 3px rgba(255,61,0,.35)}
-</style>
+    /* ── Main ── */
+    .main {
+      margin-left: 252px;
+      flex: 1;
+      padding: var(--sp8) var(--sp8);
+      max-width: 940px
+    }
+
+    /* ── Section ── */
+    .section {
+      margin-bottom: 100px
+    }
+
+    .sec-header {
+      display: flex;
+      align-items: baseline;
+      gap: 14px;
+      margin-bottom: var(--sp7);
+      padding-bottom: var(--sp5);
+      border-bottom: 2px solid var(--border)
+    }
+
+    .sec-num {
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--laranja);
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      font-family: var(--mono);
+      min-width: 28px
+    }
+
+    .sec-title {
+      font-size: 30px;
+      font-weight: 800;
+      letter-spacing: -.02em
+    }
+
+    .sec-desc {
+      font-size: 14px;
+      color: var(--c500);
+      margin-top: var(--sp3);
+      line-height: 1.65;
+      max-width: 560px
+    }
+
+    .sub-title {
+      font-size: 16px;
+      font-weight: 700;
+      margin-bottom: var(--sp4);
+      letter-spacing: -.01em
+    }
+
+    .subsec {
+      margin-bottom: var(--sp7)
+    }
+
+    /* ── Utilities ── */
+    .eyebrow {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      color: var(--laranja);
+      margin-bottom: var(--sp3)
+    }
+
+    .grid-2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: var(--sp5)
+    }
+
+    .grid-3 {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: var(--sp5)
+    }
+
+    .grid-4 {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: var(--sp5)
+    }
+
+    .card {
+      background: var(--bg-elev);
+      border: 1px solid var(--border);
+      border-radius: var(--r-lg);
+      padding: var(--sp6)
+    }
+
+    .mono {
+      font-family: var(--mono);
+      font-size: 12px;
+      color: var(--laranja);
+      background: var(--laranja-soft);
+      padding: 2px 7px;
+      border-radius: 4px
+    }
+
+    /* Tables */
+    .table-wrap {
+      overflow-x: auto;
+      border-radius: var(--r-lg);
+      border: 1px solid var(--border)
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 13px;
+      background: var(--bg-elev)
+    }
+
+    thead th {
+      padding: 10px 14px;
+      text-align: left;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      color: var(--c500);
+      background: var(--c100);
+      border-bottom: 1px solid var(--border)
+    }
+
+    tbody td {
+      padding: 11px 14px;
+      border-bottom: 1px solid var(--border);
+      color: var(--c700);
+      vertical-align: middle
+    }
+
+    tbody tr:last-child td {
+      border-bottom: none
+    }
+
+    td code {
+      font-family: var(--mono);
+      font-size: 11px;
+      background: var(--laranja-soft);
+      padding: 2px 6px;
+      border-radius: 4px;
+      color: var(--laranja)
+    }
+
+    /* Rule lists */
+    .rules {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 10px
+    }
+
+    .rules li {
+      display: flex;
+      gap: 10px;
+      font-size: 13px;
+      color: var(--c700);
+      line-height: 1.55
+    }
+
+    .rules li::before {
+      content: '—';
+      color: var(--laranja);
+      font-weight: 700;
+      flex-shrink: 0
+    }
+
+    .rules.no li::before {
+      content: '✕';
+      font-size: 11px;
+      color: var(--c400)
+    }
+
+    /* ── 01 Introdução ── */
+    .manifesto {
+      background: var(--preto);
+      border-radius: var(--r-xl);
+      padding: var(--sp8) var(--sp7);
+      margin-bottom: var(--sp7)
+    }
+
+    .manifesto-hl {
+      font-size: 24px;
+      font-weight: 800;
+      color: var(--laranja);
+      letter-spacing: -.02em;
+      margin-bottom: var(--sp5)
+    }
+
+    .manifesto p {
+      font-size: 15px;
+      font-weight: 400;
+      color: rgba(245, 245, 245, .72);
+      line-height: 1.75;
+      max-width: 540px
+    }
+
+    .manifesto strong {
+      color: #F5F5F5;
+      font-weight: 600
+    }
+
+    .value-card {
+      background: var(--bg-elev);
+      border: 1px solid var(--border);
+      border-radius: var(--r-lg);
+      padding: var(--sp6)
+    }
+
+    .value-n {
+      font-size: 10px;
+      font-weight: 700;
+      color: var(--laranja);
+      letter-spacing: .1em;
+      margin-bottom: var(--sp3)
+    }
+
+    .value-t {
+      font-size: 14px;
+      font-weight: 700;
+      margin-bottom: 6px;
+      line-height: 1.3
+    }
+
+    .value-d {
+      font-size: 13px;
+      color: var(--c600);
+      line-height: 1.6
+    }
+
+    .stat-chip {
+      display: inline-flex;
+      flex-direction: column;
+      background: var(--laranja-soft);
+      border: 1px solid rgba(255, 61, 0, .2);
+      border-radius: var(--r-lg);
+      padding: var(--sp4) var(--sp5)
+    }
+
+    .stat-chip .n {
+      font-size: 36px;
+      font-weight: 900;
+      color: var(--laranja);
+      line-height: 1
+    }
+
+    .stat-chip .l {
+      font-size: 12px;
+      color: var(--c600);
+      margin-top: 3px
+    }
+
+    /* ── 02 Logo ── */
+    .logo-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: var(--sp5)
+    }
+
+    .logo-cell {
+      border-radius: var(--r-lg);
+      padding: var(--sp6);
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: var(--sp3)
+    }
+
+    .logo-cell img {
+      height: 28px;
+      max-width: 100%;
+      object-fit: contain
+    }
+
+    .logo-cell .lbl {
+      font-size: 11px;
+      font-weight: 600;
+      opacity: .55
+    }
+
+    .on-white {
+      background: #fff;
+      border: 1px solid var(--border)
+    }
+
+    .on-white .lbl {
+      color: var(--c500)
+    }
+
+    .on-dark {
+      background: var(--preto)
+    }
+
+    .on-dark .lbl {
+      color: rgba(255, 255, 255, .5)
+    }
+
+    .on-orange {
+      background: var(--laranja)
+    }
+
+    .on-orange .lbl {
+      color: rgba(255, 255, 255, .6)
+    }
+
+    .sym-cell img {
+      height: 40px
+    }
+
+    /* ── 03 Cores ── */
+    .swatch-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+      gap: var(--sp4)
+    }
+
+    .swatch {
+      border-radius: var(--r);
+      overflow: hidden;
+      box-shadow: var(--sh-sm)
+    }
+
+    .swatch-color {
+      height: 60px
+    }
+
+    .swatch-info {
+      background: var(--bg-elev);
+      padding: 9px 11px;
+      border-top: 1px solid var(--border)
+    }
+
+    .swatch-name {
+      font-size: 12px;
+      font-weight: 600
+    }
+
+    .swatch-hex {
+      font-size: 11px;
+      color: var(--c500);
+      font-family: var(--mono)
+    }
+
+    .swatch-token {
+      font-size: 10px;
+      color: var(--laranja);
+      font-family: var(--mono);
+      margin-top: 2px
+    }
+
+    .neutral-ramp {
+      display: flex;
+      border-radius: var(--r);
+      overflow: hidden;
+      height: 44px
+    }
+
+    .neutral-ramp div {
+      flex: 1;
+      display: flex;
+      align-items: flex-end;
+      padding: 4px
+    }
+
+    .neutral-ramp span {
+      font-size: 10px;
+      font-weight: 700
+    }
+
+    .surface-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: var(--sp5)
+    }
+
+    .surf {
+      border-radius: var(--r-xl);
+      padding: var(--sp7);
+      min-height: 160px;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end
+    }
+
+    .surf.s-ora {
+      background: var(--laranja)
+    }
+
+    .surf.s-off {
+      background: var(--branco-off);
+      border: 1px solid var(--border)
+    }
+
+    .surf.s-dk {
+      background: var(--preto)
+    }
+
+    .surf .ey {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      margin-bottom: 6px
+    }
+
+    .surf .hl {
+      font-size: 18px;
+      font-weight: 800;
+      line-height: 1.2;
+      letter-spacing: -.02em
+    }
+
+    .surf.s-ora .ey {
+      color: rgba(255, 255, 255, .7)
+    }
+
+    .surf.s-ora .hl {
+      color: #fff
+    }
+
+    .surf.s-off .ey {
+      color: var(--laranja)
+    }
+
+    .surf.s-off .hl {
+      color: var(--fg)
+    }
+
+    .surf.s-dk .ey {
+      color: rgba(255, 255, 255, .5)
+    }
+
+    .surf.s-dk .hl {
+      color: #F5F5F5
+    }
+
+    /* ── 04 Tipografia ── */
+    .type-row {
+      display: flex;
+      align-items: baseline;
+      gap: var(--sp5);
+      padding: var(--sp4) 0;
+      border-bottom: 1px solid var(--border)
+    }
+
+    .type-meta {
+      min-width: 180px;
+      flex-shrink: 0
+    }
+
+    .type-meta .tk {
+      font-family: var(--mono);
+      font-size: 11px;
+      color: var(--laranja)
+    }
+
+    .type-meta .sp {
+      font-size: 11px;
+      color: var(--c500);
+      margin-top: 2px
+    }
+
+    .type-sample {
+      font-family: var(--font);
+      letter-spacing: -.01em;
+      color: var(--fg);
+      overflow: hidden;
+      white-space: nowrap;
+      text-overflow: ellipsis
+    }
+
+    /* ── 08 Tokens ── */
+    .sp-row {
+      display: flex;
+      align-items: center;
+      gap: var(--sp5);
+      padding: 7px 0;
+      border-bottom: 1px solid var(--border)
+    }
+
+    .sp-bar {
+      background: var(--laranja-soft);
+      border: 1px solid rgba(255, 61, 0, .2);
+      border-radius: 4px;
+      height: 18px;
+      flex-shrink: 0
+    }
+
+    .sp-meta {
+      font-family: var(--mono);
+      font-size: 11px;
+      color: var(--c500);
+      min-width: 90px
+    }
+
+    .sp-val {
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--fg);
+      min-width: 36px
+    }
+
+    .radius-demo {
+      display: flex;
+      gap: var(--sp5);
+      flex-wrap: wrap;
+      align-items: flex-end
+    }
+
+    .r-item {
+      text-align: center
+    }
+
+    .r-box {
+      width: 72px;
+      height: 72px;
+      background: var(--laranja-soft);
+      border: 2px solid rgba(255, 61, 0, .3);
+      margin-bottom: 7px
+    }
+
+    .r-lbl {
+      font-family: var(--mono);
+      font-size: 10px;
+      color: var(--laranja)
+    }
+
+    .r-val {
+      font-size: 11px;
+      color: var(--c500)
+    }
+
+    .shadow-demo {
+      display: flex;
+      gap: var(--sp6);
+      flex-wrap: wrap
+    }
+
+    .sh-item {
+      text-align: center
+    }
+
+    .sh-box {
+      width: 88px;
+      height: 56px;
+      background: var(--bg-elev);
+      border-radius: var(--r);
+      margin-bottom: 9px
+    }
+
+    .sh-lbl {
+      font-family: var(--mono);
+      font-size: 10px;
+      color: var(--laranja)
+    }
+
+    /* ── 09 Componentes ── */
+    .preview {
+      background: var(--bg-elev);
+      border: 1px solid var(--border);
+      border-radius: var(--r-lg);
+      padding: var(--sp7);
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--sp4);
+      align-items: center;
+      margin-bottom: var(--sp5)
+    }
+
+    .preview.dk {
+      background: var(--preto)
+    }
+
+    .preview.ora {
+      background: var(--laranja)
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      padding: 12px 22px;
+      border-radius: var(--r-md);
+      font-family: var(--font);
+      font-size: 14px;
+      font-weight: 600;
+      cursor: pointer;
+      border: none;
+      transition: all 120ms var(--ease);
+      text-decoration: none;
+      letter-spacing: -.01em
+    }
+
+    .btn-p {
+      background: var(--laranja);
+      color: #fff
+    }
+
+    .btn-p:hover {
+      background: var(--laranja-hover);
+      box-shadow: var(--sh-acc)
+    }
+
+    .btn-d {
+      background: var(--preto);
+      color: #fff
+    }
+
+    .btn-d:hover {
+      background: var(--c800)
+    }
+
+    .btn-w {
+      background: #fff;
+      color: var(--preto)
+    }
+
+    .btn-w:hover {
+      background: var(--c100)
+    }
+
+    .btn-gl {
+      background: transparent;
+      color: #fff;
+      border: 1.5px solid rgba(255, 255, 255, .4)
+    }
+
+    .btn-gl:hover {
+      background: rgba(255, 255, 255, .1);
+      border-color: rgba(255, 255, 255, .7)
+    }
+
+    .bdg {
+      display: inline-flex;
+      align-items: center;
+      padding: 4px 10px;
+      border-radius: var(--r-sm);
+      font-size: 11px;
+      font-weight: 500
+    }
+
+    .bdg-pill {
+      border-radius: var(--r-pill)
+    }
+
+    .bdg-a {
+      background: var(--laranja);
+      color: #fff
+    }
+
+    .bdg-s {
+      background: var(--laranja-soft);
+      color: var(--laranja);
+      border: 1px solid rgba(255, 61, 0, .2)
+    }
+
+    .bdg-n {
+      background: var(--c200);
+      color: var(--c700)
+    }
+
+    .bdg-dk {
+      background: var(--preto);
+      color: #fff
+    }
+
+    .ic {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 6px;
+      font-size: 10px;
+      color: var(--c500);
+      font-family: var(--mono)
+    }
+
+    .item-card {
+      background: var(--bg-elev);
+      border: 1px solid var(--border);
+      border-radius: var(--r-lg);
+      padding: var(--sp6);
+      display: flex;
+      flex-direction: column;
+      gap: var(--sp3);
+      transition: transform 200ms var(--ease), box-shadow 200ms var(--ease)
+    }
+
+    .item-card:hover {
+      transform: translateY(-2px);
+      box-shadow: var(--sh)
+    }
+
+    .item-card h3 {
+      font-size: 16px;
+      font-weight: 700
+    }
+
+    .item-card p {
+      font-size: 13px;
+      color: var(--c600);
+      line-height: 1.6
+    }
+
+    .testi {
+      background: var(--bg-elev);
+      border: 1px solid var(--border);
+      border-radius: var(--r-lg);
+      padding: var(--sp6)
+    }
+
+    .testi-q {
+      font-size: 40px;
+      font-weight: 900;
+      color: var(--laranja);
+      line-height: .7;
+      margin-bottom: 10px
+    }
+
+    .testi-t {
+      font-size: 14px;
+      color: var(--c700);
+      line-height: 1.65;
+      margin-bottom: 14px
+    }
+
+    .testi-a {
+      font-size: 12px;
+      font-weight: 600
+    }
+
+    .testi-co {
+      font-size: 11px;
+      color: var(--c500)
+    }
+
+    .inp-demo {
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+      flex: 1;
+      min-width: 200px
+    }
+
+    .inp-demo label {
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--c700)
+    }
+
+    .inp-demo input {
+      height: 46px;
+      padding: 11px 14px;
+      border: 1px solid var(--border);
+      border-radius: var(--r);
+      font-family: var(--font);
+      font-size: 14px;
+      color: var(--fg);
+      background: var(--bg-elev);
+      outline: none;
+      transition: border-color 120ms, box-shadow 120ms
+    }
+
+    .inp-demo input:focus {
+      border-color: var(--laranja);
+      box-shadow: 0 0 0 3px rgba(255, 61, 0, .15)
+    }
+
+    .inp-demo input::placeholder {
+      color: var(--c400)
+    }
+
+    .pricing-card {
+      background: var(--bg-elev);
+      border: 1px solid var(--border);
+      border-radius: var(--r-lg);
+      padding: var(--sp7);
+      max-width: 280px
+    }
+
+    .pricing-card.feat {
+      border: 2px solid var(--laranja)
+    }
+
+    .pc-plan {
+      font-size: 11px;
+      font-weight: 600;
+      color: var(--c500);
+      text-transform: uppercase;
+      letter-spacing: .08em;
+      margin-bottom: var(--sp2)
+    }
+
+    .pc-price {
+      font-size: 42px;
+      font-weight: 900;
+      letter-spacing: -.03em;
+      line-height: 1;
+      margin-bottom: var(--sp2)
+    }
+
+    .pc-price span {
+      font-size: 16px;
+      font-weight: 400;
+      color: var(--c500)
+    }
+
+    .pc-div {
+      height: 1px;
+      background: var(--border);
+      margin: var(--sp5) 0
+    }
+
+    .pc-feat {
+      display: flex;
+      gap: 9px;
+      align-items: flex-start;
+      font-size: 13px;
+      color: var(--c600);
+      margin-bottom: 9px
+    }
+
+    .pc-feat svg {
+      color: var(--laranja);
+      flex-shrink: 0;
+      margin-top: 1px
+    }
+
+    .stats-bar {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: var(--sp4)
+    }
+
+    .stat-it {
+      padding: var(--sp5);
+      border-radius: var(--r-lg);
+      background: var(--bg-elev);
+      border: 1px solid var(--border)
+    }
+
+    .stat-n {
+      font-size: 32px;
+      font-weight: 900;
+      letter-spacing: -.03em;
+      line-height: 1
+    }
+
+    .stat-n.ora {
+      color: var(--laranja)
+    }
+
+    .stat-l {
+      font-size: 12px;
+      color: var(--c500);
+      margin-top: 4px
+    }
+
+    .trust {
+      background: var(--laranja-soft);
+      border: 1px solid rgba(255, 61, 0, .2);
+      border-radius: var(--r-lg);
+      padding: var(--sp5);
+      display: flex;
+      align-items: center;
+      gap: var(--sp4)
+    }
+
+    .trust-n {
+      font-size: 32px;
+      font-weight: 900;
+      color: var(--laranja);
+      line-height: 1
+    }
+
+    .trust-l {
+      font-size: 12px;
+      color: var(--c600)
+    }
+
+    .chat-demo {
+      display: flex;
+      flex-direction: column;
+      gap: var(--sp3);
+      max-width: 360px
+    }
+
+    .bbl {
+      padding: 11px 15px;
+      border-radius: var(--r);
+      font-size: 13px;
+      line-height: 1.5;
+      max-width: 85%
+    }
+
+    .bbl-l {
+      background: var(--c200);
+      color: var(--fg);
+      border-bottom-left-radius: 4px;
+      align-self: flex-start
+    }
+
+    .bbl-r {
+      background: var(--laranja);
+      color: #fff;
+      border-bottom-right-radius: 4px;
+      align-self: flex-end
+    }
+
+    .founder-card {
+      background: var(--bg-elev);
+      border: 1px solid var(--border);
+      border-radius: var(--r-lg);
+      padding: var(--sp6)
+    }
+
+    .founder-name {
+      font-size: 18px;
+      font-weight: 700;
+      margin-bottom: 4px
+    }
+
+    .founder-role {
+      font-size: 11px;
+      font-weight: 600;
+      color: var(--laranja);
+      text-transform: uppercase;
+      letter-spacing: .08em;
+      margin-bottom: var(--sp3)
+    }
+
+    .founder-bio {
+      font-size: 13px;
+      color: var(--c600);
+      line-height: 1.65
+    }
+
+    .cta-closer {
+      background: var(--preto);
+      border-radius: var(--r-xl);
+      padding: var(--sp8) var(--sp7)
+    }
+
+    .cta-closer .hl {
+      font-size: 28px;
+      font-weight: 900;
+      color: #fff;
+      letter-spacing: -.02em;
+      line-height: 1.15;
+      margin-bottom: var(--sp4)
+    }
+
+    .cta-closer .hl span {
+      color: var(--laranja)
+    }
+
+    .cta-closer .sub {
+      font-size: 15px;
+      color: rgba(245, 245, 245, .65);
+      margin-bottom: var(--sp6);
+      max-width: 400px
+    }
+
+    /* ── 07 Voz ── */
+    .voice-ex {
+      background: var(--bg-elev);
+      border-left: 3px solid var(--laranja);
+      padding: 14px 18px;
+      border-radius: 0 var(--r) var(--r) 0;
+      margin-bottom: var(--sp4)
+    }
+
+    .voice-ex.bad {
+      border-left-color: var(--c300)
+    }
+
+    .voice-ex .lbl {
+      font-size: 10px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: .08em;
+      color: var(--laranja);
+      margin-bottom: 5px
+    }
+
+    .voice-ex.bad .lbl {
+      color: var(--c400)
+    }
+
+    .voice-ex p {
+      font-size: 15px;
+      font-weight: 500;
+      line-height: 1.5
+    }
+
+    .voice-ex.bad p {
+      color: var(--c500);
+      text-decoration: line-through
+    }
+
+    /* ── 11 Logos clientes ── */
+    .cl-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+      gap: var(--sp4)
+    }
+
+    .cl-cell {
+      background: var(--bg-elev);
+      border: 1px solid var(--border);
+      border-radius: var(--r);
+      padding: var(--sp4);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 72px;
+      flex-direction: column;
+      gap: 6px
+    }
+
+    .cl-cell img {
+      max-height: 28px;
+      max-width: 120px;
+      object-fit: contain;
+      filter: grayscale(1) brightness(.55);
+      opacity: .7;
+      transition: all 200ms var(--ease)
+    }
+
+    .cl-cell:hover img {
+      filter: none;
+      opacity: 1
+    }
+
+    .cl-cell span {
+      font-size: 10px;
+      color: var(--c400);
+      font-weight: 500
+    }
+
+    /* ── FAQ preview ── */
+    .faq-item {
+      border-bottom: 1px solid var(--border);
+      padding: var(--sp4) 0;
+      cursor: pointer
+    }
+
+    .faq-q {
+      font-size: 14px;
+      font-weight: 700;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px
+    }
+
+    .faq-a {
+      font-size: 13px;
+      color: var(--c600);
+      line-height: 1.65;
+      margin-top: 9px;
+      display: none
+    }
+
+    .faq-item.open .faq-a {
+      display: block
+    }
+
+    :focus-visible {
+      outline: none;
+      box-shadow: 0 0 0 3px rgba(255, 61, 0, .35)
+    }
+
+    /* Pill eyebrow gradiente */
+    .sp-pill {
+      display: block;
+      width: 120px;
+      height: 8px;
+      border-radius: var(--r-pill);
+      background: linear-gradient(90deg, #B82C00, var(--laranja));
+      flex-shrink: 0;
+    }
+
+    /* Wrappers de seção */
+    .sp-hero {
+      background: var(--bg-hero-dark);
+      border-radius: var(--r-xl);
+      padding: var(--sp8) var(--sp7);
+    }
+
+    .sp-white {
+      background: #fff;
+      border: 1px solid var(--border);
+      border-radius: var(--r-xl);
+      padding: var(--sp8) var(--sp7);
+    }
+
+    .sp-gray {
+      background: var(--branco-off);
+      border-radius: var(--r-xl);
+      padding: var(--sp8) var(--sp7);
+    }
+
+    .sp-dark {
+      background: var(--bg-section-dark);
+      border-radius: var(--r-xl);
+      padding: var(--sp8) var(--sp7);
+    }
+
+    .sp-footer {
+      background: var(--bg-footer);
+      border-radius: var(--r-xl);
+      padding: var(--sp7) var(--sp7);
+    }
+
+    /* Hero nav */
+    .sp-nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: var(--sp7);
+    }
+
+    .sp-nav-links {
+      display: flex;
+      align-items: center;
+      gap: var(--sp6);
+    }
+
+    .sp-nav-link {
+      color: rgba(255, 255, 255, .85);
+      font-size: 14px;
+      font-weight: 500;
+      text-decoration: none;
+    }
+
+    .sp-btn-pill-white {
+      background: #fff;
+      color: var(--preto);
+      padding: 10px 22px;
+      border-radius: var(--r-pill);
+      font-size: 14px;
+      font-weight: 600;
+      border: none;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-family: var(--font);
+    }
+
+    .sp-btn-pill-ora {
+      background: var(--laranja);
+      color: #fff;
+      padding: 13px 28px;
+      border-radius: var(--r-pill);
+      font-size: 15px;
+      font-weight: 600;
+      border: none;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-family: var(--font);
+    }
+
+    /* Hero headline + body */
+    .sp-hl-hero {
+      font-family: 'Gotham', 'Sora', sans-serif;
+      font-size: clamp(40px, 5vw, 72px);
+      font-weight: 900;
+      color: #fff;
+      letter-spacing: -.03em;
+      line-height: .95;
+      margin-bottom: var(--sp5);
+    }
+
+    .sp-hl-section {
+      font-family: 'Gotham', 'Sora', sans-serif;
+      font-size: clamp(28px, 3.5vw, 52px);
+      font-weight: 900;
+      letter-spacing: -.02em;
+      line-height: 1.05;
+    }
+
+    .sp-body-hero {
+      font-size: 16px;
+      color: rgba(255, 255, 255, .72);
+      max-width: 480px;
+      line-height: 1.6;
+      margin-bottom: var(--sp6);
+    }
+
+    /* Botões do hero */
+    .sp-btn-group {
+      display: flex;
+      align-items: center;
+      gap: var(--sp4);
+      margin-top: var(--sp6);
+      flex-wrap: wrap;
+    }
+
+    .sp-btn-dark {
+      background: var(--preto);
+      color: #fff;
+      padding: 12px 24px;
+      border-radius: var(--r-md);
+      font-size: 14px;
+      font-weight: 600;
+      border: none;
+      cursor: pointer;
+      font-family: var(--font);
+    }
+
+    .sp-btn-ghost {
+      background: transparent;
+      color: rgba(255, 255, 255, .9);
+      padding: 12px 24px;
+      border-radius: var(--r-md);
+      font-size: 14px;
+      font-weight: 600;
+      border: 1.5px solid rgba(255, 255, 255, .35);
+      cursor: pointer;
+      font-family: var(--font);
+    }
+
+    /* Logo strip hero */
+    .sp-logo-strip {
+      display: flex;
+      align-items: center;
+      gap: var(--sp6);
+      flex-wrap: wrap;
+      margin-top: var(--sp7);
+      padding-top: var(--sp6);
+      border-top: 1px solid rgba(255, 255, 255, .15);
+    }
+
+    .sp-logo-strip .label {
+      font-size: 11px;
+      color: rgba(255, 255, 255, .35);
+      text-transform: uppercase;
+      letter-spacing: .08em;
+      white-space: nowrap;
+    }
+
+    .sp-logo-strip .client {
+      font-size: 13px;
+      font-weight: 600;
+      color: rgba(255, 255, 255, .45);
+    }
+
+    /* Hero logo strip — slider animado */
+    .hero-logo-strip {
+      display: flex;
+      align-items: center;
+      gap: var(--sp5);
+      margin-top: var(--sp7);
+      padding-top: var(--sp6);
+      border-top: 1px solid rgba(255, 255, 255, .15);
+      overflow: hidden;
+    }
+
+    .hero-logo-strip .label {
+      font-size: 11px;
+      color: rgba(255, 255, 255, .35);
+      text-transform: uppercase;
+      letter-spacing: .08em;
+      white-space: nowrap;
+      flex-shrink: 0;
+      line-height: 1.5;
+    }
+
+    .hero-logo-track-wrap {
+      overflow: hidden;
+      flex: 1;
+      mask-image: linear-gradient(to right, transparent 0%, black 10%, black 90%, transparent 100%);
+    }
+
+    .hero-logo-track {
+      display: flex;
+      align-items: center;
+      gap: var(--sp7);
+      width: max-content;
+      animation: hero-logos-scroll 25s linear infinite;
+    }
+
+    @keyframes hero-logos-scroll {
+      from { transform: translateX(0); }
+      to { transform: translateX(-50%); }
+    }
+
+    /* About — accent bar lateral */
+    .sp-accent-bar {
+      border-left: 4px solid var(--laranja);
+      padding-left: var(--sp5);
+      margin-bottom: var(--sp7);
+    }
+
+    /* Cards com borda laranja (About + Customers) */
+    .sp-card-orange {
+      background: #fff;
+      border: 1.5px solid var(--laranja);
+      border-radius: var(--r-lg);
+      padding: var(--sp6);
+      display: flex;
+      flex-direction: column;
+      gap: var(--sp3);
+    }
+
+    .sp-card-orange h3 {
+      font-size: 16px;
+      font-weight: 700;
+    }
+
+    .sp-card-orange p {
+      font-size: 14px;
+      color: var(--c600);
+      line-height: 1.65;
+    }
+
+    .sp-card-orange a {
+      color: var(--laranja);
+      font-size: 14px;
+      font-weight: 600;
+      text-decoration: none;
+      margin-top: auto;
+      display: block;
+    }
+
+    /* Cards escuros com preço (Soluções) */
+    .sp-card-dark {
+      background: var(--bg-card-dark);
+      border: 1px solid rgba(255, 61, 0, .2);
+      border-left: 3px solid var(--laranja);
+      border-radius: var(--r-lg);
+      padding: var(--sp6);
+      display: flex;
+      flex-direction: column;
+      gap: var(--sp3);
+    }
+
+    .sp-card-dark .price {
+      font-size: 12px;
+      color: rgba(255, 255, 255, .45);
+      font-weight: 400;
+    }
+
+    .sp-card-dark h3 {
+      color: #F5F5F5;
+      font-size: 17px;
+      font-weight: 700;
+    }
+
+    .sp-card-dark p {
+      color: rgba(245, 245, 245, .65);
+      font-size: 14px;
+      line-height: 1.65;
+    }
+
+    .sp-card-dark a {
+      color: var(--laranja);
+      font-size: 14px;
+      font-weight: 600;
+      text-decoration: none;
+      margin-top: auto;
+      display: block;
+    }
+
+    /* Social Numbers — quote, diferenciais, stats */
+    .sp-quote {
+      font-size: 64px;
+      font-weight: 900;
+      color: var(--laranja);
+      line-height: .7;
+      margin-bottom: var(--sp4);
+      font-family: 'Gotham', 'Sora', sans-serif;
+    }
+
+    .sp-diff-col {
+      display: flex;
+      flex-direction: column;
+      gap: var(--sp3);
+    }
+
+    .sp-diff-title {
+      font-size: 13px;
+      font-weight: 700;
+      color: #F5F5F5;
+    }
+
+    .sp-diff-body {
+      font-size: 13px;
+      color: rgba(245, 245, 245, .6);
+      line-height: 1.6;
+    }
+
+    .sp-stat-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: var(--sp5);
+      margin-top: var(--sp7);
+      padding-top: var(--sp6);
+      border-top: 1px solid rgba(255, 255, 255, .15);
+    }
+
+    .sp-stat-n {
+      font-family: 'Gotham', 'Sora', sans-serif;
+      font-size: clamp(26px, 3vw, 40px);
+      font-weight: 900;
+      color: #F5F5F5;
+      line-height: 1;
+      letter-spacing: -.02em;
+    }
+
+    .sp-stat-l {
+      font-size: 13px;
+      color: rgba(245, 245, 245, .5);
+      margin-top: 5px;
+      line-height: 1.4;
+    }
+
+    /* CTA Final — centrado */
+    .sp-cta-center {
+      text-align: center;
+      padding: var(--sp9) var(--sp7);
+    }
+
+    .sp-cta-center .sp-pill {
+      margin: 0 auto var(--sp5);
+    }
+
+    .sp-cta-center .sp-hl-section {
+      margin-bottom: var(--sp4);
+    }
+
+    .sp-cta-center p {
+      font-size: 16px;
+      color: var(--c500);
+      margin-bottom: var(--sp6);
+    }
+
+    /* Footer */
+    .sp-footer-grid {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr 1fr;
+      gap: var(--sp6);
+      margin-bottom: var(--sp6);
+    }
+
+    .sp-footer-tagline {
+      font-size: 14px;
+      color: rgba(255, 255, 255, .55);
+      line-height: 1.6;
+      max-width: 200px;
+      margin-top: var(--sp4);
+    }
+
+    .sp-footer-col-title {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      color: rgba(255, 255, 255, .35);
+      margin-bottom: var(--sp4);
+    }
+
+    .sp-footer-link {
+      display: block;
+      font-size: 14px;
+      color: rgba(255, 255, 255, .65);
+      text-decoration: none;
+      margin-bottom: var(--sp3);
+    }
+
+    .sp-footer-copy {
+      font-size: 12px;
+      color: rgba(255, 255, 255, .3);
+      padding-top: var(--sp5);
+      border-top: 1px solid rgba(255, 255, 255, .1);
+    }
+
+    /* Hero com BG-SITE.png */
+    .sp-hero-bg {
+      background-color: var(--bg-hero);
+      background-image: url('../../ativos/BG-SITE.png');
+      background-size: cover;
+      background-position: center;
+      border-radius: var(--r-xl);
+      padding: var(--sp8) var(--sp7);
+    }
+
+    /* Spec note abaixo de cada preview */
+    .spec-note {
+      font-size: 12px;
+      color: var(--c500);
+      margin-top: var(--sp3);
+      line-height: 1.6;
+    }
+
+    .spec-note code {
+      font-family: var(--mono);
+      font-size: 11px;
+      background: var(--laranja-soft);
+      padding: 2px 6px;
+      border-radius: 4px;
+      color: var(--laranja);
+    }
+
+    /* Spec block (tabela de especificações detalhadas) */
+    .spec-block {
+      margin-top: var(--sp5);
+      background: var(--c100);
+      border: 1px solid var(--border);
+      border-radius: var(--r);
+      overflow: hidden;
+    }
+
+    .spec-block table {
+      font-size: 12px;
+    }
+
+    .spec-block thead th {
+      font-size: 10px;
+      background: var(--c200);
+    }
+
+    .spec-block td:first-child {
+      font-weight: 600;
+      color: var(--c700);
+      width: 160px;
+      white-space: nowrap;
+    }
+
+    .spec-block td:nth-child(2) {
+      font-family: var(--mono);
+      font-size: 11px;
+      color: var(--laranja);
+    }
+
+    .spec-block td:last-child {
+      color: var(--c600);
+    }
+  </style>
 </head>
+
 <body>
 
-<!-- ══════════════════════ SIDEBAR ══════════════════════ -->
-<nav class="sidebar">
-  <div class="sb-header">
-    <img src="assets/logos/logo-black.svg" alt="infosaas">
-    <p>Brandbook — Sistema visual</p>
-  </div>
-  <div class="sb-nav">
-    <a href="#s01" class="nav-item active"><span class="nav-num">01</span>Introdução</a>
-    <a href="#s02" class="nav-item"><span class="nav-num">02</span>Logo</a>
-    <a href="#s03" class="nav-item"><span class="nav-num">03</span>Cores</a>
-    <a href="#s04" class="nav-item"><span class="nav-num">04</span>Tipografia</a>
-    <a href="#s05" class="nav-item"><span class="nav-num">05</span>Iconografia</a>
-    <a href="#s06" class="nav-item"><span class="nav-num">06</span>Fotografia</a>
-    <a href="#s07" class="nav-item"><span class="nav-num">07</span>Voz e Tom</a>
-    <a href="#s08" class="nav-item"><span class="nav-num">08</span>Tokens</a>
-    <a href="#s09" class="nav-item"><span class="nav-num">09</span>Componentes</a>
-    <a href="#s10" class="nav-item"><span class="nav-num">10</span>Exemplos de Aplicação</a>
-    <a href="#s11" class="nav-item"><span class="nav-num">11</span>Logos de Clientes</a>
-  </div>
-  <div class="sb-foot">infosaas® · 2025</div>
-</nav>
+  <!-- ══════════════════════ SIDEBAR ══════════════════════ -->
+  <nav class="sidebar">
+    <div class="sb-header">
+      <img src="assets/logos/logo-black.svg" alt="infosaas">
+      <p>Brandbook — Sistema visual</p>
+    </div>
+    <div class="sb-nav">
+      <a href="#s01" class="nav-item active"><span class="nav-num">01</span>Introdução</a>
+      <a href="#s02" class="nav-item"><span class="nav-num">02</span>Logo</a>
+      <a href="#s03" class="nav-item"><span class="nav-num">03</span>Cores</a>
+      <a href="#s04" class="nav-item"><span class="nav-num">04</span>Tipografia</a>
+      <a href="#s05" class="nav-item"><span class="nav-num">05</span>Iconografia</a>
+      <a href="#s06" class="nav-item"><span class="nav-num">06</span>Fotografia</a>
+      <a href="#s07" class="nav-item"><span class="nav-num">07</span>Voz e Tom</a>
+      <a href="#s08" class="nav-item"><span class="nav-num">08</span>Tokens</a>
+      <a href="#s09" class="nav-item"><span class="nav-num">09</span>Componentes</a>
+      <a href="#s10" class="nav-item"><span class="nav-num">10</span>Exemplos de Aplicação</a>
+      <a href="#s11" class="nav-item"><span class="nav-num">11</span>Logos de Clientes</a>
+    </div>
+    <div class="sb-foot">infosaas® · 2026</div>
+  </nav>
 
-<!-- ══════════════════════ MAIN ══════════════════════ -->
-<main class="main">
+  <!-- ══════════════════════ MAIN ══════════════════════ -->
+  <main class="main">
 
-<!-- ── 01 INTRODUÇÃO ── -->
-<section class="section" id="s01">
-  <div class="sec-header">
-    <span class="sec-num">01</span>
-    <div>
-      <h2 class="sec-title">Introdução</h2>
-      <p class="sec-desc">Missão, manifesto, valores e posicionamento. O ponto de partida para qualquer decisão de marca.</p>
-    </div>
-  </div>
-
-  <div class="subsec">
-    <p class="eyebrow">Missão</p>
-    <p style="font-size:18px;font-weight:700;letter-spacing:-.01em;margin-bottom:var(--sp4)">Desenvolver e implementar soluções tecnológicas com clareza e sensatez.</p>
-    <p style="font-size:14px;color:var(--c600);max-width:520px;line-height:1.65">Visão: Ser referência em desenvolvimento de software para negócios em crescimento — o studio que pensa junto, não o fornecedor que executa e some.</p>
-  </div>
-
-  <div class="subsec">
-    <p class="eyebrow">Manifesto</p>
-    <div class="manifesto">
-      <p class="manifesto-hl">Feito do jeito certo.</p>
-      <p>Tem muita empresa de tecnologia que promete transformar negócios. A maioria entrega um sistema, emite nota fiscal e some. <strong>Não é o que a gente faz.</strong></p>
-      <br>
-      <p>Cada projeto carrega a mesma equipe sênior do início ao fim. Quem propõe é quem executa. Quem entrega é quem responde.</p>
-      <br>
-      <p>O sistema que funciona hoje é o mesmo que vai te travar amanhã — <strong>se não for feito do jeito certo.</strong></p>
-    </div>
-  </div>
-
-  <div class="subsec">
-    <p class="eyebrow">Valores</p>
-    <div class="grid-2">
-      <div class="value-card">
-        <p class="value-n">01</p>
-        <p class="value-t">Não negociamos com a mediocridade</p>
-        <p class="value-d">Qualidade não é diferencial — é pré-requisito. Cada entrega reflete o que somos.</p>
-      </div>
-      <div class="value-card">
-        <p class="value-n">02</p>
-        <p class="value-t">Liberdade com responsabilidade</p>
-        <p class="value-d">Autonomia real exige prestação de contas real. A liberdade de decidir vem com o peso de responder.</p>
-      </div>
-      <div class="value-card">
-        <p class="value-n">03</p>
-        <p class="value-t">Dividir para multiplicar</p>
-        <p class="value-d">Conhecimento compartilhado cresce. Hoarding de informação é o oposto do que queremos construir.</p>
-      </div>
-      <div class="value-card">
-        <p class="value-n">04</p>
-        <p class="value-t">Um cliente satisfeito vale mais que vinte insatisfeitos</p>
-        <p class="value-d">Crescimento sustentável. Não enchemos pipeline com clientes que não deveríamos ter.</p>
-      </div>
-    </div>
-  </div>
-
-  <div class="subsec">
-    <p class="eyebrow">Posicionamento</p>
-    <div style="display:flex;gap:var(--sp4);flex-wrap:wrap;margin-bottom:var(--sp5)">
-      <div class="stat-chip"><span class="n">R$20k</span><span class="l">ticket mínimo/mês</span></div>
-      <div class="stat-chip"><span class="n">NPS 9.2</span><span class="l">satisfação dos clientes</span></div>
-      <div class="stat-chip"><span class="n">10+</span><span class="l">anos de mercado</span></div>
-    </div>
-    <ul class="rules">
-      <li>Studio — não software-house, não agência, não fábrica de software</li>
-      <li>Segmentos principais: educação, saúde, enterprise em crescimento</li>
-      <li>Equipe sênior nomeada antes do contrato — sem surpresa de quem vai executar</li>
-      <li>Parceiro de longo prazo — do MVP à escala</li>
-    </ul>
-  </div>
-</section>
-
-<!-- ── 02 LOGO ── -->
-<section class="section" id="s02">
-  <div class="sec-header">
-    <span class="sec-num">02</span>
-    <div>
-      <h2 class="sec-title">Logo</h2>
-      <p class="sec-desc">Seis versões oficiais — três lockups e três símbolos. Cada uma tem uso específico por contexto de fundo.</p>
-    </div>
-  </div>
-
-  <div class="subsec">
-    <p class="eyebrow">Lockup horizontal</p>
-    <div class="logo-grid">
-      <div class="logo-cell on-white">
-        <img src="assets/logos/logo-black.svg" alt="logo preto">
-        <span class="lbl">logo-black · fundos claros</span>
-      </div>
-      <div class="logo-cell on-dark">
-        <img src="assets/logos/logo-branco.svg" alt="logo branco">
-        <span class="lbl">logo-branco · fundos escuros</span>
-      </div>
-      <div class="logo-cell on-orange">
-        <img src="assets/logos/logo-branco.svg" alt="logo branco sobre laranja">
-        <span class="lbl">logo-branco · fundo laranja</span>
-      </div>
-    </div>
-  </div>
-
-  <div class="subsec">
-    <p class="eyebrow">Símbolo isolado</p>
-    <div class="logo-grid">
-      <div class="logo-cell sym-cell on-white">
-        <img src="assets/logos/simbolo-black.svg" alt="símbolo preto">
-        <span class="lbl">simbolo-black</span>
-      </div>
-      <div class="logo-cell sym-cell on-dark">
-        <img src="assets/logos/simbolo-branco.svg" alt="símbolo branco">
-        <span class="lbl">simbolo-branco</span>
-      </div>
-      <div class="logo-cell sym-cell on-orange">
-        <img src="assets/logos/simbolo-branco.svg" alt="símbolo branco sobre laranja">
-        <span class="lbl">simbolo-branco</span>
-      </div>
-    </div>
-  </div>
-
-  <div class="subsec">
-    <p class="sub-title">Regras de uso</p>
-    <div class="table-wrap">
-      <table>
-        <thead><tr><th>Fundo</th><th>Versão correta</th><th>Nunca usar</th></tr></thead>
-        <tbody>
-          <tr><td>Branco / off-white / cinza claro</td><td><code>logo-black.svg</code></td><td>logo-branco ou laranja</td></tr>
-          <tr><td>Laranja <code>#FF3D00</code></td><td><code>logo-branco.svg</code></td><td>logo-black ou laranja</td></tr>
-          <tr><td>Preto / cinza escuro</td><td><code>logo-branco.svg</code></td><td>logo-black</td></tr>
-          <tr><td>Fotografia (clara)</td><td><code>logo-black.svg</code></td><td>sem alteração de cor</td></tr>
-        </tbody>
-      </table>
-    </div>
-  </div>
-
-  <div class="subsec">
-    <p class="sub-title">O que nunca fazer</p>
-    <ul class="rules no">
-      <li>Esticar, comprimir ou alterar proporção</li>
-      <li>Aplicar sombra, contorno ou efeito ao logo</li>
-      <li>Recolorir qualquer elemento</li>
-      <li>Usar o logo sobre foto sem contraste suficiente</li>
-      <li>Escrever INFOSAAS em caixa alta — sempre <code>infosaas®</code></li>
-      <li>Usar o ® em tamanho igual ou maior que o texto</li>
-      <li>Combinar símbolo decorativo com foto de pessoa no mesmo frame</li>
-    </ul>
-  </div>
-</section>
-
-<!-- ── 03 CORES ── -->
-<section class="section" id="s03">
-  <div class="sec-header">
-    <span class="sec-num">03</span>
-    <div>
-      <h2 class="sec-title">Cores</h2>
-      <p class="sec-desc">Um acento (laranja) e três neutros. Nenhuma outra cor entra no sistema.</p>
-    </div>
-  </div>
-
-  <div class="subsec">
-    <p class="eyebrow">Paleta principal</p>
-    <div class="swatch-grid">
-      <div class="swatch">
-        <div class="swatch-color" style="background:#FF3D00"></div>
-        <div class="swatch-info"><p class="swatch-name">Laranja</p><p class="swatch-hex">#FF3D00</p><p class="swatch-token">--laranja</p></div>
-      </div>
-      <div class="swatch">
-        <div class="swatch-color" style="background:#0A0A0A"></div>
-        <div class="swatch-info"><p class="swatch-name">Preto</p><p class="swatch-hex">#0A0A0A</p><p class="swatch-token">--preto</p></div>
-      </div>
-      <div class="swatch">
-        <div class="swatch-color" style="background:#F5F5F5;border:1px solid #E0E0E0"></div>
-        <div class="swatch-info"><p class="swatch-name">Branco-off</p><p class="swatch-hex">#F5F5F5</p><p class="swatch-token">--branco-off</p></div>
-      </div>
-      <div class="swatch">
-        <div class="swatch-color" style="background:#FFFFFF;border:1px solid #E0E0E0"></div>
-        <div class="swatch-info"><p class="swatch-name">Branco puro</p><p class="swatch-hex">#FFFFFF</p><p class="swatch-token">--bg-elev</p></div>
-      </div>
-    </div>
-  </div>
-
-  <div class="subsec">
-    <p class="eyebrow">Estados do laranja</p>
-    <div class="swatch-grid">
-      <div class="swatch"><div class="swatch-color" style="background:#FF3D00"></div><div class="swatch-info"><p class="swatch-name">Default</p><p class="swatch-token">--laranja</p></div></div>
-      <div class="swatch"><div class="swatch-color" style="background:#FF5520"></div><div class="swatch-info"><p class="swatch-name">Hover</p><p class="swatch-token">--laranja-hover</p></div></div>
-      <div class="swatch"><div class="swatch-color" style="background:#E03600"></div><div class="swatch-info"><p class="swatch-name">Press</p><p class="swatch-token">--laranja-press</p></div></div>
-      <div class="swatch"><div class="swatch-color" style="background:#B82C00"></div><div class="swatch-info"><p class="swatch-name">Deep</p><p class="swatch-token">--laranja-deep</p></div></div>
-    </div>
-  </div>
-
-  <div class="subsec">
-    <p class="eyebrow">Ramp de neutros</p>
-    <div class="neutral-ramp" style="margin-bottom:var(--sp3)">
-      <div style="background:#F5F5F5"><span style="color:#9E9E9E">100</span></div>
-      <div style="background:#E0E0E0"><span style="color:#757575">200</span></div>
-      <div style="background:#BDBDBD"><span style="color:#616161">300</span></div>
-      <div style="background:#9E9E9E"><span style="color:#fff">400</span></div>
-      <div style="background:#757575"><span style="color:#fff">500</span></div>
-      <div style="background:#616161"><span style="color:#fff">600</span></div>
-      <div style="background:#424242"><span style="color:#fff">700</span></div>
-      <div style="background:#212121"><span style="color:#fff">800</span></div>
-      <div style="background:#141414"><span style="color:#fff">900</span></div>
-    </div>
-    <p style="font-size:12px;color:var(--c500)">Tokens: <code>--c100</code> → <code>--c900</code></p>
-  </div>
-
-  <div class="subsec">
-    <p class="eyebrow">Padrões de superfície</p>
-    <div class="surface-grid">
-      <div class="surf s-ora">
-        <p class="ey">Laranja sólido</p>
-        <p class="hl">Atenção máxima.</p>
-      </div>
-      <div class="surf s-off">
-        <p class="ey">Off-white</p>
-        <p class="hl">Conteúdo e clareza.</p>
-      </div>
-      <div class="surf s-dk">
-        <p class="ey">Preto</p>
-        <p class="hl">Peso e autoridade.</p>
-      </div>
-    </div>
-  </div>
-
-  <div class="subsec">
-    <p class="sub-title">Combinações aprovadas</p>
-    <div class="table-wrap">
-      <table>
-        <thead><tr><th>Fundo</th><th>Texto principal</th><th>Acento</th><th>Ratio AA</th></tr></thead>
-        <tbody>
-          <tr><td>Laranja <code>#FF3D00</code></td><td>Branco <code>#FFFFFF</code></td><td>Branco</td><td>3.9:1 ✓</td></tr>
-          <tr><td>Preto <code>#0A0A0A</code></td><td>Branco-off <code>#F5F5F5</code></td><td>Laranja</td><td>18.5:1 ✓</td></tr>
-          <tr><td>Branco-off <code>#F5F5F5</code></td><td>Preto <code>#0A0A0A</code></td><td>Laranja</td><td>18.1:1 ✓</td></tr>
-        </tbody>
-      </table>
-    </div>
-  </div>
-</section>
-
-<!-- ── 04 TIPOGRAFIA ── -->
-<section class="section" id="s04">
-  <div class="sec-header">
-    <span class="sec-num">04</span>
-    <div>
-      <h2 class="sec-title">Tipografia</h2>
-      <p class="sec-desc">Sora em todos os contextos. JetBrains Mono apenas para código.</p>
-    </div>
-  </div>
-
-  <div class="subsec">
-    <p class="eyebrow">Escala tipográfica</p>
-    <div class="type-row">
-      <div class="type-meta"><p class="tk">--fs-display-xl</p><p class="sp">900 · clamp(52→80px) · -0.03em</p></div>
-      <p class="type-sample" style="font-size:clamp(44px,6vw,72px);font-weight:900;letter-spacing:-.03em">Infosaas</p>
-    </div>
-    <div class="type-row">
-      <div class="type-meta"><p class="tk">--fs-display</p><p class="sp">800 · clamp(40→56px) · -0.02em</p></div>
-      <p class="type-sample" style="font-size:clamp(36px,5vw,52px);font-weight:800;letter-spacing:-.02em">Feito do jeito certo.</p>
-    </div>
-    <div class="type-row">
-      <div class="type-meta"><p class="tk">--fs-h1</p><p class="sp">700 · clamp(28→40px) · -0.02em</p></div>
-      <p class="type-sample" style="font-size:clamp(26px,4vw,38px);font-weight:700;letter-spacing:-.02em">Sistema visual completo</p>
-    </div>
-    <div class="type-row">
-      <div class="type-meta"><p class="tk">--fs-h2</p><p class="sp">700 · clamp(22→32px) · -0.01em</p></div>
-      <p class="type-sample" style="font-size:clamp(20px,3vw,30px);font-weight:700;letter-spacing:-.01em">Componentes e tokens</p>
-    </div>
-    <div class="type-row">
-      <div class="type-meta"><p class="tk">--fs-h3</p><p class="sp">700 · 20px · -0.01em</p></div>
-      <p class="type-sample" style="font-size:20px;font-weight:700;letter-spacing:-.01em">Botões e formulários</p>
-    </div>
-    <div class="type-row">
-      <div class="type-meta"><p class="tk">--fs-body-lg</p><p class="sp">400 · 18px · 0</p></div>
-      <p class="type-sample" style="font-size:18px;font-weight:400">Texto de destaque em seções principais</p>
-    </div>
-    <div class="type-row">
-      <div class="type-meta"><p class="tk">--fs-body</p><p class="sp">400 · 15px · 0</p></div>
-      <p class="type-sample" style="font-size:15px;font-weight:400">Texto de corpo padrão para parágrafos longos e descrições gerais do sistema.</p>
-    </div>
-    <div class="type-row">
-      <div class="type-meta"><p class="tk">--fs-sm</p><p class="sp">400 · 13px · 0</p></div>
-      <p class="type-sample" style="font-size:13px">Labels, captions, metadata secundária</p>
-    </div>
-    <div class="type-row">
-      <div class="type-meta"><p class="tk">--fs-eyebrow</p><p class="sp">700 · 11px · +0.12em · UC</p></div>
-      <p class="type-sample" style="font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase">SEGMENTO · EDUCAÇÃO</p>
-    </div>
-  </div>
-
-  <div class="subsec">
-    <p class="eyebrow">Pesos disponíveis — Sora</p>
-    <div style="display:flex;flex-direction:column;gap:var(--sp3)">
-      <p style="font-size:20px;font-weight:300">300 — Light: O studio que pensa junto.</p>
-      <p style="font-size:20px;font-weight:400">400 — Regular: O studio que pensa junto.</p>
-      <p style="font-size:20px;font-weight:500">500 — Medium: O studio que pensa junto.</p>
-      <p style="font-size:20px;font-weight:600">600 — Semibold: O studio que pensa junto.</p>
-      <p style="font-size:20px;font-weight:700">700 — Bold: O studio que pensa junto.</p>
-      <p style="font-size:20px;font-weight:800">800 — Extrabold: O studio que pensa junto.</p>
-      <p style="font-size:20px;font-weight:900">900 — Black: O studio que pensa junto.</p>
-    </div>
-  </div>
-
-  <div class="subsec">
-    <p class="sub-title">Regras</p>
-    <ul class="rules no">
-      <li>Nunca usar ALL CAPS em títulos — apenas em eyebrows (max 3 palavras)</li>
-      <li>Nunca misturar Sora com qualquer outra família tipográfica</li>
-      <li>Nunca usar peso abaixo de 400 para texto de corpo</li>
-      <li>Alinhamento sempre à esquerda — nunca centralizado em texto longo</li>
-    </ul>
-  </div>
-</section>
-
-<!-- ── 05 ICONOGRAFIA ── -->
-<section class="section" id="s05">
-  <div class="sec-header">
-    <span class="sec-num">05</span>
-    <div>
-      <h2 class="sec-title">Iconografia</h2>
-      <p class="sec-desc">Lucide Icons — outline, stroke 1.5–2px. Cor herdada via <code>currentColor</code>.</p>
-    </div>
-  </div>
-
-  <div class="subsec">
-    <p class="eyebrow">Tamanhos e usos</p>
-    <div class="preview" style="gap:var(--sp7)">
-      <div class="ic"><i data-lucide="zap" style="width:16px;height:16px;stroke-width:2"></i><span class="icon-sz">16px · inline</span></div>
-      <div class="ic"><i data-lucide="shield" style="width:20px;height:20px;stroke-width:2"></i><span class="icon-sz">20px · label</span></div>
-      <div class="ic"><i data-lucide="arrow-right" style="width:24px;height:24px;stroke-width:1.75"></i><span class="icon-sz">24px · padrão</span></div>
-      <div class="ic"><i data-lucide="globe" style="width:40px;height:40px;stroke-width:1.5"></i><span class="icon-sz">40px · feature</span></div>
-    </div>
-  </div>
-
-  <div class="subsec">
-    <p class="eyebrow">Ícones de referência</p>
-    <div style="display:flex;flex-wrap:wrap;gap:var(--sp5)">
-      <div class="ic"><i data-lucide="check" style="width:24px;height:24px;stroke-width:1.75"></i><span>check</span></div>
-      <div class="ic"><i data-lucide="x" style="width:24px;height:24px;stroke-width:1.75"></i><span>x</span></div>
-      <div class="ic"><i data-lucide="chevron-down" style="width:24px;height:24px;stroke-width:1.75"></i><span>chevron-down</span></div>
-      <div class="ic"><i data-lucide="arrow-right" style="width:24px;height:24px;stroke-width:1.75"></i><span>arrow-right</span></div>
-      <div class="ic"><i data-lucide="menu" style="width:24px;height:24px;stroke-width:1.75"></i><span>menu</span></div>
-      <div class="ic"><i data-lucide="zap" style="width:24px;height:24px;stroke-width:1.75"></i><span>zap</span></div>
-      <div class="ic"><i data-lucide="shield" style="width:24px;height:24px;stroke-width:1.75"></i><span>shield</span></div>
-      <div class="ic"><i data-lucide="globe" style="width:24px;height:24px;stroke-width:1.75"></i><span>globe</span></div>
-      <div class="ic"><i data-lucide="users" style="width:24px;height:24px;stroke-width:1.75"></i><span>users</span></div>
-      <div class="ic"><i data-lucide="bar-chart-2" style="width:24px;height:24px;stroke-width:1.75"></i><span>bar-chart-2</span></div>
-      <div class="ic"><i data-lucide="code" style="width:24px;height:24px;stroke-width:1.75"></i><span>code</span></div>
-      <div class="ic"><i data-lucide="layers" style="width:24px;height:24px;stroke-width:1.75"></i><span>layers</span></div>
-    </div>
-  </div>
-
-  <div class="subsec">
-    <p class="sub-title">O que nunca fazer</p>
-    <ul class="rules no">
-      <li>Usar ícones filled (sólidos) — apenas outline</li>
-      <li>Misturar Lucide com outras bibliotecas (Heroicons, FontAwesome)</li>
-      <li>Usar emoji como ícone de UI</li>
-      <li>Aplicar cor diferente de <code>currentColor</code> sem decisão explícita</li>
-    </ul>
-  </div>
-</section>
-
-<!-- ── 06 FOTOGRAFIA ── -->
-<section class="section" id="s06">
-  <div class="sec-header">
-    <span class="sec-num">06</span>
-    <div>
-      <h2 class="sec-title">Fotografia e Imagem</h2>
-      <p class="sec-desc">Dois tipos de imagem: retratos com fundo laranja e screenshots reais de interface.</p>
-    </div>
-  </div>
-
-  <div class="subsec">
-    <p class="eyebrow">Fotografia com pessoas</p>
-    <div class="table-wrap">
-      <table>
-        <thead><tr><th>Parâmetro</th><th>Regra</th></tr></thead>
-        <tbody>
-          <tr><td>Fundo</td><td>Papel pintado laranja <code>#FF3D00</code> — não gradiente, não digital</td></tr>
-          <tr><td>Enquadramento</td><td>Meio-corpo a rosto — nunca fotos de longe</td></tr>
-          <tr><td>Iluminação</td><td>Natural ou simulada natural — luz quente lateral, sem flash duro</td></tr>
-          <tr><td>Vestuário</td><td>Casual profissional — sem terno/gravata, sem moletom de academia</td></tr>
-          <tr><td>Cor</td><td>Contraste levemente aumentado, temperatura levemente aquecida</td></tr>
-        </tbody>
-      </table>
-    </div>
-  </div>
-
-  <div class="subsec">
-    <p class="eyebrow">Símbolo como motivo decorativo</p>
-    <div class="table-wrap">
-      <table>
-        <thead><tr><th>Parâmetro</th><th>Valor</th></tr></thead>
-        <tbody>
-          <tr><td>Tamanho</td><td>60–120% da altura do frame</td></tr>
-          <tr><td>Posição</td><td>Offset — parcialmente fora do frame, nunca centralizado e completo</td></tr>
-          <tr><td>Cor</td><td><code>#B82C00</code> (--laranja-deep) sobre fundo laranja</td></tr>
-          <tr><td>Superfície</td><td>Exclusivamente sobre fundo <code>#FF3D00</code></td></tr>
-        </tbody>
-      </table>
-    </div>
-  </div>
-
-  <div class="subsec">
-    <p class="eyebrow">Hierarquia por superfície</p>
-    <div class="table-wrap">
-      <table>
-        <thead><tr><th>Superfície</th><th>Imagem recomendada</th></tr></thead>
-        <tbody>
-          <tr><td>Hero de campanha</td><td>Foto com pessoa sobre laranja</td></tr>
-          <tr><td>Seção "Sobre" ou "Time"</td><td>Foto com pessoa sobre laranja</td></tr>
-          <tr><td>Case de projeto</td><td>Screenshot de interface + título</td></tr>
-          <tr><td>Banner de redes (sem projeto)</td><td>Símbolo decorativo sobre laranja</td></tr>
-          <tr><td>Documento / contrato</td><td>Sem imagem — apenas logo e tipografia</td></tr>
-        </tbody>
-      </table>
-    </div>
-  </div>
-
-  <div class="subsec">
-    <p class="sub-title">O que nunca usar</p>
-    <ul class="rules no">
-      <li>Fotos de banco de imagem com fundo branco estéril</li>
-      <li>Fotos com filtro azul/frio — incompatível com a paleta quente</li>
-      <li>Fotos monocromáticas (P&B)</li>
-      <li>Mockup 3D genérico de device — usar screenshots reais</li>
-      <li>UI incompleta ou com placeholder visível ("Lorem Ipsum")</li>
-    </ul>
-  </div>
-</section>
-
-<!-- ── 07 VOZ E TOM ── -->
-<section class="section" id="s07">
-  <div class="sec-header">
-    <span class="sec-num">07</span>
-    <div>
-      <h2 class="sec-title">Voz e Tom</h2>
-      <p class="sec-desc">Direto, confiante, sem enrolação. Formal onde conta, humano onde pode ser.</p>
-    </div>
-  </div>
-
-  <div class="subsec">
-    <p class="eyebrow">Exemplos de voz aprovada</p>
-    <div class="voice-ex">
-      <p class="lbl">Hero de campanha</p>
-      <p>O sistema que funciona hoje<br>é o mesmo que vai te travar<br>amanhã.</p>
-    </div>
-    <div class="voice-ex">
-      <p class="lbl">Sobre a empresa</p>
-      <p>Não somos uma software-house que recebe escopo, executa e some. Somos um studio que pensa junto com o negócio — da estratégia à entrega.</p>
-    </div>
-    <div class="voice-ex bad">
-      <p class="lbl">Nunca</p>
-      <p>Somos líderes em tecnologia de ponta com soluções robustas que transformam seu negócio.</p>
-    </div>
-    <div class="voice-ex bad">
-      <p class="lbl">Nunca</p>
-      <p>Aprenda como alavancar a sinergia do seu negócio com nossa plataforma revolucionária.</p>
-    </div>
-  </div>
-
-  <div class="subsec">
-    <p class="eyebrow">Premissas, não promessas</p>
-    <div class="grid-2" style="gap:var(--sp4)">
-      <div class="card" style="border-left:3px solid var(--c300)">
-        <p style="font-size:10px;font-weight:700;color:var(--c400);text-transform:uppercase;letter-spacing:.08em;margin-bottom:8px">Errado — promessa</p>
-        <p style="font-size:14px;color:var(--c500)">"Vamos transformar o seu negócio em 90 dias."</p>
-      </div>
-      <div class="card" style="border-left:3px solid var(--laranja)">
-        <p style="font-size:10px;font-weight:700;color:var(--laranja);text-transform:uppercase;letter-spacing:.08em;margin-bottom:8px">Certo — premissa</p>
-        <p style="font-size:14px">"O sistema que funciona hoje é o mesmo que vai te travar amanhã."</p>
-      </div>
-    </div>
-  </div>
-
-  <div class="subsec">
-    <p class="eyebrow">Palavras bloqueadas</p>
-    <div class="table-wrap">
-      <table>
-        <thead><tr><th>Nunca usar</th><th>Substituto</th></tr></thead>
-        <tbody>
-          <tr><td>Alavancar</td><td>Crescer, ampliar, expandir</td></tr>
-          <tr><td>Sinergia</td><td>Alinhamento, integração</td></tr>
-          <tr><td>Tecnologia de ponta</td><td>— (evitar adjetivação vaga)</td></tr>
-          <tr><td>Solução robusta</td><td>— (mostrar em vez de adjetivar)</td></tr>
-          <tr><td>Transformando a indústria</td><td>— (corporatês)</td></tr>
-          <tr><td>Utilizar</td><td>Usar</td></tr>
-          <tr><td>Software-house / agência / fábrica</td><td>Studio</td></tr>
-          <tr><td>Fornecedor / prestador</td><td>Parceiro</td></tr>
-        </tbody>
-      </table>
-    </div>
-  </div>
-
-  <div class="subsec">
-    <p class="eyebrow">Tom por canal</p>
-    <div class="table-wrap">
-      <table>
-        <thead><tr><th>Canal</th><th>Tom</th></tr></thead>
-        <tbody>
-          <tr><td>Site institucional</td><td>Direto, sem hype, confiante — premissas, não promessas</td></tr>
-          <tr><td>Proposta comercial</td><td>Profissional, específico — falar do negócio do cliente</td></tr>
-          <tr><td>Email</td><td>Humano, objetivo — nunca "prezado cliente"</td></tr>
-          <tr><td>LinkedIn</td><td>Levemente mais informal — pode usar "a gente"</td></tr>
-          <tr><td>Instagram</td><td>Direto, visual — copy curto, imagem carrega o peso</td></tr>
-        </tbody>
-      </table>
-    </div>
-  </div>
-</section>
-
-<!-- ── 08 TOKENS ── -->
-<section class="section" id="s08">
-  <div class="sec-header">
-    <span class="sec-num">08</span>
-    <div>
-      <h2 class="sec-title">Tokens de Design</h2>
-      <p class="sec-desc">Espaçamento (base 4px), raios de borda, sombras e motion. Nenhum valor fora deste sistema.</p>
-    </div>
-  </div>
-
-  <div class="subsec">
-    <p class="eyebrow">Espaçamento</p>
-    <div class="sp-row"><div class="sp-bar" style="width:4px"></div><span class="sp-meta">--sp1</span><span class="sp-val">4px</span><span style="font-size:12px;color:var(--c500)">Micro — ícone, chip interno</span></div>
-    <div class="sp-row"><div class="sp-bar" style="width:8px"></div><span class="sp-meta">--sp2</span><span class="sp-val">8px</span><span style="font-size:12px;color:var(--c500)">Elementos muito próximos</span></div>
-    <div class="sp-row"><div class="sp-bar" style="width:12px"></div><span class="sp-meta">--sp3</span><span class="sp-val">12px</span><span style="font-size:12px;color:var(--c500)">Gap em listas, badge</span></div>
-    <div class="sp-row"><div class="sp-bar" style="width:16px"></div><span class="sp-meta">--sp4</span><span class="sp-val">16px</span><span style="font-size:12px;color:var(--c500)">Padding padrão de elemento</span></div>
-    <div class="sp-row"><div class="sp-bar" style="width:24px"></div><span class="sp-meta">--sp5</span><span class="sp-val">24px</span><span style="font-size:12px;color:var(--c500)">Gap entre grupos, card pequeno</span></div>
-    <div class="sp-row"><div class="sp-bar" style="width:32px"></div><span class="sp-meta">--sp6</span><span class="sp-val">32px</span><span style="font-size:12px;color:var(--c500)">Padding interno de card</span></div>
-    <div class="sp-row"><div class="sp-bar" style="width:48px"></div><span class="sp-meta">--sp7</span><span class="sp-val">48px</span><span style="font-size:12px;color:var(--c500)">Separação entre seções internas</span></div>
-    <div class="sp-row"><div class="sp-bar" style="width:64px"></div><span class="sp-meta">--sp8</span><span class="sp-val">64px</span><span style="font-size:12px;color:var(--c500)">Padding vertical de seção (desktop)</span></div>
-    <div class="sp-row"><div class="sp-bar" style="width:96px"></div><span class="sp-meta">--sp9</span><span class="sp-val">96px</span><span style="font-size:12px;color:var(--c500)">Hero, seção generosa</span></div>
-  </div>
-
-  <div class="subsec">
-    <p class="eyebrow">Raios de borda</p>
-    <div class="radius-demo">
-      <div class="r-item"><div class="r-box" style="border-radius:6px"></div><p class="r-lbl">--r-sm</p><p class="r-val">6px · badges</p></div>
-      <div class="r-item"><div class="r-box" style="border-radius:12px"></div><p class="r-lbl">--r</p><p class="r-val">12px · inputs</p></div>
-      <div class="r-item"><div class="r-box" style="border-radius:18px"></div><p class="r-lbl">--r-md</p><p class="r-val">18px · botões</p></div>
-      <div class="r-item"><div class="r-box" style="border-radius:24px"></div><p class="r-lbl">--r-lg</p><p class="r-val">24px · cards</p></div>
-      <div class="r-item"><div class="r-box" style="border-radius:32px"></div><p class="r-lbl">--r-xl</p><p class="r-val">32px · hero blocks</p></div>
-    </div>
-  </div>
-
-  <div class="subsec">
-    <p class="eyebrow">Sombras</p>
-    <div class="shadow-demo">
-      <div class="sh-item"><div class="sh-box" style="box-shadow:0 1px 2px rgba(0,0,0,.06)"></div><p class="sh-lbl">--sh-sm</p><p style="font-size:11px;color:var(--c500)">inputs, campos</p></div>
-      <div class="sh-item"><div class="sh-box" style="box-shadow:0 4px 14px rgba(0,0,0,.08)"></div><p class="sh-lbl">--sh</p><p style="font-size:11px;color:var(--c500)">cards padrão</p></div>
-      <div class="sh-item"><div class="sh-box" style="box-shadow:0 18px 40px -10px rgba(0,0,0,.18)"></div><p class="sh-lbl">--sh-lg</p><p style="font-size:11px;color:var(--c500)">modais, dropdowns</p></div>
-      <div class="sh-item"><div class="sh-box" style="box-shadow:0 12px 30px -8px rgba(255,61,0,.45)"></div><p class="sh-lbl">--sh-acc</p><p style="font-size:11px;color:var(--c500)">CTA hover (laranja)</p></div>
-    </div>
-  </div>
-
-  <div class="subsec">
-    <p class="eyebrow">Motion</p>
-    <div class="table-wrap">
-      <table>
-        <thead><tr><th>Token</th><th>Valor</th><th>Quando usar</th></tr></thead>
-        <tbody>
-          <tr><td><code>--ease</code></td><td><code>cubic-bezier(.2,.7,.2,1)</code></td><td>Transições de UI padrão</td></tr>
-          <tr><td><code>--ease-out</code></td><td><code>cubic-bezier(.16,1,.3,1)</code></td><td>Elementos que entram na tela</td></tr>
-          <tr><td><code>--dur-fast</code></td><td>120ms</td><td>Hover em botões, mudança imediata</td></tr>
-          <tr><td><code>--dur</code></td><td>200ms</td><td>Card hover, dropdown, toggle</td></tr>
-          <tr><td><code>--dur-slow</code></td><td>320ms</td><td>Modais, elementos grandes entrando</td></tr>
-        </tbody>
-      </table>
-    </div>
-  </div>
-</section>
-
-<!-- ── 09 COMPONENTES ── -->
-<section class="section" id="s09">
-  <div class="sec-header">
-    <span class="sec-num">09</span>
-    <div>
-      <h2 class="sec-title">Componentes</h2>
-      <p class="sec-desc">Todos os componentes do sistema com anatomia, variantes e estados.</p>
-    </div>
-  </div>
-
-  <!-- Botões -->
-  <div class="subsec">
-    <p class="eyebrow">Botões — fundos claros</p>
-    <div class="preview">
-      <button class="btn btn-p">Fale com a gente</button>
-      <button class="btn btn-d">Ver cases</button>
-      <button class="btn btn-p" style="opacity:.4;cursor:not-allowed">Desabilitado</button>
-    </div>
-    <p class="eyebrow">Botões — fundo laranja e escuro</p>
-    <div class="preview ora">
-      <button class="btn btn-w">Saiba mais</button>
-      <button class="btn btn-gl">Ver proposta</button>
-    </div>
-  </div>
-
-  <!-- Badges -->
-  <div class="subsec">
-    <p class="eyebrow">Badges</p>
-    <div class="preview" style="flex-wrap:wrap;gap:var(--sp3)">
-      <span class="bdg bdg-a">Destaque</span>
-      <span class="bdg bdg-s">MVP Ágil</span>
-      <span class="bdg bdg-n">Neutro</span>
-      <span class="bdg bdg-dk">Dark</span>
-      <span class="bdg bdg-a bdg-pill">Pill laranja</span>
-      <span class="bdg bdg-s bdg-pill">Pill soft</span>
-    </div>
-  </div>
-
-  <!-- Cards -->
-  <div class="subsec">
-    <p class="eyebrow">Item Card</p>
-    <div class="grid-3">
-      <div class="item-card">
-        <i data-lucide="zap" style="width:24px;height:24px;color:var(--laranja);stroke-width:1.75"></i>
-        <h3>Desenvolvimento ágil</h3>
-        <p>Do briefing ao deploy em ciclos curtos, com visibilidade real do progresso.</p>
-      </div>
-      <div class="item-card">
-        <i data-lucide="shield" style="width:24px;height:24px;color:var(--laranja);stroke-width:1.75"></i>
-        <h3>Segurança por padrão</h3>
-        <p>Boas práticas de segurança desde a arquitetura, não como camada adicional.</p>
-      </div>
-      <div class="item-card">
-        <i data-lucide="layers" style="width:24px;height:24px;color:var(--laranja);stroke-width:1.75"></i>
-        <h3>Código que escala</h3>
-        <p>Estrutura pensada para crescer — não para ser refatorada em seis meses.</p>
-      </div>
-    </div>
-  </div>
-
-  <div class="subsec">
-    <p class="eyebrow">Testimonial Card</p>
-    <div class="grid-2">
-      <div class="testi">
-        <p class="testi-q">"</p>
-        <p class="testi-t">A infosaas entregou o sistema que precisávamos, no prazo e sem surpresas. A mesma equipe que propôs foi a que executou.</p>
-        <p class="testi-a">Carlos Mendes</p>
-        <p class="testi-co">CEO · Phlebo Academy</p>
-      </div>
-      <div class="testi">
-        <p class="testi-q">"</p>
-        <p class="testi-t">Depois de duas tentativas frustradas com outras empresas, finalmente temos um parceiro que entende o negócio, não só o código.</p>
-        <p class="testi-a">Ana Lima</p>
-        <p class="testi-co">CTO · Speake</p>
-      </div>
-    </div>
-  </div>
-
-  <!-- Forms -->
-  <div class="subsec">
-    <p class="eyebrow">Formulários e Inputs</p>
-    <div class="preview" style="gap:var(--sp6)">
-      <div class="inp-demo">
-        <label>Nome completo <span style="color:var(--laranja)">*</span></label>
-        <input type="text" placeholder="Rafael Souza">
-      </div>
-      <div class="inp-demo">
-        <label>Email</label>
-        <input type="email" placeholder="rafael@empresa.com.br">
-      </div>
-    </div>
-  </div>
-
-  <!-- Pricing -->
-  <div class="subsec">
-    <p class="eyebrow">Pricing Card</p>
-    <div style="display:flex;gap:var(--sp5);flex-wrap:wrap">
-      <div class="pricing-card">
-        <p class="pc-plan">MVP Ágil</p>
-        <p class="pc-price">R$20k<span>/mês</span></p>
-        <div class="pc-div"></div>
-        <div class="pc-feat"><i data-lucide="check" style="width:16px;height:16px;stroke-width:2"></i> Equipe dedicada</div>
-        <div class="pc-feat"><i data-lucide="check" style="width:16px;height:16px;stroke-width:2"></i> Sprint bi-semanal</div>
-        <div class="pc-feat"><i data-lucide="check" style="width:16px;height:16px;stroke-width:2"></i> Deploy contínuo</div>
-        <button class="btn btn-d" style="width:100%;justify-content:center;margin-top:var(--sp5)">Falar com o time</button>
-      </div>
-      <div class="pricing-card feat">
-        <span class="bdg bdg-s bdg-pill" style="margin-bottom:var(--sp4)">Mais escolhido</span>
-        <p class="pc-plan">Suporte Premium</p>
-        <p class="pc-price">R$35k<span>/mês</span></p>
-        <div class="pc-div"></div>
-        <div class="pc-feat"><i data-lucide="check" style="width:16px;height:16px;stroke-width:2"></i> Time ampliado</div>
-        <div class="pc-feat"><i data-lucide="check" style="width:16px;height:16px;stroke-width:2"></i> SLA garantido</div>
-        <div class="pc-feat"><i data-lucide="check" style="width:16px;height:16px;stroke-width:2"></i> Consultoria estratégica</div>
-        <button class="btn btn-p" style="width:100%;justify-content:center;margin-top:var(--sp5)">Falar com o time</button>
-      </div>
-    </div>
-  </div>
-
-  <!-- Stats + Trust -->
-  <div class="subsec">
-    <p class="eyebrow">Stats Banner</p>
-    <div class="stats-bar">
-      <div class="stat-it"><p class="stat-n ora">R$10M+</p><p class="stat-l">faturados</p></div>
-      <div class="stat-it"><p class="stat-n">9.2</p><p class="stat-l">NPS médio</p></div>
-      <div class="stat-it"><p class="stat-n">20+</p><p class="stat-l">clientes ativos</p></div>
-      <div class="stat-it"><p class="stat-n">10</p><p class="stat-l">anos de mercado</p></div>
-    </div>
-  </div>
-
-  <div class="subsec">
-    <p class="eyebrow">Trust Badges</p>
-    <div class="grid-3">
-      <div class="trust"><p class="trust-n">9.2</p><p class="trust-l">NPS dos clientes</p></div>
-      <div class="trust"><i data-lucide="shield" style="width:28px;height:28px;color:var(--laranja);stroke-width:1.75"></i><p class="trust-l">Código com garantia de qualidade</p></div>
-      <div class="trust"><p class="trust-n">10</p><p class="trust-l">anos de mercado</p></div>
-    </div>
-  </div>
-
-  <!-- Chat Bubbles -->
-  <div class="subsec">
-    <p class="eyebrow">Chat Bubbles</p>
-    <div class="preview">
-      <div class="chat-demo">
-        <div class="bbl bbl-l">Meu sistema travou quando dobramos os acessos. Preciso de algo que aguente o crescimento.</div>
-        <div class="bbl bbl-r">Faz sentido. Esse é exatamente o problema que resolvemos — antes de o próximo travamento acontecer.</div>
-      </div>
-    </div>
-  </div>
-
-  <!-- Founder -->
-  <div class="subsec">
-    <p class="eyebrow">Founder / Bio</p>
-    <div class="grid-2">
-      <div class="founder-card">
-        <p class="founder-name">Rafael Souza</p>
-        <p class="founder-role">Co-fundador & CTO</p>
-        <p class="founder-bio">10 anos desenvolvendo sistemas para negócios em crescimento. Especialista em arquitetura de software e liderança técnica de produto.</p>
-      </div>
-    </div>
-  </div>
-
-  <!-- FAQ -->
-  <div class="subsec">
-    <p class="eyebrow">FAQ Accordion</p>
-    <div class="card" style="padding:0">
-      <div class="faq-item" style="padding:var(--sp4) var(--sp6)" onclick="this.classList.toggle('open')">
-        <div class="faq-q">Como funciona o modelo de contrato?<i data-lucide="chevron-down" style="width:18px;height:18px;flex-shrink:0"></i></div>
-        <p class="faq-a">Contratos mensais com prazo mínimo de 3 meses. A proposta define escopo, equipe, SLA e condições de revisão — tudo antes da assinatura.</p>
-      </div>
-      <div class="faq-item" style="padding:var(--sp4) var(--sp6)" onclick="this.classList.toggle('open')">
-        <div class="faq-q">Quanto tempo até o início do projeto?<i data-lucide="chevron-down" style="width:18px;height:18px;flex-shrink:0"></i></div>
-        <p class="faq-a">Em média 7 dias úteis após assinatura do contrato. A equipe já está nomeada na proposta — não há processo de alocação após o fechamento.</p>
-      </div>
-    </div>
-  </div>
-
-  <!-- Final CTA -->
-  <div class="subsec">
-    <p class="eyebrow">Final-Closer CTA</p>
-    <div class="cta-closer">
-      <p class="hl">O parceiro certo<br>custa menos do que<br>o <span>fornecedor</span> mais barato.</p>
-      <p class="sub">Um projeto mal feito custa três vezes mais para corrigir. A gente sabe disso — e você também.</p>
-      <button class="btn btn-w">Fale com o time</button>
-    </div>
-  </div>
-</section>
-
-<!-- ── 10 EXEMPLOS DE APLICAÇÃO ── -->
-<section class="section" id="s10">
-  <div class="sec-header">
-    <span class="sec-num">10</span>
-    <div>
-      <h2 class="sec-title">Exemplos de Aplicação</h2>
-      <p class="sec-desc">Como o sistema visual se aplica fora do site — slides, redes sociais, email e documentos.</p>
-    </div>
-  </div>
-
-  <div class="subsec">
-    <p class="eyebrow">Consistência entre superfícies</p>
-    <div class="table-wrap">
-      <table>
-        <thead><tr><th>Elemento</th><th>Como manter</th></tr></thead>
-        <tbody>
-          <tr><td>Tom de voz</td><td>Premissas, não promessas. Sem imperativo. Sem corporatês.</td></tr>
-          <tr><td>Tipografia</td><td>Sora sempre. Apenas Sora. (Arial como fallback em email)</td></tr>
-          <tr><td>Paleta</td><td>Um acento (laranja) + três neutros. Nada mais.</td></tr>
-          <tr><td>Alinhamento</td><td>Esquerda em todos os formatos — nunca centralizado</td></tr>
-          <tr><td>Espaçamento</td><td>Generoso. Se parecer apertado, abrir mais.</td></tr>
-          <tr><td>Logo</td><td>Sempre com ® em minúsculo — nunca INFOSAAS</td></tr>
-        </tbody>
-      </table>
-    </div>
-  </div>
-
-  <div class="subsec">
-    <p class="eyebrow">Apresentação (Slides)</p>
-    <div class="grid-2">
-      <div style="background:var(--laranja);border-radius:var(--r-xl);padding:var(--sp6);min-height:160px;display:flex;flex-direction:column;justify-content:flex-end;position:relative;overflow:hidden">
-        <div style="position:absolute;right:-20px;top:-20px;opacity:.15">
-          <img src="assets/logos/simbolo-branco.svg" style="width:120px;filter:brightness(0) invert(1)">
+    <!-- ── 01 INTRODUÇÃO ── -->
+    <section class="section" id="s01">
+      <div class="sec-header">
+        <span class="sec-num">01</span>
+        <div>
+          <h2 class="sec-title">Introdução</h2>
+          <p class="sec-desc">Missão, manifesto, valores e posicionamento. O ponto de partida para qualquer decisão de
+            marca.</p>
         </div>
-        <p style="font-size:9px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.7);margin-bottom:6px">CAPA</p>
-        <p style="font-size:18px;font-weight:800;color:#fff;line-height:1.2;letter-spacing:-.01em">Proposta Comercial<br>Cliente · 2025</p>
       </div>
-      <div style="background:var(--branco-off);border:1px solid var(--border);border-radius:var(--r-xl);padding:var(--sp6);min-height:160px">
-        <p style="font-size:9px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--laranja);margin-bottom:8px">CONTEÚDO</p>
-        <p style="font-size:16px;font-weight:700;letter-spacing:-.01em;margin-bottom:8px">Escopo do projeto</p>
-        <p style="font-size:12px;color:var(--c600);line-height:1.6">— Item de escopo com detalhamento<br>— Segundo item de entrega<br>— Cronograma e milestones</p>
+
+      <div class="subsec">
+        <p class="eyebrow">Missão</p>
+        <p style="font-size:18px;font-weight:700;letter-spacing:-.01em;margin-bottom:var(--sp4)">Desenvolver e
+          implementar soluções tecnológicas com clareza e sensatez.</p>
+        <p style="font-size:14px;color:var(--c600);max-width:520px;line-height:1.65">Visão: Ser referência em
+          desenvolvimento de software para negócios em crescimento — o studio que pensa junto, não o fornecedor que
+          executa e some.</p>
       </div>
-    </div>
-  </div>
 
-  <div class="subsec">
-    <p class="eyebrow">Redes Sociais</p>
-    <div class="grid-3">
-      <div style="background:var(--laranja);border-radius:var(--r-xl);aspect-ratio:1;padding:var(--sp6);display:flex;flex-direction:column;justify-content:flex-end">
-        <p style="font-size:20px;font-weight:900;color:#fff;line-height:1.15;letter-spacing:-.02em">O sistema que<br>te trava amanhã<br>funciona hoje.</p>
+      <div class="subsec">
+        <p class="eyebrow">Manifesto</p>
+        <div class="manifesto">
+          <p class="manifesto-hl">Feito do jeito certo.</p>
+          <p>Tem muita empresa de tecnologia que promete transformar negócios. A maioria entrega um sistema, emite nota
+            fiscal e some. <strong>Não é o que a gente faz.</strong></p>
+          <br>
+          <p>Cada projeto carrega a mesma equipe sênior do início ao fim. Quem propõe é quem executa. Quem entrega é
+            quem responde.</p>
+          <br>
+          <p>O sistema que funciona hoje é o mesmo que vai te travar amanhã — <strong>se não for feito do jeito
+              certo.</strong></p>
+        </div>
       </div>
-      <div style="background:var(--branco-off);border:1px solid var(--border);border-radius:var(--r-xl);aspect-ratio:1;padding:var(--sp6);display:flex;flex-direction:column;justify-content:flex-end">
-        <p style="font-size:20px;font-weight:900;line-height:1.15;letter-spacing:-.02em">NPS <span style="color:var(--laranja)">9.2</span><br>de satisfação</p>
+
+      <div class="subsec">
+        <p class="eyebrow">Valores</p>
+        <div class="grid-2">
+          <div class="value-card">
+            <p class="value-n">01</p>
+            <p class="value-t">Não negociamos com a mediocridade</p>
+            <p class="value-d">Qualidade não é diferencial — é pré-requisito. Cada entrega reflete o que somos.</p>
+          </div>
+          <div class="value-card">
+            <p class="value-n">02</p>
+            <p class="value-t">Liberdade com responsabilidade</p>
+            <p class="value-d">Autonomia real exige prestação de contas real. A liberdade de decidir vem com o peso de
+              responder.</p>
+          </div>
+          <div class="value-card">
+            <p class="value-n">03</p>
+            <p class="value-t">Dividir para multiplicar</p>
+            <p class="value-d">Conhecimento compartilhado cresce. Hoarding de informação é o oposto do que queremos
+              construir.</p>
+          </div>
+          <div class="value-card">
+            <p class="value-n">04</p>
+            <p class="value-t">Um cliente satisfeito vale mais que vinte insatisfeitos</p>
+            <p class="value-d">Crescimento sustentável. Não enchemos pipeline com clientes que não deveríamos ter.</p>
+          </div>
+        </div>
       </div>
-      <div style="background:var(--preto);border-radius:var(--r-xl);aspect-ratio:1;padding:var(--sp6);display:flex;flex-direction:column;justify-content:flex-end">
-        <p style="font-size:20px;font-weight:900;color:#F5F5F5;line-height:1.15;letter-spacing:-.02em">Feito do<br>jeito certo.</p>
+
+      <div class="subsec">
+        <p class="eyebrow">Posicionamento</p>
+        <div style="display:flex;gap:var(--sp4);flex-wrap:wrap;margin-bottom:var(--sp5)">
+          <div class="stat-chip"><span class="n">R$20k</span><span class="l">ticket mínimo/mês</span></div>
+          <div class="stat-chip"><span class="n">NPS 9.2</span><span class="l">satisfação dos clientes</span></div>
+          <div class="stat-chip"><span class="n">10+</span><span class="l">anos de mercado</span></div>
+        </div>
+        <ul class="rules">
+          <li>Studio — não software-house, não agência, não fábrica de software</li>
+          <li>Segmentos principais: educação, saúde, enterprise em crescimento</li>
+          <li>Equipe sênior nomeada antes do contrato — sem surpresa de quem vai executar</li>
+          <li>Parceiro de longo prazo — do MVP à escala</li>
+        </ul>
       </div>
-    </div>
-  </div>
+    </section>
 
-  <div class="subsec">
-    <p class="eyebrow">Assinatura de Email</p>
-    <div class="card" style="font-family:Arial,sans-serif;max-width:360px">
-      <p style="font-size:14px;font-weight:700;color:#0A0A0A;margin-bottom:2px">Rafael Souza</p>
-      <p style="font-size:13px;color:#0A0A0A">CTO · <span style="color:#FF3D00;font-weight:600">infosaas®</span></p>
-      <p style="font-size:13px;color:#616161;margin-top:4px">sistemas@infosaas.ai · (11) 9xxxx-xxxx</p>
-      <div style="margin-top:12px;padding-top:12px;border-top:1px solid #E0E0E0">
-        <img src="assets/logos/logo-black.svg" alt="infosaas" style="height:20px">
+    <!-- ── 02 LOGO ── -->
+    <section class="section" id="s02">
+      <div class="sec-header">
+        <span class="sec-num">02</span>
+        <div>
+          <h2 class="sec-title">Logo</h2>
+          <p class="sec-desc">Seis versões oficiais — três lockups e três símbolos. Cada uma tem uso específico por
+            contexto de fundo.</p>
+        </div>
       </div>
-    </div>
-    <p style="font-size:12px;color:var(--c500);margin-top:var(--sp3)">Fonte: Arial 13px (Sora não é fonte segura de email)</p>
-  </div>
-</section>
 
-<!-- ── 11 LOGOS DE CLIENTES ── -->
-<section class="section" id="s11">
-  <div class="sec-header">
-    <span class="sec-num">11</span>
-    <div>
-      <h2 class="sec-title">Logos de Clientes</h2>
-      <p class="sec-desc">15 logos no catálogo atual. Hover para ver a versão colorida original.</p>
-    </div>
-  </div>
+      <div class="subsec">
+        <p class="eyebrow">Lockup horizontal</p>
+        <div class="logo-grid">
+          <div class="logo-cell on-white">
+            <img src="assets/logos/logo-black.svg" alt="logo preto">
+            <span class="lbl">logo-black · fundos claros</span>
+          </div>
+          <div class="logo-cell on-dark">
+            <img src="assets/logos/logo-branco.svg" alt="logo branco">
+            <span class="lbl">logo-branco · fundos escuros</span>
+          </div>
+          <div class="logo-cell on-orange">
+            <img src="assets/logos/logo-branco.svg" alt="logo branco sobre laranja">
+            <span class="lbl">logo-branco · fundo laranja</span>
+          </div>
+        </div>
+      </div>
 
-  <div class="subsec">
-    <p class="eyebrow">Catálogo — logo strip (mono no fundo claro)</p>
-    <div class="cl-grid">
-      <div class="cl-cell"><img src="assets/clientes/Frame.png" alt="microSaaS"><span>microSaaS</span></div>
-      <div class="cl-cell"><img src="assets/clientes/Frame-1.png" alt="AI Builders"><span>AI Builders</span></div>
-      <div class="cl-cell"><img src="assets/clientes/Frame-2.png" alt="Comunidade Sem Codar"><span>Sem Codar</span></div>
-      <div class="cl-cell"><img src="assets/clientes/Frame-3.png" alt="Instituto Singular"><span>Inst. Singular</span></div>
-      <div class="cl-cell"><img src="assets/clientes/Group.png" alt="V4 Company"><span>V4 Company</span></div>
-      <div class="cl-cell"><img src="assets/clientes/Group 10005.png" alt="Speake"><span>Speake</span></div>
-      <div class="cl-cell"><img src="assets/clientes/Group 10006.png" alt="Rufy"><span>Rufy</span></div>
-      <div class="cl-cell"><img src="assets/clientes/Group 10007.png" alt="G4"><span>G4</span></div>
-      <div class="cl-cell"><img src="assets/clientes/Group 10067.png" alt="Turbox"><span>Turbox</span></div>
-      <div class="cl-cell"><img src="assets/clientes/image 1.png" alt="Phlebo Academy"><span>Phlebo Academy</span></div>
-      <div class="cl-cell"><img src="assets/clientes/image 9.png" alt="Pandora Treinamentos"><span>Pandora</span></div>
-      <div class="cl-cell"><img src="assets/clientes/image 10.png" alt="Esporte Educa"><span>Esporte Educa</span></div>
-      <div class="cl-cell"><img src="assets/clientes/image 11.png" alt="Fideliza Pro"><span>Fideliza Pro</span></div>
-      <div class="cl-cell"><img src="assets/clientes/image 12.png" alt="iDoméstica"><span>iDoméstica</span></div>
-      <div class="cl-cell"><img src="assets/clientes/Ativo 13 1.png" alt="Nulink"><span>Nulink</span></div>
-    </div>
-    <p style="font-size:12px;color:var(--c500);margin-top:var(--sp4)">Hover em cada logo para ver a versão colorida original. CSS: <code>filter: grayscale(1) brightness(.55)</code></p>
-  </div>
+      <div class="subsec">
+        <p class="eyebrow">Símbolo isolado</p>
+        <div class="logo-grid">
+          <div class="logo-cell sym-cell on-white">
+            <img src="assets/logos/simbolo-black.svg" alt="símbolo preto">
+            <span class="lbl">simbolo-black</span>
+          </div>
+          <div class="logo-cell sym-cell on-dark">
+            <img src="assets/logos/simbolo-branco.svg" alt="símbolo branco">
+            <span class="lbl">simbolo-branco</span>
+          </div>
+          <div class="logo-cell sym-cell on-orange">
+            <img src="assets/logos/simbolo-branco.svg" alt="símbolo branco sobre laranja">
+            <span class="lbl">simbolo-branco</span>
+          </div>
+        </div>
+      </div>
 
-  <div class="subsec">
-    <p class="eyebrow">Regras de normalização</p>
-    <div class="table-wrap">
-      <table>
-        <thead><tr><th>Parâmetro</th><th>Requisito</th></tr></thead>
-        <tbody>
-          <tr><td>Formato preferido</td><td>SVG — vetor, escala sem perda</td></tr>
-          <tr><td>Formato alternativo</td><td>PNG com fundo transparente, mínimo 400px de largura</td></tr>
-          <tr><td>Fundo</td><td>Sempre transparente — nunca branco ou colorido</td></tr>
-          <tr><td>No Logo Strip</td><td><code>filter: grayscale(1) brightness(.55)</code> ou versão mono exportada</td></tr>
-          <tr><td>Em cases</td><td>Cor original — sem filtro</td></tr>
-          <tr><td>Altura no strip</td><td>28–36px por logo</td></tr>
-        </tbody>
-      </table>
-    </div>
-  </div>
+      <div class="subsec">
+        <p class="sub-title">Regras de uso</p>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>Fundo</th>
+                <th>Versão correta</th>
+                <th>Nunca usar</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Branco / off-white / cinza claro</td>
+                <td><code>logo-black.svg</code></td>
+                <td>logo-branco ou laranja</td>
+              </tr>
+              <tr>
+                <td>Laranja <code>#FF3D00</code></td>
+                <td><code>logo-branco.svg</code></td>
+                <td>logo-black ou laranja</td>
+              </tr>
+              <tr>
+                <td>Preto / cinza escuro</td>
+                <td><code>logo-branco.svg</code></td>
+                <td>logo-black</td>
+              </tr>
+              <tr>
+                <td>Fotografia (clara)</td>
+                <td><code>logo-black.svg</code></td>
+                <td>sem alteração de cor</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
 
-  <div class="subsec">
-    <p class="eyebrow">Nomenclatura de arquivo</p>
-    <ul class="rules">
-      <li>Padrão: <code>logo-[slug-do-cliente].png</code> — ex: <code>logo-v4-company.png</code></li>
-      <li>Versão colorida: <code>logo-[slug]-color.png</code></li>
-      <li>Nunca salvar com nomes como <code>Frame.png</code>, <code>Group.png</code>, <code>image 1.png</code></li>
-    </ul>
-  </div>
-</section>
+      <div class="subsec">
+        <p class="sub-title">O que nunca fazer</p>
+        <ul class="rules no">
+          <li>Esticar, comprimir ou alterar proporção</li>
+          <li>Aplicar sombra, contorno ou efeito ao logo</li>
+          <li>Recolorir qualquer elemento</li>
+          <li>Usar o logo sobre foto sem contraste suficiente</li>
+          <li>Escrever INFOSAAS em caixa alta — sempre <code>infosaas®</code></li>
+          <li>Usar o ® em tamanho igual ou maior que o texto</li>
+          <li>Combinar símbolo decorativo com foto de pessoa no mesmo frame</li>
+        </ul>
+      </div>
+    </section>
 
-</main>
+    <!-- ── 03 CORES ── -->
+    <section class="section" id="s03">
+      <div class="sec-header">
+        <span class="sec-num">03</span>
+        <div>
+          <h2 class="sec-title">Cores</h2>
+          <p class="sec-desc">Um acento (laranja) e três neutros. Nenhuma outra cor entra no sistema.</p>
+        </div>
+      </div>
 
-<script>
-lucide.createIcons();
+      <div class="subsec">
+        <p class="eyebrow">Paleta principal</p>
+        <div class="swatch-grid">
+          <div class="swatch">
+            <div class="swatch-color" style="background:#FF3D00"></div>
+            <div class="swatch-info">
+              <p class="swatch-name">Laranja</p>
+              <p class="swatch-hex">#FF3D00</p>
+              <p class="swatch-token">--laranja</p>
+            </div>
+          </div>
+          <div class="swatch">
+            <div class="swatch-color" style="background:#0A0A0A"></div>
+            <div class="swatch-info">
+              <p class="swatch-name">Preto</p>
+              <p class="swatch-hex">#0A0A0A</p>
+              <p class="swatch-token">--preto</p>
+            </div>
+          </div>
+          <div class="swatch">
+            <div class="swatch-color" style="background:#F5F5F5;border:1px solid #E0E0E0"></div>
+            <div class="swatch-info">
+              <p class="swatch-name">Branco-off</p>
+              <p class="swatch-hex">#F5F5F5</p>
+              <p class="swatch-token">--branco-off</p>
+            </div>
+          </div>
+          <div class="swatch">
+            <div class="swatch-color" style="background:#FFFFFF;border:1px solid #E0E0E0"></div>
+            <div class="swatch-info">
+              <p class="swatch-name">Branco puro</p>
+              <p class="swatch-hex">#FFFFFF</p>
+              <p class="swatch-token">--bg-elev</p>
+            </div>
+          </div>
+        </div>
+      </div>
 
-// Active nav on scroll
-const sections = document.querySelectorAll('.section[id]');
-const navLinks = document.querySelectorAll('.nav-item');
+      <div class="subsec">
+        <p class="eyebrow">Estados do laranja</p>
+        <div class="swatch-grid">
+          <div class="swatch">
+            <div class="swatch-color" style="background:#FF3D00"></div>
+            <div class="swatch-info">
+              <p class="swatch-name">Default</p>
+              <p class="swatch-token">--laranja</p>
+            </div>
+          </div>
+          <div class="swatch">
+            <div class="swatch-color" style="background:#FF5520"></div>
+            <div class="swatch-info">
+              <p class="swatch-name">Hover</p>
+              <p class="swatch-token">--laranja-hover</p>
+            </div>
+          </div>
+          <div class="swatch">
+            <div class="swatch-color" style="background:#E03600"></div>
+            <div class="swatch-info">
+              <p class="swatch-name">Press</p>
+              <p class="swatch-token">--laranja-press</p>
+            </div>
+          </div>
+          <div class="swatch">
+            <div class="swatch-color" style="background:#B82C00"></div>
+            <div class="swatch-info">
+              <p class="swatch-name">Deep</p>
+              <p class="swatch-token">--laranja-deep</p>
+            </div>
+          </div>
+        </div>
+      </div>
 
-const observer = new IntersectionObserver(entries => {
-  entries.forEach(entry => {
-    if (entry.isIntersecting) {
-      navLinks.forEach(l => l.classList.remove('active'));
-      const active = document.querySelector(`.nav-item[href="#${entry.target.id}"]`);
-      if (active) active.classList.add('active');
-    }
-  });
-}, { rootMargin: '-20% 0px -70% 0px' });
+      <div class="subsec">
+        <p class="eyebrow">Ramp de neutros</p>
+        <div class="neutral-ramp" style="margin-bottom:var(--sp3)">
+          <div style="background:#F5F5F5"><span style="color:#9E9E9E">100</span></div>
+          <div style="background:#E0E0E0"><span style="color:#757575">200</span></div>
+          <div style="background:#BDBDBD"><span style="color:#616161">300</span></div>
+          <div style="background:#9E9E9E"><span style="color:#fff">400</span></div>
+          <div style="background:#757575"><span style="color:#fff">500</span></div>
+          <div style="background:#616161"><span style="color:#fff">600</span></div>
+          <div style="background:#424242"><span style="color:#fff">700</span></div>
+          <div style="background:#212121"><span style="color:#fff">800</span></div>
+          <div style="background:#141414"><span style="color:#fff">900</span></div>
+        </div>
+        <p style="font-size:12px;color:var(--c500)">Tokens: <code>--c100</code> → <code>--c900</code></p>
+      </div>
 
-sections.forEach(s => observer.observe(s));
-</script>
+      <div class="subsec">
+        <p class="eyebrow">Padrões de superfície</p>
+        <div class="surface-grid">
+          <div class="surf s-ora">
+            <p class="ey">Laranja sólido</p>
+            <p class="hl">Atenção máxima.</p>
+          </div>
+          <div class="surf s-off">
+            <p class="ey">Off-white</p>
+            <p class="hl">Conteúdo e clareza.</p>
+          </div>
+          <div class="surf s-dk">
+            <p class="ey">Preto</p>
+            <p class="hl">Peso e autoridade.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="subsec">
+        <p class="sub-title">Combinações aprovadas</p>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>Fundo</th>
+                <th>Texto principal</th>
+                <th>Acento</th>
+                <th>Ratio AA</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Laranja <code>#FF3D00</code></td>
+                <td>Branco <code>#FFFFFF</code></td>
+                <td>Branco</td>
+                <td>3.9:1 ✓</td>
+              </tr>
+              <tr>
+                <td>Preto <code>#0A0A0A</code></td>
+                <td>Branco-off <code>#F5F5F5</code></td>
+                <td>Laranja</td>
+                <td>18.5:1 ✓</td>
+              </tr>
+              <tr>
+                <td>Branco-off <code>#F5F5F5</code></td>
+                <td>Preto <code>#0A0A0A</code></td>
+                <td>Laranja</td>
+                <td>18.1:1 ✓</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── 04 TIPOGRAFIA ── -->
+    <section class="section" id="s04">
+      <div class="sec-header">
+        <span class="sec-num">04</span>
+        <div>
+          <h2 class="sec-title">Tipografia</h2>
+          <p class="sec-desc">Sora em todos os contextos. JetBrains Mono apenas para código.</p>
+        </div>
+      </div>
+
+      <div class="subsec">
+        <p class="eyebrow">Escala tipográfica</p>
+        <div class="type-row">
+          <div class="type-meta">
+            <p class="tk">--fs-display-xl</p>
+            <p class="sp">900 · clamp(52→80px) · -0.03em</p>
+          </div>
+          <p class="type-sample" style="font-size:clamp(44px,6vw,72px);font-weight:900;letter-spacing:-.03em">Infosaas
+          </p>
+        </div>
+        <div class="type-row">
+          <div class="type-meta">
+            <p class="tk">--fs-display</p>
+            <p class="sp">800 · clamp(40→56px) · -0.02em</p>
+          </div>
+          <p class="type-sample" style="font-size:clamp(36px,5vw,52px);font-weight:800;letter-spacing:-.02em">Feito do
+            jeito certo.</p>
+        </div>
+        <div class="type-row">
+          <div class="type-meta">
+            <p class="tk">--fs-h1</p>
+            <p class="sp">700 · clamp(28→40px) · -0.02em</p>
+          </div>
+          <p class="type-sample" style="font-size:clamp(26px,4vw,38px);font-weight:700;letter-spacing:-.02em">Sistema
+            visual completo</p>
+        </div>
+        <div class="type-row">
+          <div class="type-meta">
+            <p class="tk">--fs-h2</p>
+            <p class="sp">700 · clamp(22→32px) · -0.01em</p>
+          </div>
+          <p class="type-sample" style="font-size:clamp(20px,3vw,30px);font-weight:700;letter-spacing:-.01em">
+            Componentes e tokens</p>
+        </div>
+        <div class="type-row">
+          <div class="type-meta">
+            <p class="tk">--fs-h3</p>
+            <p class="sp">700 · 20px · -0.01em</p>
+          </div>
+          <p class="type-sample" style="font-size:20px;font-weight:700;letter-spacing:-.01em">Botões e formulários</p>
+        </div>
+        <div class="type-row">
+          <div class="type-meta">
+            <p class="tk">--fs-body-lg</p>
+            <p class="sp">400 · 18px · 0</p>
+          </div>
+          <p class="type-sample" style="font-size:18px;font-weight:400">Texto de destaque em seções principais</p>
+        </div>
+        <div class="type-row">
+          <div class="type-meta">
+            <p class="tk">--fs-body</p>
+            <p class="sp">400 · 15px · 0</p>
+          </div>
+          <p class="type-sample" style="font-size:15px;font-weight:400">Texto de corpo padrão para parágrafos longos e
+            descrições gerais do sistema.</p>
+        </div>
+        <div class="type-row">
+          <div class="type-meta">
+            <p class="tk">--fs-sm</p>
+            <p class="sp">400 · 13px · 0</p>
+          </div>
+          <p class="type-sample" style="font-size:13px">Labels, captions, metadata secundária</p>
+        </div>
+        <div class="type-row">
+          <div class="type-meta">
+            <p class="tk">--fs-eyebrow</p>
+            <p class="sp">700 · 11px · +0.12em · UC</p>
+          </div>
+          <p class="type-sample" style="font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase">
+            SEGMENTO · EDUCAÇÃO</p>
+        </div>
+      </div>
+
+      <div class="subsec">
+        <p class="eyebrow">Pesos disponíveis — Sora</p>
+        <div style="display:flex;flex-direction:column;gap:var(--sp3)">
+          <p style="font-size:20px;font-weight:300">300 — Light: O studio que pensa junto.</p>
+          <p style="font-size:20px;font-weight:400">400 — Regular: O studio que pensa junto.</p>
+          <p style="font-size:20px;font-weight:500">500 — Medium: O studio que pensa junto.</p>
+          <p style="font-size:20px;font-weight:600">600 — Semibold: O studio que pensa junto.</p>
+          <p style="font-size:20px;font-weight:700">700 — Bold: O studio que pensa junto.</p>
+          <p style="font-size:20px;font-weight:800">800 — Extrabold: O studio que pensa junto.</p>
+          <p style="font-size:20px;font-weight:900">900 — Black: O studio que pensa junto.</p>
+        </div>
+      </div>
+
+      <div class="subsec">
+        <p class="sub-title">Regras</p>
+        <ul class="rules no">
+          <li>Nunca usar ALL CAPS em títulos — apenas em eyebrows (max 3 palavras)</li>
+          <li>Nunca misturar Sora com qualquer outra família tipográfica</li>
+          <li>Nunca usar peso abaixo de 400 para texto de corpo</li>
+          <li>Alinhamento sempre à esquerda — nunca centralizado em texto longo</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ── 05 ICONOGRAFIA ── -->
+    <section class="section" id="s05">
+      <div class="sec-header">
+        <span class="sec-num">05</span>
+        <div>
+          <h2 class="sec-title">Iconografia</h2>
+          <p class="sec-desc">Lucide Icons — outline, stroke 1.5–2px. Cor herdada via <code>currentColor</code>.</p>
+        </div>
+      </div>
+
+      <div class="subsec">
+        <p class="eyebrow">Tamanhos e usos</p>
+        <div class="preview" style="gap:var(--sp7)">
+          <div class="ic"><i data-lucide="zap" style="width:16px;height:16px;stroke-width:2"></i><span
+              class="icon-sz">16px · inline</span></div>
+          <div class="ic"><i data-lucide="shield" style="width:20px;height:20px;stroke-width:2"></i><span
+              class="icon-sz">20px · label</span></div>
+          <div class="ic"><i data-lucide="arrow-right" style="width:24px;height:24px;stroke-width:1.75"></i><span
+              class="icon-sz">24px · padrão</span></div>
+          <div class="ic"><i data-lucide="globe" style="width:40px;height:40px;stroke-width:1.5"></i><span
+              class="icon-sz">40px · feature</span></div>
+        </div>
+      </div>
+
+      <div class="subsec">
+        <p class="eyebrow">Ícones de referência</p>
+        <div style="display:flex;flex-wrap:wrap;gap:var(--sp5)">
+          <div class="ic"><i data-lucide="check" style="width:24px;height:24px;stroke-width:1.75"></i><span>check</span>
+          </div>
+          <div class="ic"><i data-lucide="x" style="width:24px;height:24px;stroke-width:1.75"></i><span>x</span></div>
+          <div class="ic"><i data-lucide="chevron-down"
+              style="width:24px;height:24px;stroke-width:1.75"></i><span>chevron-down</span></div>
+          <div class="ic"><i data-lucide="arrow-right"
+              style="width:24px;height:24px;stroke-width:1.75"></i><span>arrow-right</span></div>
+          <div class="ic"><i data-lucide="menu" style="width:24px;height:24px;stroke-width:1.75"></i><span>menu</span>
+          </div>
+          <div class="ic"><i data-lucide="zap" style="width:24px;height:24px;stroke-width:1.75"></i><span>zap</span>
+          </div>
+          <div class="ic"><i data-lucide="shield"
+              style="width:24px;height:24px;stroke-width:1.75"></i><span>shield</span></div>
+          <div class="ic"><i data-lucide="globe" style="width:24px;height:24px;stroke-width:1.75"></i><span>globe</span>
+          </div>
+          <div class="ic"><i data-lucide="users" style="width:24px;height:24px;stroke-width:1.75"></i><span>users</span>
+          </div>
+          <div class="ic"><i data-lucide="bar-chart-2"
+              style="width:24px;height:24px;stroke-width:1.75"></i><span>bar-chart-2</span></div>
+          <div class="ic"><i data-lucide="code" style="width:24px;height:24px;stroke-width:1.75"></i><span>code</span>
+          </div>
+          <div class="ic"><i data-lucide="layers"
+              style="width:24px;height:24px;stroke-width:1.75"></i><span>layers</span></div>
+        </div>
+      </div>
+
+      <div class="subsec">
+        <p class="sub-title">O que nunca fazer</p>
+        <ul class="rules no">
+          <li>Usar ícones filled (sólidos) — apenas outline</li>
+          <li>Misturar Lucide com outras bibliotecas (Heroicons, FontAwesome)</li>
+          <li>Usar emoji como ícone de UI</li>
+          <li>Aplicar cor diferente de <code>currentColor</code> sem decisão explícita</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ── 06 FOTOGRAFIA ── -->
+    <section class="section" id="s06">
+      <div class="sec-header">
+        <span class="sec-num">06</span>
+        <div>
+          <h2 class="sec-title">Fotografia e Imagem</h2>
+          <p class="sec-desc">Dois tipos de imagem: retratos com fundo laranja e screenshots reais de interface.</p>
+        </div>
+      </div>
+
+      <div class="subsec">
+        <p class="eyebrow">Fotografia com pessoas</p>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>Parâmetro</th>
+                <th>Regra</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Fundo</td>
+                <td>Papel pintado laranja <code>#FF3D00</code> — não gradiente, não digital</td>
+              </tr>
+              <tr>
+                <td>Enquadramento</td>
+                <td>Meio-corpo a rosto — nunca fotos de longe</td>
+              </tr>
+              <tr>
+                <td>Iluminação</td>
+                <td>Natural ou simulada natural — luz quente lateral, sem flash duro</td>
+              </tr>
+              <tr>
+                <td>Vestuário</td>
+                <td>Casual profissional — sem terno/gravata, sem moletom de academia</td>
+              </tr>
+              <tr>
+                <td>Cor</td>
+                <td>Contraste levemente aumentado, temperatura levemente aquecida</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="subsec">
+        <p class="eyebrow">Símbolo como motivo decorativo</p>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>Parâmetro</th>
+                <th>Valor</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Tamanho</td>
+                <td>60–120% da altura do frame</td>
+              </tr>
+              <tr>
+                <td>Posição</td>
+                <td>Offset — parcialmente fora do frame, nunca centralizado e completo</td>
+              </tr>
+              <tr>
+                <td>Cor</td>
+                <td><code>#B82C00</code> (--laranja-deep) sobre fundo laranja</td>
+              </tr>
+              <tr>
+                <td>Superfície</td>
+                <td>Exclusivamente sobre fundo <code>#FF3D00</code></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="subsec">
+        <p class="eyebrow">Hierarquia por superfície</p>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>Superfície</th>
+                <th>Imagem recomendada</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Hero de campanha</td>
+                <td>Foto com pessoa sobre laranja</td>
+              </tr>
+              <tr>
+                <td>Seção "Sobre" ou "Time"</td>
+                <td>Foto com pessoa sobre laranja</td>
+              </tr>
+              <tr>
+                <td>Case de projeto</td>
+                <td>Screenshot de interface + título</td>
+              </tr>
+              <tr>
+                <td>Banner de redes (sem projeto)</td>
+                <td>Símbolo decorativo sobre laranja</td>
+              </tr>
+              <tr>
+                <td>Documento / contrato</td>
+                <td>Sem imagem — apenas logo e tipografia</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="subsec">
+        <p class="sub-title">O que nunca usar</p>
+        <ul class="rules no">
+          <li>Fotos de banco de imagem com fundo branco estéril</li>
+          <li>Fotos com filtro azul/frio — incompatível com a paleta quente</li>
+          <li>Fotos monocromáticas (P&B)</li>
+          <li>Mockup 3D genérico de device — usar screenshots reais</li>
+          <li>UI incompleta ou com placeholder visível ("Lorem Ipsum")</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ── 07 VOZ E TOM ── -->
+    <section class="section" id="s07">
+      <div class="sec-header">
+        <span class="sec-num">07</span>
+        <div>
+          <h2 class="sec-title">Voz e Tom</h2>
+          <p class="sec-desc">Direto, confiante, sem enrolação. Formal onde conta, humano onde pode ser.</p>
+        </div>
+      </div>
+
+      <div class="subsec">
+        <p class="eyebrow">Exemplos de voz aprovada</p>
+        <div class="voice-ex">
+          <p class="lbl">Hero de campanha</p>
+          <p>O sistema que funciona hoje<br>é o mesmo que vai te travar<br>amanhã.</p>
+        </div>
+        <div class="voice-ex">
+          <p class="lbl">Sobre a empresa</p>
+          <p>Não somos uma software-house que recebe escopo, executa e some. Somos um studio que pensa junto com o
+            negócio — da estratégia à entrega.</p>
+        </div>
+        <div class="voice-ex bad">
+          <p class="lbl">Nunca</p>
+          <p>Somos líderes em tecnologia de ponta com soluções robustas que transformam seu negócio.</p>
+        </div>
+        <div class="voice-ex bad">
+          <p class="lbl">Nunca</p>
+          <p>Aprenda como alavancar a sinergia do seu negócio com nossa plataforma revolucionária.</p>
+        </div>
+      </div>
+
+      <div class="subsec">
+        <p class="eyebrow">Premissas, não promessas</p>
+        <div class="grid-2" style="gap:var(--sp4)">
+          <div class="card" style="border-left:3px solid var(--c300)">
+            <p
+              style="font-size:10px;font-weight:700;color:var(--c400);text-transform:uppercase;letter-spacing:.08em;margin-bottom:8px">
+              Errado — promessa</p>
+            <p style="font-size:14px;color:var(--c500)">"Vamos transformar o seu negócio em 90 dias."</p>
+          </div>
+          <div class="card" style="border-left:3px solid var(--laranja)">
+            <p
+              style="font-size:10px;font-weight:700;color:var(--laranja);text-transform:uppercase;letter-spacing:.08em;margin-bottom:8px">
+              Certo — premissa</p>
+            <p style="font-size:14px">"O sistema que funciona hoje é o mesmo que vai te travar amanhã."</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="subsec">
+        <p class="eyebrow">Palavras bloqueadas</p>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>Nunca usar</th>
+                <th>Substituto</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Alavancar</td>
+                <td>Crescer, ampliar, expandir</td>
+              </tr>
+              <tr>
+                <td>Sinergia</td>
+                <td>Alinhamento, integração</td>
+              </tr>
+              <tr>
+                <td>Tecnologia de ponta</td>
+                <td>— (evitar adjetivação vaga)</td>
+              </tr>
+              <tr>
+                <td>Solução robusta</td>
+                <td>— (mostrar em vez de adjetivar)</td>
+              </tr>
+              <tr>
+                <td>Transformando a indústria</td>
+                <td>— (corporatês)</td>
+              </tr>
+              <tr>
+                <td>Utilizar</td>
+                <td>Usar</td>
+              </tr>
+              <tr>
+                <td>Software-house / agência / fábrica</td>
+                <td>Studio</td>
+              </tr>
+              <tr>
+                <td>Fornecedor / prestador</td>
+                <td>Parceiro</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="subsec">
+        <p class="eyebrow">Tom por canal</p>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>Canal</th>
+                <th>Tom</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Site institucional</td>
+                <td>Direto, sem hype, confiante — premissas, não promessas</td>
+              </tr>
+              <tr>
+                <td>Proposta comercial</td>
+                <td>Profissional, específico — falar do negócio do cliente</td>
+              </tr>
+              <tr>
+                <td>Email</td>
+                <td>Humano, objetivo — nunca "prezado cliente"</td>
+              </tr>
+              <tr>
+                <td>LinkedIn</td>
+                <td>Levemente mais informal — pode usar "a gente"</td>
+              </tr>
+              <tr>
+                <td>Instagram</td>
+                <td>Direto, visual — copy curto, imagem carrega o peso</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── 08 TOKENS ── -->
+    <section class="section" id="s08">
+      <div class="sec-header">
+        <span class="sec-num">08</span>
+        <div>
+          <h2 class="sec-title">Tokens de Design</h2>
+          <p class="sec-desc">Espaçamento (base 4px), raios de borda, sombras e motion. Nenhum valor fora deste sistema.
+          </p>
+        </div>
+      </div>
+
+      <div class="subsec">
+        <p class="eyebrow">Espaçamento</p>
+        <div class="sp-row">
+          <div class="sp-bar" style="width:4px"></div><span class="sp-meta">--sp1</span><span
+            class="sp-val">4px</span><span style="font-size:12px;color:var(--c500)">Micro — ícone, chip interno</span>
+        </div>
+        <div class="sp-row">
+          <div class="sp-bar" style="width:8px"></div><span class="sp-meta">--sp2</span><span
+            class="sp-val">8px</span><span style="font-size:12px;color:var(--c500)">Elementos muito próximos</span>
+        </div>
+        <div class="sp-row">
+          <div class="sp-bar" style="width:12px"></div><span class="sp-meta">--sp3</span><span
+            class="sp-val">12px</span><span style="font-size:12px;color:var(--c500)">Gap em listas, badge</span>
+        </div>
+        <div class="sp-row">
+          <div class="sp-bar" style="width:16px"></div><span class="sp-meta">--sp4</span><span
+            class="sp-val">16px</span><span style="font-size:12px;color:var(--c500)">Padding padrão de elemento</span>
+        </div>
+        <div class="sp-row">
+          <div class="sp-bar" style="width:24px"></div><span class="sp-meta">--sp5</span><span
+            class="sp-val">24px</span><span style="font-size:12px;color:var(--c500)">Gap entre grupos, card
+            pequeno</span>
+        </div>
+        <div class="sp-row">
+          <div class="sp-bar" style="width:32px"></div><span class="sp-meta">--sp6</span><span
+            class="sp-val">32px</span><span style="font-size:12px;color:var(--c500)">Padding interno de card</span>
+        </div>
+        <div class="sp-row">
+          <div class="sp-bar" style="width:48px"></div><span class="sp-meta">--sp7</span><span
+            class="sp-val">48px</span><span style="font-size:12px;color:var(--c500)">Separação entre seções
+            internas</span>
+        </div>
+        <div class="sp-row">
+          <div class="sp-bar" style="width:64px"></div><span class="sp-meta">--sp8</span><span
+            class="sp-val">64px</span><span style="font-size:12px;color:var(--c500)">Padding vertical de seção
+            (desktop)</span>
+        </div>
+        <div class="sp-row">
+          <div class="sp-bar" style="width:96px"></div><span class="sp-meta">--sp9</span><span
+            class="sp-val">96px</span><span style="font-size:12px;color:var(--c500)">Hero, seção generosa</span>
+        </div>
+      </div>
+
+      <div class="subsec">
+        <p class="eyebrow">Raios de borda</p>
+        <div class="radius-demo">
+          <div class="r-item">
+            <div class="r-box" style="border-radius:6px"></div>
+            <p class="r-lbl">--r-sm</p>
+            <p class="r-val">6px · badges</p>
+          </div>
+          <div class="r-item">
+            <div class="r-box" style="border-radius:12px"></div>
+            <p class="r-lbl">--r</p>
+            <p class="r-val">12px · inputs</p>
+          </div>
+          <div class="r-item">
+            <div class="r-box" style="border-radius:18px"></div>
+            <p class="r-lbl">--r-md</p>
+            <p class="r-val">18px · botões</p>
+          </div>
+          <div class="r-item">
+            <div class="r-box" style="border-radius:24px"></div>
+            <p class="r-lbl">--r-lg</p>
+            <p class="r-val">24px · cards</p>
+          </div>
+          <div class="r-item">
+            <div class="r-box" style="border-radius:32px"></div>
+            <p class="r-lbl">--r-xl</p>
+            <p class="r-val">32px · hero blocks</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="subsec">
+        <p class="eyebrow">Sombras</p>
+        <div class="shadow-demo">
+          <div class="sh-item">
+            <div class="sh-box" style="box-shadow:0 1px 2px rgba(0,0,0,.06)"></div>
+            <p class="sh-lbl">--sh-sm</p>
+            <p style="font-size:11px;color:var(--c500)">inputs, campos</p>
+          </div>
+          <div class="sh-item">
+            <div class="sh-box" style="box-shadow:0 4px 14px rgba(0,0,0,.08)"></div>
+            <p class="sh-lbl">--sh</p>
+            <p style="font-size:11px;color:var(--c500)">cards padrão</p>
+          </div>
+          <div class="sh-item">
+            <div class="sh-box" style="box-shadow:0 18px 40px -10px rgba(0,0,0,.18)"></div>
+            <p class="sh-lbl">--sh-lg</p>
+            <p style="font-size:11px;color:var(--c500)">modais, dropdowns</p>
+          </div>
+          <div class="sh-item">
+            <div class="sh-box" style="box-shadow:0 12px 30px -8px rgba(255,61,0,.45)"></div>
+            <p class="sh-lbl">--sh-acc</p>
+            <p style="font-size:11px;color:var(--c500)">CTA hover (laranja)</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="subsec">
+        <p class="eyebrow">Motion</p>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>Token</th>
+                <th>Valor</th>
+                <th>Quando usar</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><code>--ease</code></td>
+                <td><code>cubic-bezier(.2,.7,.2,1)</code></td>
+                <td>Transições de UI padrão</td>
+              </tr>
+              <tr>
+                <td><code>--ease-out</code></td>
+                <td><code>cubic-bezier(.16,1,.3,1)</code></td>
+                <td>Elementos que entram na tela</td>
+              </tr>
+              <tr>
+                <td><code>--dur-fast</code></td>
+                <td>120ms</td>
+                <td>Hover em botões, mudança imediata</td>
+              </tr>
+              <tr>
+                <td><code>--dur</code></td>
+                <td>200ms</td>
+                <td>Card hover, dropdown, toggle</td>
+              </tr>
+              <tr>
+                <td><code>--dur-slow</code></td>
+                <td>320ms</td>
+                <td>Modais, elementos grandes entrando</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── 09 COMPONENTES ── -->
+    <section class="section" id="s09">
+      <div class="sec-header">
+        <span class="sec-num">09</span>
+        <div>
+          <h2 class="sec-title">Componentes</h2>
+          <p class="sec-desc">Todos os componentes do sistema com anatomia, variantes e estados.</p>
+        </div>
+      </div>
+
+      <!-- Header -->
+      <div class="subsec">
+        <p class="eyebrow">Header — Navegação Global</p>
+
+        <!-- Preview: default -->
+        <p style="font-size:11px;font-weight:600;color:var(--c400);text-transform:uppercase;letter-spacing:.07em;margin-bottom:10px">Estado default</p>
+        <div style="background:var(--bg-hero);border-radius:var(--r-lg);padding:0 var(--sp6);height:72px;display:flex;align-items:center;justify-content:space-between;gap:var(--sp5);margin-bottom:var(--sp3)">
+          <img src="assets/logos/logo-branco.svg" alt="infosaas" style="height:26px;flex-shrink:0">
+          <div style="display:flex;align-items:center;gap:36px">
+            <div style="display:flex;align-items:center;gap:4px;cursor:pointer">
+              <span style="color:#fff;font-size:15px;font-weight:500;font-family:var(--font)">Soluções</span>
+              <i data-lucide="chevron-down" style="width:14px;height:14px;color:rgba(255,255,255,0.8);stroke-width:2"></i>
+            </div>
+            <div style="display:flex;align-items:center;gap:4px;cursor:pointer">
+              <span style="color:#fff;font-size:15px;font-weight:500;font-family:var(--font)">Segmentos</span>
+              <i data-lucide="chevron-down" style="width:14px;height:14px;color:rgba(255,255,255,0.8);stroke-width:2"></i>
+            </div>
+            <span style="color:#fff;font-size:15px;font-weight:500;font-family:var(--font);cursor:pointer">O Studio</span>
+          </div>
+          <button style="background:#fff;color:#0A0A0A;padding:10px 22px;border-radius:999px;font-size:14px;font-weight:600;border:none;cursor:pointer;font-family:var(--font);white-space:nowrap;flex-shrink:0">Falar com a gente →</button>
+        </div>
+        <p class="spec-note">Background: <code>--bg-hero</code> (#3D0900) · Altura: <code>72px</code> · <code>position: fixed; z-index: 100</code> · Logo: <code>logo-branco.svg</code> 26px · Nav: Sora 500 / 15px / #fff · CTA: Sora 600 / 15px / pill branco / 10px–22px</p>
+
+        <!-- Spec table -->
+        <div class="spec-block">
+          <table>
+            <thead>
+              <tr><th>Elemento</th><th>Valor</th><th>Notas</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>Background</td><td>--bg-hero · #3D0900</td><td>Vinho escuro — não muda com scroll</td></tr>
+              <tr><td>Posição</td><td>position: fixed</td><td>top: 0 · z-index: 100 · width: 100%</td></tr>
+              <tr><td>Altura</td><td>72px</td><td>Fixa em todos os breakpoints</td></tr>
+              <tr><td>Container</td><td>max-width: 1240px</td><td>padding-inline: 32px desktop / 20px mobile</td></tr>
+              <tr><td>Logo</td><td>logo-branco.svg · 26px</td><td>Extrema esquerda · flex-shrink: 0</td></tr>
+              <tr><td>Nav gap</td><td>36px</td><td>Entre os 3 itens de navegação</td></tr>
+              <tr><td>Nav font</td><td>Sora 500 · 15px · #fff</td><td>Hover: opacity 0.75 em 200ms --ease</td></tr>
+              <tr><td>Chevron</td><td>ChevronDown Lucide · 14px · sw 2</td><td>gap 4px do texto · rotaciona 180° no hover</td></tr>
+              <tr><td>CTA background</td><td>#FFFFFF</td><td>border-radius: --r-pill (999px)</td></tr>
+              <tr><td>CTA font</td><td>Sora 600 · 15px · #0A0A0A</td><td>Padding: 10px 22px</td></tr>
+              <tr><td>CTA hover</td><td>--c200 background</td><td>Transição 120ms --ease</td></tr>
+              <tr><td>Active (página)</td><td>border-bottom: 2px --laranja</td><td>Permanente enquanto na página atual</td></tr>
+              <tr><td>Mobile trigger</td><td>Menu · Lucide · 24px branco</td><td>Abre drawer/overlay com accordion</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <!-- Preview: estados hover e active -->
+        <p style="font-size:11px;font-weight:600;color:var(--c400);text-transform:uppercase;letter-spacing:.07em;margin-top:var(--sp6);margin-bottom:10px">Estados — hover e página ativa</p>
+        <div style="background:var(--bg-hero);border-radius:var(--r-lg);padding:0 var(--sp6);height:72px;display:flex;align-items:center;gap:var(--sp7);margin-bottom:var(--sp3)">
+          <div style="display:flex;flex-direction:column;align-items:flex-start;gap:2px">
+            <span style="font-size:9px;font-weight:700;color:rgba(255,61,0,.7);text-transform:uppercase;letter-spacing:.06em">hover</span>
+            <div style="display:flex;align-items:center;gap:4px;cursor:pointer;opacity:.75">
+              <span style="color:#fff;font-size:15px;font-weight:500;font-family:var(--font)">Soluções</span>
+              <i data-lucide="chevron-up" style="width:14px;height:14px;color:rgba(255,255,255,0.85);stroke-width:2"></i>
+            </div>
+          </div>
+          <div style="display:flex;flex-direction:column;align-items:flex-start;gap:2px">
+            <span style="font-size:9px;font-weight:700;color:rgba(255,61,0,.7);text-transform:uppercase;letter-spacing:.06em">página ativa</span>
+            <div style="display:flex;align-items:center;border-bottom:2px solid var(--laranja);padding-bottom:1px">
+              <span style="color:#fff;font-size:15px;font-weight:500;font-family:var(--font)">O Studio</span>
+            </div>
+          </div>
+          <div style="display:flex;flex-direction:column;align-items:flex-start;gap:2px">
+            <span style="font-size:9px;font-weight:700;color:rgba(255,255,255,.25);text-transform:uppercase;letter-spacing:.06em">default</span>
+            <div style="display:flex;align-items:center;gap:4px;cursor:pointer">
+              <span style="color:#fff;font-size:15px;font-weight:500;font-family:var(--font)">Segmentos</span>
+              <i data-lucide="chevron-down" style="width:14px;height:14px;color:rgba(255,255,255,0.8);stroke-width:2"></i>
+            </div>
+          </div>
+        </div>
+        <p class="spec-note">Hover: <code>opacity: 0.75</code> + chevron rotaciona 180° em <code>200ms --ease</code> · Ativo: <code>border-bottom: 2px solid --laranja</code> permanente · Default: opacity 1</p>
+
+        <!-- Preview: painel dropdown -->
+        <p style="font-size:11px;font-weight:600;color:var(--c400);text-transform:uppercase;letter-spacing:.07em;margin-top:var(--sp6);margin-bottom:10px">Dropdown — anatomia do painel</p>
+        <div style="display:inline-block;margin-bottom:var(--sp3)">
+          <div style="background:#fff;border-radius:var(--r-lg);box-shadow:var(--sh-lg);padding:var(--sp5) var(--sp6);min-width:260px">
+            <p style="font-size:10px;font-weight:700;color:var(--c400);text-transform:uppercase;letter-spacing:.1em;margin-bottom:var(--sp3)">Soluções</p>
+            <div style="display:flex;flex-direction:column">
+              <a href="#" onclick="return false" style="font-size:14px;font-weight:600;color:var(--fg);padding:10px 0;border-bottom:1px solid var(--border);text-decoration:none;transition:color 120ms" onmouseover="this.style.color='var(--laranja)'" onmouseout="this.style.color='var(--fg)'">MVP Ágil</a>
+              <a href="#" onclick="return false" style="font-size:14px;font-weight:600;color:var(--fg);padding:10px 0;border-bottom:1px solid var(--border);text-decoration:none;transition:color 120ms" onmouseover="this.style.color='var(--laranja)'" onmouseout="this.style.color='var(--fg)'">Consultoria Estratégica</a>
+              <a href="#" onclick="return false" style="font-size:14px;font-weight:600;color:var(--fg);padding:10px 0;border-bottom:1px solid var(--border);text-decoration:none;transition:color 120ms" onmouseover="this.style.color='var(--laranja)'" onmouseout="this.style.color='var(--fg)'">Soluções Enterprise</a>
+              <a href="#" onclick="return false" style="font-size:14px;font-weight:600;color:var(--fg);padding:10px 0;text-decoration:none;transition:color 120ms" onmouseover="this.style.color='var(--laranja)'" onmouseout="this.style.color='var(--fg)'">Soluções Premium</a>
+            </div>
+          </div>
+        </div>
+        <p class="spec-note">Fundo: <code>#FFFFFF</code> · Raio: <code>--r-lg</code> · Sombra: <code>--sh-lg</code> · Offset: 8px abaixo do header · Abertura: <code>opacity 0→1 + translateY(-6px→0)</code> em <code>200ms --ease-out</code> · Fechamento: delay 80ms · Links: Sora 600 / 14px / hover laranja · Conteúdo completo a definir com as páginas de produto</p>
+      </div>
+
+      <!-- Hero-01 -->
+      <div class="subsec">
+        <p class="eyebrow">Hero-01 — Seção Herói Principal</p>
+
+        <!-- Preview -->
+        <div class="sp-hero-bg" style="display:flex;flex-direction:column;justify-content:space-between;min-height:460px">
+          <div>
+            <h1 class="sp-hl-hero" style="font-size:clamp(38px,5vw,76px);max-width:640px">Estratégia, Negócios<br>&amp; Tecnologia</h1>
+            <p class="sp-body-hero" style="max-width:520px;font-size:18px">A Infosaas® é um studio de desenvolvimento e aceleração de negócios.</p>
+            <div class="sp-btn-group" style="margin-top:var(--sp5)">
+              <button style="background:var(--preto);color:#fff;padding:13px 28px;border-radius:var(--r-pill);font-size:15px;font-weight:600;border:none;cursor:pointer;font-family:var(--font);transition:background 120ms">Falar com a gente →</button>
+              <button style="background:transparent;color:rgba(255,255,255,.9);padding:12px 28px;border-radius:var(--r-pill);font-size:15px;font-weight:600;border:1.5px solid rgba(255,255,255,.3);cursor:pointer;font-family:var(--font);transition:border-color 120ms">Conheça nossas soluções</button>
+            </div>
+          </div>
+          <!-- Logo strip — slider animado -->
+          <div class="hero-logo-strip">
+            <span class="label">Confiado por<br>grandes empresas</span>
+            <div class="hero-logo-track-wrap">
+              <div class="hero-logo-track">
+                <!-- Set 1 -->
+                <img src="../../ativos/logos-clientes/Group 10007.png" alt="G4" style="height:28px;filter:brightness(0) invert(1);opacity:.5">
+                <img src="../../ativos/logos-clientes/Group.png" alt="W Company" style="height:28px;filter:brightness(0) invert(1);opacity:.5">
+                <img src="../../ativos/logos-clientes/Frame.png" alt="microsaas" style="height:28px;filter:brightness(0) invert(1);opacity:.5">
+                <img src="../../ativos/logos-clientes/Frame-2.png" alt="Comunidade Sem Codar" style="height:28px;filter:brightness(0) invert(1);opacity:.5">
+                <img src="../../ativos/logos-clientes/Group 10067.png" alt="TurboX" style="height:28px;filter:brightness(0) invert(1);opacity:.5">
+                <img src="../../ativos/logos-clientes/Group 10006.png" alt="Rufy" style="height:28px;filter:brightness(0) invert(1);opacity:.5">
+                <!-- Set 2 — duplicado para loop seamless -->
+                <img src="../../ativos/logos-clientes/Group 10007.png" alt="G4" style="height:28px;filter:brightness(0) invert(1);opacity:.5">
+                <img src="../../ativos/logos-clientes/Group.png" alt="W Company" style="height:28px;filter:brightness(0) invert(1);opacity:.5">
+                <img src="../../ativos/logos-clientes/Frame.png" alt="microsaas" style="height:28px;filter:brightness(0) invert(1);opacity:.5">
+                <img src="../../ativos/logos-clientes/Frame-2.png" alt="Comunidade Sem Codar" style="height:28px;filter:brightness(0) invert(1);opacity:.5">
+                <img src="../../ativos/logos-clientes/Group 10067.png" alt="TurboX" style="height:28px;filter:brightness(0) invert(1);opacity:.5">
+                <img src="../../ativos/logos-clientes/Group 10006.png" alt="Rufy" style="height:28px;filter:brightness(0) invert(1);opacity:.5">
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Spec table -->
+        <div class="table-wrap" style="margin-top:var(--sp5)">
+          <table>
+            <thead>
+              <tr><th>Propriedade</th><th>Valor</th><th>Nota</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>Background color</td><td><code>--bg-hero</code> #3D0900</td><td>Fallback e cor base</td></tr>
+              <tr><td>Background image</td><td><code>BG-SITE.png</code> · cover · center</td><td>Gradiente radial laranja/vinho — arquivo em <code>dna/identidade-visual/ativos/</code></td></tr>
+              <tr><td>Min-height</td><td>100vh</td><td>Viewport inteiro</td></tr>
+              <tr><td>Padding-top</td><td>calc(72px + 96px)</td><td>Header fixo + <code>--space-9</code></td></tr>
+              <tr><td>Padding-bottom</td><td>64px (<code>--space-8</code>)</td><td>—</td></tr>
+              <tr><td>Container max-width</td><td>1240px</td><td>Padding lateral 32px</td></tr>
+              <tr><td>Alinhamento</td><td>Left</td><td>Nunca centralizado</td></tr>
+              <tr><td>Headline font</td><td>Sora 900</td><td>—</td></tr>
+              <tr><td>Headline size</td><td>clamp(56px, 8vw, 96px)</td><td>Responsivo</td></tr>
+              <tr><td>Headline color</td><td>#FFFFFF</td><td>—</td></tr>
+              <tr><td>Headline letter-spacing</td><td>-0.03em</td><td>—</td></tr>
+              <tr><td>Headline line-height</td><td>0.95</td><td>—</td></tr>
+              <tr><td>Subheadline font</td><td>Sora 400, 18px</td><td>—</td></tr>
+              <tr><td>Subheadline color</td><td>rgba(255,255,255, 0.72)</td><td>—</td></tr>
+              <tr><td>Subheadline max-width</td><td>520px</td><td>—</td></tr>
+              <tr><td>CTA primário</td><td>Background <code>--preto</code>, branco, pill 999px, 13/28px</td><td>Sora 600 15px · com seta →</td></tr>
+              <tr><td>CTA secundário</td><td>Ghost, borda rgba(255,255,255,.30), pill 999px, 13/28px</td><td>Sora 600 15px</td></tr>
+              <tr><td>Logo strip tipo</td><td>Slider infinito animado</td><td>Scroll horizontal automático e contínuo</td></tr>
+              <tr><td>Logo strip animação</td><td>translateX(0 → -50%) · 25s linear infinite</td><td>Set de logos duplicado no DOM para loop seamless</td></tr>
+              <tr><td>Logo strip overflow</td><td>hidden + mask-image fade lateral</td><td>Suaviza as bordas do slider</td></tr>
+              <tr><td>Logo strip filter</td><td>brightness(0) invert(1) · opacity 0.5</td><td>Logos branco neutro sobre escuro</td></tr>
+              <tr><td>Logo height</td><td>28–32px</td><td>—</td></tr>
+              <tr><td>Logo strip separator</td><td>1px solid rgba(255,255,255, 0.15)</td><td>Linha sutil acima do strip</td></tr>
+              <tr><td>Logo eyebrow</td><td>"Confiado por grandes empresas"</td><td>Sora 400 · 11px · rgba(fff,.35) · uppercase · flex-shrink: 0</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <p class="spec-note">Logo strip é um <strong>slider infinito animado</strong>: o set de 6 logos é duplicado no DOM, e a animação percorre <code>translateX(-50%)</code> em <code>25s linear infinite</code> para um loop seamless. O wrapper usa <code>mask-image</code> com fade lateral para suavizar as bordas. Logos normalizados com <code>filter: brightness(0) invert(1)</code> + <code>opacity: 0.5</code> — branco neutro sobre <code>--bg-hero</code>. Nunca usar logos coloridos no strip.</p>
+      </div>
+
+      <!-- Botões -->
+      <div class="subsec">
+        <p class="eyebrow">Botões — fundos claros</p>
+        <div class="preview">
+          <button class="btn btn-p">Fale com a gente</button>
+          <button class="btn btn-d">Ver cases</button>
+          <button class="btn btn-p" style="opacity:.4;cursor:not-allowed">Desabilitado</button>
+        </div>
+        <p class="eyebrow">Botões — fundo laranja e escuro</p>
+        <div class="preview ora">
+          <button class="btn btn-w">Saiba mais</button>
+          <button class="btn btn-gl">Ver proposta</button>
+        </div>
+      </div>
+
+      <!-- Badges -->
+      <div class="subsec">
+        <p class="eyebrow">Badges</p>
+        <div class="preview" style="flex-wrap:wrap;gap:var(--sp3)">
+          <span class="bdg bdg-a">Destaque</span>
+          <span class="bdg bdg-s">MVP Ágil</span>
+          <span class="bdg bdg-n">Neutro</span>
+          <span class="bdg bdg-dk">Dark</span>
+          <span class="bdg bdg-a bdg-pill">Pill laranja</span>
+          <span class="bdg bdg-s bdg-pill">Pill soft</span>
+        </div>
+      </div>
+
+      <!-- Cards -->
+      <div class="subsec">
+        <p class="eyebrow">Item Card</p>
+        <div class="grid-3">
+          <div class="item-card">
+            <i data-lucide="zap" style="width:24px;height:24px;color:var(--laranja);stroke-width:1.75"></i>
+            <h3>Desenvolvimento ágil</h3>
+            <p>Do briefing ao deploy em ciclos curtos, com visibilidade real do progresso.</p>
+          </div>
+          <div class="item-card">
+            <i data-lucide="shield" style="width:24px;height:24px;color:var(--laranja);stroke-width:1.75"></i>
+            <h3>Segurança por padrão</h3>
+            <p>Boas práticas de segurança desde a arquitetura, não como camada adicional.</p>
+          </div>
+          <div class="item-card">
+            <i data-lucide="layers" style="width:24px;height:24px;color:var(--laranja);stroke-width:1.75"></i>
+            <h3>Código que escala</h3>
+            <p>Estrutura pensada para crescer — não para ser refatorada em seis meses.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="subsec">
+        <p class="eyebrow">Testimonial Card</p>
+        <div class="grid-2">
+          <div class="testi">
+            <p class="testi-q">"</p>
+            <p class="testi-t">A infosaas entregou o sistema que precisávamos, no prazo e sem surpresas. A mesma equipe
+              que propôs foi a que executou.</p>
+            <p class="testi-a">Carlos Mendes</p>
+            <p class="testi-co">CEO · Phlebo Academy</p>
+          </div>
+          <div class="testi">
+            <p class="testi-q">"</p>
+            <p class="testi-t">Depois de duas tentativas frustradas com outras empresas, finalmente temos um parceiro
+              que entende o negócio, não só o código.</p>
+            <p class="testi-a">Ana Lima</p>
+            <p class="testi-co">CTO · Speake</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Forms -->
+      <div class="subsec">
+        <p class="eyebrow">Formulários e Inputs</p>
+        <div class="preview" style="gap:var(--sp6)">
+          <div class="inp-demo">
+            <label>Nome completo <span style="color:var(--laranja)">*</span></label>
+            <input type="text" placeholder="Rafael Souza">
+          </div>
+          <div class="inp-demo">
+            <label>Email</label>
+            <input type="email" placeholder="rafael@empresa.com.br">
+          </div>
+        </div>
+      </div>
+
+      <!-- Pricing -->
+      <div class="subsec">
+        <p class="eyebrow">Pricing Card</p>
+        <div style="display:flex;gap:var(--sp5);flex-wrap:wrap">
+          <div class="pricing-card">
+            <p class="pc-plan">MVP Ágil</p>
+            <p class="pc-price">R$20k<span>/mês</span></p>
+            <div class="pc-div"></div>
+            <div class="pc-feat"><i data-lucide="check" style="width:16px;height:16px;stroke-width:2"></i> Equipe
+              dedicada</div>
+            <div class="pc-feat"><i data-lucide="check" style="width:16px;height:16px;stroke-width:2"></i> Sprint
+              bi-semanal</div>
+            <div class="pc-feat"><i data-lucide="check" style="width:16px;height:16px;stroke-width:2"></i> Deploy
+              contínuo</div>
+            <button class="btn btn-d" style="width:100%;justify-content:center;margin-top:var(--sp5)">Falar com o
+              time</button>
+          </div>
+          <div class="pricing-card feat">
+            <span class="bdg bdg-s bdg-pill" style="margin-bottom:var(--sp4)">Mais escolhido</span>
+            <p class="pc-plan">Suporte Premium</p>
+            <p class="pc-price">R$35k<span>/mês</span></p>
+            <div class="pc-div"></div>
+            <div class="pc-feat"><i data-lucide="check" style="width:16px;height:16px;stroke-width:2"></i> Time ampliado
+            </div>
+            <div class="pc-feat"><i data-lucide="check" style="width:16px;height:16px;stroke-width:2"></i> SLA garantido
+            </div>
+            <div class="pc-feat"><i data-lucide="check" style="width:16px;height:16px;stroke-width:2"></i> Consultoria
+              estratégica</div>
+            <button class="btn btn-p" style="width:100%;justify-content:center;margin-top:var(--sp5)">Falar com o
+              time</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Stats + Trust -->
+      <div class="subsec">
+        <p class="eyebrow">Stats Banner</p>
+        <div class="stats-bar">
+          <div class="stat-it">
+            <p class="stat-n ora">R$10M+</p>
+            <p class="stat-l">faturados</p>
+          </div>
+          <div class="stat-it">
+            <p class="stat-n">9.2</p>
+            <p class="stat-l">NPS médio</p>
+          </div>
+          <div class="stat-it">
+            <p class="stat-n">20+</p>
+            <p class="stat-l">clientes ativos</p>
+          </div>
+          <div class="stat-it">
+            <p class="stat-n">10</p>
+            <p class="stat-l">anos de mercado</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="subsec">
+        <p class="eyebrow">Trust Badges</p>
+        <div class="grid-3">
+          <div class="trust">
+            <p class="trust-n">9.2</p>
+            <p class="trust-l">NPS dos clientes</p>
+          </div>
+          <div class="trust"><i data-lucide="shield"
+              style="width:28px;height:28px;color:var(--laranja);stroke-width:1.75"></i>
+            <p class="trust-l">Código com garantia de qualidade</p>
+          </div>
+          <div class="trust">
+            <p class="trust-n">10</p>
+            <p class="trust-l">anos de mercado</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Chat Bubbles -->
+      <div class="subsec">
+        <p class="eyebrow">Chat Bubbles</p>
+        <div class="preview">
+          <div class="chat-demo">
+            <div class="bbl bbl-l">Meu sistema travou quando dobramos os acessos. Preciso de algo que aguente o
+              crescimento.</div>
+            <div class="bbl bbl-r">Faz sentido. Esse é exatamente o problema que resolvemos — antes de o próximo
+              travamento acontecer.</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Founder -->
+      <div class="subsec">
+        <p class="eyebrow">Founder / Bio</p>
+        <div class="grid-2">
+          <div class="founder-card">
+            <p class="founder-name">Rafael Souza</p>
+            <p class="founder-role">Co-fundador & CTO</p>
+            <p class="founder-bio">10 anos desenvolvendo sistemas para negócios em crescimento. Especialista em
+              arquitetura de software e liderança técnica de produto.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- FAQ -->
+      <div class="subsec">
+        <p class="eyebrow">FAQ Accordion</p>
+        <div class="card" style="padding:0">
+          <div class="faq-item" style="padding:var(--sp4) var(--sp6)" onclick="this.classList.toggle('open')">
+            <div class="faq-q">Como funciona o modelo de contrato?<i data-lucide="chevron-down"
+                style="width:18px;height:18px;flex-shrink:0"></i></div>
+            <p class="faq-a">Contratos mensais com prazo mínimo de 3 meses. A proposta define escopo, equipe, SLA e
+              condições de revisão — tudo antes da assinatura.</p>
+          </div>
+          <div class="faq-item" style="padding:var(--sp4) var(--sp6)" onclick="this.classList.toggle('open')">
+            <div class="faq-q">Quanto tempo até o início do projeto?<i data-lucide="chevron-down"
+                style="width:18px;height:18px;flex-shrink:0"></i></div>
+            <p class="faq-a">Em média 7 dias úteis após assinatura do contrato. A equipe já está nomeada na proposta —
+              não há processo de alocação após o fechamento.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Final CTA -->
+      <div class="subsec">
+        <p class="eyebrow">Final-Closer CTA</p>
+        <div class="cta-closer">
+          <p class="hl">O parceiro certo<br>custa menos do que<br>o <span>fornecedor</span> mais barato.</p>
+          <p class="sub">Um projeto mal feito custa três vezes mais para corrigir. A gente sabe disso — e você também.
+          </p>
+          <button class="btn btn-w">Fale com o time</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── 10 EXEMPLOS DE APLICAÇÃO ── -->
+    <section class="section" id="s10">
+      <div class="sec-header">
+        <span class="sec-num">10</span>
+        <div>
+          <h2 class="sec-title">Exemplos de Aplicação</h2>
+          <p class="sec-desc">Como o sistema visual se aplica fora do site — slides, redes sociais, email e documentos.
+          </p>
+        </div>
+      </div>
+
+      <div class="subsec">
+        <p class="eyebrow">Consistência entre superfícies</p>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>Elemento</th>
+                <th>Como manter</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Tom de voz</td>
+                <td>Premissas, não promessas. Sem imperativo. Sem corporatês.</td>
+              </tr>
+              <tr>
+                <td>Tipografia</td>
+                <td>Sora sempre. Apenas Sora. (Arial como fallback em email)</td>
+              </tr>
+              <tr>
+                <td>Paleta</td>
+                <td>Um acento (laranja) + três neutros. Nada mais.</td>
+              </tr>
+              <tr>
+                <td>Alinhamento</td>
+                <td>Esquerda em todos os formatos — nunca centralizado</td>
+              </tr>
+              <tr>
+                <td>Espaçamento</td>
+                <td>Generoso. Se parecer apertado, abrir mais.</td>
+              </tr>
+              <tr>
+                <td>Logo</td>
+                <td>Sempre com ® em minúsculo — nunca INFOSAAS</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="subsec">
+        <p class="eyebrow">Apresentação (Slides)</p>
+        <div class="grid-2">
+          <div
+            style="background:var(--laranja);border-radius:var(--r-xl);padding:var(--sp6);min-height:160px;display:flex;flex-direction:column;justify-content:flex-end;position:relative;overflow:hidden">
+            <div style="position:absolute;right:-20px;top:-20px;opacity:.15">
+              <img src="assets/logos/simbolo-branco.svg" style="width:120px;filter:brightness(0) invert(1)">
+            </div>
+            <p
+              style="font-size:9px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.7);margin-bottom:6px">
+              CAPA</p>
+            <p style="font-size:18px;font-weight:800;color:#fff;line-height:1.2;letter-spacing:-.01em">Proposta
+              Comercial<br>Cliente · 2025</p>
+          </div>
+          <div
+            style="background:var(--branco-off);border:1px solid var(--border);border-radius:var(--r-xl);padding:var(--sp6);min-height:160px">
+            <p
+              style="font-size:9px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--laranja);margin-bottom:8px">
+              CONTEÚDO</p>
+            <p style="font-size:16px;font-weight:700;letter-spacing:-.01em;margin-bottom:8px">Escopo do projeto</p>
+            <p style="font-size:12px;color:var(--c600);line-height:1.6">— Item de escopo com detalhamento<br>— Segundo
+              item de entrega<br>— Cronograma e milestones</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="subsec">
+        <p class="eyebrow">Redes Sociais</p>
+        <div class="grid-3">
+          <div
+            style="background:var(--laranja);border-radius:var(--r-xl);aspect-ratio:1;padding:var(--sp6);display:flex;flex-direction:column;justify-content:flex-end">
+            <p style="font-size:20px;font-weight:900;color:#fff;line-height:1.15;letter-spacing:-.02em">O sistema
+              que<br>te trava amanhã<br>funciona hoje.</p>
+          </div>
+          <div
+            style="background:var(--branco-off);border:1px solid var(--border);border-radius:var(--r-xl);aspect-ratio:1;padding:var(--sp6);display:flex;flex-direction:column;justify-content:flex-end">
+            <p style="font-size:20px;font-weight:900;line-height:1.15;letter-spacing:-.02em">NPS <span
+                style="color:var(--laranja)">9.2</span><br>de satisfação</p>
+          </div>
+          <div
+            style="background:var(--preto);border-radius:var(--r-xl);aspect-ratio:1;padding:var(--sp6);display:flex;flex-direction:column;justify-content:flex-end">
+            <p style="font-size:20px;font-weight:900;color:#F5F5F5;line-height:1.15;letter-spacing:-.02em">Feito
+              do<br>jeito certo.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="subsec">
+        <p class="eyebrow">Assinatura de Email</p>
+        <div class="card" style="font-family:Arial,sans-serif;max-width:360px">
+          <p style="font-size:14px;font-weight:700;color:#0A0A0A;margin-bottom:2px">Rafael Souza</p>
+          <p style="font-size:13px;color:#0A0A0A">CTO · <span style="color:#FF3D00;font-weight:600">infosaas®</span></p>
+          <p style="font-size:13px;color:#616161;margin-top:4px">sistemas@infosaas.ai · (11) 9xxxx-xxxx</p>
+          <div style="margin-top:12px;padding-top:12px;border-top:1px solid #E0E0E0">
+            <img src="assets/logos/logo-black.svg" alt="infosaas" style="height:20px">
+          </div>
+        </div>
+        <p style="font-size:12px;color:var(--c500);margin-top:var(--sp3)">Fonte: Arial 13px (Sora não é fonte segura de
+          email)</p>
+      </div>
+    </section>
+
+    <!-- ── 11 LOGOS DE CLIENTES ── -->
+    <section class="section" id="s11">
+      <div class="sec-header">
+        <span class="sec-num">11</span>
+        <div>
+          <h2 class="sec-title">Logos de Clientes</h2>
+          <p class="sec-desc">15 logos no catálogo atual. Hover para ver a versão colorida original.</p>
+        </div>
+      </div>
+
+      <div class="subsec">
+        <p class="eyebrow">Catálogo — logo strip (mono no fundo claro)</p>
+        <div class="cl-grid">
+          <div class="cl-cell"><img src="assets/clientes/Frame.png" alt="microSaaS"><span>microSaaS</span></div>
+          <div class="cl-cell"><img src="assets/clientes/Frame-1.png" alt="AI Builders"><span>AI Builders</span></div>
+          <div class="cl-cell"><img src="assets/clientes/Frame-2.png" alt="Comunidade Sem Codar"><span>Sem Codar</span>
+          </div>
+          <div class="cl-cell"><img src="assets/clientes/Frame-3.png" alt="Instituto Singular"><span>Inst.
+              Singular</span></div>
+          <div class="cl-cell"><img src="assets/clientes/Group.png" alt="V4 Company"><span>V4 Company</span></div>
+          <div class="cl-cell"><img src="assets/clientes/Group 10005.png" alt="Speake"><span>Speake</span></div>
+          <div class="cl-cell"><img src="assets/clientes/Group 10006.png" alt="Rufy"><span>Rufy</span></div>
+          <div class="cl-cell"><img src="assets/clientes/Group 10007.png" alt="G4"><span>G4</span></div>
+          <div class="cl-cell"><img src="assets/clientes/Group 10067.png" alt="Turbox"><span>Turbox</span></div>
+          <div class="cl-cell"><img src="assets/clientes/image 1.png" alt="Phlebo Academy"><span>Phlebo Academy</span>
+          </div>
+          <div class="cl-cell"><img src="assets/clientes/image 9.png" alt="Pandora Treinamentos"><span>Pandora</span>
+          </div>
+          <div class="cl-cell"><img src="assets/clientes/image 10.png" alt="Esporte Educa"><span>Esporte Educa</span>
+          </div>
+          <div class="cl-cell"><img src="assets/clientes/image 11.png" alt="Fideliza Pro"><span>Fideliza Pro</span>
+          </div>
+          <div class="cl-cell"><img src="assets/clientes/image 12.png" alt="iDoméstica"><span>iDoméstica</span></div>
+          <div class="cl-cell"><img src="assets/clientes/Ativo 13 1.png" alt="Nulink"><span>Nulink</span></div>
+        </div>
+        <p style="font-size:12px;color:var(--c500);margin-top:var(--sp4)">Hover em cada logo para ver a versão colorida
+          original. CSS: <code>filter: grayscale(1) brightness(.55)</code></p>
+      </div>
+
+      <div class="subsec">
+        <p class="eyebrow">Regras de normalização</p>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>Parâmetro</th>
+                <th>Requisito</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Formato preferido</td>
+                <td>SVG — vetor, escala sem perda</td>
+              </tr>
+              <tr>
+                <td>Formato alternativo</td>
+                <td>PNG com fundo transparente, mínimo 400px de largura</td>
+              </tr>
+              <tr>
+                <td>Fundo</td>
+                <td>Sempre transparente — nunca branco ou colorido</td>
+              </tr>
+              <tr>
+                <td>No Logo Strip</td>
+                <td><code>filter: grayscale(1) brightness(.55)</code> ou versão mono exportada</td>
+              </tr>
+              <tr>
+                <td>Em cases</td>
+                <td>Cor original — sem filtro</td>
+              </tr>
+              <tr>
+                <td>Altura no strip</td>
+                <td>28–36px por logo</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="subsec">
+        <p class="eyebrow">Nomenclatura de arquivo</p>
+        <ul class="rules">
+          <li>Padrão: <code>logo-[slug-do-cliente].png</code> — ex: <code>logo-v4-company.png</code></li>
+          <li>Versão colorida: <code>logo-[slug]-color.png</code></li>
+          <li>Nunca salvar com nomes como <code>Frame.png</code>, <code>Group.png</code>, <code>image 1.png</code></li>
+        </ul>
+      </div>
+    </section>
+
+  </main>
+
+  <script>
+    lucide.createIcons();
+
+    // Active nav on scroll
+    const sections = document.querySelectorAll('.section[id]');
+    const navLinks = document.querySelectorAll('.nav-item');
+
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          navLinks.forEach(l => l.classList.remove('active'));
+          const active = document.querySelector(`.nav-item[href="#${entry.target.id}"]`);
+          if (active) active.classList.add('active');
+        }
+      });
+    }, { rootMargin: '-20% 0px -70% 0px' });
+
+    sections.forEach(s => observer.observe(s));
+  </script>
 </body>
+
 </html>

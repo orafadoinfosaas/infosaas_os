@@ -1,0 +1,209 @@
+---
+---
+
+<section class="hiw">
+  <div class="container hiw-inner">
+
+    <div class="hiw-left">
+      <img src="/barra-superior.svg" class="hiw-bar" alt="" aria-hidden="true" />
+      <h2 class="hiw-headline">
+        Do diagnóstico à<br />operação inteligente.
+      </h2>
+      <a href="/contato" class="btn-hiw">Falar com a gente →</a>
+    </div>
+
+    <div class="hiw-steps">
+
+      <div class="step-card">
+        <div class="step-header">
+          <span class="step-num">01</span>
+          <h3 class="step-title">Diagnóstico operacional</h3>
+        </div>
+        <p class="step-body">
+          Antes de propor qualquer estrutura, mapeamos como a empresa funciona hoje: quais são os
+          setores, quais os processos mais repetitivos, onde estão os principais gargalos, como o
+          time usa tecnologia. O diagnóstico define o plano de implantação.
+        </p>
+      </div>
+
+      <div class="step-card">
+        <div class="step-header">
+          <span class="step-num">02</span>
+          <h3 class="step-title">Estruturação dos setores</h3>
+        </div>
+        <p class="step-body">
+          Implementamos a arquitetura OS na empresa — o sistema central onde a operação vai viver.
+          Cada setor ganha uma estrutura própria, com padrões de nomenclatura, permissões,
+          documentação e organização que fazem sentido para o negócio real.
+        </p>
+      </div>
+
+      <div class="step-card">
+        <div class="step-header">
+          <span class="step-num">03</span>
+          <h3 class="step-title">Mapeamento e automação de processos</h3>
+        </div>
+        <p class="step-body">
+          Identificamos as tarefas que se repetem com maior frequência e as automatizamos com IA e
+          integrações. Se um sistema pode fazer, uma pessoa não precisa.
+        </p>
+      </div>
+
+      <div class="step-card">
+        <div class="step-header">
+          <span class="step-num">04</span>
+          <h3 class="step-title">Integrações com Tecnologia e IA</h3>
+        </div>
+        <p class="step-body">
+          Configuramos tecnologias e IAs validadas, contexto da empresa e fluxos de trabalho
+          específicos para cada área. Cada setor tem seu assistente — configurado para o que ele
+          precisa, não para um uso genérico.
+        </p>
+      </div>
+
+      <div class="step-card">
+        <div class="step-header">
+          <span class="step-num">05</span>
+          <h3 class="step-title">Treinamento e adoção</h3>
+        </div>
+        <p class="step-body">
+          Treinamos o time para operar o novo sistema, usar as automações e integrar o Claude no
+          dia a dia — com sessões práticas, documentação de suporte e acompanhamento contínuo.
+        </p>
+      </div>
+
+      <div class="step-card">
+        <div class="step-header">
+          <span class="step-num">06</span>
+          <h3 class="step-title">Suporte e evolução</h3>
+        </div>
+        <p class="step-body">
+          O sistema evolui junto com a empresa. Novos processos são mapeados, novas automações são
+          implementadas, novos fluxos são criados. A Infosaas® fica junto durante os 12 meses.
+        </p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<style>
+  .hiw {
+    background: #EBEBEB;
+    padding: var(--space-9) 0;
+  }
+
+  .hiw-inner {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: clamp(48px, 6vw, 96px);
+    align-items: start;
+  }
+
+  /* Left column sticks while scrolling through steps */
+  .hiw-left {
+    position: sticky;
+    top: 80px;
+  }
+
+  .hiw-bar {
+    display: block;
+    width: 157px;
+    height: auto;
+    margin-bottom: var(--space-5);
+  }
+
+  .hiw-headline {
+    font-size: clamp(32px, 3.5vw, 48px);
+    font-weight: 900;
+    line-height: 1.0;
+    letter-spacing: -0.02em;
+    color: #0A0A0A;
+    text-wrap: unset;
+    margin-bottom: var(--space-6);
+  }
+
+  .btn-hiw {
+    display: inline-flex;
+    align-items: center;
+    padding: 12px 24px;
+    background: #0A0A0A;
+    color: #fff;
+    border-radius: var(--radius-pill);
+    font-size: 14px;
+    font-weight: 600;
+    border-bottom: none;
+    transition: background var(--dur-fast) var(--ease);
+  }
+  .btn-hiw:hover {
+    background: #212121;
+    color: #fff;
+  }
+
+  /* Right column — stacking cards */
+  .hiw-steps {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .step-card {
+    position: sticky;
+    top: 80px;
+    background: #fff;
+    border: 1px solid rgba(0, 0, 0, 0.08);
+    border-radius: 16px;
+    padding: var(--space-6);
+    margin-bottom: 24px;
+    box-shadow: 0 4px 24px rgba(0, 0, 0, 0.06);
+  }
+  .step-card:last-child { margin-bottom: 0; }
+  .step-card:nth-child(1) { z-index: 1; }
+  .step-card:nth-child(2) { z-index: 2; }
+  .step-card:nth-child(3) { z-index: 3; }
+  .step-card:nth-child(4) { z-index: 4; }
+  .step-card:nth-child(5) { z-index: 5; }
+  .step-card:nth-child(6) { z-index: 6; }
+
+  .step-header {
+    display: flex;
+    align-items: center;
+    gap: var(--space-4);
+    margin-bottom: var(--space-4);
+  }
+
+  .step-num {
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--laranja-deep);
+    font-variant-numeric: tabular-nums;
+    flex-shrink: 0;
+  }
+
+  .step-title {
+    font-size: 18px;
+    font-weight: 700;
+    color: #0A0A0A;
+    line-height: var(--lh-tight);
+  }
+
+  .step-body {
+    font-size: 14px;
+    color: var(--cinza-600);
+    line-height: 1.7;
+    padding-left: calc(14px + var(--space-4));
+  }
+
+  @media (max-width: 900px) {
+    .hiw-inner {
+      grid-template-columns: 1fr;
+    }
+    .hiw-left {
+      position: static;
+    }
+    .step-card {
+      position: static !important;
+      z-index: auto !important;
+      margin-bottom: 12px;
+    }
+  }
+</style>

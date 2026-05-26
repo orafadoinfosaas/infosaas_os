@@ -160,10 +160,229 @@ Todas as seções usam `.container` (max-width: 1240px) e `padding-block: --spac
 
 ### Header
 
-- Sticky, fundo branco-off + borda hairline inferior
-- Logo esquerda, nav centro/direita, CTA rightmost
-- Dropdown: `--shadow-lg`, fundo branco, raio `--radius-lg`
-- Mobile: hambúrguer (`Menu` icon Lucide) → drawer lateral ou overlay
+#### Visão geral
+
+O header é o componente de navegação global do site. Aparece em todas as páginas, fixo no topo, e é o ponto de entrada para Soluções, Segmentos e contato comercial.
+
+#### Anatomia
+
+```
+┌──────────────────────────────────────────────────────────────┐
+│  [Logo Infosaas®]      Soluções ↓  Segmentos ↓  O Studio   [Falar com a gente →]  │
+└──────────────────────────────────────────────────────────────┘
+```
+
+- **Posição:** `position: fixed`, `top: 0`, `z-index: 100`, full width
+- **Altura:** 72px
+- **Background:** `--bg-hero` — vinho escuro, aproximadamente `#3D0900`. Token dedicado, separado do `--laranja-deep`. Não é transparente.
+- **Container interno:** max-width 1240px, padding lateral 32px (desktop) / 20px (mobile)
+- **Layout:** `display: flex`, `align-items: center`, `justify-content: space-between`
+
+#### Elementos e posicionamento
+
+| Elemento | Posição | Detalhes |
+|---|---|---|
+| Logo | Extrema esquerda | Versão branca (`logo-branco.svg`) — altura 28px |
+| Navegação | Direita, antes do CTA | `display: flex`, `gap: 36px`, `align-items: center` |
+| CTA | Extrema direita | Botão `.btn--header` — ver variante abaixo |
+
+#### Tipografia da navegação
+
+- Font: Sora 500, 15px
+- Cor: `#FFFFFF` (branco puro)
+- Letter-spacing: normal
+- `cursor: pointer` em todos os itens
+
+#### Itens de navegação
+
+| Item | Tipo | Comportamento |
+|---|---|---|
+| Soluções | Com dropdown | Exibe chevron `↓` à direita do texto. Abre submenu no hover e no click. |
+| Segmentos | Com dropdown | Exibe chevron `↓` à direita do texto. Abre submenu no hover e no click. |
+| O Studio | Link direto | Sem chevron. Navega diretamente. |
+
+Chevron: ícone `ChevronDown` (Lucide), 16px, alinhado ao baseline do texto, gap 4px.
+
+#### CTA do Header — variante `.btn--header`
+
+- Background: `#FFFFFF`
+- Cor do texto: `#000000` (preto)
+- Border-radius: `--radius-pill` (999px)
+- Padding: 10px 22px
+- Font: Sora 600, 15px
+- Texto: `Falar com a gente →` — o `→` é parte do texto, não um ícone separado
+- Hover: background `--cinza-200`, transição 120ms `--ease`
+- Press: `scale(0.985)` 120ms
+
+#### Estados dos itens de nav (hover / active)
+
+| Estado | Visual |
+|---|---|
+| Default | Texto branco, opacidade 1 |
+| Hover | Opacidade 0.75, chevron rotaciona para cima (180°) em 200ms `--ease` |
+| Dropdown aberto | Opacidade 1, chevron apontando para cima, item sublinhado com 2px laranja abaixo |
+| Active (página atual) | Sublinhado 2px `--laranja` permanente |
+
+#### Dropdown — comportamento
+
+- **Trigger:** hover (desktop) e click (mobile/touch)
+- **Animação de abertura:** `opacity 0→1` + `translateY(-6px)→translateY(0)` em 200ms `--ease-out`
+- **Animação de fechamento:** `opacity 1→0` + `translateY(0)→translateY(-4px)` em 150ms `--ease`
+- **Fechar:** ao mover o mouse para fora da área nav + dropdown (com delay de 80ms para evitar fechamento acidental)
+- **Background do dropdown:** `#FFFFFF`
+- **Raio:** `--radius-lg` (24px)
+- **Sombra:** `--shadow-lg`
+- **Posição:** abaixo do item de nav, alinhado à esquerda do item, offset vertical 8px
+- **Conteúdo:** a ser documentado conforme as páginas de Soluções e Segmentos forem definidas
+
+#### Sticky behavior
+
+- Fixo desde o carregamento — não muda de fundo ao rolar
+- Sem transição de transparente para opaco
+- O background `--bg-hero` é fixo em todas as posições de scroll
+
+#### Mobile (< 768px)
+
+- Ocultar itens de nav e CTA
+- Exibir ícone hambúrguer (`Menu`, Lucide, 24px, branco) na direita
+- Ao clicar: abrir drawer lateral ou overlay full-screen com os itens empilhados
+- Drawer: background `--bg-hero`, texto branco, Soluções e Segmentos expandem verticalmente (accordion)
+
+#### Token a criar
+
+```css
+--bg-hero: #3D0900; /* Fundo do header e seção hero — vinho escuro */
+```
+
+Este token não existe ainda na paleta padrão. Deve ser adicionado ao `colors_and_type.css`.
+
+---
+
+### Hero-01 (Home — Seção Herói Principal)
+
+#### Visão geral
+
+Primeira seção de conteúdo logo abaixo do header fixo. Define o posicionamento da marca em uma headline de impacto máximo. Esta variante é exclusiva da Home — outras páginas podem usar variantes diferentes do hero.
+
+#### Anatomia
+
+```
+┌────────────────────────────────────────────────────────────────────┐
+│                                                                    │
+│   Estratégia, Negócios                                             │
+│   & Tecnologia                                                     │
+│                                                                    │
+│   A Infosaas® é um studio de desenvolvimento                       │
+│   e aceleração de negócios.                                        │
+│                                                                    │
+│   [Falar com a gente →]   [Conheça nossas soluções]               │
+│                                                                    │
+│ ─────────────────────────────────────────────────────────────────  │
+│  Confiado por   [G4]  [W COMPANY]  [microsaas]  [CSC]  [turbsX]  [rufy]  │
+└────────────────────────────────────────────────────────────────────┘
+```
+
+#### Layout e container
+
+| Propriedade | Valor |
+|---|---|
+| Background color | `--bg-hero: #3D0900` — fallback e cor base (mesmo token do header) |
+| Background image | `BG-SITE.png` · `background-size: cover` · `background-position: center` — gradiente radial laranja/vinho · arquivo em `dna/identidade-visual/ativos/` |
+| Min-height | `100vh` — ocupa o viewport inteiro |
+| Padding-top | `calc(72px + var(--space-9))` — compensa o header fixo (72px) + respiro |
+| Padding-bottom | `var(--space-8)` (64px) |
+| Container max-width | 1240px |
+| Padding lateral | 32px (desktop) / 20px (mobile) |
+| Alinhamento do conteúdo | Left — nunca centralizado |
+
+#### Headline
+
+| Propriedade | Valor |
+|---|---|
+| Texto | "Estratégia, Negócios & Tecnologia" — quebra após "Negócios" |
+| Font | Sora 900 |
+| Tamanho | `clamp(56px, 8vw, 96px)` |
+| Cor | `#FFFFFF` |
+| Letter-spacing | `-0.03em` |
+| Line-height | `0.95` |
+| Max-width | 700px |
+| Margin-bottom | `var(--space-5)` (24px) antes do subheadline |
+
+#### Subheadline
+
+| Propriedade | Valor |
+|---|---|
+| Texto | "A Infosaas® é um studio de desenvolvimento e aceleração de negócios." |
+| Font | Sora 400 |
+| Tamanho | 18px |
+| Cor | `rgba(255, 255, 255, 0.72)` |
+| Max-width | 520px |
+| Line-height | 1.6 |
+| Margin-bottom | `var(--space-6)` (32px) antes dos CTAs |
+
+#### CTAs
+
+Dois botões, dispostos horizontalmente com `gap: var(--space-4)` (16px).
+
+| Botão | Estilo |
+|---|---|
+| **Primário** — `Falar com a gente →` | Background `--preto` (`#0A0A0A`), cor `#FFFFFF`, border-radius `--radius-pill` (999px), padding 13px 28px, Sora 600 15px. A seta `→` é parte do texto. |
+| **Secundário** — `Conheça nossas soluções` | Background transparente, border `1.5px solid rgba(255,255,255,0.30)`, cor `rgba(255,255,255,0.9)`, border-radius `--radius-pill` (999px), padding 13px 28px, Sora 600 15px. |
+
+Hover primário: `background: #1a1a1a` + `scale(1.01)` em 120ms `--ease`.  
+Hover secundário: `border-color: rgba(255,255,255,0.6)` em 120ms `--ease`.
+
+#### Logo strip de clientes
+
+Separada do conteúdo acima por `1px solid rgba(255,255,255,0.15)` + margin-top `var(--space-7)`.
+
+| Propriedade | Valor |
+|---|---|
+| **Tipo** | **Slider infinito animado** — scroll horizontal contínuo, automático, sem interação do usuário |
+| Eyebrow | "Confiado por grandes empresas" — Sora 400, 11px, `rgba(255,255,255,0.35)`, uppercase, letter-spacing 0.08em |
+| Logos exibidos | G4, W Company, microsaas, Comunidade Sem Codar, TurboX, Rufy |
+| Altura por logo | 28–32px |
+| Gap entre logos | `var(--space-7)` (48px) |
+| **Animação** | `translateX(0 → -50%)` · `25s linear infinite` — o set de logos é duplicado no DOM para o loop ser seamless |
+| Overflow | Wrapper com `overflow: hidden` + fade lateral via `mask-image: linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%)` |
+| Normalização de cor | `filter: brightness(0) invert(1)` + `opacity: 0.5` — converte qualquer logo para branco neutro sobre fundo escuro |
+| Regra | Logos sempre monocromáticos no strip — nunca usar versão colorida. Ver seção 11 do brandbook. |
+
+```css
+/* Implementação do slider */
+.hero-logo-track-wrap {
+  overflow: hidden;
+  flex: 1;
+  mask-image: linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%);
+}
+.hero-logo-track {
+  display: flex;
+  align-items: center;
+  gap: var(--space-7); /* 48px */
+  width: max-content;
+  animation: hero-logos-scroll 25s linear infinite;
+}
+@keyframes hero-logos-scroll {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+```
+
+> **Regra de duplicação:** o HTML deve conter o set de logos duas vezes dentro de `.hero-logo-track`. A animação percorre 50% da largura total, retornando ao início de forma invisível.
+
+#### Responsividade
+
+| Breakpoint | Ajuste |
+|---|---|
+| Tablet (< 1024px) | Headline diminui por `clamp` — sem quebras manuais |
+| Mobile (< 768px) | CTAs empilhados verticalmente (flex-direction: column) · Logo strip com scroll horizontal suave |
+
+#### Regras
+
+- Nunca centralizar o texto do hero — alinhamento à esquerda é intencional
+- Nunca usar outra cor de background além de `--bg-hero` nesta variante
+- Nunca adicionar mais de 2 CTAs
+- O eyebrow da logo strip deve sempre mencionar confiança ou clientes — nunca usar apenas logos sem contexto
 
 ### Footer
 

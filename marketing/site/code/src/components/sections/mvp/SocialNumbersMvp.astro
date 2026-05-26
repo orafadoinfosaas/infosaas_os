@@ -1,0 +1,179 @@
+---
+---
+
+<section class="sn-mvp">
+  <div class="container">
+
+    <div class="sn-mvp-metrics">
+      <div class="sn-mvp-metric">
+        <span class="sn-mvp-number">10 anos</span>
+        <span class="sn-mvp-label">de experiência de mercado</span>
+      </div>
+      <div class="sn-mvp-metric">
+        <span class="sn-mvp-number">10</span>
+        <span class="sn-mvp-label">profissionais sêniors</span>
+      </div>
+      <div class="sn-mvp-metric">
+        <span class="sn-mvp-number">R$ 60M+</span>
+        <span class="sn-mvp-label">Receita gerada para clientes</span>
+      </div>
+      <div class="sn-mvp-metric">
+        <span class="sn-mvp-number">9.2</span>
+        <span class="sn-mvp-label">de NPS dos nossos clientes</span>
+      </div>
+    </div>
+
+    <div class="sn-mvp-logo-strip">
+      <span class="sn-mvp-logo-label">Confiado por<br />grandes empresas</span>
+      <div class="logo-track-wrap-mvp">
+        <div class="logo-track-mvp">
+          <!-- Set 1 -->
+          <img src="/logos-clientes/G4.png"                 alt="G4"                   />
+          <img src="/logos-clientes/Group.png"              alt="V4 Company"           />
+          <img src="/logos-clientes/Frame.png"              alt="microsaas"            />
+          <img src="/logos-clientes/Frame-2.png"            alt="Sem Codar"            />
+          <img src="/logos-clientes/Group 10067.png"        alt="Turbox"               />
+          <img src="/logos-clientes/Group 10006.png"        alt="Rufy"                 />
+          <img src="/logos-clientes/Ativo 13 1.png"         alt="Nulink"               />
+          <img src="/logos-clientes/Frame-1.png"            alt="AI Builders"          />
+          <img src="/logos-clientes/instituto-singular.png" alt="Instituto Singular"   />
+          <img src="/logos-clientes/speake.png"             alt="Speake"               />
+          <img src="/logos-clientes/phlebo.png"             alt="Phlebo Academy"       />
+          <img src="/logos-clientes/pandora.png"            alt="Pandora Treinamentos" />
+          <img src="/logos-clientes/esporte-educa.png"      alt="Esporte Educa"        />
+          <img src="/logos-clientes/image 11.png"           alt="Fideliza Pro"         />
+          <img src="/logos-clientes/image 12.png"           alt="iDoméstica"           />
+          <!-- Set 2 — duplicado para loop seamless -->
+          <img src="/logos-clientes/G4.png"                 alt="G4"                   />
+          <img src="/logos-clientes/Group.png"              alt="V4 Company"           />
+          <img src="/logos-clientes/Frame.png"              alt="microsaas"            />
+          <img src="/logos-clientes/Frame-2.png"            alt="Sem Codar"            />
+          <img src="/logos-clientes/Group 10067.png"        alt="Turbox"               />
+          <img src="/logos-clientes/Group 10006.png"        alt="Rufy"                 />
+          <img src="/logos-clientes/Ativo 13 1.png"         alt="Nulink"               />
+          <img src="/logos-clientes/Frame-1.png"            alt="AI Builders"          />
+          <img src="/logos-clientes/instituto-singular.png" alt="Instituto Singular"   />
+          <img src="/logos-clientes/speake.png"             alt="Speake"               />
+          <img src="/logos-clientes/phlebo.png"             alt="Phlebo Academy"       />
+          <img src="/logos-clientes/pandora.png"            alt="Pandora Treinamentos" />
+          <img src="/logos-clientes/esporte-educa.png"      alt="Esporte Educa"        />
+          <img src="/logos-clientes/image 11.png"           alt="Fideliza Pro"         />
+          <img src="/logos-clientes/image 12.png"           alt="iDoméstica"           />
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<style>
+  .sn-mvp {
+    background-image: url('/Rectangle-22.jpg');
+    background-size: cover;
+    background-position: center;
+    padding: var(--space-9) 0;
+    color: #fff;
+  }
+
+  .sn-mvp-metrics {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: var(--space-5);
+    margin-bottom: var(--space-8);
+  }
+
+  .sn-mvp-metric {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  .sn-mvp-number {
+    font-size: clamp(26px, 3vw, 54px);
+    font-weight: 900;
+    line-height: 1;
+    letter-spacing: -0.02em;
+    color: #fff;
+  }
+
+  .sn-mvp-label {
+    font-size: var(--fs-body);
+    color: rgba(255, 255, 255, 0.6);
+    line-height: 1.4;
+  }
+
+  .sn-mvp-logo-strip {
+    display: flex;
+    align-items: center;
+    gap: var(--space-5);
+    padding-top: var(--space-5);
+    border-top: 1px solid rgba(255, 255, 255, 0.15);
+    overflow: hidden;
+  }
+
+  .sn-mvp-logo-label {
+    font-size: 11px;
+    font-weight: 400;
+    color: rgba(255, 255, 255, 0.35);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    white-space: nowrap;
+    flex-shrink: 0;
+    line-height: 1.5;
+    text-align: left;
+  }
+
+  .logo-track-wrap-mvp {
+    overflow: hidden;
+    flex: 1;
+    min-width: 0;
+    mask-image: linear-gradient(
+      to right,
+      transparent 0%,
+      black 10%,
+      black 90%,
+      transparent 100%
+    );
+  }
+
+  .logo-track-mvp {
+    display: flex;
+    align-items: center;
+    gap: var(--space-7);
+    width: max-content;
+    animation: logos-scroll-mvp 55s linear infinite;
+  }
+
+  .logo-track-mvp img {
+    height: 28px;
+    width: 130px;
+    object-fit: contain;
+    object-position: center;
+    display: block;
+    filter: brightness(0) invert(1);
+    opacity: 0.55;
+    flex-shrink: 0;
+  }
+
+  .logo-track-mvp img[src*="instituto-singular"],
+  .logo-track-mvp img[src*="phlebo"],
+  .logo-track-mvp img[src*="esporte-educa"],
+  .logo-track-mvp img[src*="pandora"],
+  .logo-track-mvp img[src*="G4"],
+  .logo-track-mvp img[src*="speake"] {
+    height: 42px;
+  }
+
+  @keyframes logos-scroll-mvp {
+    from { transform: translateX(0); }
+    to   { transform: translateX(-50%); }
+  }
+
+  @media (max-width: 900px) {
+    .sn-mvp-metrics { grid-template-columns: repeat(2, 1fr); }
+  }
+
+  @media (max-width: 560px) {
+    .sn-mvp-metrics { grid-template-columns: 1fr; }
+  }
+</style>

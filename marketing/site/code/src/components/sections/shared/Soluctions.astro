@@ -1,0 +1,116 @@
+---
+---
+
+<section class="soluctions" id="soluctions">
+  <div class="container">
+    <img src="/barra-superior.svg" class="soluctions-bar" alt="" aria-hidden="true" />
+
+    <h2 class="soluctions-headline">
+      Soluções dedicadas para<br />quem busca qualidade
+    </h2>
+
+    <div class="soluctions-cards">
+      <article class="sol-card">
+        <span class="sol-price">A partir de R$ 7.500/mês</span>
+        <h3>Consultoria e Implementação</h3>
+        <p>
+          Consultoria executiva com Implementação e treinamento de Automações e IA para
+          aumentar a produtividade do seu negócio.
+        </p>
+        <a href="/solucoes/consultoria" class="sol-link">Saber mais →</a>
+      </article>
+
+      <article class="sol-card">
+        <span class="sol-price">A partir de R$ 15.000/mês</span>
+        <h3>Criação de MVPs</h3>
+        <p>
+          Para validar uma ideia ou tirar um projeto do papel com velocidade, sem abrir mão
+          de uma base que sustenta crescimento.
+        </p>
+        <a href="/solucoes/mvp" class="sol-link">Saber mais →</a>
+      </article>
+
+      <article class="sol-card">
+        <span class="sol-price">A partir de R$ 25.000/mês</span>
+        <h3>Soluções para Enterprises</h3>
+        <p>
+          Plataformas, aplicativos e automações feitas sob medida para empresas com desafios
+          complexos de integração e performance.
+        </p>
+        <a href="/solucoes/enterprise" class="sol-link">Saber mais →</a>
+      </article>
+    </div>
+  </div>
+</section>
+
+<style>
+  .soluctions {
+    background: var(--dark-surface);
+    padding: var(--space-9) 0;
+  }
+
+  .soluctions-bar {
+    display: block;
+    width: 157px;
+    height: auto;
+    margin-bottom: var(--space-5);
+  }
+
+  .soluctions-headline {
+    font-size: var(--fs-h1);
+    font-weight: 900;
+    line-height: var(--lh-display);
+    letter-spacing: var(--tr-tight);
+    color: #fff;
+    margin-bottom: var(--space-8);
+  }
+
+  .soluctions-cards {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--space-5);
+  }
+
+  .sol-card {
+    background: var(--bg-card-dark);
+    border: 1.5px solid #BF4D0C;
+    border-radius: var(--radius-lg);
+    padding: var(--space-7) var(--space-6);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-5);
+  }
+
+  .sol-price {
+    font-size: var(--fs-caption);
+    font-weight: 400;
+    color: rgba(255, 255, 255, 0.45);
+  }
+
+  .sol-card h3 {
+    font-size: var(--fs-h4);
+    font-weight: 700;
+    color: #F5F5F5;
+    line-height: var(--lh-tight);
+  }
+
+  .sol-card p {
+    font-size: var(--fs-body-sm);
+    color: rgba(245, 245, 245, 0.55);
+    line-height: var(--lh-body);
+    flex: 1;
+  }
+
+  .sol-link {
+    font-size: var(--fs-body-sm);
+    font-weight: 500;
+    color: #BF4D0C;
+    transition: color var(--dur) var(--ease);
+    border-bottom: none;
+  }
+  .sol-link:hover { color: var(--laranja); }
+
+  @media (max-width: 900px) {
+    .soluctions-cards { grid-template-columns: 1fr; }
+  }
+</style>

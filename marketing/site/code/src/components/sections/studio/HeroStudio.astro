@@ -1,0 +1,214 @@
+---
+---
+
+<section class="hero-studio">
+  <div class="container hero-studio-inner">
+    <div class="hero-studio-content">
+      <h1 class="hero-studio-headline">
+        Um studio criado por quem<br />entende de negócio e código
+      </h1>
+
+      <p class="hero-studio-sub">
+        A Infosaas® nasceu da combinação de duas competências que raramente<br />
+        andam juntas: profundidade técnica e visão de negócio.
+      </p>
+
+      <div class="hero-studio-ctas">
+        <a href="/contato" class="btn-hero-primary">Falar com a gente →</a>
+      </div>
+    </div>
+
+    <div class="hero-studio-logo-strip">
+      <span class="logo-strip-label">Confiado por<br />grandes empresas</span>
+      <div class="logo-track-wrap-studio">
+        <div class="logo-track-studio">
+          <!-- Set 1 -->
+          <img src="/logos-clientes/G4.png"                 alt="G4"                   />
+          <img src="/logos-clientes/Group.png"              alt="V4 Company"           />
+          <img src="/logos-clientes/Frame.png"              alt="microsaas"            />
+          <img src="/logos-clientes/Frame-2.png"            alt="Sem Codar"            />
+          <img src="/logos-clientes/Group 10067.png"        alt="Turbox"               />
+          <img src="/logos-clientes/Group 10006.png"        alt="Rufy"                 />
+          <img src="/logos-clientes/Ativo 13 1.png"         alt="Nulink"               />
+          <img src="/logos-clientes/Frame-1.png"            alt="AI Builders"          />
+          <img src="/logos-clientes/instituto-singular.png" alt="Instituto Singular"   />
+          <img src="/logos-clientes/speake.png"             alt="Speake"               />
+          <img src="/logos-clientes/phlebo.png"             alt="Phlebo Academy"       />
+          <img src="/logos-clientes/pandora.png"            alt="Pandora Treinamentos" />
+          <img src="/logos-clientes/esporte-educa.png"      alt="Esporte Educa"        />
+          <img src="/logos-clientes/image 11.png"           alt="Fideliza Pro"         />
+          <img src="/logos-clientes/image 12.png"           alt="iDoméstica"           />
+          <!-- Set 2 — duplicado para loop seamless -->
+          <img src="/logos-clientes/G4.png"                 alt="G4"                   />
+          <img src="/logos-clientes/Group.png"              alt="V4 Company"           />
+          <img src="/logos-clientes/Frame.png"              alt="microsaas"            />
+          <img src="/logos-clientes/Frame-2.png"            alt="Sem Codar"            />
+          <img src="/logos-clientes/Group 10067.png"        alt="Turbox"               />
+          <img src="/logos-clientes/Group 10006.png"        alt="Rufy"                 />
+          <img src="/logos-clientes/Ativo 13 1.png"         alt="Nulink"               />
+          <img src="/logos-clientes/Frame-1.png"            alt="AI Builders"          />
+          <img src="/logos-clientes/instituto-singular.png" alt="Instituto Singular"   />
+          <img src="/logos-clientes/speake.png"             alt="Speake"               />
+          <img src="/logos-clientes/phlebo.png"             alt="Phlebo Academy"       />
+          <img src="/logos-clientes/pandora.png"            alt="Pandora Treinamentos" />
+          <img src="/logos-clientes/esporte-educa.png"      alt="Esporte Educa"        />
+          <img src="/logos-clientes/image 11.png"           alt="Fideliza Pro"         />
+          <img src="/logos-clientes/image 12.png"           alt="iDoméstica"           />
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .hero-studio {
+    background-color: var(--bg-hero);
+    background-image: url('/BG-SITE.png');
+    background-size: cover;
+    background-position: center;
+    height: 810px;
+  }
+
+  .hero-studio-inner {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding-top: 0;
+    padding-bottom: 48px;
+    height: 100%;
+  }
+
+  .hero-studio-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .hero-studio-headline {
+    font-size: clamp(40px, 6vw, 80px);
+    font-weight: 900;
+    line-height: 0.97;
+    letter-spacing: -0.03em;
+    color: #fff;
+    text-wrap: unset;
+  }
+
+  .hero-studio-sub {
+    font-size: 18px;
+    font-weight: 400;
+    color: rgba(255, 255, 255, 0.65);
+    margin-top: var(--space-5);
+    line-height: 1.65;
+    max-width: 700px;
+  }
+
+  .hero-studio-ctas {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: var(--space-5);
+  }
+
+  .btn-hero-primary {
+    display: inline-flex;
+    align-items: center;
+    padding: 13px 28px;
+    border-radius: var(--radius-pill);
+    font-size: 15px;
+    font-weight: 600;
+    white-space: nowrap;
+    background: #0A0A0A;
+    color: #fff;
+    border: none;
+    border-bottom: none;
+    transition: background var(--dur-fast) var(--ease);
+  }
+  .btn-hero-primary:hover {
+    background: #212121;
+    color: #fff;
+  }
+
+  /* Logo strip */
+  .hero-studio-logo-strip {
+    display: flex;
+    align-items: center;
+    gap: var(--space-5);
+    width: 100%;
+    padding-top: var(--space-5);
+    border-top: 1px solid rgba(255, 255, 255, 0.15);
+    overflow: hidden;
+  }
+
+  .logo-strip-label {
+    font-size: 11px;
+    font-weight: 400;
+    color: rgba(255, 255, 255, 0.35);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    white-space: nowrap;
+    flex-shrink: 0;
+    line-height: 1.5;
+    text-align: left;
+  }
+
+  .logo-track-wrap-studio {
+    overflow: hidden;
+    flex: 1;
+    min-width: 0;
+    mask-image: linear-gradient(
+      to right,
+      transparent 0%,
+      black 10%,
+      black 90%,
+      transparent 100%
+    );
+  }
+
+  .logo-track-studio {
+    display: flex;
+    align-items: center;
+    gap: var(--space-7);
+    width: max-content;
+    animation: logos-scroll-studio 55s linear infinite;
+  }
+
+  .logo-track-studio img {
+    height: 28px;
+    width: 130px;
+    object-fit: contain;
+    object-position: center;
+    display: block;
+    filter: brightness(0) invert(1);
+    opacity: 0.55;
+    flex-shrink: 0;
+  }
+
+  .logo-track-studio img[src*="instituto-singular"],
+  .logo-track-studio img[src*="phlebo"],
+  .logo-track-studio img[src*="esporte-educa"],
+  .logo-track-studio img[src*="pandora"],
+  .logo-track-studio img[src*="G4"],
+  .logo-track-studio img[src*="speake"] {
+    height: 42px;
+  }
+
+  @keyframes logos-scroll-studio {
+    from { transform: translateX(0); }
+    to   { transform: translateX(-50%); }
+  }
+
+  @media (max-width: 768px) {
+    .hero-studio {
+      height: auto;
+      min-height: 700px;
+    }
+    .hero-studio-inner {
+      padding-top: 0;
+      padding-bottom: 40px;
+    }
+    .hero-studio-logo-strip { gap: var(--space-4); }
+  }
+</style>

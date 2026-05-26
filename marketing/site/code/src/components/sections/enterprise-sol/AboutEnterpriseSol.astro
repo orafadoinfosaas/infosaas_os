@@ -1,0 +1,118 @@
+---
+---
+
+<section class="about-ent">
+  <div class="container">
+
+    <div class="about-ent-intro">
+      <img src="/barra-lateral-vertical.svg" class="about-ent-bar" alt="" aria-hidden="true" />
+      <div class="about-ent-intro-text">
+        <h2 class="about-ent-headline">
+          Soluções genéricas não atendem a complexidade da operação
+        </h2>
+      </div>
+    </div>
+
+    <div class="about-ent-cards">
+      <div class="about-ent-card">
+        <h3>Infraestrutura no limite</h3>
+        <p>
+          O sistema atual trava, perde performance ou gera inconsistências com o volume que o
+          negócio opera hoje. É uma questão de arquitetura.
+        </p>
+      </div>
+
+      <div class="about-ent-card">
+        <h3>Integrações fragmentadas</h3>
+        <p>
+          APIs pesadas, ERPs, CRMs e múltiplas fontes de dados que não se comunicam. Cada
+          integração manual gera custo, erro e atrasos na sua operação.
+        </p>
+      </div>
+
+      <div class="about-ent-card">
+        <h3>Conformidade com LGPD e GDPR</h3>
+        <p>
+          Dados sensíveis precisam de tratamento rigoroso. A exposição é conhecida, mas a estrutura
+          técnica para resolver não existe internamente ou não possui direcionamento estratégico.
+        </p>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<style>
+  .about-ent {
+    background: #fff;
+    padding: var(--space-9) 0;
+  }
+
+  .about-ent-intro {
+    display: flex;
+    align-items: flex-start;
+    gap: 20px;
+    margin-bottom: var(--space-8);
+    max-width: 900px;
+  }
+
+  .about-ent-bar {
+    width: 10px;
+    height: auto;
+    flex-shrink: 0;
+    display: block;
+  }
+
+  .about-ent-intro-text {
+    flex: 1;
+  }
+
+  .about-ent-headline {
+    font-size: clamp(36px, 4.5vw, 64px);
+    font-weight: 900;
+    line-height: 0.95;
+    letter-spacing: -0.02em;
+    color: #0A0A0A;
+    text-wrap: unset;
+    margin-top: 15px;
+  }
+
+  .about-ent-cards {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    border: 1.5px solid var(--laranja-deep);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+  }
+
+  .about-ent-card {
+    padding: var(--space-6);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-4);
+  }
+  .about-ent-card:not(:last-child) {
+    border-right: 1.5px solid var(--laranja-deep);
+  }
+
+  .about-ent-card h3 {
+    font-size: 18px;
+    font-weight: 700;
+    color: #0A0A0A;
+    line-height: var(--lh-tight);
+  }
+
+  .about-ent-card p {
+    font-size: 14px;
+    color: var(--cinza-600);
+    line-height: 1.65;
+  }
+
+  @media (max-width: 900px) {
+    .about-ent-cards { grid-template-columns: 1fr; }
+    .about-ent-card:not(:last-child) {
+      border-right: none;
+      border-bottom: 1.5px solid var(--laranja-deep);
+    }
+  }
+</style>

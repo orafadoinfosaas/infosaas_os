@@ -14,7 +14,6 @@ Site clean, minimalista, fiel à identidade visual: laranja `#FF3D00`, preto e o
 /solucoes/mvp              → Produto: MVP Ágil
 /solucoes/enterprise       → Produto: Soluções Enterprise
 /solucoes/consultoria      → Produto: Consultoria Estratégica
-/solucoes/suporte          → Produto: Suporte Premium
 /segmentos/educacao        → ICP: Educação
 /segmentos/saude           → ICP: Saúde
 /segmentos/enterprise      → ICP: Enterprise
@@ -34,7 +33,6 @@ Site clean, minimalista, fiel à identidade visual: laranja `#FF3D00`, preto e o
 - MVP Ágil — Do papel ao produto em semanas
 - Soluções Enterprise — Plataformas sob medida para negócios complexos
 - Consultoria Estratégica — Mentoria executiva com CEO + CMO
-- Suporte Premium — Evolução contínua após o lançamento
 
 **Dropdown Segmentos:**
 - Educação — Para infoprodutores, faculdades e plataformas educacionais
@@ -87,7 +85,6 @@ LinkedIn
 | `produto-mvp.md` | Página do produto MVP Ágil |
 | `produto-enterprise.md` | Página do produto Enterprise |
 | `produto-consultoria.md` | Página do produto Consultoria |
-| `produto-suporte.md` | Página do produto Suporte |
 | `icp-educacao.md` | Página do segmento Educação |
 | `icp-saude.md` | Página do segmento Saúde |
 | `icp-enterprise.md` | Página do segmento Enterprise |
