@@ -1,0 +1,144 @@
+---
+---
+
+<section class="about-studio">
+  <div class="container about-studio-inner">
+
+    <div class="about-studio-left">
+      <img src="/barra-lateral-vertical.svg" class="about-studio-bar" alt="" aria-hidden="true" />
+      <div class="about-studio-left-text">
+        <h2 class="about-studio-headline">
+          Clareza e sensatez acima do hype
+        </h2>
+        <p class="about-studio-body">
+          Nossa missão é desenvolver e implementar soluções com clareza e sensatez para os negócios.
+          Não é metáfora. É o antídoto para dois males que a gente vê todo dia no mercado de
+          tecnologia: projetos que ninguém entende e decisões tomadas no hype.
+        </p>
+      </div>
+    </div>
+
+    <div class="about-studio-right">
+      <div class="about-studio-item">
+        <div class="about-studio-check">
+          <svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+            <circle cx="10" cy="10" r="10" fill="var(--laranja)"/>
+            <path d="M5.5 10.5L8.5 13.5L14.5 7" stroke="#fff" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
+        <p class="about-studio-value">Não negociamos com a mediocridade.</p>
+      </div>
+
+      <div class="about-studio-item">
+        <div class="about-studio-check">
+          <svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+            <circle cx="10" cy="10" r="10" fill="var(--laranja)"/>
+            <path d="M5.5 10.5L8.5 13.5L14.5 7" stroke="#fff" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
+        <p class="about-studio-value">Liberdade com responsabilidade.</p>
+      </div>
+
+      <div class="about-studio-item">
+        <div class="about-studio-check">
+          <svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+            <circle cx="10" cy="10" r="10" fill="var(--laranja)"/>
+            <path d="M5.5 10.5L8.5 13.5L14.5 7" stroke="#fff" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
+        <p class="about-studio-value">Dividir para multiplicar.</p>
+      </div>
+
+      <div class="about-studio-item">
+        <div class="about-studio-check">
+          <svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+            <circle cx="10" cy="10" r="10" fill="var(--laranja)"/>
+            <path d="M5.5 10.5L8.5 13.5L14.5 7" stroke="#fff" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
+        <p class="about-studio-value">É melhor ter um cliente satisfeito do que vinte insatisfeitos.</p>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<style>
+  .about-studio {
+    background: #fff;
+    padding: var(--space-9) 0;
+  }
+
+  .about-studio-inner {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: clamp(48px, 6vw, 96px);
+    align-items: center;
+  }
+
+  .about-studio-left {
+    display: flex;
+    align-items: flex-start;
+    gap: 20px;
+  }
+
+  .about-studio-bar {
+    width: 12px;
+    height: auto;
+    flex-shrink: 0;
+    display: block;
+    margin-top: 12px;
+  }
+
+  .about-studio-left-text {
+    flex: 1;
+  }
+
+  .about-studio-headline {
+    font-size: clamp(36px, 4vw, 50px);
+    font-weight: 900;
+    line-height: 0.95;
+    letter-spacing: -0.02em;
+    color: #0A0A0A;
+    text-wrap: unset;
+    margin-bottom: var(--space-5);
+    margin-top: 10px;
+  }
+
+  .about-studio-body {
+    font-size: var(--fs-body);
+    color: var(--cinza-600);
+    line-height: var(--lh-body);
+    max-width: 540px;
+  }
+
+  .about-studio-right {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-6);
+  }
+
+  .about-studio-item {
+    display: flex;
+    align-items: flex-start;
+    gap: var(--space-4);
+  }
+
+  .about-studio-check {
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+
+  .about-studio-value {
+    font-size: var(--fs-h4);
+    font-weight: 700;
+    color: #0A0A0A;
+    line-height: var(--lh-tight);
+  }
+
+  @media (max-width: 900px) {
+    .about-studio-inner {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

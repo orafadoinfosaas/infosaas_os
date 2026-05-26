@@ -1,217 +1,27 @@
 ---
-import BaseLayout from "../../layouts/BaseLayout.astro";
-import CTASection from "../../components/CTASection.astro";
-
-const caracteristicas = [
-  { titulo: "Operação complexa, múltiplos sistemas", desc: "ERPs, CRMs, dashboards de gestão, APIs externas, ferramentas por área. A fragmentação é o estado padrão — e cada integração manual é um custo silencioso." },
-  { titulo: "Pressão por eficiência operacional", desc: "Sócios, investidores e conselhos cobram resultado com menos custo. A resposta precisa ser tecnologia que escala sem crescimento linear de headcount." },
-  { titulo: "Histórico ruim com fornecedores", desc: "Um projeto entregue com 6 meses de atraso e metade do escopo não é raridade — é a experiência mais comum. A cicatriz criou um critério de escolha muito mais rigoroso." },
-];
-
-const dores = [
-  "Processos críticos que dependem de pessoas específicas para funcionar",
-  "Decisões estratégicas tomadas com dados fragmentados ou desatualizados",
-  "Sistemas de diferentes empresas do portfólio sem integração",
-  "TI interno sobrecarregado, sem capacidade para projetos de inovação",
-  "Fornecedor anterior que entregou atrasado, abaixo do escopo ou sumiu",
-  "Produto digital que não reflete o porte da empresa",
-];
-
-const diferenciais = [
-  { titulo: "Equipe nomeada antes do contrato", desc: "Antes de assinar, você sabe exatamente quem vai trabalhar no projeto. Nenhum time desconhecido aparece depois do kickoff." },
-  { titulo: "Contrato com escopo claro", desc: "Nenhuma promessa vaga. O escopo é documentado, as entregas por sprint são acordadas e qualquer mudança é tratada como decisão." },
-  { titulo: "Histórico verificável", desc: "Mais de R$ 10 milhões em projetos de tecnologia. NPS 9.2. Referências de clientes anteriores disponíveis mediante solicitação." },
-];
-
-const clientes = ["V4 Company", "Rufy", "AI Builders", "Fideliza PRO", "iDoméstica", "CPX"];
-
-const solucoes = [
-  { nome: "Soluções Enterprise", desc: "Para construir plataformas e automações sob medida — com performance, integrações pesadas e arquitetura que sustente a operação.", href: "/solucoes/enterprise" },
-  { nome: "MVP Ágil", desc: "Para validar uma nova frente de negócio ou produto interno com agilidade.", href: "/solucoes/mvp" },
-  { nome: "Consultoria Estratégica", desc: "Para alinhar estratégia de produto e tecnologia com os objetivos de negócio.", href: "/solucoes/consultoria" },
-];
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+import HeroEnterprise from '../../components/sections/enterprise/HeroEnterprise.astro';
+import AboutEnterprise from '../../components/sections/enterprise/AboutEnterprise.astro';
+import ProblemsEnterprise from '../../components/sections/enterprise/ProblemsEnterprise.astro';
+import SocialNumbersEnterprise from '../../components/sections/enterprise/SocialNumbersEnterprise.astro';
+import Soluctions from '../../components/sections/shared/Soluctions.astro';
+import CTA from '../../components/sections/shared/CTA.astro';
 ---
 
 <BaseLayout
-  title="Soluções para Enterprise — infosaas®"
-  description="Para holdings, corporações e negócios com operação complexa que precisam de um parceiro técnico à altura do porte da empresa."
+  title="Enterprise — Infosaas®"
+  description="Para empresas que exigem senioridade. Parceiros técnicos à altura da operação de holdings, corporações e negócios com múltiplas empresas."
 >
-
-  <!-- HERO -->
-  <section class="hero-enterprise section">
-    <div class="container">
-      <span class="eyebrow eyebrow--accent">Segmento: Enterprise</span>
-      <h1 class="hero-headline">
-        Já foram queimados antes.<br>É por isso que<br>pedem referências.
-      </h1>
-      <p class="hero-sub">
-        Para empresas com estrutura consolidada que precisam de um parceiro técnico à altura da operação — não de um fornecedor que executa escopo e some.
-      </p>
-      <a href="/contato" class="btn btn--primary btn--arrow">Fale com a gente</a>
-    </div>
-  </section>
-
-  <!-- CONTEXTO -->
-  <section class="section section--white">
-    <div class="container">
-      <span class="eyebrow">Por que empresas enterprise chegam à infosaas</span>
-      <h2 class="section-headline">A complexidade da operação<br>superou a capacidade da tecnologia atual.</h2>
-      <p class="section-intro">
-        Holdings, corporações e negócios com múltiplas empresas no portfólio chegam com um histórico em comum: já tentaram com outras empresas, viram projetos atrasarem, escopos encolherem ou times desmobilizarem sem avisar.
-      </p>
-      <div class="grid-3">
-        {caracteristicas.map(c => (
-          <div class="item-card">
-            <h3>{c.titulo}</h3>
-            <p>{c.desc}</p>
-          </div>
-        ))}
-      </div>
-    </div>
-  </section>
-
-  <!-- DORES -->
-  <section class="section">
-    <div class="container dores-inner">
-      <div>
-        <span class="eyebrow">O que vemos com frequência</span>
-        <h2 class="section-headline">Se qualquer um desses soa familiar,<br>a conversa vale.</h2>
-      </div>
-      <ul class="dores-lista">
-        {dores.map(d => (
-          <li class="dor-item">
-            <span class="dor-icon">—</span>
-            <p>{d}</p>
-          </li>
-        ))}
-      </ul>
-    </div>
-  </section>
-
-  <!-- COMO TRABALHAMOS -->
-  <section class="section section--dark">
-    <div class="container">
-      <span class="eyebrow eyebrow--light">Nossa atuação em enterprise</span>
-      <h2 class="section-headline section-headline--light">Parceiro de longo prazo.<br>Não fornecedor de sprint.</h2>
-      <p class="atuacao-desc">
-        Clientes enterprise ficam. O relacionamento não termina com a entrega — evolui para suporte, novas frentes e projetos consequentes. Isso exige um nível de confiança que só se constrói com transparência, cumprimento de prazo e um time que o cliente conhece pelo nome.
-      </p>
-      <p class="clientes-nomes">{clientes.join(" · ")} · entre outros</p>
-    </div>
-  </section>
-
-  <!-- DIFERENCIAIS -->
-  <section class="section section--white">
-    <div class="container">
-      <span class="eyebrow">Por que a infosaas</span>
-      <h2 class="section-headline">Referências disponíveis.<br>Time fixo por contrato.<br>Sem surpresas.</h2>
-      <div class="grid-3">
-        {diferenciais.map(d => (
-          <div class="diferencial-item">
-            <h3>{d.titulo}</h3>
-            <p>{d.desc}</p>
-          </div>
-        ))}
-      </div>
-    </div>
-  </section>
-
-  <!-- SOLUÇÕES -->
-  <section class="section">
-    <div class="container">
-      <span class="eyebrow">Soluções que fazem sentido aqui</span>
-      <div class="solucoes-cards">
-        {solucoes.map(s => (
-          <a href={s.href} class="solucao-card">
-            <h3>{s.nome}</h3>
-            <p>{s.desc}</p>
-            <span class="solucao-link">Ver {s.nome} →</span>
-          </a>
-        ))}
-      </div>
-    </div>
-  </section>
-
-  <CTASection
-    headline={"A primeira conversa\né para entender o negócio.\nNão para vender."}
-    sub="Sem proposta genérica. Sem template de escopo. A reunião inicial é para entender o contexto — e avaliar, dos dois lados, se faz sentido seguir."
-    ctaLabel="Fale com a gente"
-    ctaHref="/contato"
-    variant="dark"
-  />
-
+  <Header />
+  <main>
+    <HeroEnterprise />
+    <AboutEnterprise />
+    <ProblemsEnterprise />
+    <SocialNumbersEnterprise />
+    <Soluctions />
+    <CTA />
+  </main>
+  <Footer />
 </BaseLayout>
-
-<style>
-  .hero-enterprise { background: var(--branco-off); }
-  .hero-headline {
-    font-size: var(--fs-display); font-weight: 900;
-    line-height: var(--lh-display); letter-spacing: var(--tr-tight);
-    margin-block: var(--space-5); max-width: 680px;
-  }
-  .hero-sub {
-    font-size: var(--fs-body-lg); color: var(--cinza-600);
-    line-height: 1.65; max-width: 560px; margin-bottom: var(--space-6);
-  }
-
-  .section-headline {
-    font-size: var(--fs-h2); font-weight: 900; line-height: var(--lh-heading);
-    letter-spacing: var(--tr-tight); margin-bottom: var(--space-8);
-  }
-  .section-headline--light { color: var(--fg-on-dark); }
-
-  .section-intro {
-    font-size: var(--fs-body-lg); color: var(--cinza-600);
-    line-height: 1.65; margin-bottom: var(--space-8);
-  }
-
-  .item-card {
-    background: var(--bg-elev); border: 1px solid var(--border);
-    border-radius: var(--radius-lg); padding: var(--space-6);
-    display: flex; flex-direction: column; gap: var(--space-3);
-  }
-  .item-card h3 { font-size: var(--fs-h4); font-weight: 700; }
-  .item-card p { font-size: 15px; color: var(--cinza-600); line-height: 1.6; }
-
-  .dores-inner {
-    display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-10); align-items: start;
-  }
-  .dores-lista { list-style: none; display: flex; flex-direction: column; }
-  .dor-item {
-    display: flex; gap: var(--space-4); align-items: baseline;
-    padding-block: var(--space-4); border-bottom: 1px solid var(--border);
-  }
-  .dor-item:last-child { border-bottom: 0; }
-  .dor-icon { color: var(--laranja); font-weight: 700; flex-shrink: 0; }
-  .dor-item p { font-size: 15px; color: var(--cinza-600); line-height: 1.5; }
-
-  .atuacao-desc {
-    font-size: var(--fs-body-lg); color: var(--cinza-400);
-    line-height: 1.65; max-width: 640px; margin-bottom: var(--space-6);
-  }
-  .clientes-nomes { font-size: 15px; color: var(--cinza-500); line-height: 2; }
-
-  .diferencial-item {
-    border-left: 2px solid var(--laranja); padding-left: var(--space-5);
-    display: flex; flex-direction: column; gap: var(--space-3);
-  }
-  .diferencial-item h3 { font-size: var(--fs-h4); font-weight: 700; }
-  .diferencial-item p { font-size: 15px; color: var(--cinza-600); line-height: 1.6; }
-
-  .solucoes-cards { display: flex; flex-direction: column; gap: var(--space-4); margin-top: var(--space-6); }
-  .solucao-card {
-    display: flex; align-items: center; gap: var(--space-6);
-    background: var(--bg-elev); border: 1px solid var(--border);
-    border-radius: var(--radius-lg); padding: var(--space-6);
-    transition: box-shadow var(--dur) var(--ease), transform var(--dur) var(--ease);
-  }
-  .solucao-card:hover { box-shadow: var(--shadow); transform: translateY(-1px); }
-  .solucao-card h3 { font-size: var(--fs-h4); font-weight: 700; min-width: 200px; }
-  .solucao-card p { font-size: 15px; color: var(--cinza-600); line-height: 1.5; flex: 1; }
-  .solucao-link { font-size: 14px; font-weight: 600; color: var(--laranja); white-space: nowrap; }
-
-  @media (max-width: 900px) {
-    .dores-inner { grid-template-columns: 1fr; gap: var(--space-7); }
-    .solucao-card { flex-direction: column; align-items: flex-start; }
-  }
-</style>

@@ -1,0 +1,106 @@
+---
+---
+
+<section class="customers">
+  <div class="container">
+    <img src="/barra-superior.svg" class="customers-bar" alt="" aria-hidden="true" />
+
+    <h2 class="customers-headline">
+      Trabalhamos para quem<br />precisa mais do que código
+    </h2>
+
+    <div class="customers-cards">
+      <article class="customer-card">
+        <h3>Educação</h3>
+        <p>
+          Especialistas no setor educacional desde 2017. Infoprodutores, faculdade e plataformas
+          até corporações educacionais de grande porte.
+        </p>
+        <a href="/segmentos/educacao" class="card-link">Soluções para Educação →</a>
+      </article>
+
+      <article class="customer-card">
+        <h3>Saúde</h3>
+        <p>
+          Presença no setor desde 2022. Clínicas, healthtechs, operadoras e empresas de gestão
+          hospitalar.
+        </p>
+        <a href="/segmentos/saude" class="card-link">Soluções para Saúde →</a>
+      </article>
+
+      <article class="customer-card">
+        <h3>Enterprise</h3>
+        <p>
+          Empresas de qualquer nicho com maturidade e complexidade operacional para uma parceria
+          estratégica de alto impacto.
+        </p>
+        <a href="/segmentos/enterprise" class="card-link">Soluções para Enterprises →</a>
+      </article>
+    </div>
+  </div>
+</section>
+
+<style>
+  .customers {
+    background: var(--cinza-100);
+    padding: var(--space-9) 0;
+  }
+
+  .customers-bar {
+    display: block;
+    width: 157px;
+    height: auto;
+    margin-bottom: var(--space-5);
+  }
+
+  .customers-headline {
+    font-size: var(--fs-h1);
+    font-weight: 900;
+    line-height: var(--lh-display);
+    letter-spacing: var(--tr-tight);
+    color: var(--preto);
+    margin-bottom: var(--space-8);
+  }
+
+  .customers-cards {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--space-5);
+  }
+
+  .customer-card {
+    background: var(--branco);
+    border: 1.5px solid var(--laranja-deep);
+    border-radius: var(--radius-lg);
+    padding: var(--space-7) var(--space-6);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-5);
+  }
+
+  .customer-card h3 {
+    font-size: var(--fs-h4);
+    font-weight: 700;
+    color: var(--preto);
+    line-height: var(--lh-tight);
+  }
+
+  .customer-card p {
+    font-size: var(--fs-body-sm);
+    color: var(--cinza-600);
+    line-height: var(--lh-body);
+    flex: 1;
+  }
+
+  .card-link {
+    font-size: var(--fs-body-sm);
+    font-weight: 500;
+    color: var(--laranja-deep);
+    transition: color var(--dur) var(--ease);
+  }
+  .card-link:hover { color: var(--laranja); }
+
+  @media (max-width: 900px) {
+    .customers-cards { grid-template-columns: 1fr; }
+  }
+</style>
