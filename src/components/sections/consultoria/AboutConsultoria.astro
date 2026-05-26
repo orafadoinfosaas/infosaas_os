@@ -4,6 +4,8 @@
 <section class="about-con">
   <div class="container">
 
+    <img src="/barra-superior.svg" class="about-con-bar-top" alt="" aria-hidden="true" />
+
     <div class="about-con-intro">
       <img src="/barra-lateral-vertical.svg" class="about-con-bar" alt="" aria-hidden="true" />
       <div class="about-con-intro-text">
@@ -54,6 +56,13 @@
     gap: 20px;
     margin-bottom: var(--space-8);
     max-width: 900px;
+  }
+
+  .about-con-bar-top {
+    display: none;
+    width: 157px;
+    height: auto;
+    margin-bottom: var(--space-5);
   }
 
   .about-con-bar {
@@ -114,5 +123,12 @@
       border-right: none;
       border-bottom: 1.5px solid var(--laranja-deep);
     }
+  }
+
+  @media (max-width: 768px) {
+    .about-con-bar-top { display: block; }
+    .about-con-bar { display: none; }
+    .about-con-intro { gap: 0; }
+    .about-con-headline { margin-top: 0; }
   }
 </style>

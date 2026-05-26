@@ -5,11 +5,11 @@
   <div class="container hero-studio-inner">
     <div class="hero-studio-content">
       <h1 class="hero-studio-headline">
-        Um studio criado por quem<br />entende de negócio e código
+        Um studio criado por quem<span class="headline-br"><br /></span> entende de negócio e código
       </h1>
 
       <p class="hero-studio-sub">
-        A Infosaas® nasceu da combinação de duas competências que raramente<br />
+        A Infosaas® nasceu da combinação de duas competências que raramente<span class="headline-br"><br /></span>
         andam juntas: profundidade técnica e visão de negócio.
       </p>
 
@@ -202,13 +202,19 @@
 
   @media (max-width: 768px) {
     .hero-studio {
-      height: auto;
-      min-height: 700px;
+      height: calc(100svh - 72px);
     }
     .hero-studio-inner {
-      padding-top: 0;
+      padding-top: var(--space-7);
       padding-bottom: 40px;
     }
-    .hero-studio-logo-strip { gap: var(--space-4); }
+    .hero-studio-logo-strip {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: var(--space-3);
+    }
+    .logo-strip-label { text-align: left; }
+    .logo-track-wrap-studio { width: 100%; }
+    .headline-br { display: none; }
   }
 </style>

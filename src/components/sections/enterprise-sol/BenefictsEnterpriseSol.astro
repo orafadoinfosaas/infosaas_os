@@ -7,7 +7,7 @@
     <img src="/barra-superior.svg" class="beneficts-ent-bar" alt="" aria-hidden="true" />
 
     <h2 class="beneficts-ent-headline">
-      Diferenças que só<br />o Infosaas® te entrega
+      Diferenças que só<span class="headline-br"><br /></span> o Infosaas® te entrega
     </h2>
 
     <div class="beneficts-ent-grid">
@@ -174,8 +174,7 @@
   }
 
   @media (max-width: 768px) {
-    .beneficts-ent-grid {
-      grid-template-columns: 1fr;
-    }
+    .beneficts-ent-grid { grid-template-columns: 1fr; }
+    .headline-br { display: none; }
   }
 </style>

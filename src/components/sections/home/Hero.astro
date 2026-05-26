@@ -219,15 +219,23 @@
 
   @media (max-width: 768px) {
     .hero {
-      height: auto;
-      min-height: 700px;
+      /* Altura explícita = viewport menos o header sticky (72px).
+         Necessário para que height:100% no .hero-inner resolva corretamente
+         e o flex-layout ancore o logo strip no rodapé da seção. */
+      height: calc(100svh - 72px);
     }
     .hero-inner {
-      padding-top: 0;
+      padding-top: var(--space-7);   /* espaço entre header e headline */
       padding-bottom: 40px;
     }
     .hero-ctas { flex-direction: column; align-items: center; }
-    .hero-logo-strip { gap: var(--space-4); }
+    .hero-logo-strip {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: var(--space-3);
+    }
+    .logo-strip-label { text-align: left; }
+    .logo-track-wrap { width: 100%; }
   }
 </style>
 
