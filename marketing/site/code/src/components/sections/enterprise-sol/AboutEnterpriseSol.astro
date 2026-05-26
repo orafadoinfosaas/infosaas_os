@@ -4,6 +4,8 @@
 <section class="about-ent">
   <div class="container">
 
+    <img src="/barra-superior.svg" class="about-ent-bar-top" alt="" aria-hidden="true" />
+
     <div class="about-ent-intro">
       <img src="/barra-lateral-vertical.svg" class="about-ent-bar" alt="" aria-hidden="true" />
       <div class="about-ent-intro-text">
@@ -54,6 +56,13 @@
     gap: 20px;
     margin-bottom: var(--space-8);
     max-width: 900px;
+  }
+
+  .about-ent-bar-top {
+    display: none;
+    width: 157px;
+    height: auto;
+    margin-bottom: var(--space-5);
   }
 
   .about-ent-bar {
@@ -114,5 +123,12 @@
       border-right: none;
       border-bottom: 1.5px solid var(--laranja-deep);
     }
+  }
+
+  @media (max-width: 768px) {
+    .about-ent-bar-top { display: block; }
+    .about-ent-bar { display: none; }
+    .about-ent-intro { gap: 0; }
+    .about-ent-headline { margin-top: 0; }
   }
 </style>

@@ -200,7 +200,17 @@
     .sn-metrics { grid-template-columns: repeat(2, 1fr); }
   }
 
+  @media (max-width: 768px) {
+    .social-numbers { padding: var(--space-8) 0; }
+    .sn-headline {
+      font-size: clamp(28px, 8vw, 40px);
+      overflow-wrap: break-word;
+    }
+    .sn-quote-block { margin-bottom: var(--space-7); }
+    .sn-diferenciais { margin-bottom: var(--space-7); }
+  }
+
   @media (max-width: 560px) {
-    .sn-metrics { grid-template-columns: 1fr; }
+    .sn-metrics { grid-template-columns: repeat(2, 1fr); }
   }
 </style>

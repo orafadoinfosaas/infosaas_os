@@ -4,11 +4,13 @@
 <section class="about-mvp">
   <div class="container">
 
+    <img src="/barra-superior.svg" class="about-mvp-bar-top" alt="" aria-hidden="true" />
+
     <div class="about-mvp-intro">
       <img src="/barra-lateral-vertical.svg" class="about-mvp-bar" alt="" aria-hidden="true" />
       <div class="about-mvp-intro-text">
         <h2 class="about-mvp-headline">
-          O mercado não pode<br />esperar seis meses
+          O mercado não pode<span class="headline-br"><br /></span> esperar seis meses
         </h2>
       </div>
     </div>
@@ -55,6 +57,13 @@
     gap: 20px;
     margin-bottom: var(--space-8);
     max-width: 900px;
+  }
+
+  .about-mvp-bar-top {
+    display: none;
+    width: 157px;
+    height: auto;
+    margin-bottom: var(--space-5);
   }
 
   .about-mvp-bar {
@@ -115,5 +124,13 @@
       border-right: none;
       border-bottom: 1.5px solid var(--laranja-deep);
     }
+  }
+
+  @media (max-width: 768px) {
+    .about-mvp-bar-top { display: block; }
+    .about-mvp-bar { display: none; }
+    .about-mvp-intro { gap: 0; }
+    .about-mvp-headline { margin-top: 0; }
+    .headline-br { display: none; }
   }
 </style>

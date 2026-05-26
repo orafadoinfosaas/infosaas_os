@@ -7,7 +7,7 @@
     <img src="/barra-superior.svg" class="problems-bar" alt="" aria-hidden="true" />
 
     <h2 class="problems-headline">
-      Se qualquer um desses problemas soar<br />familiar, converse com a gente
+      Se qualquer um desses problemas soar<span class="headline-br"><br /></span> familiar, converse com a gente
     </h2>
 
     <div class="problems-grid">
@@ -132,5 +132,9 @@
 
   @media (max-width: 900px) {
     .problems-grid { grid-template-columns: 1fr; }
+  }
+
+  @media (max-width: 768px) {
+    .headline-br { display: none; }
   }
 </style>
