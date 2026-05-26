@@ -12,12 +12,12 @@
     "astro": "astro"
   },
   "dependencies": {
+    "@astrojs/sitemap": "^3.7.3",
     "astro": "^6.3.7",
-    "intl-tel-input": "^29.0.1",
-    "react": "^19.2.6",
-    "react-dom": "^19.2.6"
+    "intl-tel-input": "^29.0.1"
   },
   "devDependencies": {
-    "befree-visual-edit": "^1.0.2"
+    "befree-visual-edit": "^1.0.2",
+    "sharp": "^0.34.5"
   }
 }
