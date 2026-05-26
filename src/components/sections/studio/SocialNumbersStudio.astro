@@ -1,0 +1,203 @@
+---
+---
+
+<section class="sn-studio">
+  <div class="container">
+    <div class="sn-studio-inner">
+      <img src="/barra-lateral-vertical-mono.svg" class="sn-studio-bar" alt="" aria-hidden="true" />
+
+      <div class="sn-studio-content">
+
+        <div class="sn-studio-quote-block">
+          <img src="/aspas.svg" class="sn-studio-aspas" alt="" aria-hidden="true" />
+          <h2 class="sn-studio-headline">
+            Funcionamos em uma rotação diferente do mercado.
+          </h2>
+          <p class="sn-studio-body">
+            A maioria dos nossos clientes chegaram com uma cicatriz:
+            <strong>um projeto entregue com atraso, fora do escopo, ou uma empresa que sumiu
+            depois do pagamento.</strong> Entendemos que a desconfiança do mercado nasce por
+            causa de profissionais ruins. Por isso nossa rotação e forma de trabalho é diferente.
+          </p>
+        </div>
+
+        <div class="sn-studio-diferenciais">
+          <div class="sn-studio-dif">
+            <h4>Equipe Fixa</h4>
+            <p>
+              Antes de assinar, você sabe exatamente quem vai trabalhar no projeto.
+              O mesmo time do início ao fim — e só entra em quem faz.
+            </p>
+          </div>
+          <div class="sn-studio-dif">
+            <h4>Senioridade Evidente</h4>
+            <p>
+              Profissionais sêniors. Nenhum freelancer ou subcontratado aparece no meio do
+              projeto para você.
+            </p>
+          </div>
+          <div class="sn-studio-dif">
+            <h4>NPS Visceral Acima de 9,0</h4>
+            <p>
+              Não é número do marketing. É o que os clientes respondem quando perguntamos
+              diretamente se indicariam a Infosaas®.
+            </p>
+          </div>
+        </div>
+
+        <div class="sn-studio-metrics">
+          <div class="sn-studio-metric">
+            <span class="sn-studio-number">10 anos</span>
+            <span class="sn-studio-label">de experiência de mercado</span>
+          </div>
+          <div class="sn-studio-metric">
+            <span class="sn-studio-number">10</span>
+            <span class="sn-studio-label">profissionais sêniors</span>
+          </div>
+          <div class="sn-studio-metric">
+            <span class="sn-studio-number">R$ 60M+</span>
+            <span class="sn-studio-label">Receita gerada para clientes</span>
+          </div>
+          <div class="sn-studio-metric">
+            <span class="sn-studio-number">9.2</span>
+            <span class="sn-studio-label">de NPS dos nossos clientes</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .sn-studio {
+    background-image: url('/Rectangle-22.jpg');
+    background-size: cover;
+    background-position: center;
+    padding: var(--space-9) 0;
+    color: #fff;
+  }
+
+  .sn-studio-inner {
+    display: flex;
+    align-items: flex-start;
+    gap: 20px;
+  }
+
+  .sn-studio-bar {
+    width: 10px;
+    height: auto;
+    flex-shrink: 0;
+    display: block;
+  }
+
+  .sn-studio-content {
+    flex: 1;
+  }
+
+  .sn-studio-quote-block {
+    margin-bottom: var(--space-8);
+  }
+
+  .sn-studio-aspas {
+    display: block;
+    width: 60px;
+    height: auto;
+    margin-bottom: var(--space-5);
+  }
+
+  .sn-studio-headline {
+    font-size: clamp(36px, 4vw, 56px);
+    font-weight: 900;
+    line-height: 1.05;
+    letter-spacing: -0.02em;
+    color: #fff;
+    margin-bottom: var(--space-5);
+  }
+
+  .sn-studio-body {
+    font-size: var(--fs-body);
+    color: rgba(255, 255, 255, 0.75);
+    line-height: var(--lh-body);
+    max-width: 700px;
+  }
+  .sn-studio-body strong {
+    color: #fff;
+    font-weight: 600;
+  }
+
+  .sn-studio-diferenciais {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    border: 1.5px solid rgba(255, 255, 255, 0.35);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    margin-bottom: var(--space-8);
+  }
+
+  .sn-studio-dif {
+    padding: var(--space-6);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-4);
+  }
+  .sn-studio-dif:not(:last-child) {
+    border-right: 1.5px solid rgba(255, 255, 255, 0.35);
+  }
+
+  .sn-studio-dif h4 {
+    font-size: var(--fs-h4);
+    font-weight: 700;
+    color: #fff;
+    line-height: var(--lh-tight);
+  }
+
+  .sn-studio-dif p {
+    font-size: var(--fs-body-sm);
+    color: rgba(255, 255, 255, 0.65);
+    line-height: var(--lh-body);
+  }
+
+  .sn-studio-metrics {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: var(--space-5);
+  }
+
+  .sn-studio-metric {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  .sn-studio-number {
+    font-size: clamp(26px, 3vw, 54px);
+    font-weight: 900;
+    line-height: 1;
+    letter-spacing: -0.02em;
+    color: #fff;
+  }
+
+  .sn-studio-label {
+    font-size: var(--fs-body);
+    color: rgba(255, 255, 255, 0.6);
+    line-height: 1.4;
+  }
+
+  @media (max-width: 900px) {
+    .sn-studio-bar { display: none; }
+    .sn-studio-diferenciais {
+      grid-template-columns: 1fr;
+      border-radius: var(--radius-lg);
+    }
+    .sn-studio-dif:not(:last-child) {
+      border-right: none;
+      border-bottom: 1.5px solid rgba(255, 255, 255, 0.35);
+    }
+    .sn-studio-metrics { grid-template-columns: repeat(2, 1fr); }
+  }
+
+  @media (max-width: 560px) {
+    .sn-studio-metrics { grid-template-columns: 1fr; }
+  }
+</style>
