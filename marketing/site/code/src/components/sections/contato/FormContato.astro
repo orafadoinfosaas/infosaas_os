@@ -26,8 +26,8 @@ import 'intl-tel-input/styles';
     </div>
   </div>
 
-  <div class="contato-right">
-    <form class="contato-form" action="#" novalidate>
+  <div class="contato-right" id="contato-right">
+    <form class="contato-form" id="contato-form" action="#" novalidate>
 
       <div class="field">
         <label for="nome" class="field-label">Nome completo</label>
@@ -97,9 +97,37 @@ import 'intl-tel-input/styles';
         </span>
       </label>
 
-      <button type="submit" class="btn-submit">Aplicar agora</button>
+      <button type="submit" class="btn-submit" id="btn-submit">Aplicar agora</button>
 
     </form>
+
+    <!-- ── Estado de sucesso ─────────────────────────────── -->
+    <div class="form-feedback" id="form-success" hidden aria-live="polite">
+      <div class="feedback-icon">
+        <svg width="64" height="64" viewBox="0 0 64 64" fill="none" aria-hidden="true">
+          <circle cx="32" cy="32" r="32" fill="var(--laranja)"/>
+          <path d="M19 32.5L27.5 41L45 23" stroke="white" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </div>
+      <h2 class="feedback-title">Aplicação enviada<br />com sucesso!</h2>
+      <p class="feedback-body">Em instantes, você receberá uma mensagem do nosso time no seu whatsapp.</p>
+      <a href="/" class="btn-feedback-back">Voltar para o site</a>
+    </div>
+
+    <!-- ── Estado de erro ────────────────────────────────── -->
+    <div class="form-feedback" id="form-error" hidden aria-live="polite">
+      <div class="feedback-icon">
+        <svg width="64" height="64" viewBox="0 0 64 64" fill="none" aria-hidden="true">
+          <path d="M32 6L59 54H5L32 6Z" fill="var(--laranja-deep)"/>
+          <rect x="30" y="24" width="4" height="16" rx="2" fill="white"/>
+          <circle cx="32" cy="46" r="2.5" fill="white"/>
+        </svg>
+      </div>
+      <h2 class="feedback-title">Tivemos um<br />problema no envio!</h2>
+      <p class="feedback-body">Tente novamente ou acione nosso time em <a href="mailto:contato@infosaas.ai" class="feedback-link">contato@infosaas.ai</a>.</p>
+      <a href="/" class="btn-feedback-back">Voltar para o site</a>
+    </div>
+
   </div>
 
 </section>
@@ -349,6 +377,72 @@ import 'intl-tel-input/styles';
     box-shadow: var(--shadow-accent);
   }
 
+  /* ── Feedback states (success / error) ──────────────────── */
+  .contato-right.is-feedback {
+    justify-content: center;
+    align-items: center;
+  }
+
+  .form-feedback[hidden] { display: none; }
+
+  .form-feedback:not([hidden]) {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: var(--space-5);
+    max-width: 340px;
+    width: 100%;
+  }
+
+  .feedback-icon {
+    flex-shrink: 0;
+    line-height: 0;
+  }
+
+  .feedback-title {
+    font-size: clamp(28px, 3vw, 36px);
+    font-weight: 900;
+    line-height: 1.05;
+    letter-spacing: -0.02em;
+    color: #fff;
+    margin: 0;
+  }
+
+  .feedback-body {
+    font-size: var(--fs-body-sm);
+    color: rgba(255, 255, 255, 0.75);
+    line-height: var(--lh-body);
+    margin: 0;
+  }
+
+  .feedback-link {
+    color: rgba(255, 255, 255, 0.9);
+    text-decoration: underline;
+    text-underline-offset: 2px;
+    border-bottom: none;
+  }
+
+  .btn-feedback-back {
+    display: block;
+    width: 100%;
+    padding: 15px;
+    background: #0A0A0A;
+    color: #fff;
+    font-size: var(--fs-body);
+    font-weight: 600;
+    font-family: inherit;
+    border-radius: var(--radius-pill);
+    text-align: center;
+    border-bottom: none;
+    margin-top: var(--space-2);
+    transition: background var(--dur) var(--ease);
+  }
+  .btn-feedback-back:hover {
+    background: #212121;
+    color: #fff;
+  }
+
   /* ── Responsive ───────────────────────────────────────── */
   @media (max-width: 900px) {
     .contato {
@@ -443,9 +537,24 @@ import 'intl-tel-input/styles';
 <script>
   import intlTelInput from 'intl-tel-input/intlTelInputWithUtils';
 
-  const input = document.getElementById('whatsapp') as HTMLInputElement | null;
-  if (input) {
-    const iti = intlTelInput(input, {
+  // ── Configuração ──────────────────────────────────────────
+  // Substitua pela URL do seu endpoint de recebimento de formulário
+  // Ex: 'https://formspree.io/f/SEU_ID' ou webhook próprio
+  const FORM_ENDPOINT = '';
+
+  // ── Elementos ─────────────────────────────────────────────
+  const form       = document.getElementById('contato-form')    as HTMLFormElement | null;
+  const rightPanel = document.getElementById('contato-right')   as HTMLElement | null;
+  const successEl  = document.getElementById('form-success')    as HTMLElement | null;
+  const errorEl    = document.getElementById('form-error')      as HTMLElement | null;
+  const submitBtn  = document.getElementById('btn-submit')      as HTMLButtonElement | null;
+
+  // ── intl-tel-input ────────────────────────────────────────
+  const phoneInput = document.getElementById('whatsapp') as HTMLInputElement | null;
+  let iti: ReturnType<typeof intlTelInput> | null = null;
+
+  if (phoneInput) {
+    iti = intlTelInput(phoneInput, {
       initialCountry: 'br',
       countryOrder: ['br', 'pt', 'us', 'es', 'ar', 'mx'],
       separateDialCode: true,
@@ -459,9 +568,51 @@ import 'intl-tel-input/styles';
         clearSearchAriaLabel: 'Limpar busca',
       },
     });
-
-    input.closest('form')?.addEventListener('submit', () => {
-      input.value = iti.getNumber();
-    });
   }
+
+  // ── Helpers ───────────────────────────────────────────────
+  function showFeedback(el: HTMLElement | null) {
+    if (!form || !rightPanel || !el) return;
+    form.hidden = true;
+    el.hidden = false;
+    rightPanel.classList.add('is-feedback');
+    el.scrollIntoView({ behavior: 'smooth', block: 'center' });
+  }
+
+  // ── Submit handler ────────────────────────────────────────
+  form?.addEventListener('submit', async (e) => {
+    e.preventDefault();
+
+    // Substitui o valor do campo pelo número formatado internacionalmente
+    if (phoneInput && iti) phoneInput.value = iti.getNumber();
+
+    // Loading state
+    if (submitBtn) {
+      submitBtn.disabled = true;
+      submitBtn.textContent = 'Enviando…';
+    }
+
+    // Se o endpoint não estiver configurado, mostra erro imediatamente
+    if (!FORM_ENDPOINT) {
+      showFeedback(errorEl);
+      return;
+    }
+
+    try {
+      const data = new FormData(form);
+      const res = await fetch(FORM_ENDPOINT, {
+        method: 'POST',
+        body: data,
+        headers: { Accept: 'application/json' },
+      });
+
+      if (res.ok) {
+        showFeedback(successEl);
+      } else {
+        showFeedback(errorEl);
+      }
+    } catch {
+      showFeedback(errorEl);
+    }
+  });
 </script>
