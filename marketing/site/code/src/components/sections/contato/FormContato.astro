@@ -1,4 +1,5 @@
 ---
+import 'intl-tel-input/styles';
 ---
 
 <section class="contato">
@@ -40,7 +41,7 @@
 
       <div class="field">
         <label for="whatsapp" class="field-label">Seu WhatsApp</label>
-        <input id="whatsapp" name="whatsapp" type="tel" class="field-input" placeholder="(00) 00000-0000" autocomplete="tel" />
+        <input id="whatsapp" name="whatsapp" type="tel" class="field-input" placeholder="00000-0000" autocomplete="tel" />
       </div>
 
       <div class="field-row">
@@ -333,7 +334,7 @@
   .btn-submit {
     width: 100%;
     padding: 15px;
-    background: var(--laranja);
+    background: var(--dark-surface);
     color: #fff;
     font-size: var(--fs-body);
     font-weight: 600;
@@ -344,7 +345,7 @@
     transition: background var(--dur) var(--ease), box-shadow var(--dur) var(--ease);
   }
   .btn-submit:hover {
-    background: var(--laranja-press);
+    background: var(--laranja);
     box-shadow: var(--shadow-accent);
   }
 
@@ -368,3 +369,97 @@
     }
   }
 </style>
+
+<style is:global>
+  /* intl-tel-input v29 — dark theme */
+  .iti {
+    width: 100%;
+    --iti-border-color: transparent;
+    --iti-hover-color: rgba(255, 255, 255, 0.07);
+    --iti-country-selector-bg: #1e0704;
+    --iti-icon-color: #fff;
+  }
+
+  /* Botão (bandeira + código) — .iti__selected-country */
+  .iti__selected-country {
+    background: rgba(255, 255, 255, 0.07);
+    border-right: 1px solid rgba(255, 255, 255, 0.14);
+    border-radius: var(--radius) 0 0 var(--radius);
+    outline: none;
+    padding: 0 10px;
+    gap: 6px;
+  }
+  .iti__selected-country:hover {
+    background: rgba(255, 255, 255, 0.12);
+  }
+
+  .iti__selected-dial-code {
+    color: rgba(255, 255, 255, 0.75);
+    font-family: inherit;
+    font-size: 13px;
+  }
+
+  /* Painel dropdown — .iti__country-selector */
+  .iti__country-selector {
+    background: #1e0704;
+    border: none;
+    border-radius: var(--radius);
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.65);
+    margin-top: 4px;
+  }
+
+  /* Campo de busca */
+  .iti__search-input-wrapper {
+    background: rgba(255, 255, 255, 0.05);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+  }
+  .iti__search-input {
+    background: transparent;
+    color: #fff;
+    font-family: inherit;
+    font-size: 13px;
+  }
+  .iti__search-input::placeholder { color: rgba(255, 255, 255, 0.3); }
+  .iti__search-input:focus        { outline: none; }
+
+  .iti__search-icon-svg { stroke: rgba(255, 255, 255, 0.35); fill: none; }
+
+  /* Itens da lista */
+  .iti__country { padding: 9px 14px; }
+  .iti__country:hover,
+  .iti__country.iti__highlight { background: rgba(255, 255, 255, 0.07); }
+
+  .iti__country-name { color: rgba(255, 255, 255, 0.85); }
+  .iti__dial-code    { color: rgba(255, 255, 255, 0.4); }
+
+  .iti__no-results {
+    color: rgba(255, 255, 255, 0.4);
+    padding: 12px 14px;
+  }
+</style>
+
+<script>
+  import intlTelInput from 'intl-tel-input/intlTelInputWithUtils';
+
+  const input = document.getElementById('whatsapp') as HTMLInputElement | null;
+  if (input) {
+    const iti = intlTelInput(input, {
+      initialCountry: 'br',
+      countryOrder: ['br', 'pt', 'us', 'es', 'ar', 'mx'],
+      separateDialCode: true,
+      countrySearch: true,
+      countryNameLocale: 'pt',
+      uiTranslations: {
+        searchPlaceholder: 'Buscar país',
+        searchEmptyState: 'Nenhum país encontrado',
+        selectedCountryAriaLabel: 'País selecionado',
+        countryListAriaLabel: 'Lista de países',
+        clearSearchAriaLabel: 'Limpar busca',
+      },
+    });
+
+    input.closest('form')?.addEventListener('submit', () => {
+      input.value = iti.getNumber();
+    });
+  }
+</script>
