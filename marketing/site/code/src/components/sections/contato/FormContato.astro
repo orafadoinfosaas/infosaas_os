@@ -573,10 +573,10 @@ import 'intl-tel-input/styles';
   // ── Helpers ───────────────────────────────────────────────
   function showFeedback(el: HTMLElement | null) {
     if (!form || !rightPanel || !el) return;
-    form.hidden = true;
-    el.hidden = false;
+    form.style.display = 'none';   // inline style vence o CSS scoped do Astro
+    el.removeAttribute('hidden');
     rightPanel.classList.add('is-feedback');
-    el.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    rightPanel.scrollIntoView({ behavior: 'smooth', block: 'start' });
   }
 
   // ── Submit handler ────────────────────────────────────────
