@@ -1,5 +1,10 @@
 ---
 import 'intl-tel-input/styles';
+
+// Site key do Cloudflare Turnstile (publica, pode aparecer no HTML).
+// Override por env PUBLIC_TURNSTILE_SITE_KEY (ex: chave de teste no dev).
+const TURNSTILE_SITE_KEY =
+  import.meta.env.PUBLIC_TURNSTILE_SITE_KEY || '0x4AAAAAADXX8ZFiz8lbOu7h';
 ---
 
 <section class="contato">
@@ -97,9 +102,22 @@ import 'intl-tel-input/styles';
         </span>
       </label>
 
+      {/* Honeypot anti-bot: invisivel pra humanos, so bot preenche */}
+      <div class="hp-field" aria-hidden="true">
+        <label for="company_url">Não preencha este campo</label>
+        <input id="company_url" name="company_url" type="text" tabindex="-1" autocomplete="off" />
+      </div>
+
+      {/* Cloudflare Turnstile (anti-spam) */}
+      <div class="cf-turnstile" data-sitekey={TURNSTILE_SITE_KEY} data-theme="dark"></div>
+
+      <p class="form-feedback-inline" id="form-inline-msg" hidden aria-live="polite"></p>
+
       <button type="submit" class="btn-submit" id="btn-submit">Aplicar agora</button>
 
     </form>
+
+    <script is:inline src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
 
     <!-- ── Estado de sucesso ─────────────────────────────── -->
     <div class="form-feedback" id="form-success" hidden aria-live="polite">
@@ -383,6 +401,26 @@ import 'intl-tel-input/styles';
     align-items: center;
   }
 
+  /* Honeypot anti-bot: fora da tela, sem ocupar espaco */
+  .hp-field {
+    position: absolute;
+    left: -9999px;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+  }
+
+  .cf-turnstile {
+    margin-top: 4px;
+  }
+
+  .form-feedback-inline {
+    margin: 0;
+    font-size: 0.85rem;
+    color: var(--laranja, #ff5c00);
+  }
+  .form-feedback-inline[hidden] { display: none; }
+
   .form-feedback[hidden] { display: none; }
 
   .form-feedback:not([hidden]) {
@@ -538,9 +576,10 @@ import 'intl-tel-input/styles';
   import intlTelInput from 'intl-tel-input/intlTelInputWithUtils';
 
   // ── Configuração ──────────────────────────────────────────
-  // Substitua pela URL do seu endpoint de recebimento de formulário
-  // Ex: 'https://formspree.io/f/SEU_ID' ou webhook próprio
-  const FORM_ENDPOINT = '';
+  // Endpoint de intake (edge function Supabase). Override por env no dev.
+  const FORM_ENDPOINT =
+    import.meta.env.PUBLIC_CONTACT_ENDPOINT ||
+    'https://jzghcnfdcukxthocaalv.supabase.co/functions/v1/contact-form-intake';
 
   // ── Elementos ─────────────────────────────────────────────
   const form       = document.getElementById('contato-form')    as HTMLFormElement | null;
@@ -548,6 +587,7 @@ import 'intl-tel-input/styles';
   const successEl  = document.getElementById('form-success')    as HTMLElement | null;
   const errorEl    = document.getElementById('form-error')      as HTMLElement | null;
   const submitBtn  = document.getElementById('btn-submit')      as HTMLButtonElement | null;
+  const inlineMsg  = document.getElementById('form-inline-msg') as HTMLElement | null;
 
   // ── intl-tel-input ────────────────────────────────────────
   const phoneInput = document.getElementById('whatsapp') as HTMLInputElement | null;
@@ -579,9 +619,40 @@ import 'intl-tel-input/styles';
     rightPanel.scrollIntoView({ behavior: 'smooth', block: 'start' });
   }
 
+  function setInline(msg: string) {
+    if (!inlineMsg) return;
+    inlineMsg.textContent = msg;
+    if (msg) inlineMsg.removeAttribute('hidden');
+    else inlineMsg.setAttribute('hidden', '');
+  }
+
+  function resetSubmit() {
+    if (submitBtn) {
+      submitBtn.disabled = false;
+      submitBtn.textContent = 'Aplicar agora';
+    }
+    // @ts-expect-error turnstile injetado pelo script externo
+    if (window.turnstile) window.turnstile.reset();
+  }
+
   // ── Submit handler ────────────────────────────────────────
   form?.addEventListener('submit', async (e) => {
     e.preventDefault();
+    setInline('');
+
+    // Aceite de privacidade obrigatorio
+    const privacidade = form.querySelector('[name="privacidade"]') as HTMLInputElement | null;
+    if (privacidade && !privacidade.checked) {
+      setInline('Confirme que leu e concorda com a Política de Privacidade.');
+      return;
+    }
+
+    // Token do Turnstile precisa estar resolvido
+    const tokenField = form.querySelector('[name="cf-turnstile-response"]') as HTMLInputElement | null;
+    if (!tokenField || !tokenField.value) {
+      setInline('Aguarde a verificação de segurança terminar e tente de novo.');
+      return;
+    }
 
     // Substitui o valor do campo pelo número formatado internacionalmente
     if (phoneInput && iti) phoneInput.value = iti.getNumber();
@@ -590,12 +661,6 @@ import 'intl-tel-input/styles';
     if (submitBtn) {
       submitBtn.disabled = true;
       submitBtn.textContent = 'Enviando…';
-    }
-
-    // Se o endpoint não estiver configurado, mostra erro imediatamente
-    if (!FORM_ENDPOINT) {
-      showFeedback(errorEl);
-      return;
     }
 
     try {
@@ -609,9 +674,11 @@ import 'intl-tel-input/styles';
       if (res.ok) {
         showFeedback(successEl);
       } else {
+        resetSubmit();
         showFeedback(errorEl);
       }
     } catch {
+      resetSubmit();
       showFeedback(errorEl);
     }
   });
