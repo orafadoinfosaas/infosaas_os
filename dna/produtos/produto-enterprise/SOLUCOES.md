@@ -1,21 +1,18 @@
-# Soluções — Enterprise Personalizada
+# Soluções — Enterprise
 
 ## Como resolvemos
 
-**Desenvolvimento full-custom com stack moderna**
-Construímos do zero usando Next.js, React Native e Node — tecnologias com ecossistema maduro, comunidade ativa e capacidade de suportar alta demanda. Nada de frameworks obscuros ou escolhas que criam dependência técnica desnecessária.
+**01 — Desenvolvimento full-custom**
+Sem limitação de plataforma, sem gambiarras de low-code para esconder complexidade. Utilizamos código de programação feito do jeito certo.
 
-**AI Assistants integrados ao processo de desenvolvimento**
-Claude Code e Codex como parte da linha de produção — acelerando entregas, reduzindo erros e mantendo qualidade de código sem abrir mão da arquitetura correta.
+**02 — Integrações pesadas e arquitetura de dados**
+Conectamos sistemas legados, ERPs, CRMs e APIs externas de forma auditável. A operação para de depender de planilhas e WhatsApp para fazer as informações circularem.
 
-**Arquitetura escalável desde o primeiro dia**
-O sistema é projetado para crescer. Decisões de arquitetura são tomadas com o horizonte de 2 a 3 anos do negócio em mente — não apenas para resolver o problema de hoje.
+**03 — Segurança e conformidade desde o início**
+LGPD e GDPR não são checklist de final de projeto. Logs, controle de acesso, documentação de consentimento e fluxos auditáveis fazem parte da arquitetura desde o primeiro sprint.
 
-**Segurança e conformidade estrutural**
-LGPD e GDPR implementados como requisito de arquitetura, não como checklist de auditoria no final. Controle de acesso, logs, criptografia e consentimento documentado desde o início.
+**04 — Automações inteligentes**
+Fluxos críticos que dependem de pessoas específicas passam a funcionar de forma automática, escalável e independente de quem está na operação.
 
-**Integrações robustas com APIs e sistemas externos**
-Experiência comprovada com integrações pesadas — ERPs, gateways de pagamento, sistemas de saúde, CRMs e fontes de dados diversas. A comunicação entre sistemas é parte central da entrega.
-
-**Time sênior dedicado e presente**
-O mesmo time que propõe é o que executa. Sem terceirização de etapas críticas, sem juniors em funções estratégicas.
+**05 — Tecnologia com propósito**
+Quando o negócio justifica, embarcamos tecnologia e inteligência artificial diretamente na solução — para automação, análise ou experiência do usuário.

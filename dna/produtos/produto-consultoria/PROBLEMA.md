@@ -1,22 +1,16 @@
-# Problemas que a Consultoria Estratégica Resolve
+# Problemas que a Consultoria e Implementação Resolve
 
 ## O problema central
 
-O empreendedor tem uma ideia, uma visão ou um produto no papel — mas falta clareza estratégica para executar. Sem um guia experiente, as decisões críticas de produto, mercado e negócio são tomadas no escuro. O risco de construir o produto errado, para o mercado errado, do jeito errado, é alto.
+A empresa cresceu, mas a operação não acompanhou o ritmo. O time estratégico gasta energia em tarefas repetitivas, o conhecimento crítico fica preso em pessoas específicas e cada setor opera como uma ilha isolada. O resultado é uma empresa que avança por força de vontade individual, não por sistema.
 
 ## Problemas específicos
 
-**Clareza insuficiente para tomar decisões de produto**
-O cliente sabe o que quer construir, mas não tem clareza sobre o que é essencial validar primeiro, qual modelo de negócio faz mais sentido ou como estruturar a esteira de produtos.
+**Time estratégico preso no operacional**
+Tarefas repetitivas — relatórios, briefings, respostas de atendimento, atualizações de CRM — consomem horas de pessoas que deveriam estar gerando resultado, não executando processo.
 
-**Falta de experiência com o ciclo completo de um produto digital**
-Muitos empreendedores têm expertise no negócio central mas nunca passaram pelo ciclo completo de construção de um produto digital — da ideia ao MVP ao mercado. Esse gap cria erros caros.
+**O conhecimento está nas pessoas, não na empresa**
+Quando alguém sai, o saber vai junto. Não existe documentação estruturada. Onboarding é lento, caro e depende da disponibilidade de quem já está no time para ensinar.
 
-**Ninguém estratégico para pensar junto**
-O empreendedor está sozinho nas decisões mais importantes. Sócios têm visões diferentes, mentores genéricos não conhecem o contexto, e consultores de tecnologia não entendem de negócio.
-
-**Modelo de negócio não validado antes de investir em desenvolvimento**
-O cliente está prestes a contratar um time para construir algo que ainda não foi testado com o mercado. Sem validação, o risco de entregar um produto que ninguém quer é real.
-
-**Design e identidade visual sem direcionamento estratégico**
-O visual do produto e da marca não foram pensados com a estratégia em mente. O resultado é uma identidade que não comunica o posicionamento e não conecta com o ICP.
+**Cada setor opera no seu próprio universo**
+Marketing não sabe o que comercial está vendendo. Atendimento não sabe o que operações está prometendo. Não existe um sistema central onde a empresa se vê inteira com gerenciamento.

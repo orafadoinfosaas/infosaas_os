@@ -1,18 +1,21 @@
-# Soluções — Consultoria de Negócios Estratégica
+# Soluções — Consultoria e Implementação
 
 ## Como resolvemos
 
-**Mentoria 1x1 com CEO e CMO por até 90 dias**
-Acesso direto a dois executivos com 10 anos de mercado e mais de R$ 10 milhões entregues. Não é um consultor júnior — é quem faz e responde pelo resultado da empresa todos os dias.
+**Etapa 01 — Diagnóstico operacional**
+Antes de propor qualquer estrutura, mapeamos como a empresa funciona hoje: quais são os setores, quais os processos mais repetitivos, onde estão os principais gargalos, como o time usa tecnologia. O diagnóstico define o plano de implantação.
 
-**Validação do modelo de negócio antes de qualquer linha de código**
-O processo começa pelo negócio, não pelo produto. Qual o problema que o produto resolve? Para quem? Com que modelo de monetização? Essas respostas precisam estar claras antes de qualquer investimento em desenvolvimento.
+**Etapa 02 — Estruturação dos setores**
+Implementamos a arquitetura OS na empresa — o sistema central onde a operação vai viver. Cada setor ganha uma estrutura própria, com padrões de nomenclatura, permissões, documentação e organização que fazem sentido para o negócio real.
 
-**Estruturação da esteira de produtos**
-Definimos juntos quais produtos o negócio deve ter, em que ordem lançar, qual o ticket de cada um e como eles se complementam para maximizar LTV e reduzir CAC.
+**Etapa 03 — Mapeamento e automação de processos**
+Identificamos as tarefas que se repetem com maior frequência e as automatizamos com IA e integrações. Se um sistema pode fazer, uma pessoa não precisa.
 
-**Concepção visual completa alinhada ao posicionamento**
-Design não é estética — é comunicação estratégica. A identidade visual do produto é desenvolvida em alinhamento com o posicionamento de mercado e o perfil do ICP.
+**Etapa 04 — Integrações com Tecnologia e IA**
+Configuramos tecnologias e IAs validadas, contexto da empresa e fluxos de trabalho específicos para cada área. Cada setor tem seu assistente — configurado para o que ele precisa, não para um uso genérico.
 
-**Caminho estruturado até o MVP**
-A consultoria conecta diretamente com a metodologia de desenvolvimento ágil da Infosaas. Ao final dos 90 dias, o cliente tem não apenas a estratégia — mas o produto sendo construído.
+**Etapa 05 — Treinamento e adoção**
+Treinamos o time para operar o novo sistema, usar as automações e integrar o Claude no dia a dia — com sessões práticas, documentação de suporte e acompanhamento contínuo.
+
+**Etapa 06 — Suporte e evolução**
+O sistema evolui junto com a empresa. Novos processos são mapeados, novas automações são implementadas, novos fluxos são criados. A Infosaas® fica junto durante os 12 meses.

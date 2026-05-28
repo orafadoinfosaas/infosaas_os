@@ -1,16 +1,16 @@
-# Novas Crenças — Consultoria de Negócios Estratégica
+# Novas Crenças — Consultoria e Implementação
 
-**"Posso encurtar anos de erros com a mentoria certa."**
-O cliente entende que o acesso a quem já errou, aprendeu e acertou vale mais do que qualquer curso, livro ou pesquisa solitária. A experiência de outros é o atalho mais honesto que existe.
+**"Automação não elimina meu time — libera ele para o que importa."**
+A crença de que automatizar é uma ameaça ao emprego é substituída pela clareza de que tarefas repetitivas tomam o tempo das pessoas mais caras da empresa. Liberar esse tempo é o maior presente que a gestão pode dar ao time.
 
-**"Validar antes de construir é o caminho mais inteligente."**
-A crença de que agir rápido significa pular a validação é substituída pela clareza de que um produto construído sobre uma hipótese não testada é o caminho mais lento e caro para o resultado.
+**"Documentar processos não é burocracia — é o que faz o conhecimento ficar na empresa."**
+O cliente entende que a operação dependente de pessoas específicas é frágil. Quando o processo está documentado e automatizado, a empresa tem um ativo — não uma vulnerabilidade.
 
-**"Acesso ao CEO e CMO de um studio com 10 anos de mercado vale o investimento."**
-O cliente deixa de comparar o preço da consultoria com o preço de um curso ou de um livro e passa a comparar com o custo de construir o produto errado — que é ordens de grandeza maior.
+**"IA não é só para grandes empresas com departamento de TI."**
+A barreira percebida de complexidade para adotar IA cai por terra quando o processo começa com diagnóstico e implementação guiada. O cliente descobre que o sistema é mais acessível do que imaginava — quando tem quem configure corretamente.
 
-**"Estratégia e execução não precisam ser separadas."**
-A crença de que pensar e fazer são etapas distintas cai por terra quando a consultoria conecta diretamente com o processo de desenvolvimento. O cliente entende que estratégia sem execução é só teoria.
+**"Um assistente de IA configurado para o meu negócio é diferente de ChatGPT genérico."**
+O valor está na configuração, no contexto e nos fluxos específicos de cada setor — não na tecnologia em si. O cliente passa a entender que uso genérico e uso estratégico são coisas completamente diferentes.
 
-**"Um parceiro que questiona minhas premissas é mais valioso do que um que concorda com tudo."**
-O cliente passa a valorizar a franqueza estratégica — alguém que aponta quando a hipótese é frágil ou quando o caminho escolhido tem riscos que ele não estava enxergando.
+**"Adoção é o que define se a implementação funciona — não a tecnologia."**
+O cliente percebe que ferramentas morrem quando o time não adota. O treinamento e acompanhamento contínuo não são complementos — são o que fazem o investimento durar.

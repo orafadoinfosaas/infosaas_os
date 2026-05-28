@@ -1,18 +1,21 @@
-# Benefícios — Consultoria de Negócios Estratégica
+# Benefícios — Consultoria e Implementação
 
 ## O que o cliente ganha
 
-**Acesso direto a decisores com track record comprovado**
-Não é mentoria de palco ou conteúdo gravado. É 1x1 com os responsáveis por projetos reais que geraram resultados para empresas como G4 Educação, Phlebo Academy e V4 Company.
+**Diagnóstico operacional completo**
+Mapeamos como a empresa funciona hoje — setores, processos, ferramentas e gargalos. É a base que define o que vai ser estruturado, automatizado e treinado.
 
-**Clareza estratégica antes de investir em desenvolvimento**
-O cliente sai da consultoria com um mapa claro: o que construir, para quem, com que posicionamento, em qual ordem e com qual modelo de negócio. Isso vale mais do que qualquer software entregue sem essa clareza.
+**Estruturação de setores**
+Criamos a arquitetura de setores da empresa. Cada área tem sua organização, padrões, documentações e permissões definidas.
 
-**Redução do risco de construir o produto errado**
-A validação antecipada do modelo de negócio e do mercado reduz drasticamente o risco de investir meses e dinheiro num produto que não tem tração.
+**Mapeamento e automação de processos**
+Identificamos as tarefas que mais consomem tempo do time e as automatizamos com IA e integrações. O critério é direto: fazer seu time ser estratégico.
 
-**Design e produto alinhados desde o início**
-A identidade visual e a estratégia de produto nascem juntas — sem retrabalho de marca depois que o produto já foi para o mercado.
+**AI Assistant em cada setor**
+Cada área recebe um AI Assistant com contexto da empresa e fluxos específicos para eliminar os gargalos que impedem a produtividade e eficiência.
 
-**Conexão direta com a execução**
-A consultoria não termina em um slide deck. O cliente sai com o próximo passo claro — e com a possibilidade de já entrar no ciclo de desenvolvimento ágil da Infosaas sem atrito.
+**Treinamento e documentação**
+Sessões práticas com cada área para garantir que o sistema é adotado de verdade, não apenas entregue. O time aprende a usar com documentação evolutiva.
+
+**Suporte e evolução contínua**
+O sistema não para no go-live. Durante todo o contrato, novos processos são mapeados, novas automações são criadas como nosso apoio.

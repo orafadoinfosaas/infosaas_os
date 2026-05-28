@@ -1,33 +1,33 @@
-# Objeções — Consultoria de Negócios Estratégica
+# Objeções — Consultoria e Implementação
 
 ## Objeções mais comuns e como responder
 
 ---
 
-**"Consultoria é cara e não garante resultado."**
+**"Já tentei ferramentas de automação antes e minha equipe não adotou."**
 
-Nenhum serviço garante resultado — e qualquer um que prometa isso está mentindo. O que a consultoria garante é o processo: 90 dias de trabalho estruturado com quem já fez isso antes, com método, com frameworks e com acesso direto ao CEO e CMO da Infosaas. O resultado depende também do comprometimento do cliente. O que podemos dizer com segurança: o custo de tomar as decisões erradas por conta própria — e só descobrir depois de investir em desenvolvimento — é muito maior do que o custo da consultoria.
-
----
-
-**"R$ 20.000/mês por até 90 dias é muito dinheiro."**
-
-Compare com o custo de construir o produto errado: meses de desenvolvimento, time contratado, campanha de lançamento e depois descobrir que o mercado não quer. Esse erro pode custar R$ 200.000 ou R$ 500.000. A consultoria existe para evitar exatamente esse caminho. Quando o cliente entende o que está sendo trocado — incerteza por clareza, risco por estrutura — o preço passa a fazer sentido.
+Ferramentas sem implementação são softwares sem uso. O que a Consultoria e Implementação entrega não é uma ferramenta — é um sistema configurado, integrado e treinado no contexto específico da empresa. A adoção faz parte do processo, não é responsabilidade do cliente descobrir sozinho depois da entrega.
 
 ---
 
-**"Já li muito sobre negócios. Não sei se preciso de mentoria."**
+**"R$ 7.500/mês por 12 meses é muito para algo que não sei se funciona."**
 
-Leitura dá conhecimento. Mentoria dá julgamento. A diferença está na capacidade de aplicar o que foi lido ao contexto específico do negócio, com alguém que já viveu situações similares e pode apontar o que funciona e o que não funciona naquele cenário particular. Conhecimento genérico não substitui experiência específica.
-
----
-
-**"Como uma consultoria de tecnologia vai me ajudar com estratégia de negócio?"**
-
-A Infosaas não é uma empresa de tecnologia que virou consultora. É um studio que pensa produto e negócio desde o início — a tecnologia é o meio, não o fim. O CEO e o CMO têm 10 anos de experiência construindo negócios digitais para empresas que faturam milhões. Estratégia de produto, modelagem de negócio e posicionamento fazem parte do DNA da empresa, não são uma extensão do serviço técnico.
+Compare com o custo atual: quantas horas por mês o time passa em tarefas que poderiam ser automatizadas? Multiplique pelo custo-hora das pessoas envolvidas. Na maioria das empresas, esse cálculo revela que a ineficiência operacional já custa mais do que o contrato inteiro — só que distribuída de forma invisível no dia a dia.
 
 ---
 
-**"Prefiro contratar só o desenvolvimento e ir aprendendo no caminho."**
+**"Nossa operação é muito específica para ser automatizada."**
 
-Essa é uma escolha válida — mas tem um custo. O desenvolvimento sem clareza estratégica tende a gerar retrabalho, escopo que muda no meio do caminho e um produto que precisa ser reformulado assim que chega ao mercado. A consultoria não é um pré-requisito obrigatório, mas é o caminho que reduz atrito e aumenta a probabilidade de acertar na primeira tentativa.
+É exatamente por isso que começamos com diagnóstico. Não existe uma receita genérica — cada empresa tem seus gargalos específicos. O trabalho começa entendendo como a sua empresa funciona hoje, não aplicando um template de como ela deveria funcionar.
+
+---
+
+**"Não tenho tempo para implementar um sistema agora."**
+
+A ausência de sistema é exatamente o que consome o tempo que você diz não ter. O diagnóstico inicial é feito pela Infosaas, a implementação é conduzida pela Infosaas e o time entra em contato com o novo sistema só quando está pronto para ser adotado. A carga sobre a equipe do cliente é menor do que parece.
+
+---
+
+**"Já uso várias ferramentas — não preciso de mais uma."**
+
+Mais ferramentas não é o objetivo — operação mais eficiente é. A consultoria começa mapeando o que já existe, identifica o que está subutilizado e constrói os fluxos a partir do que faz sentido para o negócio. O resultado pode ser usar menos ferramentas, usadas melhor.

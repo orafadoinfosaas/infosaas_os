@@ -1,13 +1,13 @@
-# Consultoria de Negócios Estratégica
+# Consultoria e Implementação
 
 ## Descrição
 
-Uma imersão estratégica profunda projetada para acelerar o crescimento do seu negócio. Ao longo de até 90 dias, o cliente recebe mentoria individualizada (1x1) diretamente com o CEO e o CMO da companhia. A consultoria cobre toda a jornada de tração de uma startup ou produto digital: desde a validação inicial do modelo de negócio e estruturação da esteira de produtos, até a concepção visual completa (design) e a construção prática do MVP, conectando-se perfeitamente com a metodologia ágil da empresa.
+Para empresas que crescem mais rápido do que a operação consegue acompanhar. Consultoria, implementação e treinamento de automações com IA para aumentar a produtividade do time. Ao longo de 12 meses, mapeamos a operação, estruturamos setores, automatizamos processos repetitivos e treinamos o time para operar com inteligência artificial integrada no dia a dia.
 
 ## O que é
 
-Mentoria e consultoria executiva de até 3 meses focada em validação de mercado, modelagem de produto, design e MVP.
+Consultoria operacional com implementação de automações, AI Assistants por setor e treinamento de adoção — contrato de 12 meses.
 
 ## Ticket Médio
 
-A partir de R$ 20.000 / mês.
+A partir de R$ 7.500 / mês.

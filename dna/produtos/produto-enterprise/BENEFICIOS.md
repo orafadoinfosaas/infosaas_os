@@ -1,21 +1,15 @@
-# Benefícios — Enterprise Personalizada
+# Benefícios — Soluções Enterprise
 
 ## O que o cliente ganha
 
-**Sistema que cresce junto com o negócio**
-Não é uma solução para o problema de hoje — é uma infraestrutura que vai durar e se adaptar conforme o negócio evolui, sem precisar reconstruir do zero em 2 anos.
+**Senioridade técnica real**
+Nenhuma delegação oculta para freelancers ou júniores no meio do projeto. O time que você conhece na proposta é o que entra em produção.
 
-**Segurança e conformidade garantidas**
-O cliente sai de uma posição de vulnerabilidade para uma posição de controle. Dados tratados corretamente, acessos controlados, processos auditáveis.
+**Experiência nos setores que mais exigem**
+Educação desde 2017, saúde desde 2022, enterprise em diferentes nichos. Conhecemos as particularidades de conformidade, integração e escala de cada setor.
 
-**Performance de alto nível para operação crítica**
-O sistema funciona quando precisa funcionar — sob alta demanda, em picos de acesso, em momentos críticos para o negócio. Sem surpresas desagradáveis.
+**Infraestrutura documentada**
+Sua infraestrutura passa a ser um ativo do negócio, auditável, escalável com sua operação integrada com dados em tempo real.
 
-**Redução de custo operacional a médio prazo**
-Processos que hoje dependem de pessoas passam a ser automatizados. O time humano é realocado para onde realmente agrega valor.
-
-**Credibilidade técnica para crescer**
-Um produto digital de qualidade abre portas: facilita captação, aumenta o ticket médio de vendas, melhora a retenção e posiciona melhor a marca no mercado.
-
-**Parceiro técnico de longo prazo**
-A Infosaas não some após a entrega. O cliente tem acesso contínuo ao mesmo time que construiu — que já conhece o histórico, as decisões e a arquitetura do produto.
+**Histórico auditável**
+Mais de 10 anos de experiência de mercado. Mais de R$ 60 milhões de receita gerada para mais de 20 clientes.

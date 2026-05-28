@@ -1,18 +1,18 @@
-# Transformações — Consultoria de Negócios Estratégica
+# Transformações — Consultoria e Implementação
 
 ## O antes e o depois
 
-**De ideia vaga para negócio estruturado**
-O cliente sai de uma visão nebulosa — ou de um conjunto de ideias conflitantes — e chega com um modelo de negócio validado, uma esteira de produtos definida e um caminho claro de execução.
+**De time operacional para time estratégico**
+As pessoas que passavam horas em tarefas repetitivas e burocráticas passam a focar em decisões, relacionamentos e geração de resultado. A energia do time vai para onde ela deveria estar.
 
-**De execução no escuro para decisões baseadas em estratégia**
-As escolhas de produto, precificação, posicionamento e desenvolvimento deixam de ser feitas por intuição e passam a ser sustentadas por framework, análise e experiência de quem já fez antes.
+**De conhecimento nas pessoas para documentação viva**
+O saber que ficava na cabeça de colaboradores específicos passa a existir de forma estruturada, acessível e evolutiva. Onboarding fica mais rápido, saída de pessoa não vira crise.
 
-**De fundador sobrecarregado para CEO com plano claro**
-O cliente deixa de carregar o peso de todas as decisões sozinho e passa a ter um parceiro estratégico que pensa junto, questiona premissas e aponta caminhos com base em dados reais.
+**De setores isolados para operação integrada**
+Cada área passa a ter visibilidade do todo. Marketing sabe o que comercial está vendendo. Atendimento sabe o que operações prometeu. As decisões passam a ser tomadas com informação real.
 
-**De meses de tentativa e erro para caminho validado**
-A mentoria comprime uma curva de aprendizado que levaria meses ou anos em algumas semanas de imersão com quem já percorreu o caminho.
+**De processos manuais para automações que funcionam sem supervisão**
+Tarefas que dependiam de alguém lembrar de fazer passam a acontecer de forma automática, no momento certo, com registro. A operação ganha confiabilidade sem ganhar custo.
 
-**De produto sem identidade para marca com posicionamento**
-A identidade visual e o posicionamento de mercado saem alinhados — o produto comunica o que precisa comunicar para o público certo, desde o início.
+**De IA genérica para assistentes configurados para o negócio**
+O Claude deixa de ser uma ferramenta de pesquisa genérica e passa a ter contexto da empresa, processos mapeados e fluxos específicos por setor. A produtividade do assistente é a produtividade do time.
