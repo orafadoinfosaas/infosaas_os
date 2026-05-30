@@ -1,0 +1,349 @@
+{
+  "id": "41950176-a182-47d6-abb8-b565588689b8",
+  "created_at": "2026-05-29T20:41:45.701Z",
+  "created_by": "browser",
+  "company_id": "infosaas",
+  "platform": "instagram",
+  "format": {
+    "aspect_ratio": "3:4",
+    "width": 1080,
+    "height": 1440
+  },
+  "funnel_phase": "relacionamento",
+  "template_id": "editorial",
+  "base_id": "editorial",
+  "author": "flg",
+  "topic": "Carrossel Relacionamento: anti-hype de TI (vendedores de fumaça)",
+  "caption_file": "caption.md",
+  "branding": {
+    "logo": {
+      "show": false,
+      "variant": "preto",
+      "position": "top-left"
+    },
+    "numbering": {
+      "show": false,
+      "position": "bottom-right",
+      "style": "fraction"
+    },
+    "handle": {
+      "show": true,
+      "name": "@orafael.almeidah",
+      "color": "#000000",
+      "avatar": {
+        "show": false,
+        "filename": ""
+      }
+    },
+    "authorial": {
+      "show": false,
+      "text": ""
+    }
+  },
+  "content_type": "carrossel",
+  "slides": [
+    {
+      "index": 1,
+      "type": "cover",
+      "layout": "image-full-overlay",
+      "headline": "Vendedor de fumaça adora quando você tem pressa",
+      "subheadline": "Eu já vi esse filme em projetos de tecnologia.",
+      "body": "",
+      "image": null,
+      "cta": null,
+      "design": {
+        "align": {
+          "vertical": "bottom",
+          "horizontal": "left"
+        },
+        "media": {
+          "kind": "image",
+          "source": "upload",
+          "ref": "assets/freepik__recrie-o-personagem-img1-removendo-apenas-a-logo-d__54389_1.jpg",
+          "mode": "cover",
+          "fit": "cover"
+        },
+        "background": {
+          "type": "solid",
+          "color": "#F5F5F5"
+        },
+        "mask": {
+          "color": "#000000",
+          "opacity": 0,
+          "gradient": {
+            "top": 0,
+            "mid": 0.6,
+            "bottom": 1
+          }
+        },
+        "texts": {
+          "subheadline": {
+            "marginBottom": 84
+          },
+          "headline": {
+            "fontSize": 75
+          }
+        }
+      }
+    },
+    {
+      "index": 2,
+      "type": "content",
+      "layout": "text-centered",
+      "headline": "Eu já vi projeto nascer com “mágica” e terminar em retrabalho",
+      "subheadline": "",
+      "body": "Teve proposta prometendo o impossível em semanas. No meu dia a dia, o problema não era só técnica. Era expectativa fora da realidade. O time começou a “correr” antes de entender o fluxo do negócio.",
+      "image": null,
+      "cta": null,
+      "design": {
+        "align": {
+          "vertical": "center",
+          "horizontal": "center"
+        },
+        "media": {
+          "kind": "none",
+          "ref": "",
+          "mode": "cover",
+          "fit": "cover"
+        },
+        "background": {
+          "type": "solid",
+          "color": "#F5F5F5"
+        },
+        "mask": {
+          "color": "#000000",
+          "opacity": 0
+        },
+        "texts": {
+          "headline": {
+            "align": "left"
+          },
+          "subheadline": {
+            "align": "left"
+          },
+          "body": {
+            "align": "left"
+          }
+        }
+      }
+    },
+    {
+      "index": 3,
+      "type": "content",
+      "layout": "text-centered",
+      "headline": "Eu noto o hype quando ninguém mede risco, só fala de velocidade",
+      "subheadline": "",
+      "body": "Quando a conversa vira contagem regressiva e PowerPoint bonito, eu fico de olho. Pra mim, falta clareza do que é regra, o que é exceção e quem valida cada decisão.",
+      "image": null,
+      "cta": null,
+      "design": {
+        "align": {
+          "vertical": "center",
+          "horizontal": "center"
+        },
+        "media": {
+          "kind": "none",
+          "ref": "",
+          "mode": "cover",
+          "fit": "cover"
+        },
+        "background": {
+          "type": "solid",
+          "color": "#F5F5F5"
+        },
+        "mask": {
+          "color": "#000000",
+          "opacity": 0
+        }
+      }
+    },
+    {
+      "index": 4,
+      "type": "content",
+      "layout": "text-centered",
+      "headline": "Na Infosaas, eu cobro premissas antes de aceitar qualquer escopo",
+      "subheadline": "",
+      "body": "Eu não entro em projeto só porque “parece simples”. Eu preciso saber: volume real, pico de uso, integrações, LGPD, e o que acontece quando quebra. Senão, a operação quebra na primeira demonstração.",
+      "image": null,
+      "cta": null,
+      "design": {
+        "align": {
+          "vertical": "center",
+          "horizontal": "center"
+        },
+        "media": {
+          "kind": "none",
+          "ref": "",
+          "mode": "cover",
+          "fit": "cover"
+        },
+        "background": {
+          "type": "solid",
+          "color": "#F5F5F5"
+        },
+        "mask": {
+          "color": "#000000",
+          "opacity": 0
+        }
+      }
+    },
+    {
+      "index": 5,
+      "type": "content",
+      "layout": "text-centered",
+      "headline": "O que o vendedor esconde? Geralmente, o trabalho invisível",
+      "subheadline": "",
+      "body": "Toda vez que alguém promete “integrar tudo” sem falar de logs, acessos, auditoria e testes, pra mim tem fumaça aí. Resultado: a ferramenta até sobe, mas a operação não confia.",
+      "image": null,
+      "cta": null,
+      "design": {
+        "align": {
+          "vertical": "center",
+          "horizontal": "center"
+        },
+        "media": {
+          "kind": "none",
+          "ref": "",
+          "mode": "cover",
+          "fit": "cover"
+        },
+        "background": {
+          "type": "solid",
+          "color": "#F5F5F5"
+        },
+        "mask": {
+          "color": "#000000",
+          "opacity": 0
+        }
+      }
+    },
+    {
+      "index": 6,
+      "type": "content",
+      "layout": "text-centered",
+      "headline": "Eu prefiro um caminho mais chato do que um lançamento com susto",
+      "subheadline": "",
+      "body": "Quando a gente faz do jeito certo, a entrega fica menor no papel e maior na prática. O negócio ganha estabilidade, e o cliente para de apagar incêndio. Pra mim, isso vale mais que prazo maquiado.",
+      "image": null,
+      "cta": null,
+      "design": {
+        "align": {
+          "vertical": "center",
+          "horizontal": "center"
+        },
+        "media": {
+          "kind": "none",
+          "ref": "",
+          "mode": "cover",
+          "fit": "cover"
+        },
+        "background": {
+          "type": "solid",
+          "color": "#F5F5F5"
+        },
+        "mask": {
+          "color": "#000000",
+          "opacity": 0
+        }
+      }
+    },
+    {
+      "index": 7,
+      "type": "content",
+      "layout": "text-centered",
+      "headline": "Se você quer escala, precisa de método. Não de grito de vendedor",
+      "subheadline": "",
+      "body": "O hype vende “pronto”. Eu trabalho com processo. Na minha leitura, escala acontece quando o fluxo aguenta crescimento, e o time consegue operar sem depender de uma pessoa-chave.",
+      "image": null,
+      "cta": null,
+      "design": {
+        "align": {
+          "vertical": "center",
+          "horizontal": "center"
+        },
+        "media": {
+          "kind": "none",
+          "ref": "",
+          "mode": "cover",
+          "fit": "cover"
+        },
+        "background": {
+          "type": "solid",
+          "color": "#F5F5F5"
+        },
+        "mask": {
+          "color": "#000000",
+          "opacity": 0
+        }
+      }
+    },
+    {
+      "index": 8,
+      "type": "content",
+      "layout": "text-centered",
+      "headline": "Quer um teste rápido do que é fumaça e do que é sério?",
+      "subheadline": "",
+      "body": "Pergunta simples: “o que muda no processo quando der erro?”. Se a resposta for vaga, já tá na cara. Se tiver premissas, métricas e validação, aí sim dá pra conversar.",
+      "image": null,
+      "cta": null,
+      "design": {
+        "align": {
+          "vertical": "center",
+          "horizontal": "center"
+        },
+        "media": {
+          "kind": "none",
+          "ref": "",
+          "mode": "cover",
+          "fit": "cover"
+        },
+        "background": {
+          "type": "solid",
+          "color": "#F5F5F5"
+        },
+        "mask": {
+          "color": "#000000",
+          "opacity": 0
+        }
+      }
+    },
+    {
+      "index": 9,
+      "type": "closing",
+      "layout": "image-full-overlay",
+      "headline": "Se prometerem mágica, eu já ficaria desconfiado agora.",
+      "subheadline": "Quando não existe premissa, a entrega vira chute com prazo marcado.",
+      "body": "",
+      "image": null,
+      "cta": {
+        "text": "Saiba mais",
+        "type": "engagement"
+      },
+      "design": {
+        "align": {
+          "vertical": "bottom",
+          "horizontal": "left"
+        },
+        "media": {
+          "kind": "none",
+          "ref": "",
+          "mode": "cover",
+          "fit": "cover"
+        },
+        "background": {
+          "type": "solid",
+          "color": "#F5F5F5"
+        },
+        "mask": {
+          "color": "#000000",
+          "opacity": 0
+        },
+        "texts": {
+          "cta": {
+            "hidden": true
+          }
+        }
+      }
+    }
+  ]
+}

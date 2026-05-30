@@ -1,0 +1,88 @@
+@import "tailwindcss";
+
+/* =========================================================================
+   Infosaas Design System — tokens do brandbook (dna/identidade-visual)
+   Fonte de verdade: dna/identidade-visual/colors_and_type.css
+   Tema CLARO por padrão. Único acento: laranja #FF3D00.
+   ========================================================================= */
+
+@theme inline {
+  --font-sans: var(--font-sora), ui-sans-serif, system-ui, -apple-system, "Segoe UI",
+    Roboto, "Helvetica Neue", sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+}
+
+@theme {
+  /* ── Cores primitivas da marca ──────────────────────────────────────── */
+  --color-laranja: #ff3d00;
+  --color-laranja-hover: #ff5520;
+  --color-laranja-press: #e03600;
+  --color-laranja-soft: #ffede6;
+  --color-laranja-deep: #b82c00;
+
+  --color-preto: #000000;
+  --color-branco: #ffffff;
+  --color-branco-off: #f5f5f5;
+
+  /* Rampa neutra (chrome de UI apenas) */
+  --color-cinza-100: #f5f5f5;
+  --color-cinza-200: #ececec;
+  --color-cinza-300: #d9d9d9;
+  --color-cinza-400: #b5b5b5;
+  --color-cinza-500: #8a8a8a;
+  --color-cinza-600: #5c5c5c;
+  --color-cinza-700: #2e2e2e;
+  --color-cinza-900: #0a0a0a;
+
+  /* ── Semânticos (usar estes nos componentes) ────────────────────────── */
+  --color-canvas: #f5f5f5; /* fundo de página            */
+  --color-surface: #ffffff; /* cards / superfície elevada */
+  --color-invert: #000000; /* hero/footer invertido      */
+
+  --color-ink: #000000; /* texto primário             */
+  --color-muted: #5c5c5c; /* texto secundário           */
+  --color-subtle: #8a8a8a; /* texto terciário / captions */
+  --color-on-accent: #ffffff; /* texto sobre laranja        */
+  --color-on-invert: #f5f5f5; /* texto sobre preto          */
+
+  --color-line: #d9d9d9; /* hairline / divisórias      */
+  --color-line-strong: #000000; /* borda carimbada            */
+  --color-accent: #ff3d00;
+  --color-accent-hover: #ff5520;
+  --color-accent-press: #e03600;
+
+  /* ── Radii — ecoam o símbolo (quadrado arredondado) ─────────────────── */
+  --radius-sm: 6px; /* tags, chips        */
+  --radius: 12px; /* inputs, list rows  */
+  --radius-md: 18px; /* botões             */
+  --radius-lg: 24px; /* cards              */
+  --radius-xl: 32px; /* hero blocks        */
+
+  /* ── Sombras — elevação contida ─────────────────────────────────────── */
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.06);
+  --shadow: 0 4px 14px rgba(0, 0, 0, 0.08);
+  --shadow-lg: 0 18px 40px -10px rgba(0, 0, 0, 0.18);
+  --shadow-accent: 0 12px 30px -8px rgba(255, 61, 0, 0.45);
+
+  /* ── Motion — sem bounce ────────────────────────────────────────────── */
+  --default-transition-timing-function: cubic-bezier(0.2, 0.7, 0.2, 1);
+  --default-transition-duration: 200ms;
+  --ease-brand: cubic-bezier(0.2, 0.7, 0.2, 1);
+  --ease-brand-out: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@layer base {
+  html,
+  body {
+    background: var(--color-canvas);
+    color: var(--color-ink);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  ::selection {
+    background: var(--color-laranja);
+    color: var(--color-branco);
+  }
+}
