@@ -1,1 +1,11 @@
-{}
+{
+    "_comment": "Template de configuração MCP — NÃO coloque tokens aqui. O Claude Code lê a config real de .claude/settings.local.json (gitignored). Para configurar, copie esta estrutura para .claude/settings.local.json e substitua ${ACTIVEPIECES_MCP_TOKEN} pelo token real (veja ferramentas/mcps/.env.example).",
+    "mcpServers": {
+        "activepieces": {
+            "url": "https://activepieces-activepieces.zdnmrb.easypanel.host/api/v1/projects/Na7cDZQONlKnnMvCgPxfq/mcp-server/http",
+            "headers": {
+                "Authorization": "Bearer ${ACTIVEPIECES_MCP_TOKEN}"
+            }
+        }
+    }
+}

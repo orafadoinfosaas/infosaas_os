@@ -13,9 +13,12 @@ yarn-error.log*
 pnpm-debug.log*
 
 
-# environment variables
+# environment variables — todos os .env são locais e podem conter secrets;
+# os .env.example (sem valores) vão pro repo como documentação.
 .env
-.env.production
+.env.*
+!.env.example
+!*.env.example
 
 # macOS-specific files
 .DS_Store
@@ -24,6 +27,14 @@ pnpm-debug.log*
 .idea/
 
 # AI assistants
-.claude/
 .gemini/
 .tmp.driveupload/
+
+# Claude Code — só os slash commands vão pro repo;
+# settings.local.json e tudo mais ficam locais (têm secrets/estado por máquina).
+.claude/*
+!.claude/commands/
+!.claude/commands/**
+
+# MCP — settings locais do Claude Code com tokens (vamos sempre via .env)
+ferramentas/mcps/.claude.json
