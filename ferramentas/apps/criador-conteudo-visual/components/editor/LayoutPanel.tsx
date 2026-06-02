@@ -10,6 +10,7 @@ const BASE_OPTIONS = Object.values(TEMPLATES).map((t) => ({ value: t.template_id
 
 function getDesign(content: Content, idx: number): Layout {
   if (content.content_type === 'carrossel') return content.slides[idx]?.design ?? DEFAULT_LAYOUT
+  if (content.content_type === 'video') return DEFAULT_LAYOUT
   return content.design ?? DEFAULT_LAYOUT
 }
 
@@ -27,6 +28,7 @@ function applyBase(content: Content, baseId: TemplateId): Content {
       slides: content.slides.map((s) => ({ ...s, design: retheme(s.design ?? DEFAULT_LAYOUT) })),
     }
   }
+  if (content.content_type === 'video') return content
   return { ...content, template_id: baseId, base_id: baseId, design: retheme(content.design ?? DEFAULT_LAYOUT) } as Content
 }
 

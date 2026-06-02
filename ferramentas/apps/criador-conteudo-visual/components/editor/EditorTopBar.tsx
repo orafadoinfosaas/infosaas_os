@@ -4,6 +4,7 @@ import { useEffect, useRef, useState } from 'react'
 import { Download, CalendarClock, Send, ChevronDown } from 'lucide-react'
 import { RATIOS_BY_TYPE, RATIO_DIMENSIONS, type AspectRatio } from '@/lib/schemas/format.schema'
 import type { Content } from '@/lib/schemas/content.schema'
+import { UsageBadge } from '@/components/layout/UsageBadge'
 
 export type ExportKind = 'png-current' | 'png-all' | 'pdf'
 
@@ -118,6 +119,7 @@ export function EditorTopBar({ content, onFormatChange, onExport, onSchedule, on
 
       {/* Ações */}
       <div className="ml-auto flex items-center gap-2">
+        <UsageBadge />
         <ExportMenu onExport={onExport} />
         <button
           onClick={onSchedule}

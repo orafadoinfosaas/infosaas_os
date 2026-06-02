@@ -10,6 +10,7 @@ const TYPE_DIR: Record<Content['content_type'], string> = {
   stories: 'stories',
   anuncio: 'anuncios',
   post: 'posts', // legado
+  video: 'videos',
 }
 
 export function getContentDir(contentType: Content['content_type'], slug: string): string {

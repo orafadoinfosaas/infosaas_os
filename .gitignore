@@ -38,3 +38,8 @@ pnpm-debug.log*
 
 # MCP — settings locais do Claude Code com tokens (vamos sempre via .env)
 ferramentas/mcps/.claude.json
+
+# Vídeos: footage e renders são binários pesados (>100MB) — não versionar.
+# O conteúdo (caption.md, content.json) na raiz da pasta do vídeo continua versionado;
+# a mídia vai pro R2/Nextcloud, não pro git.
+marketing/conteudo/instagram/videos/**/assets/

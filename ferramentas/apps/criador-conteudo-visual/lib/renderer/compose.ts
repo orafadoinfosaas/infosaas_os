@@ -145,6 +145,10 @@ function frameOf(content: Content, index: number): { text: FrameText; design: La
       design: content.design ?? DEFAULT_LAYOUT,
     }
   }
+  // Vídeo não usa o renderer Konva (tem editor próprio) — fallback inerte.
+  if (content.content_type === 'video') {
+    return { text: { headline: '', subheadline: '', body: '', cta: null }, design: DEFAULT_LAYOUT }
+  }
   return {
     text: { headline: content.headline, subheadline: content.subheadline, body: content.body, cta: null },
     design: content.design ?? DEFAULT_LAYOUT,

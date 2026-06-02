@@ -60,6 +60,7 @@ const inputCls =
 
 function frameDesign(content: Content, idx: number): Layout {
   if (content.content_type === 'carrossel') return content.slides[idx]?.design ?? DEFAULT_LAYOUT
+  if (content.content_type === 'video') return DEFAULT_LAYOUT
   return content.design ?? DEFAULT_LAYOUT
 }
 function withFrameDesign(content: Content, idx: number, design: Layout): Content {
@@ -234,6 +235,7 @@ function TextoTab({
     )
   }
 
+  if (content.content_type === 'video') return null // vídeo tem editor próprio
   const up = (patch: Partial<typeof content>) => onChange({ ...content, ...patch } as Content)
   return (
     <div className="flex flex-col gap-4">
@@ -322,13 +324,13 @@ export function EditorLayout({
     pdf.save(`${base}.pdf`)
   }
 
-  async function handlePublish(scheduledAt: string | null, profile: string | null): Promise<PublishResult> {
+  async function handlePublish(scheduledAt: string | null, profile: string | null, entityId: string | null): Promise<PublishResult> {
     if (!content || !slug) return null
     const frames = await captureFrames()
     const res = await fetch('/api/publish', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ slug, scheduled_at: scheduledAt, profile, images: frames }),
+      body: JSON.stringify({ slug, scheduled_at: scheduledAt, profile, entity_id: entityId, images: frames }),
     })
     if (!res.ok) throw new Error('falha')
     return (await res.json()) as PublishResult

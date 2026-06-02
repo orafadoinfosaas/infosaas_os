@@ -4,7 +4,7 @@ import { experimental_generateImage as generateImage } from 'ai'
 import { openai } from '@ai-sdk/openai'
 import { getOutputPath } from '@/config/company'
 
-const TYPE_DIRS = ['carroseis', 'estaticos', 'stories', 'anuncios', 'posts'] as const
+const TYPE_DIRS = ['carroseis', 'estaticos', 'stories', 'anuncios', 'posts', 'videos'] as const
 
 // Encontra o diretório do slug iterando os tipos de conteúdo.
 async function findSlugDir(slug: string): Promise<string | null> {

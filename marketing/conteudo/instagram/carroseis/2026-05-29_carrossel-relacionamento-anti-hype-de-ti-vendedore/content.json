@@ -17,7 +17,7 @@
   "caption_file": "caption.md",
   "branding": {
     "logo": {
-      "show": false,
+      "show": true,
       "variant": "preto",
       "position": "top-left"
     },
@@ -81,7 +81,13 @@
             "marginBottom": 84
           },
           "headline": {
-            "fontSize": 75
+            "fontSize": 60,
+            "align": "left",
+            "letterSpacing": 0,
+            "lineHeight": 1,
+            "marginTop": 0,
+            "marginBottom": 0,
+            "paddingX": 0
           }
         }
       }

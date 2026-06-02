@@ -4,7 +4,7 @@ import { useEffect, useState } from 'react'
 import { X } from 'lucide-react'
 import type { Content } from '@/lib/schemas/content.schema'
 
-type Profile = { id: string; label: string }
+type Profile = { id: string; label: string; entity_id?: string }
 export type PublishResult = {
   status: string
   composio?: { configured: boolean; triggered: boolean; note?: string }
@@ -15,13 +15,13 @@ type Props = {
   slug?: string
   mode: 'now' | 'schedule'
   onClose: () => void
-  onSubmit: (scheduledAt: string | null, profile: string | null) => Promise<PublishResult>
+  onSubmit: (scheduledAt: string | null, profile: string | null, entityId: string | null) => Promise<PublishResult>
 }
 
 export function PublishDrawer({ content, slug, mode: initialMode, onClose, onSubmit }: Props) {
   const [mode, setMode] = useState<'now' | 'schedule'>(initialMode)
   const [scheduledAt, setScheduledAt] = useState('')
-  const [profile, setProfile] = useState<string | null>(null)
+  const [selectedProfile, setSelectedProfile] = useState<Profile | null>(null)
   const [profiles, setProfiles] = useState<Profile[]>([])
   const [composioConfigured, setComposioConfigured] = useState<boolean | null>(null)
   const [loading, setLoading] = useState(false)
@@ -35,7 +35,7 @@ export function PublishDrawer({ content, slug, mode: initialMode, onClose, onSub
         if (!d) return
         setComposioConfigured(d.configured)
         setProfiles(d.profiles)
-        if (d.profiles[0]) setProfile(d.profiles[0].id)
+        if (d.profiles[0]) setSelectedProfile(d.profiles[0])
       })
       .catch(() => {})
   }, [])
@@ -48,7 +48,11 @@ export function PublishDrawer({ content, slug, mode: initialMode, onClose, onSub
     setLoading(true)
     setError(null)
     try {
-      const res = await onSubmit(mode === 'schedule' ? new Date(scheduledAt).toISOString() : null, profile)
+      const res = await onSubmit(
+        mode === 'schedule' ? new Date(scheduledAt).toISOString() : null,
+        selectedProfile?.id ?? null,
+        selectedProfile?.entity_id ?? null,
+      )
       setResult(res)
     } catch {
       setError('Falha ao publicar')
@@ -107,8 +111,8 @@ export function PublishDrawer({ content, slug, mode: initialMode, onClose, onSub
             <span className="text-xs font-medium text-[#5d5d5d]">Perfil</span>
             {profiles.length > 0 ? (
               <select
-                value={profile ?? ''}
-                onChange={(e) => setProfile(e.target.value)}
+                value={selectedProfile?.id ?? ''}
+                onChange={(e) => setSelectedProfile(profiles.find((p) => p.id === e.target.value) ?? null)}
                 className="w-full rounded-[10px] border border-black/10 bg-white px-3 py-2.5 text-sm text-[#0d0d0d] outline-none focus:border-black/25"
               >
                 {profiles.map((p) => (
@@ -127,8 +131,9 @@ export function PublishDrawer({ content, slug, mode: initialMode, onClose, onSub
           {!slug && <p className="text-xs text-amber-600">Salve o conteúdo antes de publicar.</p>}
 
           {result && (
-            <div className="rounded-xl bg-black/[0.03] px-4 py-3 text-xs text-[#5d5d5d]">
-              Status: <strong className="text-[#0d0d0d]">{result.status}</strong>
+            <div className={`rounded-xl px-4 py-3 text-xs ${result.composio?.triggered ? 'bg-green-50 text-green-700' : 'bg-black/[0.03] text-[#5d5d5d]'}`}>
+              Status: <strong>{result.status}</strong>
+              {result.composio?.triggered && <p className="mt-1">✓ {result.composio.note}</p>}
               {result.composio && !result.composio.triggered && (
                 <p className="mt-1 text-amber-600">{result.composio.note}</p>
               )}

@@ -1,0 +1,22 @@
+{
+  "id": "dd3fc14d-ac61-4307-a018-e4d208afb35a",
+  "title": "rafa-teste-editor",
+  "created_at": "2026-06-01T19:25:01.577Z",
+  "updated_at": "2026-06-01T19:25:01.783Z",
+  "meta": {
+    "platform": "instagram",
+    "format": "video",
+    "communication": "descoberta",
+    "author": "flg",
+    "attachments": []
+  },
+  "messages": [
+    {
+      "role": "user",
+      "content": "rafa-teste-editor",
+      "ts": "2026-06-01T19:25:01.577Z",
+      "attachments": []
+    }
+  ],
+  "slug": "2026-06-01_rafa-teste-editor"
+}

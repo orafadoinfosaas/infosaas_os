@@ -11,6 +11,7 @@ const FORMATS = [
   { value: 'carrossel', label: 'Carrossel' },
   { value: 'stories', label: 'Stories' },
   { value: 'anuncio', label: 'Anúncio' },
+  { value: 'video', label: 'Vídeo/Reel' },
 ]
 const COMMUNICATIONS = [
   { value: 'descoberta', label: 'Descoberta' },
@@ -44,12 +45,17 @@ export function Composer() {
       .catch(() => {})
   }, [])
 
+  // Vídeo não é geracional (footage entra no editor) — o texto é só um título
+  // opcional e nada além do formato é obrigatório.
+  const isVideo = format === 'video'
+
   // Produto aparece em Anúncio (CTA direto) e em Prontidão (fundo de funil). Obrigatório no Anúncio.
   const showProduct = format === 'anuncio' || communication === 'prontidao'
   const productRequired = format === 'anuncio'
 
-  const canSend =
-    text.trim().length > 0 && !!format && !!communication && (!productRequired || !!product) && !sending
+  const canSend = isVideo
+    ? !!format && !sending
+    : text.trim().length > 0 && !!format && !!communication && (!productRequired || !!product) && !sending
 
   async function handleSend() {
     if (!canSend) return
@@ -62,7 +68,7 @@ export function Composer() {
           brief: text.trim(),
           platform,
           format,
-          communication,
+          communication: communication ?? 'descoberta',
           author,
           product: showProduct ? product : null,
           attachments: files.map((f) => f.name),
@@ -109,7 +115,7 @@ export function Composer() {
           onChange={(e) => setText(e.target.value)}
           onKeyDown={handleKey}
           rows={1}
-          placeholder="Descreva o que você quer criar…"
+          placeholder={isVideo ? 'Dê um nome ao vídeo (opcional) — o footage você sobe no editor…' : 'Descreva o que você quer criar…'}
           className="w-full resize-none bg-transparent px-5 pt-5 pb-2 text-[16px] leading-relaxed text-[#0d0d0d] placeholder:text-[#9d9d9d] focus:outline-none max-h-48"
         />
 

@@ -1,0 +1,910 @@
+{
+  "id": "c6cbd333-c6cf-4502-8440-0140ddeacedf",
+  "created_at": "2026-06-01T19:25:01.686Z",
+  "created_by": "browser",
+  "company_id": "infosaas",
+  "platform": "instagram",
+  "format": {
+    "aspect_ratio": "9:16",
+    "width": 1080,
+    "height": 1920
+  },
+  "funnel_phase": "descoberta",
+  "template_id": "editorial",
+  "author": "flg",
+  "topic": "rafa-teste-editor",
+  "caption_file": "caption.md",
+  "publish_status": "published",
+  "published_at": "2026-06-01T21:27:47.042Z",
+  "publish_targets": [
+    "ca_U-5qCAthzJ30"
+  ],
+  "content_type": "video",
+  "video": {
+    "ref": "assets/2026-06-01_16-23-08.mp4",
+    "rendered_ref": "assets/rendered-1780346418492.mp4",
+    "duration": 50.166667,
+    "transcript": {
+      "text": "Fala comigo turma! Tudo bem com vocês? Aqui é o Rafa, eu tô testando agora a gravação de um vídeo. Aqui eu tô pelo OBS agora gravando esse vídeo no formato vertical pra testar a plataforma de edição aqui de cortes e legendas pra utilizar junto com o framework OS. Então eu estou fazendo esse processo de gravação pelo OBS e vou tentar fazer a edição agora, colocar a legenda, fazer corte automático, colocar zoom in e zoom out, exportar. E vou fazer a publicação desse vídeo também no meu Instagram como um teste. Então se você tá vendo esse vídeo aqui, ele é um teste da ferramenta que eu estou postando lá nos stories se você quiser conferir.",
+      "words": [
+        {
+          "text": "Fala",
+          "start": 1.5199999809265137,
+          "end": 2.2799999713897705,
+          "removed": false
+        },
+        {
+          "text": "comigo",
+          "start": 2.2799999713897705,
+          "end": 2.5799999237060547,
+          "removed": false
+        },
+        {
+          "text": "turma",
+          "start": 2.5799999237060547,
+          "end": 3.0999999046325684,
+          "removed": false
+        },
+        {
+          "text": "Tudo",
+          "start": 3.240000009536743,
+          "end": 3.5,
+          "removed": false
+        },
+        {
+          "text": "bem",
+          "start": 3.5,
+          "end": 3.619999885559082,
+          "removed": false
+        },
+        {
+          "text": "com",
+          "start": 3.619999885559082,
+          "end": 3.940000057220459,
+          "removed": false
+        },
+        {
+          "text": "vocês",
+          "start": 3.940000057220459,
+          "end": 4.360000133514404,
+          "removed": false
+        },
+        {
+          "text": "Aqui",
+          "start": 4.480000019073486,
+          "end": 4.599999904632568,
+          "removed": false
+        },
+        {
+          "text": "é",
+          "start": 4.599999904632568,
+          "end": 4.679999828338623,
+          "removed": false
+        },
+        {
+          "text": "o",
+          "start": 4.679999828338623,
+          "end": 4.820000171661377,
+          "removed": false
+        },
+        {
+          "text": "Rafa",
+          "start": 4.820000171661377,
+          "end": 5.199999809265137,
+          "removed": false
+        },
+        {
+          "text": "eu",
+          "start": 5.360000133514404,
+          "end": 5.539999961853027,
+          "removed": false
+        },
+        {
+          "text": "tô",
+          "start": 5.539999961853027,
+          "end": 5.659999847412109,
+          "removed": false
+        },
+        {
+          "text": "testando",
+          "start": 5.659999847412109,
+          "end": 6.179999828338623,
+          "removed": false
+        },
+        {
+          "text": "agora",
+          "start": 6.179999828338623,
+          "end": 6.840000152587891,
+          "removed": false
+        },
+        {
+          "text": "a",
+          "start": 6.840000152587891,
+          "end": 7,
+          "removed": false
+        },
+        {
+          "text": "gravação",
+          "start": 7,
+          "end": 7.579999923706055,
+          "removed": false
+        },
+        {
+          "text": "de",
+          "start": 7.579999923706055,
+          "end": 8.239999771118164,
+          "removed": false
+        },
+        {
+          "text": "um",
+          "start": 8.239999771118164,
+          "end": 8.920000076293945,
+          "removed": false
+        },
+        {
+          "text": "vídeo",
+          "start": 8.920000076293945,
+          "end": 8.920000076293945,
+          "removed": false
+        },
+        {
+          "text": "Aqui",
+          "start": 9.279999732971191,
+          "end": 9.760000228881836,
+          "removed": false
+        },
+        {
+          "text": "eu",
+          "start": 9.760000228881836,
+          "end": 9.9399995803833,
+          "removed": false
+        },
+        {
+          "text": "tô",
+          "start": 9.9399995803833,
+          "end": 10.119999885559082,
+          "removed": false
+        },
+        {
+          "text": "pelo",
+          "start": 10.119999885559082,
+          "end": 10.319999694824219,
+          "removed": false
+        },
+        {
+          "text": "OBS",
+          "start": 10.319999694824219,
+          "end": 10.84000015258789,
+          "removed": false
+        },
+        {
+          "text": "agora",
+          "start": 10.84000015258789,
+          "end": 11.279999732971191,
+          "removed": false
+        },
+        {
+          "text": "gravando",
+          "start": 11.279999732971191,
+          "end": 11.65999984741211,
+          "removed": false
+        },
+        {
+          "text": "esse",
+          "start": 11.65999984741211,
+          "end": 11.979999542236328,
+          "removed": false
+        },
+        {
+          "text": "vídeo",
+          "start": 11.979999542236328,
+          "end": 12.239999771118164,
+          "removed": false
+        },
+        {
+          "text": "no",
+          "start": 12.239999771118164,
+          "end": 13.119999885559082,
+          "removed": false
+        },
+        {
+          "text": "formato",
+          "start": 13.119999885559082,
+          "end": 13.119999885559082,
+          "removed": false
+        },
+        {
+          "text": "vertical",
+          "start": 13.119999885559082,
+          "end": 14.039999961853027,
+          "removed": false
+        },
+        {
+          "text": "pra",
+          "start": 14.039999961853027,
+          "end": 15.079999923706055,
+          "removed": false
+        },
+        {
+          "text": "testar",
+          "start": 15.079999923706055,
+          "end": 15.640000343322754,
+          "removed": false
+        },
+        {
+          "text": "a",
+          "start": 15.640000343322754,
+          "end": 16.200000762939453,
+          "removed": false
+        },
+        {
+          "text": "plataforma",
+          "start": 16.200000762939453,
+          "end": 16.760000228881836,
+          "removed": false
+        },
+        {
+          "text": "de",
+          "start": 16.760000228881836,
+          "end": 17.940000534057617,
+          "removed": false
+        },
+        {
+          "text": "edição",
+          "start": 17.940000534057617,
+          "end": 18.239999771118164,
+          "removed": false
+        },
+        {
+          "text": "aqui",
+          "start": 18.239999771118164,
+          "end": 19.079999923706055,
+          "removed": false
+        },
+        {
+          "text": "de",
+          "start": 19.079999923706055,
+          "end": 19.719999313354492,
+          "removed": false
+        },
+        {
+          "text": "cortes",
+          "start": 19.719999313354492,
+          "end": 19.979999542236328,
+          "removed": false
+        },
+        {
+          "text": "e",
+          "start": 19.979999542236328,
+          "end": 20.65999984741211,
+          "removed": false
+        },
+        {
+          "text": "legendas",
+          "start": 20.65999984741211,
+          "end": 20.959999084472656,
+          "removed": false
+        },
+        {
+          "text": "pra",
+          "start": 20.959999084472656,
+          "end": 22.239999771118164,
+          "removed": false
+        },
+        {
+          "text": "utilizar",
+          "start": 22.239999771118164,
+          "end": 22.700000762939453,
+          "removed": false
+        },
+        {
+          "text": "junto",
+          "start": 22.700000762939453,
+          "end": 23.079999923706055,
+          "removed": false
+        },
+        {
+          "text": "com",
+          "start": 23.079999923706055,
+          "end": 23.34000015258789,
+          "removed": false
+        },
+        {
+          "text": "o",
+          "start": 23.34000015258789,
+          "end": 23.440000534057617,
+          "removed": false
+        },
+        {
+          "text": "framework",
+          "start": 23.440000534057617,
+          "end": 23.899999618530273,
+          "removed": false
+        },
+        {
+          "text": "OS",
+          "start": 23.899999618530273,
+          "end": 24.979999542236328,
+          "removed": false
+        },
+        {
+          "text": "Então",
+          "start": 24.979999542236328,
+          "end": 25.3799991607666,
+          "removed": false
+        },
+        {
+          "text": "eu",
+          "start": 25.3799991607666,
+          "end": 25.6200008392334,
+          "removed": false
+        },
+        {
+          "text": "estou",
+          "start": 25.6200008392334,
+          "end": 25.68000030517578,
+          "removed": false
+        },
+        {
+          "text": "fazendo",
+          "start": 25.68000030517578,
+          "end": 25.940000534057617,
+          "removed": false
+        },
+        {
+          "text": "esse",
+          "start": 25.940000534057617,
+          "end": 26.239999771118164,
+          "removed": false
+        },
+        {
+          "text": "processo",
+          "start": 26.239999771118164,
+          "end": 26.760000228881836,
+          "removed": false
+        },
+        {
+          "text": "de",
+          "start": 26.760000228881836,
+          "end": 27.059999465942383,
+          "removed": false
+        },
+        {
+          "text": "gravação",
+          "start": 27.059999465942383,
+          "end": 27.559999465942383,
+          "removed": false
+        },
+        {
+          "text": "pelo",
+          "start": 27.559999465942383,
+          "end": 27.84000015258789,
+          "removed": false
+        },
+        {
+          "text": "OBS",
+          "start": 27.84000015258789,
+          "end": 28.31999969482422,
+          "removed": false
+        },
+        {
+          "text": "e",
+          "start": 28.31999969482422,
+          "end": 29.18000030517578,
+          "removed": false
+        },
+        {
+          "text": "vou",
+          "start": 29.18000030517578,
+          "end": 29.360000610351562,
+          "removed": false
+        },
+        {
+          "text": "tentar",
+          "start": 29.360000610351562,
+          "end": 29.68000030517578,
+          "removed": false
+        },
+        {
+          "text": "fazer",
+          "start": 29.68000030517578,
+          "end": 30.040000915527344,
+          "removed": false
+        },
+        {
+          "text": "a",
+          "start": 30.040000915527344,
+          "end": 30.3799991607666,
+          "removed": false
+        },
+        {
+          "text": "edição",
+          "start": 30.3799991607666,
+          "end": 30.68000030517578,
+          "removed": false
+        },
+        {
+          "text": "agora",
+          "start": 30.68000030517578,
+          "end": 31.18000030517578,
+          "removed": false
+        },
+        {
+          "text": "colocar",
+          "start": 31.239999771118164,
+          "end": 31.420000076293945,
+          "removed": false
+        },
+        {
+          "text": "a",
+          "start": 31.420000076293945,
+          "end": 31.639999389648438,
+          "removed": false
+        },
+        {
+          "text": "legenda",
+          "start": 31.639999389648438,
+          "end": 31.899999618530273,
+          "removed": false
+        },
+        {
+          "text": "fazer",
+          "start": 32.279998779296875,
+          "end": 32.41999816894531,
+          "removed": false
+        },
+        {
+          "text": "corte",
+          "start": 32.41999816894531,
+          "end": 32.65999984741211,
+          "removed": false
+        },
+        {
+          "text": "automático",
+          "start": 32.65999984741211,
+          "end": 33.20000076293945,
+          "removed": false
+        },
+        {
+          "text": "colocar",
+          "start": 33.439998626708984,
+          "end": 33.619998931884766,
+          "removed": false
+        },
+        {
+          "text": "zoom",
+          "start": 33.619998931884766,
+          "end": 34.02000045776367,
+          "removed": false
+        },
+        {
+          "text": "in",
+          "start": 34.02000045776367,
+          "end": 34.15999984741211,
+          "removed": false
+        },
+        {
+          "text": "e",
+          "start": 34.15999984741211,
+          "end": 34.20000076293945,
+          "removed": false
+        },
+        {
+          "text": "zoom",
+          "start": 34.20000076293945,
+          "end": 34.540000915527344,
+          "removed": false
+        },
+        {
+          "text": "out",
+          "start": 34.540000915527344,
+          "end": 34.81999969482422,
+          "removed": false
+        },
+        {
+          "text": "exportar",
+          "start": 35.41999816894531,
+          "end": 36.08000183105469,
+          "removed": false
+        },
+        {
+          "text": "E",
+          "start": 36.279998779296875,
+          "end": 36.63999938964844,
+          "removed": false
+        },
+        {
+          "text": "vou",
+          "start": 36.63999938964844,
+          "end": 37.099998474121094,
+          "removed": false
+        },
+        {
+          "text": "fazer",
+          "start": 37.099998474121094,
+          "end": 37.380001068115234,
+          "removed": false
+        },
+        {
+          "text": "a",
+          "start": 37.380001068115234,
+          "end": 37.599998474121094,
+          "removed": false
+        },
+        {
+          "text": "publicação",
+          "start": 37.599998474121094,
+          "end": 38.02000045776367,
+          "removed": false
+        },
+        {
+          "text": "desse",
+          "start": 38.02000045776367,
+          "end": 38.34000015258789,
+          "removed": false
+        },
+        {
+          "text": "vídeo",
+          "start": 38.34000015258789,
+          "end": 38.560001373291016,
+          "removed": false
+        },
+        {
+          "text": "também",
+          "start": 38.560001373291016,
+          "end": 38.959999084472656,
+          "removed": false
+        },
+        {
+          "text": "no",
+          "start": 38.959999084472656,
+          "end": 39.2400016784668,
+          "removed": false
+        },
+        {
+          "text": "meu",
+          "start": 39.2400016784668,
+          "end": 39.47999954223633,
+          "removed": false
+        },
+        {
+          "text": "Instagram",
+          "start": 39.47999954223633,
+          "end": 39.81999969482422,
+          "removed": false
+        },
+        {
+          "text": "como",
+          "start": 39.81999969482422,
+          "end": 40.099998474121094,
+          "removed": false
+        },
+        {
+          "text": "um",
+          "start": 40.099998474121094,
+          "end": 40.63999938964844,
+          "removed": false
+        },
+        {
+          "text": "teste",
+          "start": 40.63999938964844,
+          "end": 40.63999938964844,
+          "removed": false
+        },
+        {
+          "text": "Então",
+          "start": 40.939998626708984,
+          "end": 40.939998626708984,
+          "removed": false
+        },
+        {
+          "text": "se",
+          "start": 40.939998626708984,
+          "end": 41.040000915527344,
+          "removed": false
+        },
+        {
+          "text": "você",
+          "start": 41.040000915527344,
+          "end": 41.20000076293945,
+          "removed": false
+        },
+        {
+          "text": "tá",
+          "start": 41.20000076293945,
+          "end": 41.34000015258789,
+          "removed": false
+        },
+        {
+          "text": "vendo",
+          "start": 41.34000015258789,
+          "end": 41.459999084472656,
+          "removed": false
+        },
+        {
+          "text": "esse",
+          "start": 41.459999084472656,
+          "end": 41.68000030517578,
+          "removed": false
+        },
+        {
+          "text": "vídeo",
+          "start": 41.68000030517578,
+          "end": 41.86000061035156,
+          "removed": false
+        },
+        {
+          "text": "aqui",
+          "start": 41.86000061035156,
+          "end": 42.18000030517578,
+          "removed": false
+        },
+        {
+          "text": "ele",
+          "start": 42.70000076293945,
+          "end": 42.7599983215332,
+          "removed": false
+        },
+        {
+          "text": "é",
+          "start": 42.7599983215332,
+          "end": 42.81999969482422,
+          "removed": false
+        },
+        {
+          "text": "um",
+          "start": 42.81999969482422,
+          "end": 43.439998626708984,
+          "removed": false
+        },
+        {
+          "text": "teste",
+          "start": 43.439998626708984,
+          "end": 43.439998626708984,
+          "removed": false
+        },
+        {
+          "text": "da",
+          "start": 43.439998626708984,
+          "end": 43.959999084472656,
+          "removed": false
+        },
+        {
+          "text": "ferramenta",
+          "start": 43.959999084472656,
+          "end": 44.380001068115234,
+          "removed": false
+        },
+        {
+          "text": "que",
+          "start": 44.380001068115234,
+          "end": 44.540000915527344,
+          "removed": false
+        },
+        {
+          "text": "eu",
+          "start": 44.540000915527344,
+          "end": 44.779998779296875,
+          "removed": false
+        },
+        {
+          "text": "estou",
+          "start": 44.779998779296875,
+          "end": 44.81999969482422,
+          "removed": false
+        },
+        {
+          "text": "postando",
+          "start": 44.81999969482422,
+          "end": 45.380001068115234,
+          "removed": false
+        },
+        {
+          "text": "lá",
+          "start": 45.380001068115234,
+          "end": 46.08000183105469,
+          "removed": false
+        },
+        {
+          "text": "nos",
+          "start": 46.08000183105469,
+          "end": 46.220001220703125,
+          "removed": false
+        },
+        {
+          "text": "stories",
+          "start": 46.220001220703125,
+          "end": 46.7599983215332,
+          "removed": false
+        },
+        {
+          "text": "se",
+          "start": 46.7599983215332,
+          "end": 47.20000076293945,
+          "removed": false
+        },
+        {
+          "text": "você",
+          "start": 47.20000076293945,
+          "end": 47.41999816894531,
+          "removed": false
+        },
+        {
+          "text": "quiser",
+          "start": 47.41999816894531,
+          "end": 47.619998931884766,
+          "removed": false
+        },
+        {
+          "text": "conferir",
+          "start": 47.619998931884766,
+          "end": 48.060001373291016,
+          "removed": false
+        }
+      ]
+    },
+    "style": {
+      "footage": {
+        "fit": "cover",
+        "zoom": 1,
+        "x": 0,
+        "y": 0,
+        "bg": "#000000",
+        "blurBg": false,
+        "volumeDb": 12
+      },
+      "caption": {
+        "enabled": true,
+        "position": "bottom",
+        "offsetX": 0,
+        "offsetY": -0.46,
+        "fontSize": 56,
+        "weight": "extrabold",
+        "textColor": "#FFFFFF",
+        "activeColor": "#FF3D00",
+        "box": true,
+        "animation": "pop",
+        "maxWordsPerLine": 1,
+        "uppercase": true
+      },
+      "logo": {
+        "enabled": false,
+        "variant": "branco",
+        "position": "top-left",
+        "size": 64,
+        "opacity": 1
+      },
+      "intro": {
+        "enabled": false,
+        "text": "",
+        "durationMs": 1500
+      },
+      "outro": {
+        "enabled": false,
+        "text": "",
+        "durationMs": 1500
+      }
+    },
+    "edit": {
+      "enabled": true,
+      "cuts": [
+        {
+          "start": 0,
+          "end": 1.9028735758620687
+        },
+        {
+          "start": 8.95844,
+          "end": 9.37231
+        },
+        {
+          "start": 14.1905,
+          "end": 14.7775
+        },
+        {
+          "start": 17.9082,
+          "end": 17.940000534057617
+        },
+        {
+          "start": 18.239999771118164,
+          "end": 18.2717
+        },
+        {
+          "start": 18.7632,
+          "end": 19.1176
+        },
+        {
+          "start": 19.6336,
+          "end": 19.719999313354492
+        },
+        {
+          "start": 20.880200000000002,
+          "end": 21.699099999999998
+        },
+        {
+          "start": 23.440000534057617,
+          "end": 23.5686
+        },
+        {
+          "start": 23.8408,
+          "end": 23.899999618530273
+        },
+        {
+          "start": 28.482400000000002,
+          "end": 28.988899999999997
+        },
+        {
+          "start": 33.7961,
+          "end": 34.02000045776367
+        },
+        {
+          "start": 34.6993,
+          "end": 35.181599999999996
+        },
+        {
+          "start": 35.887100000000004,
+          "end": 36.306999999999995
+        },
+        {
+          "start": 40.5176,
+          "end": 40.9949
+        },
+        {
+          "start": 42.1769,
+          "end": 42.5167
+        },
+        {
+          "start": 46.6999,
+          "end": 46.7599983215332
+        },
+        {
+          "start": 48.019400000000005,
+          "end": 50.012
+        }
+      ],
+      "zooms": [
+        {
+          "start": 1.5199999809265137,
+          "end": 4.019999980926514,
+          "scale": 1.3,
+          "x": 0,
+          "y": 0
+        },
+        {
+          "start": 10.487713604670306,
+          "end": 12.601106530690894,
+          "scale": 1.4,
+          "x": 0,
+          "y": 0
+        },
+        {
+          "start": 25.175794037415688,
+          "end": 26.681585691009936,
+          "scale": 1.4,
+          "x": 0,
+          "y": 0
+        },
+        {
+          "start": 31.41030478156727,
+          "end": 33.70861878241924,
+          "scale": 1.4,
+          "x": 0,
+          "y": 0
+        },
+        {
+          "start": 38.1203257092918,
+          "end": 39.96954451955981,
+          "scale": 1.4,
+          "x": 0,
+          "y": 0
+        },
+        {
+          "start": 43.90573723188231,
+          "end": 45.913462123992716,
+          "scale": 1.4,
+          "x": 0,
+          "y": 0
+        }
+      ]
+    }
+  }
+}

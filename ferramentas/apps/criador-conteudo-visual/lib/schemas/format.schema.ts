@@ -3,7 +3,7 @@ import { z } from 'zod'
 export const AspectRatioSchema = z.enum(['1:1', '4:5', '3:4', '9:16'])
 export type AspectRatio = z.infer<typeof AspectRatioSchema>
 
-export const ContentTypeSchema = z.enum(['estatico', 'carrossel', 'stories', 'anuncio', 'post'])
+export const ContentTypeSchema = z.enum(['estatico', 'carrossel', 'stories', 'anuncio', 'post', 'video'])
 export type ContentTypeId = z.infer<typeof ContentTypeSchema>
 
 // Formato do criativo: proporção + dimensões em px.
@@ -31,6 +31,7 @@ export const RATIOS_BY_TYPE: Record<ContentTypeId, AspectRatio[]> = {
   stories: ['9:16'],
   anuncio: ['3:4', '4:5', '1:1'],
   post: ['3:4', '4:5', '1:1'], // legado (= estatico)
+  video: ['9:16'], // Reel vertical
 }
 
 export function makeFormat(aspect_ratio: AspectRatio): Format {

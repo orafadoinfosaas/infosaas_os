@@ -2,6 +2,7 @@
 
 import { Suspense, useState, useRef, useEffect } from 'react'
 import { EditorLayout } from '@/components/editor/EditorLayout'
+import { VideoEditor, type VideoSeed } from '@/components/video/VideoEditor'
 import { useContentWatch } from '@/lib/content/use-content-watch'
 import { hydrateContent } from '@/lib/content/hydrate'
 import type { EditorCanvasHandle } from '@/components/editor/EditorCanvas'
@@ -22,6 +23,7 @@ function templateForPhase(phase: FunnelPhase): TemplateId {
 type Tab = 'chat' | 'marca' | 'texto' | 'legenda'
 
 function EditorInner() {
+  const [videoCtx, setVideoCtx] = useState<{ slug?: string; threadId?: string; seed?: VideoSeed } | null>(null)
   const [flowState, setFlowState] = useState<FlowState>({ step: 'INIT' })
   const [editingContent, setEditingContent] = useState<Content | null>(null)
   const [originalContent, setOriginalContent] = useState<Content | null>(null)
@@ -47,10 +49,29 @@ function EditorInner() {
   function loadSlug(slug: string): Promise<void> {
     return fetch(`/api/content/${slug}`)
       .then((r) => (r.ok ? r.json() : Promise.reject(new Error('not found'))))
-      .then(applyLoaded)
+      .then((data: { content: Content; caption: string; slug: string }) => {
+        if (data.content.content_type === 'video') {
+          setVideoCtx({ slug: data.slug })
+          return
+        }
+        applyLoaded(data)
+      })
   }
 
   function seedBrief(t: { meta?: { format?: string; communication?: string; product?: string; author?: string }; messages?: { content: string }[] }) {
+    // Vídeo/Reel não passa pela geração via chat — abre o módulo de vídeo.
+    if (t.meta?.format === 'video') {
+      setVideoCtx({
+        threadId: threadIdRef.current ?? undefined,
+        seed: {
+          funnelPhase: (t.meta?.communication ?? 'descoberta') as FunnelPhase,
+          productId: t.meta?.product,
+          author: t.meta?.author,
+          brief: t.messages?.[0]?.content ?? '',
+        },
+      })
+      return
+    }
     const phase = (t.meta?.communication ?? 'descoberta') as FunnelPhase
     const contentType = FORMAT_TO_TYPE[t.meta?.format ?? 'carrossel'] ?? 'carrossel'
     const brief = t.messages?.[0]?.content ?? ''
@@ -174,6 +195,10 @@ function EditorInner() {
 
   async function handleSave() {
     await persist()
+  }
+
+  if (videoCtx) {
+    return <VideoEditor slug={videoCtx.slug} threadId={videoCtx.threadId} seed={videoCtx.seed} />
   }
 
   return (

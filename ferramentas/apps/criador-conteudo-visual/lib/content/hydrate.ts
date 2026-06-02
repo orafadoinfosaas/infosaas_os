@@ -41,6 +41,11 @@ export function hydrateContent(content: Content): Content {
   const template = getTemplate(content.template_id)
   const branding = content.branding ?? DEFAULT_BRANDING
 
+  // Vídeo/Reel não tem design Konva — passa intocado (só garante branding).
+  if (content.content_type === 'video') {
+    return { ...content, branding }
+  }
+
   if (content.content_type === 'carrossel') {
     return {
       ...content,

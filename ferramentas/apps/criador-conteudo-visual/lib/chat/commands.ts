@@ -138,6 +138,7 @@ function withFrameDesign(content: Content, slideIndex: number, updater: (d: Layo
   if (content.content_type === 'carrossel') {
     return withCarouselSlideUpdate(content, slideIndex, (s) => ({ ...s, design: updater(s.design ?? DEFAULT_LAYOUT) }))
   }
+  if (content.content_type === 'video') return content
   return { ...content, design: updater(content.design ?? DEFAULT_LAYOUT) } as Content
 }
 
@@ -229,6 +230,7 @@ function applyCommand(content: Content, cmd: Command): Content {
           slides: content.slides.map((s) => ({ ...s, design: retheme(s.design ?? DEFAULT_LAYOUT) })),
         }
       }
+      if (content.content_type === 'video') return content
       return {
         ...content,
         template_id: cmd.baseId,

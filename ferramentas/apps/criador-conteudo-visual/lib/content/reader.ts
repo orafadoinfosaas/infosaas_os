@@ -4,7 +4,7 @@ import { getOutputPath } from '@/config/company'
 import { ContentSchema } from '@/lib/schemas/content.schema'
 import type { Content } from '@/lib/schemas/content.schema'
 
-const CONTENT_TYPES = ['carroseis', 'estaticos', 'stories', 'anuncios', 'posts'] as const
+const CONTENT_TYPES = ['carroseis', 'estaticos', 'stories', 'anuncios', 'posts', 'videos'] as const
 
 export type CreationSummary = {
   slug: string

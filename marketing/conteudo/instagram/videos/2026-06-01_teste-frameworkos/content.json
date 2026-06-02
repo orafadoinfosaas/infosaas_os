@@ -1,0 +1,25 @@
+{
+  "id": "a952f033-1d56-4091-9e5f-23c26cab3830",
+  "created_at": "2026-06-01T16:04:23.303Z",
+  "created_by": "browser",
+  "company_id": "infosaas",
+  "platform": "instagram",
+  "format": {
+    "aspect_ratio": "9:16",
+    "width": 1080,
+    "height": 1920
+  },
+  "funnel_phase": "descoberta",
+  "template_id": "editorial",
+  "topic": "TESTE FRAMEWORKOS",
+  "caption_file": "caption.md",
+  "publish_targets": [
+    "ca_66AGbtcRQZ1J"
+  ],
+  "content_type": "video",
+  "video": {
+    "ref": "assets/reels-teste.mp4"
+  },
+  "publish_status": "published",
+  "published_at": "2026-06-01T16:30:39.199Z"
+}
