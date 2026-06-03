@@ -2,6 +2,7 @@ import express, { type Request, type Response } from "express";
 import { StreamableHTTPServerTransport } from "@modelcontextprotocol/sdk/server/streamableHttp.js";
 import { buildServer } from "./server.js";
 import { checkBearer } from "./auth/bearer.js";
+import { storageKind } from "./storage/index.js";
 
 const PORT = Number(process.env.PORT ?? 8787);
 const TENANT_ID = process.env.TENANT_ID ?? "infosaas";
@@ -11,7 +12,7 @@ app.use(express.json({ limit: "4mb" }));
 
 // Healthcheck (sem auth) — usado pelo reverse proxy / uptime.
 app.get("/health", (_req: Request, res: Response) => {
-  res.json({ ok: true, service: "infosaas-os-mcp", tenant: TENANT_ID });
+  res.json({ ok: true, service: "infosaas-os-mcp", tenant: TENANT_ID, storage: storageKind() });
 });
 
 // Endpoint MCP — Streamable HTTP, stateless (um transport por requisição).
