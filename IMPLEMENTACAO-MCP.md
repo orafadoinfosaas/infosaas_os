@@ -5,7 +5,10 @@
 > oficial** que lê a memória da empresa no Nextcloud (Hetzner Storage Share) e executa
 > automações.
 >
-> **Status:** especificação. Nenhum código deste doc foi escrito no repo ainda.
+> **Status:** Fase 1 (cérebro só-leitura) e Fase 2/Camada 1 (CRUD do OS) **em produção** em
+> `mcp.infosaas.ai`. Tools semânticas (Fase 2) / OAuth (Fase 3) / onboarding (Fase 4) pendentes.
+> **Visão geral da arquitetura do OS (control plane + data plane + frota):**
+> [`IMPLEMENTACAO-OS.md`](IMPLEMENTACAO-OS.md).
 > **Stack escolhida:** SDK oficial do MCP (`@modelcontextprotocol/sdk`, TypeScript).
 
 ---
