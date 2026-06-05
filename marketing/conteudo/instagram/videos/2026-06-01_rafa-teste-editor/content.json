@@ -747,8 +747,8 @@
       "footage": {
         "fit": "cover",
         "zoom": 1,
-        "x": 0,
-        "y": 0,
+        "x": -0.18,
+        "y": -0.06,
         "bg": "#000000",
         "blurBg": false,
         "volumeDb": 12
@@ -756,15 +756,15 @@
       "caption": {
         "enabled": true,
         "position": "bottom",
-        "offsetX": 0,
+        "offsetX": 0.1,
         "offsetY": -0.46,
-        "fontSize": 56,
+        "fontSize": 40,
         "weight": "extrabold",
         "textColor": "#FFFFFF",
         "activeColor": "#FF3D00",
         "box": true,
         "animation": "pop",
-        "maxWordsPerLine": 1,
+        "maxWordsPerLine": 2,
         "uppercase": true
       },
       "logo": {
@@ -772,7 +772,7 @@
         "variant": "branco",
         "position": "top-left",
         "size": 64,
-        "opacity": 1
+        "opacity": 0.25
       },
       "intro": {
         "enabled": false,

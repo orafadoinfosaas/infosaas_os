@@ -18,12 +18,12 @@
   "branding": {
     "logo": {
       "show": true,
-      "variant": "preto",
+      "variant": "laranja",
       "position": "top-left"
     },
     "numbering": {
       "show": false,
-      "position": "bottom-right",
+      "position": "top-right",
       "style": "fraction"
     },
     "handle": {
@@ -65,7 +65,7 @@
         },
         "background": {
           "type": "solid",
-          "color": "#F5F5F5"
+          "color": "#000000"
         },
         "mask": {
           "color": "#000000",
@@ -81,7 +81,8 @@
             "marginBottom": 84
           },
           "headline": {
-            "fontSize": 60,
+            "fontSize": 80,
+            "fontFamily": "Sora",
             "align": "left",
             "letterSpacing": 0,
             "lineHeight": 1,
