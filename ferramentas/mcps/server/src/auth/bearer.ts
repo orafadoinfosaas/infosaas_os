@@ -5,6 +5,13 @@ import type { Request } from "express";
  * Authorization com MCP_TOKEN. Na Fase 3 isso vira OAuth 2.0 multi-tenant.
  */
 export function checkBearer(req: Request): boolean {
+  // ⚠️ MODO ABERTO (temporário, p/ testar hosts sem Bearer — ex.: conector do ChatGPT).
+  // Liga via env MCP_NO_AUTH=true. NUNCA deixar ligado em produção: servidor fica
+  // acessível a qualquer um com a URL. Ligar → testar → DESLIGAR.
+  if (process.env.MCP_NO_AUTH === "true") {
+    console.warn("[auth] ⚠️ MCP_NO_AUTH=true — servidor SEM autenticação (modo aberto). Use só para teste e DESLIGUE depois.");
+    return true;
+  }
   const expected = process.env.MCP_TOKEN;
   if (!expected) {
     console.warn("[auth] MCP_TOKEN não definido — recusando todas as requisições.");
