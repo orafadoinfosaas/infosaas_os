@@ -14,6 +14,8 @@
 >
 > **Status:** arquitetura/proposta. Depende do MCP (Fase 2 em diante) e do criador deployado.
 > **Sugestão de roadmap:** "Fase 5 — UI no chat", depois do deploy do criador. **Criado:** 2026-06-03.
+> **Atualizado 2026-06-08:** o preview no chat é o **tier grátis** (dado do LLM do host, render
+> função-pura) e ganhou o botão **"abrir no editor"** como ponte pro tier pago (BYOK/render).
 
 ---
 
@@ -32,6 +34,14 @@ aparece desenhado, navegável, com botões ("aprovar", "publicar", "ajustar"). S
 E mais: isso **não é um hack pro preview** — é uma **camada genérica de UI** do OS. Qualquer tool
 futura (relatório, painel de frota, aprovação) declara sua própria *view* e ganha UI no chat de
 graça.
+
+### O elo com o billing (por que o preview no chat é "de graça")
+A view do chat só **renderiza dado** — e o dado, no chat, é gerado pelo **LLM do host** (Claude/GPT
+do cliente, modo `chat-native` de `criar_conteudo` — ver [`IMPLEMENTACAO-MCP.md`](IMPLEMENTACAO-MCP.md)
+Fase 2). Como `Content → RichSpec → canvas` é **função pura** (sem chamar API), desenhar o preview
+**não custa token nenhum à Infosaas**. O tier pago só entra quando o cliente clica **"abrir no
+editor"** (pipeline OpenAI com BYOK) ou pede imagem/vídeo (render). O preview é, portanto, a
+materialização visual do **tier grátis** — e o botão "abrir no editor" é a ponte pro **tier pago**.
 
 ### Princípios de design
 - **A UI é função pura do dado.** O preview já é `Content → RichSpec → canvas` (ver §2). Nada de
@@ -120,7 +130,7 @@ auto-contida (HTML+JS num iframe). Cada tool aponta para a view que renderiza o 
 ```
 ui://infosaas/preview-conteudo   ← carrossel / anúncio / estático (a primeira)
 ui://infosaas/preview-video      ← player do Reel renderizado
-ui://infosaas/aprovar-conteudo   ← preview + botões (aprovar / publicar / ajustar)
+ui://infosaas/aprovar-conteudo   ← preview + botões (aprovar / publicar / ajustar / abrir no editor)
 ui://infosaas/painel-os          ← dashboard do OS do cliente
 ui://infosaas/painel-frota       ← status das instâncias (uso interno)
 ```
@@ -265,13 +275,20 @@ do tipo imagem inline.
 ```ts
 // criar_conteudo (conceitual) — Degrau 1
 const pngs = await renderFramesToPng(content);   // 1 PNG por slide
+const editorUrl = `${process.env.EDITOR_URL}/c/${content.slug}`;  // deep-link p/ o editor do tenant
 return {
   content: [
     { type: "text", text: `Carrossel "${content.topic}" — ${pngs.length} slides:` },
     ...pngs.map((b64) => ({ type: "image", data: b64, mimeType: "image/png" })),
+    { type: "text", text: `Abrir no editor (ajuste fino, exporta com BYOK): ${editorUrl}` },
   ],
 };
 ```
+
+> **Botão "abrir no editor".** Mesmo no Degrau 1 (sem iframe), o link já materializa a ponte
+> grátis→pago: o cliente *viu* no chat de graça e, se quiser ajuste fino/render, abre o editor do
+> tenant (nova aba). No Degrau 2 o link vira **botão** dentro da view. O `EDITOR_URL` é resolvido
+> por tenant (a instância do criador dele).
 
 **Como gerar o PNG:** o app já exporta frames ([`FrameExporter.tsx`](ferramentas/apps/criador-conteudo-visual/components/editor/FrameExporter.tsx)).
 Duas opções:
@@ -306,8 +323,15 @@ aprova e publica — **sem abrir o editor**.
 | **Central/versionado**: update grátis pra frota | Atenção a versão do SDK (API evoluindo) |
 | Renderer = fonte única (editor + chat) | — |
 
-**Ordem recomendada:** Degrau 1 **agora** (valida), Degrau 2 como a **Fase 5 do OS** (constrói o
-ativo). Não pular o 1 — ele desmente/valida a hipótese antes do investimento do 2.
+**Ordem recomendada (original):** Degrau 1 **agora** (valida), Degrau 2 como a **Fase 5 do OS**.
+
+> **Decisão atualizada (2026-06-08): vamos direto ao Degrau 2 (iframe) no push do chat-native.**
+> Motivo: (1) o `compose.ts` usa canvas de **browser** — roda nativo no iframe sem node-canvas nem
+> Chromium no servidor → render **client-side, custo zero** (reforça o tier grátis); (2) é o ativo
+> estratégico (interativo, replicável); (3) o inventário do editor mostrou que **não existe render
+> PNG server-side hoje**, então o Degrau 1 também exigiria construir um renderer — preferimos
+> investir esse esforço já no bundle do iframe. O Degrau 1 (PNG) fica como **fallback** caso algum
+> host-alvo não suporte MCP Apps.
 
 ---
 
@@ -364,6 +388,8 @@ Herda tudo do MCP + camada do iframe:
 - **Dois degraus:** PNG estático primeiro (valida), iframe interativo depois (ativo).
 - **Vídeo = player do MP4 do R2**, não canvas.
 - **Ações pela UI = tool calls auditadas e confirmadas.**
+- **Preview no chat = tier grátis.** O dado vem do LLM do host (`chat-native`) e o render é função
+  pura → custo zero. O botão **"abrir no editor"** é a ponte pro tier pago (BYOK/render).
 
 ## 12. Decisões em aberto
 1. **Renderer único vs dois:** migrar o editor do Konva pro `render-canvas` vanilla (1 renderer) ou

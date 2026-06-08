@@ -6,7 +6,10 @@
 > automações.
 >
 > **Status:** Fase 1 (cérebro só-leitura) e Fase 2/Camada 1 (CRUD do OS) **em produção** em
-> `mcp.infosaas.ai`. Tools semânticas (Fase 2) / OAuth (Fase 3) / onboarding (Fase 4) pendentes.
+> `mcp.infosaas.ai`. Tools semânticas (Fase 2) / OAuth (Fase 3) / painel (Fase 4) pendentes.
+> **Atualizado 2026-06-08** com 3 mudanças do produto: **Nextcloud por-cliente** (§3.3),
+> **billing em dois tiers** — chat-native grátis vs editor BYOK (Fase 2), e **Fase 4 vira painel
+> self-service** (cofre de credenciais), não mais um script.
 > **Visão geral da arquitetura do OS (control plane + data plane + frota):**
 > [`IMPLEMENTACAO-OS.md`](IMPLEMENTACAO-OS.md).
 > **Stack escolhida:** SDK oficial do MCP (`@modelcontextprotocol/sdk`, TypeScript).
@@ -100,6 +103,14 @@ Trade-off assumido: o dado do cliente transita pela infra da Infosaas (isolament
 físico). Isso se mitiga com a checklist de isolamento da §5 / Fase 3 (auth por tenant,
 `tenantPath()`, app passwords com escopo mínimo, logs por tenant).
 
+> **"Central" é o COMPUTE/INTELIGÊNCIA — não o storage.** O argumento de retenção acima vale para
+> o **control plane** (MCP, tools, voz/DNA encodados): isso fica na infra da Infosaas e é o fosso.
+> **Storage (Nextcloud) e hospedagem do site (VPS) podem ser do cliente** sem quebrar nada — são
+> camadas burras que o cliente não opera com inteligência sem o MCP. Cada cliente ter o **Nextcloud
+> dele** (decisão atualizada — ver §3.3) na prática *fortalece* a venda premium ("seu dado é seu,
+> na sua casa") e troca isolamento **lógico** por **físico**. O lock-in segue sendo a camada de
+> inteligência central, nunca a custódia de dado refém.
+
 ### Fluxo de uma requisição (exemplo)
 1. Cliente no Claude: *"Cria um carrossel sobre onboarding para o ICP de educação."*
 2. Claude chama a tool `criar_conteudo` do conector → POST para o MCP na VPS.
@@ -143,7 +154,23 @@ sudo apt install -y nodejs
 #   - Se não tem nada/quer simplicidade → instale o Caddy (TLS automático).
 ```
 
-### 3.3 Conectar a VPS ao Nextcloud via WebDAV (rclone)
+### 3.3 Conectar ao Nextcloud via WebDAV
+
+> **⚠️ Decisão atualizada (2026-06-08): Nextcloud é POR-CLIENTE, não central.** O desenho original
+> (abaixo, com `rclone mount` de um Storage Share central da Infosaas) foi **superado** por dois
+> motivos: (1) a Camada 2 já implementou **WebDAV-direto via HTTP** (sem FUSE/mount) — ver
+> [`IMPLEMENTACAO-OS.md`](IMPLEMENTACAO-OS.md) §3; (2) **cada cliente tem o Nextcloud dele**.
+>
+> WebDAV-direto não liga numa "pasta montada" — liga numa **URL + credencial**. Logo, "um mount
+> central" vira **um endpoint por tenant**: a tabela `{ url, user, app-password }` de cada cliente
+> mora no **painel** (§ Fase 4) e o MCP escolhe o endpoint pela auth do tenant. Isolamento passa de
+> **lógico** para **físico** (cada cliente, um servidor). O bloco rclone abaixo fica como
+> **referência** caso algum dia se queira um realm central (uso interno da Infosaas, p.ex.).
+>
+> **Custo operacional novo:** ligar em N Nextclouds heterogêneos (versões, uptime, app-password
+> que o cliente revoga sem avisar) é mais frágil que um só. Tratar com **health-check por tenant**
+> no painel.
+
 No Nextcloud (web do cliente ou da Infosaas): **Configurações → Segurança → criar "App password"**
 (uma por tenant, ou uma de serviço com acesso à raiz `/clientes`).
 
@@ -261,7 +288,7 @@ ferramentas/mcps/server/
 | **1** | Cérebro só-leitura no chat | Bearer token | Single (cliente = você) |
 | **2** | Tools de ação (conteúdo/publicação) | Bearer token | Single |
 | **3** | Multi-tenant + isolamento | OAuth 2.0 | Multi |
-| **4** | Onboarding produtizado (provisiona cliente) | OAuth 2.0 | Multi |
+| **4** | Painel self-service (cofre de credenciais + auth) | OAuth 2.0 / painel | Multi |
 
 ---
 
@@ -421,10 +448,83 @@ export function registerSearchTool(server, tenantId: string) {
 aplicando o DNA dele e (opcional) publicar. Aqui nasce o catálogo de tools reutilizáveis.
 
 **Entregáveis:**
-- Tool `criar_conteudo` (gera via API do app e escreve só em `output/`).
-- Tool `publicar_instagram` (opcional, via Composio/Activepieces).
+- Tool `criar_conteudo` em **dois modos** (ver abaixo): `chat-native` e `editor`.
+- Tool `publicar_instagram` (opcional, via Composio — credencial do tenant no painel).
 - Prompt `criar-conteudo` selecionável no menu do Claude.
 
+#### Billing: por que o chat é de graça e o editor é pago (decisão-chave)
+**Um servidor MCP não roda LLM.** Quando o cliente usa o Claude/GPT com o conector, *quem pensa e
+escreve é o LLM do host* — pago pela **assinatura do cliente**. O MCP só serve dado (DNA) e executa
+tool determinística. Isso destrava dois tiers naturais:
+
+| Superfície | Quem gera o texto | Quem paga | Trade-off |
+|---|---|---|---|
+| **Chat (via MCP)** | LLM do host (Claude/GPT do cliente) | assinatura do cliente → **custo zero p/ Infosaas** | rápido, menos determinístico |
+| **Editor** | pipeline do app (OpenAI) | **API key do cliente (BYOK)** | pixel-perfect, controlado, pago |
+
+→ O trade-off **é** a diferença entre os tiers, não um defeito. O botão **"abrir no editor"**
+(ver [`IMPLEMENTACAO-UI-CHAT.md`](IMPLEMENTACAO-UI-CHAT.md)) é a ponte do tier grátis pro premium.
+
+**Consequência de design:** `criar_conteudo` tem **dois modos**:
+- **`chat-native` (padrão no chat):** o MCP **não chama a OpenAI**. Devolve o **DNA + a skill de voz
+  como contexto** e um **schema de saída** (Content JSON via structured output) — o LLM do host
+  gera. O MCP só **valida e escreve em `output/`**. Texto sai de graça. **Imagem** (`gpt-image-1`) e
+  **vídeo** (Remotion/ffmpeg) ainda exigem API/render → caem no modo `editor`/BYOK.
+- **`editor` (BYOK):** o pipeline atual — chama a API do app, que usa a `OPENAI_API_KEY` **do
+  cliente**. Determinístico, pixel-perfect.
+
+> ⚠️ O bloco de código abaixo mostra o modo **`editor`** (chama o app). O modo `chat-native` não
+> chama `fetch` de geração — registra o DNA+skill como contexto/prompt e expõe o schema; a tool só
+> persiste o JSON que o host devolve. Manter os dois caminhos na mesma tool, decididos por arg/host.
+
+#### Plano concreto do chat-native (a partir do inventário do editor — 2026-06-08)
+
+**O achado que destrava tudo:** o `/api/generate` do editor tem dois modos — `generate` (o
+`gpt-5.4-nano` *escreve* a copy) e `refine` (o LLM *opera o canvas* chamando **16 comandos**:
+`setText`, `setMedia`, `duplicateSlide`, `setBase`, `setMask`, `setCaption`…). Esses comandos são
+**funções determinísticas** sobre o Content JSON (`lib/chat/commands.ts`) — **não têm LLM dentro**.
+O LLM só decide qual chamar. Logo, no chat-native:
+
+> O **LLM do host faz os dois papéis** do `gpt-5.4-nano` (escreve a copy *e* decide o comando). O
+> MCP só: (a) entrega o **mesmo system prompt do DNA**, (b) valida o JSON, (c) **aplica o comando
+> determinístico**, (d) renderiza o preview. **Quase o editor inteiro fica de graça por construção.**
+
+**Mapa de tools (escopo do MVP: carrossel/post/anúncio; vídeo adiado):**
+
+| Tier | Tools MCP | Origem no editor | Custo |
+|---|---|---|---|
+| **Grátis** (host LLM + determinístico) | `criar_conteudo` (host escreve via prompt+schema) | `/api/generate` (generate) | zero |
+| | `editar_conteudo` (os 16 comandos) | `/api/generate` (refine) + `commands.ts` | zero |
+| | `salvar_conteudo`, `listar_criacoes`, `obter_criacao`, `agendar` | `/api/content/*` | zero |
+| | `criar/listar/atualizar_thread` | `/api/threads/*` | zero |
+| | `preview_conteudo` (iframe MCP Apps) | `compose.ts` no bundle do iframe | zero |
+| | `buscar_no_cerebro` + resources do `dna/` | **já existem** ✅ | zero |
+| **BYOK / pago** | `gerar_imagem` (gpt-image-1) | `/api/images/generate` | OpenAI key |
+| | `publicar` (Composio + R2) | `/api/publish` | Composio/R2 |
+| **Adiado** (precisa do criador deployado) | transcrever/renderizar/editar Reel (15+ tools) | `/api/video/*` | render |
+
+**Vídeo fica fora do primeiro corte:** exige render pesado (Remotion/Chromium) que só roda na
+instância do criador (data plane). O ciclo carrossel→preview→refino→publicar é o MVP de marketing.
+
+**Arquitetura — pacotes compartilhados (garante "mesmas regras" por código, não por disciplina):**
+- **`@infosaas/content`** — `content.schema.ts` + `commands.ts` (os 16) + `buildSystemPrompt`
+  **parametrizado por um reader injetado** (app passa `fs`; MCP passa `storage.read` do tenant).
+- **`@infosaas/renderer`** — `compose.ts` + render para o **iframe** (bundle esbuild). Render roda
+  no browser do cliente → custo zero, sem Chromium. (Decisão: preview = **iframe interativo /
+  MCP Apps**, não PNG — ver [`IMPLEMENTACAO-UI-CHAT.md`](IMPLEMENTACAO-UI-CHAT.md) Degrau 2.)
+
+> **Realidade de infra (achado 2026-06-08):** não há monorepo/workspace configurado (sem
+> `package.json` raiz) e há **split de zod** (app em **v4**, MCP em **v3**). Extrair os pacotes
+> exige alinhar zod e definir o modo de consumo (npm workspaces **vs** dependência `file:` com build
+> próprio). Isso mexe no **MCP em produção** e no **app** — fazer **em estágios verificados**, não
+> num big-bang. Decisão em aberto: extração própria primeiro **vs** portar pro MCP e extrair depois.
+
+**Preview = iframe (MCP Apps), não PNG.** O `compose.ts` usa canvas de browser — roda nativo no
+iframe (que é browser), sem precisar de node-canvas/Chromium no servidor. O bundle do renderer é
+servido como `ui://` resource; a tool `criar_conteudo` devolve `structuredContent` + `_meta`
+apontando a view. Detalhe em [`IMPLEMENTACAO-UI-CHAT.md`](IMPLEMENTACAO-UI-CHAT.md) (Degrau 2).
+
+#### Modo `editor` (BYOK) — reaproveitando o app
 **Pré-requisito:** deployar o `criador-conteudo-visual` (hoje roda local/Nextcloud) na **mesma
 VPS Hostinger** do MCP. Aí o MCP o chama por `http://localhost:3000` — sem expor o app
 publicamente e sem latência de rede externa (`APP_URL=http://localhost:3000` no `.env`).
@@ -602,33 +702,47 @@ sessão do B → **invisível pro B.** Deploy é global; visibilidade é por cli
 
 ---
 
-### FASE 4 — Onboarding produtizado
+### FASE 4 — Painel de gerenciamento (control plane customer-facing)
 
-**Meta:** transformar "adicionar um cliente" de tarefa manual em **um comando** — provisiona
-pasta, DNA template, config e acesso, e entrega o guia de conexão.
+**Meta:** transformar "adicionar/operar um cliente" de tarefa manual num **portal self-service**.
+O cliente loga, guarda as próprias credenciais, conecta o MCP e gerencia o que tem direito — sem
+ninguém da Infosaas no meio. O painel vira o **cofre de configuração e a fonte de auth** de todo
+tenant. (Decisão atualizada: era um *script* `provisionar-cliente.sh`; virou **portal**.)
 
-**Entregáveis:**
-- `scripts/provisionar-cliente.sh <tenantId> "<Nome>"` (ponta a ponta).
-- Template de `dna/` versionado no git (base de todo cliente novo).
-- Guia de 1 página (§7) + roteiro de call de onboarding.
+**Por que portal e não só script:** os pontos novos do produto (Nextcloud do cliente, BYOK da
+OpenAI, conexão Composio, R2, VPS do site) **exigem que o cliente cadastre segredo dele**. Segredo
+não pode morar em pasta que o cliente edita (`tenant.json` no Nextcloud) nem em call de onboarding
+manual. Precisa de um cofre com login. O script vira **um passo interno** que o painel chama.
 
-Script que provisiona um cliente novo de ponta a ponta:
-```bash
-# scripts/provisionar-cliente.sh <tenantId> "<Nome>"
-# 1) cria /clientes/<tenant>/{dna,output,config} no Nextcloud (via rclone)
-# 2) copia o TEMPLATE de dna/ do git para a pasta do cliente
-# 3) gera config/tenant.json com as tools padrão
-# 4) cria o usuário/registro OAuth do tenant
-# 5) imprime o guia "Adicione este conector no Claude" com a URL e o passo a passo
+```
+Painel Infosaas (novo control plane, customer-facing)
+├─ login do cliente (vira a fonte de auth/OAuth do conector MCP)
+├─ cofre de credenciais por tenant (criptografado em repouso):
+│   ├─ Nextcloud DELE        → { url, user, app-password }     (§3.3)
+│   ├─ OpenAI API key (BYOK) → usada só no modo `editor`        (Fase 2)
+│   ├─ Composio              → conexão Instagram/social         (publicar_*)
+│   ├─ R2                    → assets/preview da UI no chat
+│   └─ VPS + repo do site    → gestão de site (trilha futura)
+├─ emite/rotaciona o token (ou registro OAuth) do conector MCP
+├─ liga/desliga tools por tenant (substitui o tenant.json com segredo)
+└─ health-check por tenant (Nextcloud no ar? VPS no ar? key válida?)
 ```
 
-Entregar ao cliente um **guia de 1 página** (ver §7) e, idealmente, fazer o setup do conector
-**junto, numa call de onboarding**.
+**Entregáveis:**
+- Painel v1: login + cofre (Nextcloud, OpenAI, Composio) + emissão do token MCP.
+- `scripts/provisionar-cliente.sh` rebaixado a passo interno **chamado pelo painel** (cria
+  estrutura de pastas + copia template de `dna/` do git + registra o tenant).
+- Template de `dna/` versionado no git (base de todo cliente novo).
+- Guia de 1 página (§7) — agora aponta pro painel, não pra um token colado à mão.
+
+> **Segurança muda de categoria.** Guardar key da OpenAI, do VPS e do Nextcloud de terceiro faz da
+> Infosaas **custodiante de segredo do cliente**. Não é mais o `.env` na VPS (Fase 1): exige
+> **criptografia em repouso, escopo mínimo, e revogação pelo próprio cliente**. Ver §8.
 
 **Critério de aceite da Fase 4:**
-- Rodar o script com um `tenantId` novo cria a pasta completa no Nextcloud e deixa o tenant
-  pronto pra conectar — sem nenhum passo manual.
-- Um cliente novo conecta o conector e usa o cérebro seguindo apenas o guia de 1 página.
+- Um cliente novo se cadastra no painel, insere as credenciais dele, conecta o conector no Claude e
+  usa o cérebro — **sem nenhum passo manual da Infosaas**.
+- As credenciais ficam criptografadas em repouso e o cliente consegue revogar/rotacionar sozinho.
 
 ---
 
@@ -798,14 +912,15 @@ OAUTH_AUDIENCE=...
 ## 7. Como o cliente conecta (guia de 1 página)
 
 > **Conectar o cérebro da sua empresa ao Claude**
-> 1. Abra o **Claude Desktop** (ou claude.ai).
-> 2. **Configurações → Conectores → Adicionar conector personalizado**.
-> 3. Cole a URL: `https://mcp.infosaas.ai/mcp`
-> 4. Clique em **Conectar** e faça login quando solicitado (OAuth).
+> 1. Acesse o **painel da Infosaas**, faça login e cadastre suas credenciais (Nextcloud, OpenAI,
+>    Composio). O painel gera seu **token de conexão**.
+> 2. Abra o **Claude Desktop** (ou claude.ai).
+> 3. **Configurações → Conectores → Adicionar conector personalizado**.
+> 4. Cole a URL: `https://mcp.infosaas.ai/mcp` e o token do passo 1 (ou faça login via OAuth).
 > 5. Pronto: peça *"qual nosso posicionamento?"* ou escolha o comando **Criar conteúdo** no menu.
 
-(Na Fase 1, em vez de OAuth, o conector usa um **token** que a Infosaas fornece — o cliente cola
-o token uma vez.)
+(Na Fase 1, antes do painel, o conector usa um **token** que a Infosaas fornece à mão — o cliente
+cola o token uma vez. O painel da Fase 4 automatiza esse passo.)
 
 ---
 
@@ -816,6 +931,10 @@ o token uma vez.)
 - **Segredos fora do git:** tokens, app passwords e `OPENAI_API_KEY` vivem em `.env` na VPS e no
   app — nunca no repositório. (O repo já tem histórico de remover token vazado do `mcp.json`;
   manter essa disciplina.)
+- **Custódia de segredo do cliente (Fase 4):** a partir do painel, a Infosaas guarda credenciais de
+  **terceiro** (OpenAI, Nextcloud, VPS, Composio do cliente). Isso exige **criptografia em repouso**,
+  **escopo mínimo** por credencial, e **revogação/rotação pelo próprio cliente**. Categoria de risco
+  acima do `.env` — não tratar como config qualquer.
 - **App password do Nextcloud** por serviço; revogável a qualquer momento sem trocar senha.
 - **TLS sempre** (Caddy/Let's Encrypt). MCP remoto nunca em HTTP puro.
 - **Rate limit + limites por tenant** para conter abuso e custo de LLM.
@@ -848,7 +967,8 @@ o token uma vez.)
 - [ ] Conectar no Claude Desktop e validar
 
 **Fase 2 — Tools de ação**
-- [ ] Tool `criar_conteudo` (via API do app)
+- [ ] Tool `criar_conteudo` — modo `chat-native` (LLM do host gera; texto de graça)
+- [ ] Tool `criar_conteudo` — modo `editor` (via API do app, BYOK)
 - [ ] Tool `publicar_instagram`
 - [ ] Prompt `criar-conteudo` no menu
 - [ ] Escrita restrita a `output/`
@@ -859,21 +979,29 @@ o token uma vez.)
 - [ ] Checklist de isolamento completo
 - [ ] Rate limit por tenant
 
-**Fase 4 — Onboarding**
-- [ ] `scripts/provisionar-cliente.sh`
+**Fase 4 — Painel self-service**
+- [ ] Painel v1: login + cofre de credenciais (Nextcloud, OpenAI, Composio) criptografado
+- [ ] Emissão/rotação do token MCP pelo painel
+- [ ] `scripts/provisionar-cliente.sh` rebaixado a passo interno chamado pelo painel
 - [ ] Template de `dna/` versionado no git
-- [ ] Guia de 1 página + call de onboarding
+- [ ] Guia de 1 página apontando pro painel
 
 ---
 
 ## Apêndice — decisões registradas
 - **SDK oficial do MCP** (não framework de terceiros): controle total, dono da stack.
 - **Cliente sempre no Claude** (Desktop/web) via conector remoto — alvo único.
-- **Topologia única: central, multi-tenant, na VPS Hostinger da Infosaas.** Topologia "na VPS do
-  cliente" foi **descartada** — central garante recorrência/retenção (valor na infra da Infosaas)
-  e update em 1 lugar.
-- **Storage Share é gerenciado** → MCP roda na VPS Hostinger (onde há root), ligada ao Nextcloud
-  por WebDAV.
+- **Control plane central; storage/hospedagem podem ser do cliente.** O **MCP** (compute +
+  inteligência + voz/DNA encodados) roda central na VPS Hostinger da Infosaas — é onde vive a
+  retenção. O **Nextcloud é por-cliente** (decisão atualizada 2026-06-08) e o **VPS do site também**
+  (trilha futura). Isso não quebra o moat: storage e hospedagem são camadas burras; o lock-in é a
+  inteligência central. Trocou isolamento lógico por físico e reforça venda premium.
+- **Nextcloud por-cliente via WebDAV-direto** (sem mount): `{url, user, app-password}` por tenant,
+  guardado no painel. (Antes: Storage Share central com mount — superado.)
+- **Billing em dois tiers:** chat via MCP = LLM do host paga (assinatura do cliente, custo zero);
+  editor = API key do cliente (BYOK). `criar_conteudo` tem modo `chat-native` e modo `editor`.
+- **Painel self-service (Fase 4) é o cofre de credenciais e a fonte de auth do tenant** — Infosaas
+  vira custodiante de segredo de terceiro (criptografia em repouso, revogação pelo cliente).
 - **Git = template/engenharia; Nextcloud = OS vivo do cliente.**
 - **Código das tools compartilhado na VPS; visibilidade por `tenant.json`** (deploy global,
   visibilidade por cliente). Nunca executar código vindo do Nextcloud.

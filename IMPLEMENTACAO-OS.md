@@ -8,7 +8,9 @@
 > Este doc é o nível acima: como tudo se encaixa e como escala.
 >
 > **Status:** arquitetura. MCP Fase 1 + Fase 2/Camada 1 já em produção (ver doc do MCP).
-> Criador e frota ainda não construídos. **Atualizado:** 2026-06-03.
+> Criador e frota ainda não construídos. **Atualizado:** 2026-06-08 — storage/hospedagem agora
+> **por-cliente** (Nextcloud e VPS do site dele), **billing em dois tiers** (chat grátis × editor
+> BYOK) e **painel self-service** como peça nova do control plane.
 
 ---
 
@@ -23,9 +25,18 @@ CONTROL PLANE (central, seu, multi-tenant)        DATA PLANE (por cliente, isola
 │ MCP — a PORTA ÚNICA do OS         │               │ criador (instância dele) │
 │  + tools leves (CRUD, busca)     │──── chama ───▶│ browser worker (dele)    │
 │  + provisionamento / auth / audit│               │ render worker (dele)     │
+│ Painel — cofre de credenciais     │               │ Nextcloud DELE (storage) │
+│  + login + emissão de token MCP   │               │ VPS do site DELE          │
 └─────────────────────────────────┘               └──────────────────────────┘
-        UM pra todos os clientes                       UM stack por cliente
+        UM pra todos os clientes                       UM stack/infra por cliente
 ```
+
+> **O storage e a hospedagem migraram pro data plane (por-cliente).** Cada cliente tem o
+> **Nextcloud dele** e (trilha futura) o **VPS do site dele**. Isso **não** contradiz "control
+> plane central = retenção": o central é o **compute/inteligência** (MCP + voz/DNA encodados), não
+> a custódia de dado. Storage/hospedagem são camadas burras que o cliente não opera sem o MCP — o
+> moat segue na inteligência central. O **painel** é a peça nova do control plane que guarda as
+> credenciais desses recursos do cliente e emite a auth do conector.
 
 - **Control plane** = leve, stateless, central. Atualizar custa **quase nada** (muda 1 coisa,
   todos pegam na hora). É onde vive o MCP e as tools leves.
@@ -66,20 +77,38 @@ O OS tem **dois realms** de armazenamento, ambos acessíveis pelo MCP:
 └────────────────────────────┘   └─────────────────────────────┘
 ```
 
-### Nextcloud (conteúdo / cérebro)
+### Nextcloud (conteúdo / cérebro) — POR-CLIENTE
 - **Backend WebDAV já construído e dormente** no MCP (Fase 2 do doc do MCP). Decisão técnica:
   **WebDAV-direto via HTTP, não FUSE/mount** — limpo pro container do Easypanel.
-- **Plugar = 1 env + redeploy.** Recomendado: **Hetzner Storage Share** (Nextcloud gerenciado).
-  Rafael **ainda não tem Nextcloud → postergado**. Até lá o MCP roda no backend **local**
-  (dna embutido na imagem, **escrita efêmera**).
-- **Ponte interina** (se precisar escrita persistente antes do Nextcloud): **volume no Easypanel**.
+- **Decisão atualizada (2026-06-08): cada cliente tem o Nextcloud DELE**, não um Storage Share
+  central da Infosaas. Como WebDAV-direto liga em **URL + credencial** (não em pasta montada),
+  "plugar" vira **`{url, user, app-password}` por tenant**, guardado no **painel** (Fase 4 do MCP).
+  Isolamento passa de lógico → **físico**. Custo novo: N Nextclouds heterogêneos pedem
+  **health-check por tenant**.
+- **Onde isso destrava o CRUD via chat:** o cliente que usa **Claude Chat** (não Claude Code) ganha
+  CRUD completo do DNA dele via MCP — exatamente a fricção-zero que o OS persegue.
 - **Atenção:** o **app criador usa filesystem direto** (não WebDAV). Pra ele, persistência = **volume**
-  por instância; sincronizar com Nextcloud/Drive é etapa posterior (rclone sidecar ou mount).
+  por instância; sincronizar com o Nextcloud do cliente é etapa posterior (rclone sidecar ou mount).
+
+### Billing do conteúdo — dois tiers (decisão-chave)
+O MCP **não roda LLM**: no chat, quem gera é o LLM do host (assinatura do cliente). Isso separa:
+- **Chat via MCP** → texto gerado pelo **Claude/GPT do cliente** → **custo zero p/ Infosaas**.
+- **Editor** → pipeline do app chama a OpenAI com a **API key do cliente (BYOK)** → pago, controlado.
+
+Imagem (`gpt-image-1`) e vídeo (Remotion/ffmpeg) sempre caem no tier pago/render. Detalhe e os dois
+modos de `criar_conteudo` em [`IMPLEMENTACAO-MCP.md`](IMPLEMENTACAO-MCP.md) (Fase 2).
 
 ### Git (site / LPs / código)
 - Vive no repo, deploya pela VPS. Editar pelo chat = tool **git-backed**: edita via GitHub API →
   commit → push → webhook do Easypanel → redeploy automático. Guardrails: confirmação, e build que
   falha seguro (erro = deploy falha, site atual continua). Trilha à parte, depois das Camadas 1–2.
+- **Atualização planejada — gestão de site no VPS do cliente.** Próximo salto do OS: o cliente
+  **ajusta cada seção de cada página** e **cria páginas novas** via MCP, e **conecta o VPS dele**
+  pra publicação/atualização (creds no painel). Duas peças novas e não-triviais:
+  1. **Content-model de página/seção** — editar estrutura, não HTML cru. É um *CMS-sobre-git*.
+  2. **VPS do cliente** — o MCP opera a infra **conectada** do cliente, não só a da Infosaas.
+  Projeto à parte, depois da base de chat/conteúdo provar. Coerente com "storage/hospedagem podem
+  ser do cliente; a inteligência fica central".
 
 ---
 
@@ -201,22 +230,29 @@ plane** lê esse manifesto e **converge** as instâncias. A "fábrica" amadurece
 
 ```
 cliente novo recebe:
-  ├─ tenant no MCP central        (cérebro + tools leves, isolado por pasta/auth)
+  ├─ conta no PAINEL              (login + cofre: Nextcloud, OpenAI, Composio, R2, VPS dele)
+  ├─ tenant no MCP central        (cérebro + tools leves, isolado por auth/painel)
   ├─ instância(s) de workload      (criador, etc. — imagem do registry + volume + env dele)
-  └─ conector no Claude (MCP)       (a porta única — Desktop/web)
+  ├─ Nextcloud DELE conectado      (storage do DNA/output — CRUD via chat)
+  └─ conector no Claude (MCP)       (a porta única — Desktop/web; token vem do painel)
 ```
 O cliente cria **pelo app OU pelo Claude**, sem nunca abrir localhost. Tudo aponta pro mesmo acervo.
-Provisionamento começa **manual** e vira **script/control plane** conforme a frota cresce (§6).
+Provisionamento começa **manual** e vira **painel self-service** (Fase 4 do MCP) conforme a frota
+cresce (§6). O painel é onde o cliente pluga o Nextcloud dele e as keys (BYOK/Composio).
 
 ---
 
 ## 8. Decisões fechadas
-- **Modelo geral:** control plane central (MCP) + data plane per-client.
+- **Modelo geral:** control plane central (MCP + painel) + data plane per-client.
+- **Storage/hospedagem podem ser do cliente** (Nextcloud dele; VPS do site dele). O central é o
+  compute/inteligência — não a custódia de dado. Não quebra o moat (lock-in = inteligência central).
 - **Criador:** instância por cliente (não multi-tenant).
 - **Distribuição:** imagem versionada num **registry**; build once → frota puxa. Nunca forke código.
 - **Paridade do criador:** 100%, **vídeo incluso**.
-- **BYOK por cliente** (chave OpenAI dele).
-- **Storage destino:** Nextcloud (WebDAV backend pronto), **postergado** até Rafael ter um.
+- **Billing em dois tiers:** chat via MCP = LLM do host (assinatura do cliente, custo zero); editor
+  = OpenAI com **BYOK** do cliente. Imagem/vídeo sempre no tier pago.
+- **Storage destino:** Nextcloud **por-cliente** (WebDAV-direto), conectado via painel.
+- **Painel self-service** (Fase 4 do MCP) = cofre de credenciais + auth do tenant.
 - **Auth do app no MVP:** basic auth no Easypanel.
 
 ## 9. Decisões em aberto
@@ -225,16 +261,27 @@ Provisionamento começa **manual** e vira **script/control plane** conforme a fr
 3. **Vídeo:** render **síncrono** (MVP) **vs** fila/worker (escala).
 4. **Registry:** GHCR (grátis, casa com o GitHub) **vs** outro.
 5. **Quando** construir o script de frota / control plane (§6).
+6. **`criar_conteudo` no chat:** quão determinística a voz fica no modo `chat-native` (LLM do host
+   seguindo a skill) **vs** a garantia pixel-perfect do editor — calibrar até onde o chat basta.
+7. **Gestão de site:** content-model próprio (CMS-sobre-git) **vs** editar arquivos do repo direto;
+   e o protocolo de conexão ao VPS do cliente (SSH? agente? webhook de deploy?).
 
 ## 10. Roadmap consolidado
 1. **(feito)** MCP Fase 1 (cérebro) + Fase 2/Camada 1 (CRUD do OS) em produção.
-2. **Nextcloud** quando disponível → escrita persistente (1 env + redeploy).
-3. **Camada 2 do MCP** — tools semânticas (`criar_conteudo`) chamando o app por `localhost`.
-4. **Deploy do Criador** (instância — a sua `infosaas` primeiro): Dockerfile full-parity + volume +
-   basic auth; resolver skill-fora-do-git + migração de mídia.
-5. **Pipeline de frota:** GitHub Actions → GHCR → Easypanel apontando pra imagem.
-6. **2º cliente** na mão → prova o padrão → **automação de provisionamento**.
-7. **Site/LPs** (tools git-backed) e **Fase 3 do MCP** (OAuth multi-tenant) conforme necessidade.
+2. **PUSH ATUAL — chat-native com paridade de tools + preview em iframe.** `criar_conteudo`
+   (host LLM escreve), `editar_conteudo` (16 comandos determinísticos), `preview_conteudo`
+   (iframe/MCP Apps, render client-side), `salvar`/`listar`/threads. Vídeo adiado; imagem/publicar
+   = BYOK. Base: extrair `@infosaas/content` + `@infosaas/renderer`. *(maior prioridade — destrava
+   marketing/vendas; detalhe na Fase 2 do doc do MCP)*
+3. **Nextcloud por-cliente** (WebDAV-direto, creds por tenant) → CRUD do DNA via chat.
+4. **Painel v1** — cofre (Nextcloud, OpenAI, Composio) + emissão do token MCP. Acelera multi-tenant.
+5. **Composio** plugado no `publicar_instagram` (conexão do painel).
+6. **Deploy do Criador** (instância — a sua `infosaas` primeiro): Dockerfile full-parity + volume +
+   basic auth; resolver skill-fora-do-git + migração de mídia. Habilita o modo `editor` (BYOK).
+7. **Pipeline de frota:** GitHub Actions → GHCR → Easypanel apontando pra imagem.
+8. **2º cliente** pelo painel → prova o padrão.
+9. **Degrau 2 da UI (iframe interativo)** e **gestão de site** (CMS-sobre-git + VPS do cliente) —
+   os dois grandes, depois da base provar. **Fase 3 do MCP** (OAuth) conforme necessidade.
 
 ---
 
