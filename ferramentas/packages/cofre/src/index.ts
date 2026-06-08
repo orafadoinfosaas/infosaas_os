@@ -4,6 +4,8 @@ export {
   ensureSchema,
   resolveTokenToTenant,
   getTenantSecrets,
+  tenantForUser,
+  linkUser,
   createTenant,
   issueToken,
   revokeToken,

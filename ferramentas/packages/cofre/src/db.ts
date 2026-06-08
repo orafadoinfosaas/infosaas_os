@@ -36,7 +36,32 @@ export async function ensureSchema(): Promise<void> {
       updated_at timestamptz NOT NULL DEFAULT now(),
       PRIMARY KEY (tenant_id, key)
     );
+    CREATE TABLE IF NOT EXISTS tenant_users (
+      logto_sub text PRIMARY KEY,
+      tenant_id text NOT NULL REFERENCES tenants(id) ON DELETE CASCADE,
+      email text NOT NULL DEFAULT '',
+      created_at timestamptz NOT NULL DEFAULT now()
+    );
   `);
+}
+
+// ── Membership (app unificado) ───────────────────────────────────────────────
+/** Logto sub → tenantId (ou null se o usuário ainda não foi vinculado). */
+export async function tenantForUser(logtoSub: string): Promise<string | null> {
+  const r = await pool().query<{ tenant_id: string }>(
+    "SELECT tenant_id FROM tenant_users WHERE logto_sub = $1",
+    [logtoSub],
+  );
+  return r.rows[0]?.tenant_id ?? null;
+}
+
+/** Vincula um usuário Logto a um tenant (idempotente). Usado pelo painel/admin. */
+export async function linkUser(logtoSub: string, tenantId: string, email = ""): Promise<void> {
+  await pool().query(
+    `INSERT INTO tenant_users (logto_sub, tenant_id, email) VALUES ($1, $2, $3)
+     ON CONFLICT (logto_sub) DO UPDATE SET tenant_id = EXCLUDED.tenant_id, email = EXCLUDED.email`,
+    [logtoSub, tenantId, email],
+  );
 }
 
 // ── Leitura (MCP) ───────────────────────────────────────────────────────────
