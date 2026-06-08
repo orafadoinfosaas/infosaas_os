@@ -71,7 +71,7 @@ export function registerCriarConteudoPrompt(server: McpServer, tenant: string): 
         (brief ? `, sobre: ${brief}.` : ".") +
         " Siga RIGOROSAMENTE as regras da empresa abaixo (voz, ICP, fase, identidade visual). " +
         (contentType === "carrossel"
-          ? "Entregue de 2 a 10 slides (capa, conteúdo, fechamento) e a legenda. "
+          ? "Entregue de 3 a 10 slides (capa, conteúdo, fechamento) e a legenda. "
           : contentType === "anuncio"
             ? "Entregue 3 headlines (até 70 caracteres cada) e o corpo do anúncio. "
             : "Entregue headline, subheadline, corpo e a legenda. ") +

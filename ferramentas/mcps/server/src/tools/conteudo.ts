@@ -9,6 +9,9 @@ import {
   makeCommand,
   applyCommands,
   summarizeCommands,
+  creativeSchemaFor,
+  assembleContent,
+  type Creative,
   type Command,
   type Content,
 } from "@infosaas/content";
@@ -47,46 +50,102 @@ export function registerContentTools(server: McpServer, tenant: string): void {
     server,
     "criar_conteudo",
     {
-      title: "Salvar conteúdo criado",
+      title: "Criar conteúdo (carrossel/post/anúncio)",
       description:
-        "Valida e salva no OS do cliente o conteúdo que você acabou de criar (carrossel/post/anúncio), " +
-        "aplicando o DNA. Passe `conteudo` no formato do Content e, opcionalmente, a `legenda`. " +
-        "Use depois de gerar seguindo o DNA (prompt criar-conteudo). O arquivo aparece no Drive do " +
-        "cliente, mostra um preview visual no chat e fica editável no editor.",
+        "Cria e salva o conteúdo no OS do cliente e mostra o PREVIEW no chat. Você fornece só o " +
+        "CRIATIVO (texto); o servidor monta o resto (index, layout, cta, formato, marca). Campos:\n" +
+        "- tipo: 'carrossel' | 'post' | 'anuncio' (default carrossel)\n" +
+        "- fase: 'descoberta' | 'relacionamento' | 'prontidao' (default descoberta)\n" +
+        "- template: 'editorial' | 'bold' | 'narrativa' (default editorial)\n" +
+        "- produto: id do produto em destaque (opcional)\n" +
+        "- topic: tema do conteúdo · caption: legenda (markdown)\n" +
+        "- CARROSSEL → slides: 3 a 10 itens { type:'cover'|'content'|'closing', headline, subheadline, body }\n" +
+        "- ANÚNCIO → headlines: 3 strings (≤70 chars) + body\n" +
+        "- POST → headline, subheadline, body\n" +
+        "NÃO envie index/layout/image/cta/format — o servidor preenche.",
       // Liga a tool à view de preview (MCP Apps p/ Claude; outputTemplate p/ ChatGPT).
       _meta: {
         ui: { resourceUri: PREVIEW_CONTEUDO_URI },
         "openai/outputTemplate": PREVIEW_CONTEUDO_URI,
       },
       inputSchema: {
-        conteudo: z
-          .record(z.string(), z.any())
-          .describe(
-            "o Content JSON: content_type ('carrossel'|'estatico'|'anuncio'…), topic, funnel_phase " +
-              "('descoberta'|'relacionamento'|'prontidao'), template_id ('editorial'|'bold'|'narrativa'), " +
-              "format {width,height}, e slides[] (carrossel) ou headlines[3]+body (anúncio) ou headline/body (estático)",
-          ),
-        legenda: z.string().optional().describe("legenda (caption) do post, em markdown"),
+        tipo: z.string().optional().describe("carrossel | post | anuncio (default carrossel)"),
+        fase: z.string().optional().describe("descoberta | relacionamento | prontidao (default descoberta)"),
+        template: z.string().optional().describe("editorial | bold | narrativa (default editorial)"),
+        produto: z.string().optional().describe("id do produto em destaque (opcional)"),
+        topic: z.string().describe("tema/assunto do conteúdo"),
+        caption: z.string().optional().describe("legenda do post (markdown)"),
+        slides: z
+          .array(
+            z.object({
+              type: z.string().describe("cover | content | closing"),
+              headline: z.string(),
+              subheadline: z.string().optional(),
+              body: z.string().optional(),
+            }),
+          )
+          .optional()
+          .describe("CARROSSEL: 3 a 10 slides"),
+        headlines: z.array(z.string()).optional().describe("ANÚNCIO: 3 headlines (≤70 chars)"),
+        headline: z.string().optional().describe("POST: headline"),
+        subheadline: z.string().optional().describe("POST: subheadline"),
+        body: z.string().optional().describe("POST/ANÚNCIO: corpo"),
       },
     },
-    async ({ conteudo, legenda }) => {
-      const parsed = ContentSchema.safeParse(conteudo);
-      if (!parsed.success) {
-        const issues = parsed.error.issues
+    async ({ tipo, fase, template, produto, topic, caption, slides, headlines, headline, subheadline, body }) => {
+      const pick = <T extends string>(v: string | undefined, allowed: readonly T[], def: T): T => {
+        const x = (v ?? "").trim().toLowerCase();
+        return (allowed as readonly string[]).includes(x) ? (x as T) : def;
+      };
+      const contentType = pick(tipo, ["carrossel", "post", "anuncio"] as const, "carrossel");
+      const funnelPhase = pick(fase, ["descoberta", "relacionamento", "prontidao"] as const, "descoberta");
+      const templateId = pick(template, ["editorial", "bold", "narrativa"] as const, "editorial");
+      const cap = caption ?? "";
+
+      // Monta a forma CRIATIVA conforme o tipo (o host só manda texto).
+      let creative: Record<string, unknown>;
+      if (contentType === "carrossel") {
+        const okTypes = new Set(["cover", "content", "closing"]);
+        creative = {
+          topic,
+          caption: cap,
+          slides: (slides ?? []).map((s, i) => ({
+            type: okTypes.has(String(s.type)) ? s.type : i === 0 ? "cover" : "content",
+            headline: s.headline ?? "",
+            subheadline: s.subheadline ?? "",
+            body: s.body ?? "",
+          })),
+        };
+      } else if (contentType === "anuncio") {
+        creative = { topic, caption: cap, headlines: headlines ?? [], body: body ?? "" };
+      } else {
+        creative = { topic, caption: cap, headline: headline ?? "", subheadline: subheadline ?? "", body: body ?? "" };
+      }
+
+      const parsedCreative = creativeSchemaFor(contentType).safeParse(creative);
+      if (!parsedCreative.success) {
+        const issues = parsedCreative.error.issues
           .slice(0, 8)
           .map((i) => `- ${i.path.join(".") || "(raiz)"}: ${i.message}`)
           .join("\n");
-        audit(tenant, "criar_conteudo", { ok: false, erros: parsed.error.issues.length });
-        return fail(`O conteúdo não passou na validação. Corrija estes pontos e chame de novo:\n${issues}`);
+        audit(tenant, "criar_conteudo", { ok: false, erros: parsedCreative.error.issues.length });
+        return fail(`Faltam campos do criativo. Ajuste e chame de novo:\n${issues}`);
       }
-      const content = parsed.data as Content;
+
+      const content = assembleContent({
+        contentType,
+        funnelPhase,
+        templateId,
+        productId: produto?.trim() || undefined,
+        creative: parsedCreative.data as Creative,
+      });
       const slug = generateSlug(content.topic);
       const dir = `${OUTPUT_ROOT}/${contentRelDir(content.content_type, slug)}`;
       await fs.write(`${dir}/content.json`, JSON.stringify(content, null, 2));
-      if (legenda != null) await fs.write(`${dir}/caption.md`, legenda);
+      if (cap) await fs.write(`${dir}/caption.md`, cap);
       audit(tenant, "criar_conteudo", { ok: true, slug, content_type: content.content_type });
       return ok(
-        `✅ Conteúdo salvo: ${dir}/content.json (slug: ${slug}). Já aparece no Drive do cliente e pode ser aberto no editor.`,
+        `✅ Conteúdo salvo: ${dir}/content.json (slug: ${slug}). Aparece no Drive do cliente e abre no editor.`,
         // `content` alimenta o preview no chat (a view lê structuredContent.content).
         { slug, dir, content_type: content.content_type, content: content as unknown as Record<string, unknown> },
       );
