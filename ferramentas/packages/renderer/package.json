@@ -1,0 +1,32 @@
+{
+  "name": "@infosaas/renderer",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Renderer compartilhado do Infosaas OS — compose (Content → RichSpec, layout) + desenho Konva. Consumido pelo app (editor) e empacotado (esbuild) para o preview no chat (iframe / MCP Apps).",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "default": "./dist/index.js"
+    }
+  },
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "tsc && node build.mjs",
+    "build:bundle": "node build.mjs",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@infosaas/content": "file:../content",
+    "konva": "^10.3.0"
+  },
+  "devDependencies": {
+    "@types/node": "^22.0.0",
+    "esbuild": "^0.24.0",
+    "typescript": "^5.6.0"
+  }
+}
