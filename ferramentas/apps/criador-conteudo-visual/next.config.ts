@@ -16,9 +16,9 @@ const nextConfig: NextConfig = {
   // em vez de external node_modules, que com symlink de workspace dá problema).
   transpilePackages: ["@infosaas/content", "@infosaas/renderer", "@infosaas/cofre"],
 
-  // Remotion: o renderer/bundler incluem Webpack e binários nativos — não podem
-  // ser empacotados pelo Turbopack no server; mantê-los externos.
-  serverExternalPackages: ["@remotion/bundler", "@remotion/renderer", "ffmpeg-static"],
+  // Externos no server (não empacotar): Remotion/ffmpeg (binários nativos) e `pg`
+  // (driver do cofre, usado só server-side — requer do node_modules em runtime).
+  serverExternalPackages: ["@remotion/bundler", "@remotion/renderer", "ffmpeg-static", "pg"],
 };
 
 export default nextConfig;

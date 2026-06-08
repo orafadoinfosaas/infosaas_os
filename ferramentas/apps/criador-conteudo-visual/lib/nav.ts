@@ -6,6 +6,7 @@ import {
   Library,
   Palette,
   LayoutTemplate,
+  Settings,
   type LucideIcon,
 } from 'lucide-react'
 
@@ -24,4 +25,5 @@ export const NAV_ITEMS: NavItem[] = [
   { label: 'Biblioteca', href: '/biblioteca', icon: Library },
   { label: 'Identidade Visual', href: '/identidade-visual', icon: Palette },
   { label: 'Base de Aplicações', href: '/base-aplicacoes', icon: LayoutTemplate },
+  { label: 'Configurações', href: '/configuracoes', icon: Settings },
 ]
