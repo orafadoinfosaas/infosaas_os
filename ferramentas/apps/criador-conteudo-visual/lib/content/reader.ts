@@ -3,8 +3,9 @@ import path from 'path'
 import { getOutputPath } from '@/config/company'
 import { ContentSchema } from '@/lib/schemas/content.schema'
 import type { Content } from '@/lib/schemas/content.schema'
+import { CONTENT_TYPE_DIRS } from '@infosaas/content'
 
-const CONTENT_TYPES = ['carroseis', 'estaticos', 'stories', 'anuncios', 'posts', 'videos'] as const
+const CONTENT_TYPES = CONTENT_TYPE_DIRS
 
 export type CreationSummary = {
   slug: string

@@ -1,20 +1,10 @@
 import fs from 'fs/promises'
 import path from 'path'
 import { getOutputPath } from '@/config/company'
-import type { Content } from '@/lib/schemas/content.schema'
-import { generateSlug } from './slug'
-
-const TYPE_DIR: Record<Content['content_type'], string> = {
-  carrossel: 'carroseis',
-  estatico: 'estaticos',
-  stories: 'stories',
-  anuncio: 'anuncios',
-  post: 'posts', // legado
-  video: 'videos',
-}
+import { type Content, TYPE_DIR, contentRelDir, generateSlug } from '@infosaas/content'
 
 export function getContentDir(contentType: Content['content_type'], slug: string): string {
-  return path.join(getOutputPath(), 'instagram', TYPE_DIR[contentType], slug)
+  return path.join(getOutputPath(), contentRelDir(contentType, slug))
 }
 
 export async function writeContent(
