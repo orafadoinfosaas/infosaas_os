@@ -5,6 +5,7 @@ import { usePathname } from 'next/navigation'
 import { PanelLeft } from 'lucide-react'
 import { NAV_ITEMS } from '@/lib/nav'
 import { RecentCreations } from './RecentCreations'
+import { UserMenu } from './UserMenu'
 
 type Props = {
   collapsed: boolean
@@ -69,6 +70,9 @@ export function Sidebar({ collapsed, onToggle }: Props) {
 
         {!collapsed && <RecentCreations />}
       </nav>
+
+      {/* Usuário logado + logout (rodapé, padrão app) */}
+      <UserMenu collapsed={collapsed} />
     </aside>
   )
 }
