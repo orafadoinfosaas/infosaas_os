@@ -1,19 +1,16 @@
 import { timingSafeEqual } from "node:crypto";
+import { resolveTokenToTenant } from "@infosaas/cofre";
 
-// Tenant default (single-tenant atual). Mantém o `infosaas` no ar enquanto o
-// multi-tenant não está plugado.
+// Tenant default (single-tenant atual). Mantém o `infosaas` no ar.
 export const DEFAULT_TENANT = process.env.TENANT_ID ?? "infosaas";
+
+// Backing do registro: se DATABASE_URL existe → COFRE (Postgres, via @infosaas/cofre);
+// senão → ENV (TENANTS_JSON + MCP_TOKEN). A interface (tenantForToken) não muda —
+// só o backing. P0 usava ENV; P1b liga o cofre.
+export const USE_COFRE = !!process.env.DATABASE_URL?.trim();
 
 type Entry = { tenantId: string; token: string };
 
-/**
- * Registro de tenants (P0): mapeia token → tenantId. Backing por ENV agora
- * (`TENANTS_JSON`); no P1 o painel troca isso por Postgres (cofre) SEM mudar quem
- * consome — `tenantForToken` continua a única porta.
- *
- * `TENANTS_JSON` = JSON: [{ "tenantId": "acme", "token": "..." }, ...]
- * Backward-compat: `MCP_TOKEN` (single-tenant atual) → DEFAULT_TENANT.
- */
 function loadRegistry(): Entry[] {
   const entries: Entry[] = [];
   const raw = process.env.TENANTS_JSON?.trim();
@@ -32,7 +29,8 @@ function loadRegistry(): Entry[] {
   return entries;
 }
 
-// Carregado no boot (env não muda em runtime; redeploy recarrega).
+// ENV registry SEMPRE carregado (mesmo no modo cofre) — serve de fallback, então
+// ligar o cofre não derruba o `infosaas` (MCP_TOKEN) antes de ele ser semeado lá.
 const REGISTRY = loadRegistry();
 
 function constantTimeEquals(a: string, b: string): boolean {
@@ -41,15 +39,32 @@ function constantTimeEquals(a: string, b: string): boolean {
   return ab.length === bb.length && timingSafeEqual(ab, bb);
 }
 
-/** token → tenantId (comparação de tempo constante). null = token desconhecido. */
-export function tenantForToken(token: string): string | null {
+function fromEnv(token: string): string | null {
   for (const e of REGISTRY) {
     if (constantTimeEquals(token, e.token)) return e.tenantId;
   }
   return null;
 }
 
-/** Quantos tenants estão registrados (para log/health). */
+/** token → tenantId. null = desconhecido (→ 401). Cofre primeiro; ENV como fallback. */
+export async function tenantForToken(token: string): Promise<string | null> {
+  if (USE_COFRE) {
+    try {
+      const fromCofre = await resolveTokenToTenant(token);
+      if (fromCofre) return fromCofre;
+    } catch (err) {
+      console.error("[tenancy] erro consultando o cofre (caindo p/ ENV):", err);
+    }
+  }
+  return fromEnv(token);
+}
+
+/** Modo do registro (para log/health). */
+export function storeMode(): "cofre" | "env" {
+  return USE_COFRE ? "cofre" : "env";
+}
+
+/** Nº de tenants no fallback ENV (o cofre é dinâmico, não conta aqui). */
 export function registrySize(): number {
   return REGISTRY.length;
 }

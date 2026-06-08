@@ -15,7 +15,7 @@ function bearerToken(req: Request): string {
  *
  * No P1 (painel) o registro vira o cofre (Postgres); esta função não muda.
  */
-export function resolveTenant(req: Request): string | null {
+export async function resolveTenant(req: Request): Promise<string | null> {
   if (process.env.MCP_NO_AUTH === "true") return DEFAULT_TENANT;
   const token = bearerToken(req);
   if (!token) return null;

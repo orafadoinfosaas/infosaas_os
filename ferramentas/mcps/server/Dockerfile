@@ -23,7 +23,15 @@ COPY ferramentas/packages/renderer/src ./src
 COPY ferramentas/packages/renderer/assets ./assets
 RUN npm run build
 
-# 3) servidor MCP
+# 3) @infosaas/cofre → dist/ (tenants + tokens + secrets cifrados no Postgres)
+WORKDIR /repo/ferramentas/packages/cofre
+COPY ferramentas/packages/cofre/package.json ferramentas/packages/cofre/package-lock.json* ./
+RUN npm install
+COPY ferramentas/packages/cofre/tsconfig.json ./
+COPY ferramentas/packages/cofre/src ./src
+RUN npm run build
+
+# 4) servidor MCP
 WORKDIR /repo/ferramentas/mcps/server
 COPY ferramentas/mcps/server/package.json ferramentas/mcps/server/package-lock.json* ./
 RUN npm install
@@ -46,6 +54,11 @@ WORKDIR /repo/ferramentas/packages/renderer
 COPY ferramentas/packages/renderer/package.json ferramentas/packages/renderer/package-lock.json* ./
 RUN npm install --omit=dev
 COPY --from=build /repo/ferramentas/packages/renderer/dist ./dist
+
+WORKDIR /repo/ferramentas/packages/cofre
+COPY ferramentas/packages/cofre/package.json ferramentas/packages/cofre/package-lock.json* ./
+RUN npm install --omit=dev
+COPY --from=build /repo/ferramentas/packages/cofre/dist ./dist
 
 WORKDIR /repo/ferramentas/mcps/server
 COPY ferramentas/mcps/server/package.json ferramentas/mcps/server/package-lock.json* ./

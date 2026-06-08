@@ -11,6 +11,7 @@
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
+    "@infosaas/cofre": "file:../../packages/cofre",
     "@infosaas/content": "file:../../packages/content",
     "@infosaas/renderer": "file:../../packages/renderer",
     "@modelcontextprotocol/ext-apps": "^1.1.0",
