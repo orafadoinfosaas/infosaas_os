@@ -5,11 +5,17 @@ import { resolveTenant } from "./tenancy/resolve.js";
 import { DEFAULT_TENANT, registrySize, storeMode, USE_COFRE } from "./tenancy/store.js";
 import { storageKind } from "./storage/index.js";
 import { ensureSchema } from "@infosaas/cofre";
+import { oauthRouter } from "./oauth/router.js";
+import { oauthEnabled, PROTECTED_RESOURCE_METADATA } from "./oauth/config.js";
 
 const PORT = Number(process.env.PORT ?? 8787);
 
 const app = express();
 app.use(express.json({ limit: "4mb" }));
+app.use(express.urlencoded({ extended: true })); // /token recebe form-urlencoded
+
+// Authorization Server OAuth do MCP (delega login ao Logto). Só quando configurado.
+if (oauthEnabled) app.use(oauthRouter);
 
 // Cofre (Postgres): garante o schema no boot (idempotente). Só quando DATABASE_URL existe.
 if (USE_COFRE) {
@@ -20,7 +26,7 @@ if (USE_COFRE) {
 
 // Healthcheck (sem auth) — usado pelo reverse proxy / uptime.
 app.get("/health", (_req: Request, res: Response) => {
-  res.json({ ok: true, service: "infosaas-os-mcp", tenant: DEFAULT_TENANT, tenancy: storeMode(), tenants: registrySize(), storage: storageKind() });
+  res.json({ ok: true, service: "infosaas-os-mcp", tenant: DEFAULT_TENANT, tenancy: storeMode(), tenants: registrySize(), storage: storageKind(), oauth: oauthEnabled });
 });
 
 // Endpoint MCP — Streamable HTTP, stateless (um transport por requisição).
@@ -28,6 +34,13 @@ app.get("/health", (_req: Request, res: Response) => {
 app.post("/mcp", async (req: Request, res: Response) => {
   const tenantId = await resolveTenant(req);
   if (!tenantId) {
+    // Dispara a descoberta OAuth no cliente (RFC 9728): aponta pro protected-resource metadata.
+    if (oauthEnabled) {
+      res.setHeader(
+        "WWW-Authenticate",
+        `Bearer resource_metadata="${PROTECTED_RESOURCE_METADATA()}"`,
+      );
+    }
     res.status(401).json({
       jsonrpc: "2.0",
       error: { code: -32001, message: "unauthorized" },

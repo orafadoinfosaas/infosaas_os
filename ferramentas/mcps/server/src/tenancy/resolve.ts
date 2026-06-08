@@ -1,5 +1,6 @@
 import type { Request } from "express";
 import { tenantForToken, DEFAULT_TENANT } from "./store.js";
+import { verifyMcpToken } from "../oauth/crypto.js";
 
 function bearerToken(req: Request): string {
   return (req.headers.authorization ?? "").replace(/^Bearer\s+/i, "").trim();
@@ -19,5 +20,11 @@ export async function resolveTenant(req: Request): Promise<string | null> {
   if (process.env.MCP_NO_AUTH === "true") return DEFAULT_TENANT;
   const token = bearerToken(req);
   if (!token) return null;
+  // Access token OAuth emitido pelo MCP (JWT). Tokens opacos do painel começam com "inf_".
+  if (!token.startsWith("inf_")) {
+    const claims = await verifyMcpToken(token, "access");
+    if (claims?.tenant) return claims.tenant;
+  }
+  // Token opaco do cofre (painel) ou ENV (Claude Desktop / fallback).
   return tenantForToken(token);
 }
