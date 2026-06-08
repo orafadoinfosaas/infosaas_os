@@ -1,13 +1,13 @@
-# Contexto de build do MCP (o contexto é a RAIZ do repo). O build só precisa de:
-#   ferramentas/mcps/server/  ·  ferramentas/packages/content/  ·  dna/
-# Tudo abaixo é excluído para o contexto ficar leve e o npm reinstalar limpo.
+# Contexto de build (a RAIZ do repo serve TANTO o MCP quanto o app unificado).
+# Cada Dockerfile COPia só os paths que precisa; aqui só tiramos peso e segredos.
 .git
 **/node_modules
 **/dist
 **/.next
 **/*.log
+**/.env.local
+**/.env.*.local
 marketing
 clientes
-ferramentas/apps
 ferramentas/automacoes
 ferramentas/integracoes

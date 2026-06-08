@@ -14,8 +14,9 @@ export type CompanyConfig = {
 
 export const ACTIVE_COMPANY = process.env.COMPANY_ID ?? 'infosaas'
 
-// Resolve paths relativos à raiz do monorepo (3 níveis acima do app)
-const REPO_ROOT = path.resolve(process.cwd(), '../../..')
+// Raiz do repo. Em dev resolve relativo ao app (3 níveis acima); no container o
+// Dockerfile injeta REPO_ROOT=/data (onde o dna/ é copiado). Mesma convenção do MCP.
+const REPO_ROOT = process.env.REPO_ROOT ?? path.resolve(process.cwd(), '../../..')
 
 export const COMPANIES: Record<string, CompanyConfig> = {
   infosaas: {
