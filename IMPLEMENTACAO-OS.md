@@ -114,10 +114,29 @@ modos de `criar_conteudo` em [`IMPLEMENTACAO-MCP.md`](IMPLEMENTACAO-MCP.md) (Fas
 
 ## 4. Deploy do Criador de Conteúdo (primeiro tool do data plane)
 
-### Decisão: instância por cliente (fechada)
-O app é **mono-empresa por processo** (`COMPANY_ID` no boot, sem auth, sem isolamento). Multi-tenant
-seria refactor real com risco de vazamento. Como o modelo é **premium / poucos clientes**, o caminho
-é **uma instância por cliente** — quase zero código, isolamento natural, BYOK e liability de graça.
+### Decisão: editor multi-tenant + vídeo isolado (atualizada 2026-06-08)
+> **Revisa a decisão anterior ("instância por cliente").** Ela foi tomada quando o app era
+> mono-empresa por processo (`COMPANY_ID`, sem auth) e multi-tenant = "refactor com risco de
+> vazamento". **A extração do núcleo pra pacotes** (`@infosaas/content` + `@infosaas/renderer`:
+> schema, comandos, templates, renderer, `assembleContent`) **tirou esse risco** — o app virou uma
+> casca fina tenant-aware. E pelo próprio control/data-plane: o editor (UI + CRUD) é **leve** →
+> cabe central; só o **render de vídeo** é pesado → isolado à parte.
+
+**Modelo escolhido:** **um editor multi-tenant** (um deploy pra todos, tenant por auth/painel +
+storage por tenant), com o **render de vídeo num worker/fila** separado (a única peça pesada — e
+fora do MVP, dá pra adiar). Para clientes que exijam **isolamento físico**, sobe-se uma **instância
+dedicada da mesma imagem** fixada num tenant (env) — sob demanda, sem forkar código.
+
+**O que o multi-tenant exige (refactor — depende do painel/Fase 4 pra auth):**
+- **Auth + tenant por-request** (o app hoje tem **zero auth**): login do cliente → `tenantId` da
+  sessão; nunca de parâmetro. Reaproveita o esqueleto `COMPANIES`/`COMPANY_ID` tornando-o
+  **por-requisição** (o refactor da §5.5 do doc do MCP já apontava pra isso).
+- **Storage por tenant** (mesma convenção do MCP: `dna/`, `output/instagram/<tipo>/<slug>/`) — no
+  deploy, o Nextcloud do cliente (quando houver) ou volume por-tenant.
+- **BYOK por-request** (imagem `gpt-image-1` / publicação) com as keys do **cofre do painel**, não
+  env global → entra a custódia de segredo (checklist de isolamento da Fase 3 do MCP).
+- **Render de vídeo isolado** (worker/fila) pra um cliente não travar o outro.
+- **"Abrir no editor"** = uma URL (`editor.infosaas.ai/...`) + sessão→tenant + deep-link pro slug.
 
 ### Paridade 100% (vídeo incluso) — o que precisa TER
 - Container **base Debian** (não Alpine) com **Chromium + libs do sistema** (Remotion) e **ffmpeg**
@@ -246,7 +265,9 @@ cresce (§6). O painel é onde o cliente pluga o Nextcloud dele e as keys (BYOK/
 - **Modelo geral:** control plane central (MCP + painel) + data plane per-client.
 - **Storage/hospedagem podem ser do cliente** (Nextcloud dele; VPS do site dele). O central é o
   compute/inteligência — não a custódia de dado. Não quebra o moat (lock-in = inteligência central).
-- **Criador:** instância por cliente (não multi-tenant).
+- **Criador/editor:** **multi-tenant** (1 editor, tenant por auth/painel), **vídeo isolado** num
+  worker; instância dedicada **sob demanda** pra quem exigir isolamento físico. (Revisa a decisão
+  anterior "instância por cliente" — a extração do núcleo pra pacotes tirou o risco do multi-tenant.)
 - **Distribuição:** imagem versionada num **registry**; build once → frota puxa. Nunca forke código.
 - **Paridade do criador:** 100%, **vídeo incluso**.
 - **Billing em dois tiers:** chat via MCP = LLM do host (assinatura do cliente, custo zero); editor
