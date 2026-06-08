@@ -20,24 +20,26 @@ export function registerCriarConteudoPrompt(server: McpServer, tenant: string): 
       title: "Criar conteúdo",
       description:
         "Cria conteúdo de Instagram (carrossel/post/anúncio) aplicando o DNA da empresa — voz, ICP, fase do funil. O próprio Claude gera, seguindo as mesmas regras do editor.",
+      // Args do prompt SÃO strings na UI do host (campos de texto): campo vazio chega
+      // como "". Por isso aceitamos string livre e normalizamos por dentro — usar
+      // z.enum aqui quebra com "" ("Failed to attach prompt").
       argsSchema: {
         brief: z.string().optional().describe("sobre o que é o conteúdo"),
-        tipo: z.enum(["carrossel", "post", "anuncio"]).optional().describe("formato (default: carrossel)"),
-        fase: z
-          .enum(["descoberta", "relacionamento", "prontidao"])
-          .optional()
-          .describe("fase do funil (default: descoberta)"),
+        tipo: z.string().optional().describe("carrossel | post | anuncio (default: carrossel)"),
+        fase: z.string().optional().describe("descoberta | relacionamento | prontidao (default: descoberta)"),
         produto: z.string().optional().describe("id do produto em destaque (anúncio/prontidão)"),
-        template: z
-          .enum(["editorial", "bold", "narrativa"])
-          .optional()
-          .describe("base visual (default: editorial)"),
+        template: z.string().optional().describe("editorial | bold | narrativa (default: editorial)"),
       },
     },
     async ({ brief, tipo, fase, produto, template }) => {
-      const contentType = tipo ?? "carrossel";
-      const funnelPhase = fase ?? "descoberta";
-      const templateId = template ?? "editorial";
+      const pick = <T extends string>(v: string | undefined, allowed: readonly T[], def: T): T => {
+        const x = (v ?? "").trim().toLowerCase();
+        return (allowed as readonly string[]).includes(x) ? (x as T) : def;
+      };
+      const contentType = pick(tipo, ["carrossel", "post", "anuncio"] as const, "carrossel");
+      const funnelPhase = pick(fase, ["descoberta", "relacionamento", "prontidao"] as const, "descoberta");
+      const templateId = pick(template, ["editorial", "bold", "narrativa"] as const, "editorial");
+      const produtoId = (produto ?? "").trim() || undefined;
 
       let dnaPrompt: string;
       try {
@@ -45,7 +47,7 @@ export function registerCriarConteudoPrompt(server: McpServer, tenant: string): 
           funnelPhase,
           contentType,
           template: templateId,
-          productId: produto,
+          productId: produtoId,
         });
       } catch {
         return {
