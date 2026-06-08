@@ -10,6 +10,10 @@
     ".": {
       "types": "./dist/index.d.ts",
       "default": "./dist/index.js"
+    },
+    "./preview-html": {
+      "types": "./dist/preview-html.d.ts",
+      "default": "./dist/preview-html.js"
     }
   },
   "files": [
@@ -22,6 +26,7 @@
   },
   "dependencies": {
     "@infosaas/content": "file:../content",
+    "@modelcontextprotocol/ext-apps": "^1.1.0",
     "konva": "^10.3.0"
   },
   "devDependencies": {

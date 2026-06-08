@@ -4,6 +4,7 @@ import { registerSearchTool } from "./brain/search.js";
 import { registerFileTools } from "./tools/files.js";
 import { registerContentTools } from "./tools/conteudo.js";
 import { registerCriarConteudoPrompt } from "./prompts/criar-conteudo.js";
+import { registerUiViews } from "./ui/views.js";
 
 export interface BuildOpts {
   tenantId: string;
@@ -16,10 +17,11 @@ export interface BuildOpts {
 export async function buildServer({ tenantId }: BuildOpts): Promise<McpServer> {
   const server = new McpServer({ name: "infosaas-os", version: "2.0.0" });
 
+  registerUiViews(server); // Fase 5: views MCP Apps (preview no chat) — antes das tools que as referenciam
   await registerBrainResources(server, tenantId); // dna/ como resources
   registerSearchTool(server, tenantId); // tool buscar_no_cerebro
   registerFileTools(server, tenantId); // Fase 2: CRUD genérico do OS
-  registerContentTools(server, tenantId); // Fase 2: chat-native (salvar/listar/obter conteúdo)
+  registerContentTools(server, tenantId); // Fase 2: chat-native (salvar/listar/obter conteúdo) + preview
   registerCriarConteudoPrompt(server, tenantId); // Fase 2: chat-native (host LLM gera com o DNA)
 
   return server;

@@ -12,6 +12,8 @@
   },
   "dependencies": {
     "@infosaas/content": "file:../../packages/content",
+    "@infosaas/renderer": "file:../../packages/renderer",
+    "@modelcontextprotocol/ext-apps": "^1.1.0",
     "@modelcontextprotocol/sdk": "^1.0.0",
     "express": "^5.0.0",
     "fast-glob": "^3.3.2",

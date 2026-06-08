@@ -1,14 +1,12 @@
-# Infosaas OS MCP — Fase 2 (single-tenant, CRUD + chat-native).
-# IMPORTANTE: o build context é a RAIZ do repo (precisa de server/, packages/content/ e dna/).
-# No Easypanel: Build method = Dockerfile · Dockerfile path = ferramentas/mcps/server/Dockerfile
-#
-# O server depende de @infosaas/content via dependência file: (../../packages/content).
-# Por isso a estrutura do monorepo é REPLICADA na imagem e o pacote é BUILDADO antes do server.
+# Infosaas OS MCP — Fase 2 (chat-native) + Fase 5 (preview MCP Apps).
+# IMPORTANTE: o build context é a RAIZ do repo (server/, packages/* e dna/).
+# Estrutura do monorepo é REPLICADA na imagem; os pacotes file: são BUILDADOS na ordem
+# content → renderer → server (renderer depende de content; server depende dos dois).
 
 # --- build ---
 FROM node:22-alpine AS build
 
-# 1) pacote compartilhado @infosaas/content → dist/
+# 1) @infosaas/content → dist/
 WORKDIR /repo/ferramentas/packages/content
 COPY ferramentas/packages/content/package.json ferramentas/packages/content/package-lock.json* ./
 RUN npm install
@@ -16,7 +14,15 @@ COPY ferramentas/packages/content/tsconfig.json ./
 COPY ferramentas/packages/content/src ./src
 RUN npm run build
 
-# 2) servidor MCP — resolve @infosaas/content por file:../../packages/content
+# 2) @infosaas/renderer → dist/ (compose + bundle do preview: tsc + esbuild)
+WORKDIR /repo/ferramentas/packages/renderer
+COPY ferramentas/packages/renderer/package.json ferramentas/packages/renderer/package-lock.json* ./
+RUN npm install
+COPY ferramentas/packages/renderer/tsconfig.json ferramentas/packages/renderer/build.mjs ./
+COPY ferramentas/packages/renderer/src ./src
+RUN npm run build
+
+# 3) servidor MCP
 WORKDIR /repo/ferramentas/mcps/server
 COPY ferramentas/mcps/server/package.json ferramentas/mcps/server/package-lock.json* ./
 RUN npm install
@@ -28,21 +34,24 @@ RUN npm run build
 FROM node:22-alpine
 ENV NODE_ENV=production
 
-# pacote: package.json + deps de produção (zod) + dist já buildado.
-# Tem que estar COMPLETO antes do install do server (que cria o symlink @infosaas/content).
+# Cada pacote: package.json + deps de produção + dist. Tem que estar COMPLETO antes do
+# install do consumidor (renderer depende de content; server, dos dois).
 WORKDIR /repo/ferramentas/packages/content
 COPY ferramentas/packages/content/package.json ferramentas/packages/content/package-lock.json* ./
 RUN npm install --omit=dev
 COPY --from=build /repo/ferramentas/packages/content/dist ./dist
 
-# servidor: package.json + deps de produção (symlinka o pacote) + dist buildado.
+WORKDIR /repo/ferramentas/packages/renderer
+COPY ferramentas/packages/renderer/package.json ferramentas/packages/renderer/package-lock.json* ./
+RUN npm install --omit=dev
+COPY --from=build /repo/ferramentas/packages/renderer/dist ./dist
+
 WORKDIR /repo/ferramentas/mcps/server
 COPY ferramentas/mcps/server/package.json ferramentas/mcps/server/package-lock.json* ./
 RUN npm install --omit=dev
 COPY --from=build /repo/ferramentas/mcps/server/dist ./dist
 
-# dna/ (memória da empresa) embutido na imagem — single-tenant na Fase 1/2.
-# Atualizar o dna/ = novo push → Easypanel rebuilda. (Com Nextcloud isso vira WebDAV por env.)
+# dna/ embutido na imagem — single-tenant na Fase 1/2.
 COPY dna /data/dna
 ENV REPO_ROOT=/data
 

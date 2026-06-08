@@ -12,9 +12,11 @@ import {
   type Command,
   type Content,
 } from "@infosaas/content";
+import { registerAppTool } from "@modelcontextprotocol/ext-apps/server";
 import type { Storage } from "../storage/index.js";
 import { getStorage } from "../storage/index.js";
 import { audit } from "../audit.js";
+import { PREVIEW_CONTEUDO_URI } from "../ui/views.js";
 
 type Result = { content: { type: "text"; text: string }[]; isError?: boolean; structuredContent?: Record<string, unknown> };
 const ok = (text: string, structuredContent?: Record<string, unknown>): Result => ({ content: [{ type: "text", text }], structuredContent });
@@ -41,7 +43,8 @@ async function findContentDir(fs: Storage, slug: string): Promise<string | null>
 export function registerContentTools(server: McpServer, tenant: string): void {
   const fs = getStorage(tenant);
 
-  server.registerTool(
+  registerAppTool(
+    server,
     "criar_conteudo",
     {
       title: "Salvar conteúdo criado",
@@ -49,7 +52,12 @@ export function registerContentTools(server: McpServer, tenant: string): void {
         "Valida e salva no OS do cliente o conteúdo que você acabou de criar (carrossel/post/anúncio), " +
         "aplicando o DNA. Passe `conteudo` no formato do Content e, opcionalmente, a `legenda`. " +
         "Use depois de gerar seguindo o DNA (prompt criar-conteudo). O arquivo aparece no Drive do " +
-        "cliente e fica editável no editor.",
+        "cliente, mostra um preview visual no chat e fica editável no editor.",
+      // Liga a tool à view de preview (MCP Apps p/ Claude; outputTemplate p/ ChatGPT).
+      _meta: {
+        ui: { resourceUri: PREVIEW_CONTEUDO_URI },
+        "openai/outputTemplate": PREVIEW_CONTEUDO_URI,
+      },
       inputSchema: {
         conteudo: z
           .record(z.string(), z.any())
@@ -79,7 +87,8 @@ export function registerContentTools(server: McpServer, tenant: string): void {
       audit(tenant, "criar_conteudo", { ok: true, slug, content_type: content.content_type });
       return ok(
         `✅ Conteúdo salvo: ${dir}/content.json (slug: ${slug}). Já aparece no Drive do cliente e pode ser aberto no editor.`,
-        { slug, dir, content_type: content.content_type },
+        // `content` alimenta o preview no chat (a view lê structuredContent.content).
+        { slug, dir, content_type: content.content_type, content: content as unknown as Record<string, unknown> },
       );
     },
   );
