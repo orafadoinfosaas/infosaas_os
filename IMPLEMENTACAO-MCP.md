@@ -714,6 +714,17 @@ OpenAI, conexão Composio, R2, VPS do site) **exigem que o cliente cadastre segr
 não pode morar em pasta que o cliente edita (`tenant.json` no Nextcloud) nem em call de onboarding
 manual. Precisa de um cofre com login. O script vira **um passo interno** que o painel chama.
 
+**Auth = DUAS camadas (decisão 2026-06-08):**
+- **Camada A — login do painel/editor + cofre.** Backend **self-hosted** (decisão), coerente com
+  "o ambiente é do cliente". **Recomendado: Logto** (provedor OIDC self-hostável, container +
+  Postgres na Hostinger/Easypanel) — cobre o login agora E *posiciona* pra Camada B depois.
+  Alternativa mais leve: Postgres + Auth.js (mas não ajuda na Camada B). O **cofre** (keys por
+  tenant) fica no Postgres próprio, cifrado no app.
+- **Camada B — OAuth do conector MCP (DCR).** É o que falta pro conector NATIVO do Claude/GPT
+  (hoje usamos token + ponte `mcp-remote`). **Adiada.** O painel v1 só **emite/gerencia tokens MCP
+  por tenant**. Quando for a hora, o Logto pode virar o authorization server do conector (confirmar
+  suporte a Dynamic Client Registration na época). Enquanto isso, o token+ponte funciona.
+
 ```
 Painel Infosaas (novo control plane, customer-facing)
 ├─ login do cliente (vira a fonte de auth/OAuth do conector MCP)
