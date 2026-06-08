@@ -11,6 +11,7 @@
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
+    "@infosaas/content": "file:../../packages/content",
     "@modelcontextprotocol/sdk": "^1.0.0",
     "express": "^5.0.0",
     "fast-glob": "^3.3.2",

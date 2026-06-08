@@ -10,6 +10,7 @@
   "dependencies": {
     "@ai-sdk/openai": "^3.0.67",
     "@aws-sdk/client-s3": "^3.1057.0",
+    "@infosaas/content": "file:../../packages/content",
     "@remotion/bundler": "^4.0.470",
     "@remotion/fonts": "^4.0.470",
     "@remotion/media-utils": "^4.0.470",
