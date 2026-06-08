@@ -22,7 +22,7 @@ export const COMPANIES: Record<string, CompanyConfig> = {
     id: 'infosaas',
     name: 'Infosaas',
     dnaPath: path.join(REPO_ROOT, 'dna'),
-    skillsPath: path.join(REPO_ROOT, '.claude', 'skills', 'comunicacao-funil'),
+    skillsPath: path.join(REPO_ROOT, 'dna', 'skills'),
     outputPath: path.join(REPO_ROOT, 'marketing', 'conteudo'),
     publish: {
       activepieces_webhook_url: process.env.ACTIVEPIECES_WEBHOOK_URL ?? '',
