@@ -7,16 +7,19 @@ import { sealSession, openTx, SESSION_COOKIE, TX_COOKIE } from '@/lib/auth/jwt'
 // resolve o tenant (cofre, com fallback ao default) e grava o cookie de sessão.
 export async function GET(req: NextRequest) {
   const params = req.nextUrl.searchParams
+  // Redirects do NOSSO app usam APP_BASE_URL (atrás do proxy, req.url = host interno).
+  const base = authConfig.baseUrl
+
   const providerError = params.get('error')
   if (providerError) {
-    return NextResponse.redirect(new URL(`/sign-in?e=${encodeURIComponent(providerError)}`, req.url))
+    return NextResponse.redirect(new URL(`/sign-in?e=${encodeURIComponent(providerError)}`, base))
   }
 
   const code = params.get('code')
   const state = params.get('state')
   const tx = await openTx(req.cookies.get(TX_COOKIE)?.value)
   if (!code || !state || !tx || tx.state !== state) {
-    return NextResponse.redirect(new URL('/sign-in?e=invalid_state', req.url))
+    return NextResponse.redirect(new URL('/sign-in?e=invalid_state', base))
   }
 
   try {
@@ -24,7 +27,7 @@ export async function GET(req: NextRequest) {
     const claims = await verifyIdToken(idToken, tx.nonce)
     const tenantId = (await resolveTenantForUser(claims.sub)) ?? authConfig.defaultTenant
 
-    const res = NextResponse.redirect(new URL('/', req.url))
+    const res = NextResponse.redirect(new URL('/', base))
     res.cookies.set(
       SESSION_COOKIE,
       await sealSession({ sub: claims.sub, email: claims.email, name: claims.name, tenantId }),
@@ -40,6 +43,6 @@ export async function GET(req: NextRequest) {
     return res
   } catch (err) {
     console.error('[auth/callback] falhou:', err)
-    return NextResponse.redirect(new URL('/sign-in?e=callback_failed', req.url))
+    return NextResponse.redirect(new URL('/sign-in?e=callback_failed', base))
   }
 }
