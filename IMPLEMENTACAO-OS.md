@@ -127,6 +127,15 @@ storage por tenant), com o **render de vídeo num worker/fila** separado (a úni
 fora do MVP, dá pra adiar). Para clientes que exijam **isolamento físico**, sobe-se uma **instância
 dedicada da mesma imagem** fixada num tenant (env) — sob demanda, sem forkar código.
 
+> **Decisão 2026-06-08 — editor e painel são UM app só (não dois).** Em vez de um painel
+> standalone (P1c) + o editor, é **um único app web** (`app.infosaas.ai`): login Logto único, tenant
+> por sessão, com (a) **criar/editar conteúdo** (o editor) e (b) **Configurações/Conectar** (a função
+> painel: cofre de creds + token MCP + guia de conexão, via `@infosaas/cofre`). Motivo: editor e
+> painel precisam da MESMA fundação (auth + tenant + cofre) — fazer uma vez, num app, evita dobrar o
+> trabalho e dá UX de um lugar só. O "abrir no editor" do preview deep-linka pra esse app. Isso
+> **funde** o "painel P1c" com o "editor multi-tenant" num esforço só (o 1º deploy do criador já na
+> forma certa).
+
 **O que o multi-tenant exige (refactor — depende do painel/Fase 4 pra auth):**
 - **Auth + tenant por-request** (o app hoje tem **zero auth**): login do cliente → `tenantId` da
   sessão; nunca de parâmetro. Reaproveita o esqueleto `COMPANIES`/`COMPANY_ID` tornando-o

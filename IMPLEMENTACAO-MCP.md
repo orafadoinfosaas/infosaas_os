@@ -709,6 +709,11 @@ O cliente loga, guarda as próprias credenciais, conecta o MCP e gerencia o que 
 ninguém da Infosaas no meio. O painel vira o **cofre de configuração e a fonte de auth** de todo
 tenant. (Decisão atualizada: era um *script* `provisionar-cliente.sh`; virou **portal**.)
 
+> **Decisão 2026-06-08:** o painel **não é um app separado** — é a **seção "Configurações/Conectar"
+> do app unificado** (editor + painel num só, `app.infosaas.ai`). Mesma login Logto, mesmo tenant,
+> mesmo cofre. Ver [`IMPLEMENTACAO-OS.md`](IMPLEMENTACAO-OS.md) §4. O que segue abaixo (cofre, emissão
+> de token, fluxo) descreve essa **seção**, não um app à parte.
+
 **Por que portal e não só script:** os pontos novos do produto (Nextcloud do cliente, BYOK da
 OpenAI, conexão Composio, R2, VPS do site) **exigem que o cliente cadastre segredo dele**. Segredo
 não pode morar em pasta que o cliente edita (`tenant.json` no Nextcloud) nem em call de onboarding
