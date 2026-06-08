@@ -5,10 +5,10 @@ export async function waitForFonts(): Promise<void> {
   if (typeof document === 'undefined' || !document.fonts) return
   try {
     await document.fonts.ready
+    // Sora embutida no shell (@font-face): Konva usa normal/400 e bold/700.
     await Promise.all([
-      document.fonts.load('800 64px Sora'),
-      document.fonts.load('700 32px Sora'),
       document.fonts.load('400 24px Sora'),
+      document.fonts.load('700 32px Sora'),
     ])
   } catch {
     /* fontes indisponíveis — segue com fallback sans-serif */

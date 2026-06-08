@@ -23,6 +23,15 @@ function hexToRgba(hex: string, alpha: number): string {
   return `rgba(${r},${g},${b},${alpha})`
 }
 
+// No iframe não há origem do app: caminhos /brand/logo-X.svg não resolvem. O build
+// embute os logos em window.__INFOSAAS_BRAND__ (por nome de arquivo) — mapeamos aqui.
+function resolveBrand(src: string): string {
+  const map = (globalThis as unknown as { __INFOSAAS_BRAND__?: Record<string, string> }).__INFOSAAS_BRAND__
+  const file = src.match(/([^/]+\.svg)$/)?.[1]
+  if (file && map && map[file]) return map[file]
+  return src
+}
+
 function loadImage(src: string): Promise<HTMLImageElement | null> {
   return new Promise((resolve) => {
     const el = new Image()
@@ -148,7 +157,7 @@ export async function renderSpec(container: HTMLDivElement, spec: RichSpec, scal
 
   // Logo
   if (spec.logo) {
-    const img = await loadImage(spec.logo.src)
+    const img = await loadImage(resolveBrand(spec.logo.src))
     if (img) {
       const lw = spec.logo.height * (img.naturalWidth / img.naturalHeight || 4)
       const x = spec.logo.position.endsWith('right') ? width - BRAND_PAD - lw : BRAND_PAD

@@ -20,6 +20,7 @@ COPY ferramentas/packages/renderer/package.json ferramentas/packages/renderer/pa
 RUN npm install
 COPY ferramentas/packages/renderer/tsconfig.json ferramentas/packages/renderer/build.mjs ./
 COPY ferramentas/packages/renderer/src ./src
+COPY ferramentas/packages/renderer/assets ./assets
 RUN npm run build
 
 # 3) servidor MCP
