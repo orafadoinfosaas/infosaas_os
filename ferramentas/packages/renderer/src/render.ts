@@ -134,7 +134,8 @@ export async function renderSpec(container: HTMLDivElement, spec: RichSpec, scal
         width: t.width,
         fontSize: t.fontSize,
         fontStyle: t.fontStyle,
-        fontFamily: t.fontFamily,
+        // fallback sans-serif (espelha a medição do compose) — sem isso o canvas cai num serif default
+        fontFamily: `"${t.fontFamily}", sans-serif`,
         fill: t.fill,
         lineHeight: t.lineHeight,
         letterSpacing: t.letterSpacing,
@@ -168,7 +169,7 @@ export async function renderSpec(container: HTMLDivElement, spec: RichSpec, scal
         width: width - BRAND_PAD * 2,
         align,
         fontSize: b.fontSize,
-        fontFamily: 'Sora',
+        fontFamily: '"Sora", sans-serif',
         fontStyle: 'bold',
         fill: b.fill,
         listening: false,

@@ -136,11 +136,16 @@ export function registerContentTools(server: McpServer, tenant: string): void {
     },
   );
 
-  server.registerTool(
+  registerAppTool(
+    server,
     "obter_criacao",
     {
       title: "Obter uma criação",
-      description: "Lê uma criação salva (content.json + legenda) pelo slug, para revisar ou continuar editando.",
+      description: "Lê uma criação salva (content.json + legenda) pelo slug e mostra o preview no chat.",
+      _meta: {
+        ui: { resourceUri: PREVIEW_CONTEUDO_URI },
+        "openai/outputTemplate": PREVIEW_CONTEUDO_URI,
+      },
       inputSchema: { slug: z.string().min(1).describe("slug da criação (ver listar_criacoes)") },
     },
     async ({ slug }) => {
@@ -154,10 +159,15 @@ export function registerContentTools(server: McpServer, tenant: string): void {
     },
   );
 
-  server.registerTool(
+  registerAppTool(
+    server,
     "editar_conteudo",
     {
       title: "Editar conteúdo (refino cirúrgico)",
+      _meta: {
+        ui: { resourceUri: PREVIEW_CONTEUDO_URI },
+        "openai/outputTemplate": PREVIEW_CONTEUDO_URI,
+      },
       description:
         "Aplica edições PONTUAIS a uma criação salva, sem regerar tudo (igual ao editor). Passe o `slug` " +
         "e uma lista de `comandos`; cada comando tem um `kind` e os campos relevantes (slideIndex é 0-based):\n" +
@@ -203,7 +213,12 @@ export function registerContentTools(server: McpServer, tenant: string): void {
 
       audit(tenant, "editar_conteudo", { slug, aplicados: cmds.length, ignorados: ignorados.length });
       const extra = ignorados.length ? `  (ignorados: ${ignorados.join("; ")})` : "";
-      return ok(`✅ ${slug}: ${summarizeCommands(cmds)}${extra}`, { slug, aplicados: cmds.length });
+      // `content` (atualizado) re-renderiza o preview no chat após o ajuste.
+      return ok(`✅ ${slug}: ${summarizeCommands(cmds)}${extra}`, {
+        slug,
+        aplicados: cmds.length,
+        content: next as unknown as Record<string, unknown>,
+      });
     },
   );
 }
