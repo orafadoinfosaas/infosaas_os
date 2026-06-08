@@ -1,6 +1,18 @@
 import { z } from "zod";
 import type { McpServer } from "@modelcontextprotocol/sdk/server/mcp.js";
-import { ContentSchema, contentRelDir, generateSlug, CONTENT_TYPE_DIRS, type Content } from "@infosaas/content";
+import {
+  ContentSchema,
+  contentRelDir,
+  generateSlug,
+  CONTENT_TYPE_DIRS,
+  CommandSchema,
+  makeCommand,
+  applyCommands,
+  summarizeCommands,
+  type Command,
+  type Content,
+} from "@infosaas/content";
+import type { Storage } from "../storage/index.js";
 import { getStorage } from "../storage/index.js";
 import { audit } from "../audit.js";
 
@@ -11,6 +23,15 @@ const fail = (text: string): Result => ({ content: [{ type: "text", text }], isE
 // Raiz da zona do AGENTE no OS do tenant. O editor lê desta mesma raiz (output/),
 // então o que o chat grava aqui aparece no editor — é o que liga "abrir no editor".
 const OUTPUT_ROOT = "output";
+
+/** Localiza a pasta de uma criação pelo slug (varre os tipos). null se não achar. */
+async function findContentDir(fs: Storage, slug: string): Promise<string | null> {
+  for (const typeDir of CONTENT_TYPE_DIRS) {
+    const dir = `${OUTPUT_ROOT}/instagram/${typeDir}/${slug}`;
+    if (await fs.exists(`${dir}/content.json`)) return dir;
+  }
+  return null;
+}
 
 /**
  * Tools de conteúdo (chat-native). O LLM do HOST gera o Content (tier grátis,
@@ -114,16 +135,66 @@ export function registerContentTools(server: McpServer, tenant: string): void {
       inputSchema: { slug: z.string().min(1).describe("slug da criação (ver listar_criacoes)") },
     },
     async ({ slug }) => {
-      for (const typeDir of CONTENT_TYPE_DIRS) {
-        const dir = `${OUTPUT_ROOT}/instagram/${typeDir}/${slug}`;
-        if (!(await fs.exists(`${dir}/content.json`))) continue;
-        const raw = await fs.read(`${dir}/content.json`);
-        const caption = await fs.read(`${dir}/caption.md`).catch(() => "");
-        audit(tenant, "obter_criacao", { slug, content_type: typeDir });
-        const legendaTxt = caption ? `\n\n--- LEGENDA ---\n${caption}` : "";
-        return ok(`${raw}${legendaTxt}`, { slug, content: JSON.parse(raw), caption });
+      const dir = await findContentDir(fs, slug);
+      if (!dir) return fail(`Criação não encontrada: ${slug}`);
+      const raw = await fs.read(`${dir}/content.json`);
+      const caption = await fs.read(`${dir}/caption.md`).catch(() => "");
+      audit(tenant, "obter_criacao", { slug });
+      const legendaTxt = caption ? `\n\n--- LEGENDA ---\n${caption}` : "";
+      return ok(`${raw}${legendaTxt}`, { slug, content: JSON.parse(raw), caption });
+    },
+  );
+
+  server.registerTool(
+    "editar_conteudo",
+    {
+      title: "Editar conteúdo (refino cirúrgico)",
+      description:
+        "Aplica edições PONTUAIS a uma criação salva, sem regerar tudo (igual ao editor). Passe o `slug` " +
+        "e uma lista de `comandos`; cada comando tem um `kind` e os campos relevantes (slideIndex é 0-based):\n" +
+        "- setText {slideIndex, field:'headline'|'subheadline'|'body'|'cta', text}\n" +
+        "- hideField {slideIndex, field, hidden:boolean}\n" +
+        "- setFieldStyle {slideIndex, field, fontSize?, lineHeight?, letterSpacing?, align?, marginTop?, marginBottom?, paddingX?}\n" +
+        "- duplicateSlide {slideIndex} · removeSlide {slideIndex} · moveSlide {slideIndex, toIndex}\n" +
+        "- setSlideType {slideIndex, slideType:'cover'|'content'|'closing'}\n" +
+        "- setBase {baseId:'editorial'|'bold'|'narrativa'}\n" +
+        "- setCaption {text}  (atualiza a legenda)\n" +
+        "- setLogo {logoShow?, logoVariant?:'preto'|'branco'|'laranja', logoPosition?:'top-left'|'top-right'|'bottom-left'|'bottom-right'}\n" +
+        "- setNumbering {numberingShow?, numberingStyle?:'fraction'|'index', numberingPosition?}\n" +
+        "- setHandle {handleShow?, text}  (text = @handle)\n" +
+        "- setMedia {slideIndex, mediaKind:'image'|'none', mediaRef?, mediaMode?:'cover'|'element', mediaPosition?, mediaRadius?}\n" +
+        "- setMask {slideIndex, maskOpacity?, maskColor?, maskGradientOn?, maskTop?, maskMid?, maskBottom?}",
+      inputSchema: {
+        slug: z.string().min(1).describe("slug da criação (ver listar_criacoes)"),
+        comandos: z
+          .array(z.record(z.string(), z.any()))
+          .min(1)
+          .describe("lista de comandos a aplicar, cada um com `kind` + campos relevantes"),
+      },
+    },
+    async ({ slug, comandos }) => {
+      const dir = await findContentDir(fs, slug);
+      if (!dir) return fail(`Criação não encontrada: ${slug}`);
+
+      const current = ContentSchema.safeParse(JSON.parse(await fs.read(`${dir}/content.json`)));
+      if (!current.success) return fail(`content.json inválido em ${slug}.`);
+
+      const cmds: Command[] = [];
+      const ignorados: string[] = [];
+      for (const c of comandos) {
+        const v = CommandSchema.safeParse(makeCommand(c as Partial<Command> & { kind: Command["kind"] }));
+        if (v.success) cmds.push(v.data as Command);
+        else ignorados.push(`${(c as { kind?: string }).kind ?? "?"} (${v.error.issues[0]?.message ?? "inválido"})`);
       }
-      return fail(`Criação não encontrada: ${slug}`);
+      if (!cmds.length) return fail(`Nenhum comando válido. Ignorados: ${ignorados.join("; ")}`);
+
+      const { content: next, caption } = applyCommands(current.data as Content, cmds);
+      await fs.write(`${dir}/content.json`, JSON.stringify(next, null, 2));
+      if (caption != null) await fs.write(`${dir}/caption.md`, caption);
+
+      audit(tenant, "editar_conteudo", { slug, aplicados: cmds.length, ignorados: ignorados.length });
+      const extra = ignorados.length ? `  (ignorados: ${ignorados.join("; ")})` : "";
+      return ok(`✅ ${slug}: ${summarizeCommands(cmds)}${extra}`, { slug, aplicados: cmds.length });
     },
   );
 }
