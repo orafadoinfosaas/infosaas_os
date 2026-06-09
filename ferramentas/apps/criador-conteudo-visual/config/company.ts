@@ -12,30 +12,38 @@ export type CompanyConfig = {
   }
 }
 
-export const ACTIVE_COMPANY = process.env.COMPANY_ID ?? 'infosaas'
+// Tenant ativo. (Single-tenant por env por ora; o por-request via sessão é o próximo
+// passo do multi-tenant.) Aceita TENANT_ID ou COMPANY_ID (legado).
+export const ACTIVE_COMPANY = process.env.TENANT_ID ?? process.env.COMPANY_ID ?? 'infosaas'
 
-// Raiz do repo. Em dev resolve relativo ao app (3 níveis acima); no container o
-// Dockerfile injeta REPO_ROOT=/data (onde o dna/ é copiado). Mesma convenção do MCP.
-const REPO_ROOT = process.env.REPO_ROOT ?? path.resolve(process.cwd(), '../../..')
+// Raiz — MESMA lógica do MCP (ferramentas/mcps/server/src/fs/paths.ts): em produção
+// CLIENTS_ROOT/<tenant> (volume compartilhado), em dev a raiz do repo. Isso garante que
+// o app e o MCP leiam/escrevam o conteúdo no MESMO lugar → o que o chat cria aparece e
+// é editável no editor, e vice-versa.
+const CLIENTS_ROOT = process.env.CLIENTS_ROOT?.trim()
+const REPO_ROOT = process.env.REPO_ROOT?.trim() || path.resolve(process.cwd(), '../../..')
 
-export const COMPANIES: Record<string, CompanyConfig> = {
-  infosaas: {
-    id: 'infosaas',
-    name: 'Infosaas',
+function tenantRoot(tenant: string): string {
+  return CLIENTS_ROOT ? path.resolve(CLIENTS_ROOT, tenant) : REPO_ROOT
+}
+
+const COMPANY_NAMES: Record<string, string> = { infosaas: 'Infosaas' }
+
+export function getCompanyConfig(): CompanyConfig {
+  const tenant = ACTIVE_COMPANY
+  const root = tenantRoot(tenant)
+  return {
+    id: tenant,
+    name: COMPANY_NAMES[tenant] ?? tenant,
+    // DNA (cérebro, read-only) vem da imagem; o output é a zona compartilhada com o MCP.
     dnaPath: path.join(REPO_ROOT, 'dna'),
     skillsPath: path.join(REPO_ROOT, 'dna', 'skills'),
-    outputPath: path.join(REPO_ROOT, 'marketing', 'conteudo'),
+    outputPath: path.join(root, 'output'), // ← MESMO `tenantRoot/output` que o MCP usa
     publish: {
       activepieces_webhook_url: process.env.ACTIVEPIECES_WEBHOOK_URL ?? '',
       activepieces_webhook_secret: process.env.ACTIVEPIECES_WEBHOOK_SECRET,
     },
-  },
-}
-
-export function getCompanyConfig(): CompanyConfig {
-  const config = COMPANIES[ACTIVE_COMPANY]
-  if (!config) throw new Error(`Empresa não encontrada: ${ACTIVE_COMPANY}`)
-  return config
+  }
 }
 
 export function getOutputPath(): string {
