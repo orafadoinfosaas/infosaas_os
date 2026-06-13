@@ -1,6 +1,11 @@
 import { Pool } from "pg";
 import { hashToken, generateToken } from "./tokens.js";
 import { encrypt, decrypt } from "./crypto.js";
+import { migrations } from "./migrations.js";
+
+// Chave do advisory lock que serializa o migrate() entre processos concorrentes
+// (MCP e painel sobem ao mesmo tempo). Valor arbitrário, fixo p/ o cofre.
+const MIGRATION_LOCK = 4296700001;
 
 // Acesso ao cofre (Postgres). Conexão por DATABASE_URL. O MCP só LÊ
 // (token→tenant, secrets); o painel ESCREVE (cria tenant, emite token, secrets).
@@ -15,34 +20,45 @@ function pool(): Pool {
   return _pool;
 }
 
-/** Cria as tabelas se não existirem (idempotente). Chamar no boot do consumidor. */
+/**
+ * Aplica as migrations pendentes (em ordem, cada uma em sua transação) e registra
+ * em `schema_migrations`. Idempotente e seguro p/ rodar a cada boot. Um advisory
+ * lock serializa execuções concorrentes (MCP + painel subindo juntos).
+ */
+export async function migrate(): Promise<void> {
+  const client = await pool().connect();
+  try {
+    await client.query("SELECT pg_advisory_lock($1)", [MIGRATION_LOCK]);
+    await client.query(`
+      CREATE TABLE IF NOT EXISTS schema_migrations (
+        id text PRIMARY KEY,
+        applied_at timestamptz NOT NULL DEFAULT now()
+      );
+    `);
+    const done = await client.query<{ id: string }>("SELECT id FROM schema_migrations");
+    const applied = new Set(done.rows.map((r) => r.id));
+
+    for (const m of migrations) {
+      if (applied.has(m.id)) continue;
+      try {
+        await client.query("BEGIN");
+        await client.query(m.sql);
+        await client.query("INSERT INTO schema_migrations (id) VALUES ($1)", [m.id]);
+        await client.query("COMMIT");
+      } catch (e) {
+        await client.query("ROLLBACK");
+        throw new Error(`Migration ${m.id} falhou: ${(e as Error).message}`);
+      }
+    }
+  } finally {
+    await client.query("SELECT pg_advisory_unlock($1)", [MIGRATION_LOCK]).catch(() => {});
+    client.release();
+  }
+}
+
+/** @deprecated Use migrate(). Mantido p/ compatibilidade dos consumidores (boot). */
 export async function ensureSchema(): Promise<void> {
-  await pool().query(`
-    CREATE TABLE IF NOT EXISTS tenants (
-      id text PRIMARY KEY,
-      name text NOT NULL DEFAULT '',
-      created_at timestamptz NOT NULL DEFAULT now()
-    );
-    CREATE TABLE IF NOT EXISTS mcp_tokens (
-      token_hash text PRIMARY KEY,
-      tenant_id text NOT NULL REFERENCES tenants(id) ON DELETE CASCADE,
-      created_at timestamptz NOT NULL DEFAULT now(),
-      revoked_at timestamptz
-    );
-    CREATE TABLE IF NOT EXISTS tenant_secrets (
-      tenant_id text NOT NULL REFERENCES tenants(id) ON DELETE CASCADE,
-      key text NOT NULL,
-      value_enc text NOT NULL,
-      updated_at timestamptz NOT NULL DEFAULT now(),
-      PRIMARY KEY (tenant_id, key)
-    );
-    CREATE TABLE IF NOT EXISTS tenant_users (
-      logto_sub text PRIMARY KEY,
-      tenant_id text NOT NULL REFERENCES tenants(id) ON DELETE CASCADE,
-      email text NOT NULL DEFAULT '',
-      created_at timestamptz NOT NULL DEFAULT now()
-    );
-  `);
+  await migrate();
 }
 
 // ── Membership (app unificado) ───────────────────────────────────────────────

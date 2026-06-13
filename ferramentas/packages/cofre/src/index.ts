@@ -1,6 +1,7 @@
 export { encrypt, decrypt, generateKey } from "./crypto.js";
 export { generateToken, hashToken } from "./tokens.js";
 export {
+  migrate,
   ensureSchema,
   resolveTokenToTenant,
   getTenantSecrets,
